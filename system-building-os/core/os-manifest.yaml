@@ -1,0 +1,42 @@
+os_name: Autonomous System Building OS
+canonical_slug: autonomous-system-building-os
+short_name: System Building OS
+version: 1.0.0
+description: >
+  A permanent, reusable, runtime-neutral operating system for planning and
+  implementing software systems. Claude is the planning runtime; Codex is the
+  implementation runtime. The canonical source of truth lives under
+  system-building-os/ and is projected into runtime adapters (.claude, .codex,
+  .agents) by generator scripts. This OS builds products; it is not a product.
+runtimes:
+  planning:
+    name: claude
+    role: discovery, questioning, planning, architecture, decomposition, codex-preparation
+    entrypoint: /plan_max
+  implementation:
+    name: codex
+    role: implementation, testing, repair, validation, integration, documentation, delivery
+    entrypoint: implement-max
+source_of_truth:
+  canonical_root: system-building-os
+  principle: one-source-of-truth
+  adapters_are_generated: true
+  adapter_targets:
+    - .claude
+    - .codex
+    - .agents
+    - integrations/mcp
+projection_scripts:
+  discover: scripts/discover_runtime_capabilities.py
+  generate_canonical: scripts/generate_canonical.py
+  generate_claude: scripts/generate_claude_adapter.py
+  generate_codex: scripts/generate_codex_adapter.py
+  sync: scripts/sync_runtime_adapters.py
+principles:
+  - Build the factory, not a product.
+  - Claude plans deeply; Codex implements deterministically.
+  - Every requirement is traceable to tasks and tests.
+  - Routine, safe, reversible work never asks for permission.
+  - Secrets are never read, printed, or committed.
+  - The plan must be so complete that Codex never guesses material behavior.
+  - Completion is gated by evidence, not by file existence.

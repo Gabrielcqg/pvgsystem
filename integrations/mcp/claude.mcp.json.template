@@ -1,0 +1,15 @@
+{
+  "$comment": "Claude .mcp.json template. Enable ONLY the servers the active plan selects (see mcp-registry.yaml). Env values are references, never literals.",
+  "mcpServers": {
+    "git": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": { "GITHUB_TOKEN": "${GITHUB_TOKEN}" }
+    },
+    "design": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-figma"],
+      "env": { "FIGMA_TOKEN": "${FIGMA_TOKEN}" }
+    }
+  }
+}

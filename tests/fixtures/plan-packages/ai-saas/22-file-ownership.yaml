@@ -1,0 +1,14 @@
+ownership:
+  - path: "database/**"
+    mode: exclusive
+    owner_agent: database-migration-builder
+  - path: "<ai>/**"
+    mode: exclusive
+    owner_agent: ai-orchestration-builder
+  - path: "<backend>/**"
+    mode: exclusive
+    owner_agent: backend-api-builder
+serialize:
+  - "database/migrations/**"
+parallelize:
+  - read-only reviews

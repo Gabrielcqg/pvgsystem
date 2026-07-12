@@ -1,0 +1,18 @@
+{
+  "slug": "visual-frontend",
+  "idea": "A visually rich marketing site with animated hero, case-study gallery and a contact form.",
+  "signals": {
+    "stores_data": false,
+    "multi_user": false,
+    "has_ui": true,
+    "uses_ai": false,
+    "external_integrations": false,
+    "is_extension": false
+  },
+  "ambiguities": [],
+  "expect": [
+    "backend_behavior",
+    "frontend_states"
+  ],
+  "expect_material_question": false
+}

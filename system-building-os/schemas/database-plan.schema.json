@@ -1,0 +1,79 @@
+{
+  "type": "object",
+  "properties": {
+    "persistence_required": {
+      "type": "boolean"
+    },
+    "database_kinds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "relational",
+          "document",
+          "key_value",
+          "graph",
+          "vector",
+          "search",
+          "cache"
+        ]
+      }
+    },
+    "recommended_database": {
+      "type": "string"
+    },
+    "provider": {
+      "type": "string"
+    },
+    "environments": {
+      "type": "object",
+      "properties": {
+        "local": {
+          "type": "string"
+        },
+        "test": {
+          "type": "string"
+        },
+        "staging": {
+          "type": "string"
+        },
+        "production": {
+          "type": "string"
+        }
+      }
+    },
+    "migration_strategy": {
+      "type": "string"
+    },
+    "rollback_strategy": {
+      "type": "string"
+    },
+    "backup_strategy": {
+      "type": "string"
+    },
+    "restore_strategy": {
+      "type": "string"
+    },
+    "multi_tenant_isolation": {
+      "type": "string"
+    },
+    "row_level_security": {
+      "type": "boolean"
+    },
+    "seeds": {
+      "type": "string"
+    },
+    "fixtures": {
+      "type": "string"
+    },
+    "schema_drift_check": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "persistence_required"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Database Plan",
+  "$id": "database-plan.schema.json"
+}

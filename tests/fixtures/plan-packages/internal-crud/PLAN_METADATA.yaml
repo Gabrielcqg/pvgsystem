@@ -1,0 +1,10 @@
+project_id: example-internal-crud
+project_slug: internal-crud
+version: 1.0.0
+content_hash: "sha256:example-crud-0001"
+created_at: "2026-07-11T00:00:00Z"
+source_request: Internal vendor CRUD with roles and audit log.
+active: true
+superseded_version: null
+implementation_status: not_started
+canonical_os: autonomous-system-building-os

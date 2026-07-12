@@ -1,0 +1,77 @@
+# Community / external skill registry. A community skill is NEVER assumed to
+# exist just because its name is known. It must be inspected, trust-evaluated,
+# and can only be used if it improves the workflow. Every essential workflow has
+# a local fallback that is always present in this OS.
+rules:
+  - grill-me style planning is mandatory (local fallback: grill-me-planning).
+  - If a trusted real skill exists, evaluate and use it; else use local fallback.
+  - Frontend planning must consider frontend-design and UI/UX skills.
+  - Testing planning must consider strong QA skills.
+  - Performance planning must consider runtime and perceived-performance skills.
+  - Never make a community skill a single point of failure.
+candidates:
+  - name: grill-me
+    category: grill-me
+    purpose: Adversarial product/plan interrogation.
+    source: community
+    installed: false
+    reviewed: false
+    trust_level: review_required
+    runtime: [claude]
+    recommended_agents: [grill-master]
+    mandatory_relevance: true
+    local_fallback: grill-me-planning
+    conflicts: []
+    notes: Local grill-me-planning skill is authoritative fallback.
+  - name: brainstorming
+    category: brainstorming
+    purpose: Idea expansion and option generation.
+    source: community
+    installed: false
+    reviewed: false
+    trust_level: review_required
+    runtime: [claude]
+    recommended_agents: [product-requirements-architect]
+    mandatory_relevance: false
+    local_fallback: product-discovery
+    conflicts: []
+    notes: Optional; product-discovery covers the essential path.
+  - name: front-design
+    category: frontend design
+    purpose: Premium visual/interaction design direction.
+    source: community
+    installed: false
+    reviewed: false
+    trust_level: review_required
+    runtime: [claude]
+    recommended_agents: [frontend-uiux-architect]
+    mandatory_relevance: false
+    local_fallback: frontend-uiux-planning
+    conflicts: []
+    notes: If present, augments frontend-uiux-planning; never required.
+  - name: frontend-design
+    category: frontend design
+    purpose: Component + design-system fidelity.
+    source: community
+    installed: false
+    reviewed: false
+    trust_level: review_required
+    runtime: [claude, codex]
+    recommended_agents: [frontend-uiux-architect, frontend-uiux-builder]
+    mandatory_relevance: false
+    local_fallback: frontend-design-fidelity
+    conflicts: []
+    notes: Codex fidelity fallback is frontend-design-fidelity.
+  - name: ui-ux-review
+    category: ui/ux
+    purpose: Heuristic + accessibility UI review.
+    source: community
+    installed: false
+    reviewed: false
+    trust_level: review_required
+    runtime: [claude]
+    recommended_agents: [frontend-uiux-architect, qa-validation-architect]
+    mandatory_relevance: false
+    local_fallback: accessibility-planning
+    conflicts: []
+    notes: Accessibility-planning + responsive-design-planning cover essentials.

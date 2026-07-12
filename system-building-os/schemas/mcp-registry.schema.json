@@ -1,0 +1,136 @@
+{
+  "type": "object",
+  "properties": {
+    "mcps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "provider": {
+            "type": "string"
+          },
+          "official_or_trusted_source": {
+            "type": "string"
+          },
+          "purpose": {
+            "type": "string"
+          },
+          "required_for_project": {
+            "type": "boolean"
+          },
+          "runtime": {
+            "type": "object",
+            "properties": {
+              "claude": {
+                "type": "boolean"
+              },
+              "codex": {
+                "type": "boolean"
+              }
+            }
+          },
+          "allowed_agents": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "allowed_environments": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "transport": {
+            "type": "string",
+            "enum": [
+              "stdio",
+              "http",
+              "sse",
+              "websocket"
+            ]
+          },
+          "authentication_reference": {
+            "type": "string"
+          },
+          "access_mode": {
+            "type": "string",
+            "enum": [
+              "read_only",
+              "read_write",
+              "write"
+            ]
+          },
+          "enabled_tools": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "disabled_tools": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "write_capabilities": {
+            "type": "boolean"
+          },
+          "data_classification": {
+            "type": "string"
+          },
+          "cost_risk": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "security_risk": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "audit_required": {
+            "type": "boolean"
+          },
+          "health_check": {
+            "type": "string"
+          },
+          "fallback": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "category",
+          "purpose",
+          "required_for_project",
+          "access_mode",
+          "fallback"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "mcps"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MCP Registry",
+  "$id": "mcp-registry.schema.json"
+}

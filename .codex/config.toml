@@ -1,0 +1,38 @@
+# Codex configuration — Autonomous System Building OS (implementation runtime).
+# Project-scoped. Contains NO secret values; MCP auth is by env-var reference.
+# See system-building-os/runtime/runtime-capabilities.json for detected support.
+
+# Implementation autonomy: routine, safe, reversible work proceeds without prompts.
+approval_policy = "on-failure"      # never | on-failure | on-request | untrusted
+sandbox_mode = "workspace-write"    # read-only | workspace-write | danger-full-access
+
+[sandbox_workspace_write]
+network_access = true               # needed to install normal dependencies
+exclude_tmpdir_env_var = false
+# Protected paths are enforced by scripts/scan_secrets.py as a task gate + CI,
+# because Codex has no native PreToolUse hook (see compatibility_decisions).
+
+# Model is chosen by capability class at runtime; do not hardcode a permanent
+# model here. Map classes in system-building-os/registries/capability-classes.json.
+# model = "<map highest_reasoning / implementation_heavy at runtime>"
+
+[projects."."]
+trust_level = "trusted"
+
+# --- MCP servers (least privilege; enable only what the active plan selects) ---
+# Governed by system-building-os/registries/mcp-registry.yaml + mcp-profiles.yaml.
+# Examples are commented out; the MCP governor emits the concrete set per project.
+#
+# [mcp_servers.git]
+# command = "npx"
+# args = ["-y", "@modelcontextprotocol/server-github"]
+# env = { GITHUB_TOKEN = "${GITHUB_TOKEN}" }   # reference only; never a literal
+#
+# [mcp_servers.postgres]
+# command = "npx"
+# args = ["-y", "@modelcontextprotocol/server-postgres"]
+# env = { DATABASE_URL = "${DATABASE_URL}" }   # read-only tools only in registry
+
+# --- Codex startup contract ---
+# On start, Codex must read AGENTS.md, then follow
+# plans/active/<slug>/29-codex-start.md. Entry skill: implement-max.

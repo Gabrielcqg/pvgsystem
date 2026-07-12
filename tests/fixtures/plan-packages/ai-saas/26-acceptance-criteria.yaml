@@ -1,0 +1,29 @@
+criteria:
+  - id: AC-001
+    requirement: FR-001
+    action: Tenant user uploads a contract.
+    expected_result: Contract stored under the tenant; review job created.
+    verification: automated
+    test_ids:
+      - TEST-001
+  - id: AC-002
+    requirement: FR-002
+    action: AI reviews a contract.
+    expected_result: "Schema-valid, cited risk suggestions; low confidence -> human review."
+    verification: hybrid
+    test_ids:
+      - TEST-002
+  - id: AC-003
+    requirement: FR-003
+    action: Reviewer rejects a suggestion.
+    expected_result: Suggestion marked rejected; nothing auto-executed.
+    verification: automated
+    test_ids:
+      - TEST-003
+  - id: AC-004
+    requirement: FR-004
+    action: User from tenant A requests tenant B data.
+    expected_result: Access denied by isolation; attempt audited.
+    verification: automated
+    test_ids:
+      - TEST-004

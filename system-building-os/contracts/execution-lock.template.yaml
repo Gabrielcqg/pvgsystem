@@ -1,0 +1,25 @@
+# EXECUTION.lock template — copied into plans/active/<slug>/EXECUTION.lock and
+# filled by /prepare_codex. It is a consistency mechanism, not an approval
+# ceremony: once material questions are answered and the plan validates, Claude
+# may mark the package implementation-ready automatically.
+execution_mode: autonomous
+plan_status: implementation_ready   # drafting | implementation_ready | superseded
+human_approval_per_task: false
+continue_until_completion: true
+active_plan_version: ""             # e.g. 1.0.0
+active_plan_hash: ""               # sha256 of the plan package manifest
+created_at: ""                     # ISO-8601
+autonomy_profile: development_full_autonomy
+required_completion_gates:
+  - active_plan_valid
+  - product_requirements_implemented
+  - requirement_traceability_complete
+  - acceptance_criteria_passed
+  - build_passed
+  - unit_tests_passed
+  - security_review_passed
+  - performance_review_passed
+  - documentation_complete
+  - deviation_report_complete
+  - external_blockers_documented
+  - final_acceptance_judge_passed

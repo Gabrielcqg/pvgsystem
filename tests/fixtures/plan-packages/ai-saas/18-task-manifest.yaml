@@ -1,0 +1,91 @@
+tasks:
+  - id: TASK-001
+    title: Bootstrap + multi-tenant scaffold
+    objective: Create the runnable skeleton with tenant context.
+    requirements:
+      - FR-004
+    dependencies: []
+    assigned_agent: implementation-task-runner
+    required_skills:
+      - repository-bootstrap
+    validation_commands:
+      - "<build>"
+    acceptance_criteria:
+      - AC-004
+    estimated_complexity: s
+    parallelization_group: g0
+  - id: TASK-002
+    title: Tenant + contract schema
+    objective: Schema + migrations with row-level tenant isolation.
+    requirements:
+      - FR-001
+      - FR-004
+    dependencies:
+      - TASK-001
+    assigned_agent: database-migration-builder
+    required_skills:
+      - database-schema-implementation
+      - database-migration-implementation
+    validation_commands:
+      - "<db tests>"
+    acceptance_criteria:
+      - AC-004
+    estimated_complexity: m
+    parallelization_group: g1
+  - id: TASK-003
+    title: AI risk-review flow
+    objective: Implement the AI flow behind a model-independent interface with output validation.
+    requirements:
+      - FR-002
+    dependencies:
+      - TASK-002
+    assigned_agent: ai-orchestration-builder
+    required_skills:
+      - ai-orchestration-implementation
+      - ai-output-validation
+    validation_commands:
+      - "<ai evals>"
+    acceptance_criteria:
+      - AC-002
+    estimated_complexity: l
+    parallelization_group: g2
+  - id: TASK-004
+    title: Review + advisory UI/API
+    objective: Upload + accept/reject flow; nothing auto-executes.
+    requirements:
+      - FR-001
+      - FR-003
+    dependencies:
+      - TASK-003
+    assigned_agent: backend-api-builder
+    required_skills:
+      - backend-api-implementation
+      - unit-test-loop
+    validation_commands:
+      - "<tests>"
+    acceptance_criteria:
+      - AC-001
+      - AC-003
+    estimated_complexity: l
+    parallelization_group: g3
+  - id: TASK-005
+    title: Acceptance + evals
+    objective: Run golden + red-team evals and acceptance checks.
+    requirements:
+      - FR-002
+      - FR-003
+      - FR-004
+    dependencies:
+      - TASK-004
+    assigned_agent: qa-test-validator
+    required_skills:
+      - acceptance-criteria-validation
+    validation_commands:
+      - "<full suite>"
+    acceptance_criteria:
+      - AC-001
+      - AC-002
+      - AC-003
+      - AC-004
+    estimated_complexity: m
+    parallelization_group: g4

@@ -1,0 +1,7 @@
+{
+  "original_request_verbatim": "An AI-assisted SaaS that reviews contracts and suggests risky clauses for multiple client companies.",
+  "interpreted_business_objective": "Multi-tenant SaaS that flags contract risk with validated, advisory AI output.",
+  "problem_being_solved": "Manual contract review is slow and inconsistent.",
+  "desired_outcome": "Reviewers get validated, cited risk suggestions they can accept or reject.",
+  "definition_of_success": "Tenants isolated; AI output schema-validated and advisory; golden + red-team evals pass; all acceptance criteria pass."
+}

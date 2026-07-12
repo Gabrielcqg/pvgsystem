@@ -1,0 +1,24 @@
+{
+  "slug": "repo-extension",
+  "idea": "Extend our existing Node API to add subscription billing and a customer portal.",
+  "signals": {
+    "stores_data": true,
+    "multi_user": true,
+    "has_ui": true,
+    "uses_ai": false,
+    "external_integrations": true,
+    "is_extension": true
+  },
+  "ambiguities": [
+    "payment_model",
+    "internal_vs_customer_facing"
+  ],
+  "expect": [
+    "authentication",
+    "backend_behavior",
+    "database",
+    "frontend_states",
+    "integration_fallback"
+  ],
+  "expect_material_question": true
+}

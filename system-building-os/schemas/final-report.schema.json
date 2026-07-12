@@ -1,0 +1,50 @@
+{
+  "type": "object",
+  "properties": {
+    "project_id": {
+      "type": "string"
+    },
+    "plan_version": {
+      "type": "string"
+    },
+    "generated_at": {
+      "type": "string"
+    },
+    "completion_gates": {
+      "type": "object"
+    },
+    "acceptance_summary": {
+      "type": "object"
+    },
+    "requirements_implemented": {
+      "type": "array"
+    },
+    "tests_run": {
+      "type": "object"
+    },
+    "deviations": {
+      "type": "array"
+    },
+    "external_blockers": {
+      "type": "array"
+    },
+    "evidence": {
+      "type": "array"
+    },
+    "truthful": {
+      "type": "boolean"
+    },
+    "final_acceptance_judge_passed": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "project_id",
+    "generated_at",
+    "completion_gates",
+    "final_acceptance_judge_passed"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Final Implementation Report",
+  "$id": "final-report.schema.json"
+}

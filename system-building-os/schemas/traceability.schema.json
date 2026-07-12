@@ -1,0 +1,34 @@
+{
+  "type": "object",
+  "properties": {
+    "goal_to_requirement": {
+      "type": "object"
+    },
+    "requirement_to_component": {
+      "type": "object"
+    },
+    "requirement_to_task": {
+      "type": "object"
+    },
+    "task_to_files": {
+      "type": "object"
+    },
+    "requirement_to_acceptance": {
+      "type": "object"
+    },
+    "acceptance_to_test": {
+      "type": "object"
+    },
+    "test_to_evidence": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "requirement_to_task",
+    "requirement_to_acceptance",
+    "acceptance_to_test"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Requirement Traceability",
+  "$id": "traceability.schema.json"
+}

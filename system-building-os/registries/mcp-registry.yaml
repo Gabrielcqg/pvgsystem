@@ -1,0 +1,119 @@
+# Canonical MCP registry. Selected per-project by the integration-mcp-architect;
+# never all enabled globally. Secrets referenced by env-var NAME only. Every
+# entry has a local fallback so no MCP is a single point of failure.
+# Validated against schemas/mcp-registry.schema.json.
+mcps:
+  - id: mcp-git
+    name: Git / GitHub
+    category: source_control
+    provider: github
+    official_or_trusted_source: official
+    purpose: Repository, branch, PR and issue operations for planning + delivery.
+    required_for_project: false
+    runtime: {claude: true, codex: true}
+    allowed_agents: [planning-orchestrator, autonomous-execution-supervisor, repository-explorer]
+    allowed_environments: [local, development]
+    transport: stdio
+    authentication_reference: GITHUB_TOKEN
+    access_mode: read_write
+    enabled_tools: [list_repos, get_file, create_branch, open_pull_request, list_issues]
+    disabled_tools: [delete_repo, force_push, admin_transfer]
+    write_capabilities: true
+    data_classification: internal
+    cost_risk: low
+    security_risk: medium
+    audit_required: true
+    health_check: "gh auth status || git ls-remote"
+    fallback: Local git CLI via Bash; PRs described in handoff if MCP absent.
+
+  - id: mcp-postgres
+    name: PostgreSQL / Supabase
+    category: database
+    provider: postgres
+    official_or_trusted_source: trusted
+    purpose: Inspect schema and run read queries against a development database.
+    required_for_project: false
+    runtime: {claude: false, codex: true}
+    allowed_agents: [database-migration-builder, backend-api-builder]
+    allowed_environments: [local, development]
+    transport: stdio
+    authentication_reference: DATABASE_URL
+    access_mode: read_only
+    enabled_tools: [list_tables, describe_table, run_select]
+    disabled_tools: [drop_table, truncate, delete, alter_schema]
+    write_capabilities: false
+    data_classification: sensitive
+    cost_risk: low
+    security_risk: high
+    audit_required: true
+    health_check: "pg_isready or SELECT 1"
+    fallback: Migrations + schema in database/ are canonical; local psql/sqlite.
+
+  - id: mcp-browser
+    name: Browser automation
+    category: browser
+    provider: playwright
+    official_or_trusted_source: trusted
+    purpose: Drive real UI flows, capture console/network, check responsiveness.
+    required_for_project: false
+    runtime: {claude: false, codex: true}
+    allowed_agents: [browser-ui-validator, frontend-uiux-builder]
+    allowed_environments: [local, development]
+    transport: stdio
+    authentication_reference: NONE
+    access_mode: read_write
+    enabled_tools: [navigate, click, type, screenshot, read_console, read_network]
+    disabled_tools: []
+    write_capabilities: true
+    data_classification: internal
+    cost_risk: low
+    security_risk: low
+    audit_required: false
+    health_check: "launch headless browser and load about:blank"
+    fallback: Headless Playwright/Puppeteer via Bash; manual QA checklist.
+
+  - id: mcp-design
+    name: Design system / Figma
+    category: design
+    provider: figma
+    official_or_trusted_source: trusted
+    purpose: Read design tokens and frames for frontend fidelity planning.
+    required_for_project: false
+    runtime: {claude: true, codex: true}
+    allowed_agents: [frontend-uiux-architect, frontend-uiux-builder]
+    allowed_environments: [local, development]
+    transport: http
+    authentication_reference: FIGMA_TOKEN
+    access_mode: read_only
+    enabled_tools: [get_file, get_styles, get_components]
+    disabled_tools: [write_comment]
+    write_capabilities: false
+    data_classification: internal
+    cost_risk: low
+    security_risk: low
+    audit_required: false
+    health_check: "GET /v1/me"
+    fallback: Design tokens captured in the frontend plan; static token file.
+
+  - id: mcp-observability
+    name: Monitoring / Sentry
+    category: observability
+    provider: sentry
+    official_or_trusted_source: official
+    purpose: Read error/issue telemetry during validation.
+    required_for_project: false
+    runtime: {claude: false, codex: true}
+    allowed_agents: [performance-reviewer, security-reviewer, autonomous-execution-supervisor]
+    allowed_environments: [development, staging]
+    transport: http
+    authentication_reference: SENTRY_AUTH_TOKEN
+    access_mode: read_only
+    enabled_tools: [list_issues, get_issue, list_events]
+    disabled_tools: [resolve_issue, delete_issue]
+    write_capabilities: false
+    data_classification: internal
+    cost_risk: low
+    security_risk: medium
+    audit_required: true
+    health_check: "GET /api/0/organizations/"
+    fallback: Local structured logs + metrics endpoints defined in observability plan.

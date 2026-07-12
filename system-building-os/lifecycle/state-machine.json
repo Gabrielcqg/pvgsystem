@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "name": "autonomous-system-building-os-lifecycle",
+  "version": "1.0.0",
+  "phases": {
+    "planning": {
+      "runtime": "claude",
+      "states": [
+        "RECEIVED",
+        "UNDERSTANDING",
+        "GRILLING",
+        "QUESTIONING",
+        "SPECIFYING_PRODUCT",
+        "DESIGNING_ARCHITECTURE",
+        "DECOMPOSING",
+        "PREPARING_CODEX",
+        "VALIDATING_PLAN",
+        "IMPLEMENTATION_READY"
+      ],
+      "initial": "RECEIVED",
+      "terminal": ["IMPLEMENTATION_READY"]
+    },
+    "implementation": {
+      "runtime": "codex",
+      "states": [
+        "INITIALIZING",
+        "INSPECTING_REPOSITORY",
+        "BOOTSTRAPPING",
+        "IMPLEMENTING",
+        "INTEGRATING",
+        "TESTING",
+        "REPAIRING",
+        "REVIEWING",
+        "VALIDATING_ACCEPTANCE",
+        "DOCUMENTING",
+        "READY_FOR_DELIVERY",
+        "COMPLETED",
+        "BLOCKED_EXTERNALLY"
+      ],
+      "initial": "INITIALIZING",
+      "terminal": ["COMPLETED", "BLOCKED_EXTERNALLY"]
+    }
+  },
+  "transitions": [
+    {"from": "RECEIVED", "to": "UNDERSTANDING", "trigger": "plan_max_invoked"},
+    {"from": "UNDERSTANDING", "to": "GRILLING", "trigger": "intent_normalized"},
+    {"from": "GRILLING", "to": "QUESTIONING", "trigger": "material_ambiguity_found"},
+    {"from": "GRILLING", "to": "SPECIFYING_PRODUCT", "trigger": "no_material_ambiguity"},
+    {"from": "QUESTIONING", "to": "SPECIFYING_PRODUCT", "trigger": "questions_answered"},
+    {"from": "QUESTIONING", "to": "GRILLING", "trigger": "new_contradiction_created"},
+    {"from": "SPECIFYING_PRODUCT", "to": "DESIGNING_ARCHITECTURE", "trigger": "product_plan_complete"},
+    {"from": "DESIGNING_ARCHITECTURE", "to": "DECOMPOSING", "trigger": "architecture_complete"},
+    {"from": "DECOMPOSING", "to": "PREPARING_CODEX", "trigger": "tasks_decomposed"},
+    {"from": "PREPARING_CODEX", "to": "VALIDATING_PLAN", "trigger": "package_assembled"},
+    {"from": "VALIDATING_PLAN", "to": "DECOMPOSING", "trigger": "critical_findings"},
+    {"from": "VALIDATING_PLAN", "to": "SPECIFYING_PRODUCT", "trigger": "requirement_gap_found"},
+    {"from": "VALIDATING_PLAN", "to": "IMPLEMENTATION_READY", "trigger": "plan_validated"},
+
+    {"from": "INITIALIZING", "to": "INSPECTING_REPOSITORY", "trigger": "plan_loaded"},
+    {"from": "INSPECTING_REPOSITORY", "to": "BOOTSTRAPPING", "trigger": "repo_mapped"},
+    {"from": "BOOTSTRAPPING", "to": "IMPLEMENTING", "trigger": "project_bootstrapped"},
+    {"from": "IMPLEMENTING", "to": "INTEGRATING", "trigger": "modules_built"},
+    {"from": "IMPLEMENTING", "to": "REPLANNING_IMPLEMENTATION_PATH", "trigger": "path_infeasible"},
+    {"from": "REPLANNING_IMPLEMENTATION_PATH", "to": "IMPLEMENTING", "trigger": "new_path_selected"},
+    {"from": "INTEGRATING", "to": "TESTING", "trigger": "integration_done"},
+    {"from": "TESTING", "to": "REPAIRING", "trigger": "tests_failed"},
+    {"from": "REPAIRING", "to": "TESTING", "trigger": "repair_applied"},
+    {"from": "TESTING", "to": "REVIEWING", "trigger": "tests_passed"},
+    {"from": "REVIEWING", "to": "REPAIRING", "trigger": "review_findings"},
+    {"from": "REVIEWING", "to": "VALIDATING_ACCEPTANCE", "trigger": "review_passed"},
+    {"from": "VALIDATING_ACCEPTANCE", "to": "REPAIRING", "trigger": "acceptance_failed"},
+    {"from": "VALIDATING_ACCEPTANCE", "to": "DOCUMENTING", "trigger": "acceptance_passed"},
+    {"from": "DOCUMENTING", "to": "READY_FOR_DELIVERY", "trigger": "docs_complete"},
+    {"from": "READY_FOR_DELIVERY", "to": "COMPLETED", "trigger": "completion_gates_passed"},
+    {"from": "IMPLEMENTING", "to": "BLOCKED_EXTERNALLY", "trigger": "external_blocker_after_local_exhausted"},
+    {"from": "INTEGRATING", "to": "BLOCKED_EXTERNALLY", "trigger": "external_blocker_after_local_exhausted"},
+    {"from": "BLOCKED_EXTERNALLY", "to": "IMPLEMENTING", "trigger": "external_resource_available"}
+  ],
+  "forbidden_transitions": [
+    {"from": "RECEIVED", "to": "IMPLEMENTING", "reason": "planning must complete before implementation"},
+    {"from": "IMPLEMENTING", "to": "COMPLETED", "reason": "must pass testing, review, acceptance"},
+    {"from": "TESTING", "to": "COMPLETED", "reason": "failed/unverified tests cannot complete"},
+    {"from": "VALIDATING_ACCEPTANCE", "to": "COMPLETED", "reason": "must document and pass completion gates"},
+    {"from": "IMPLEMENTATION_READY", "to": "COMPLETED", "reason": "implementation phases required"}
+  ],
+  "extra_states": ["REPLANNING_IMPLEMENTATION_PATH"],
+  "persistence": {
+    "state": "runtime/state.json",
+    "ledger": "runtime/execution-ledger.jsonl",
+    "task_status": "runtime/task-status.yaml",
+    "checkpoints": "runtime/checkpoints/",
+    "phase_logs": "runtime/phase-logs/",
+    "note": "Under an active project these paths are scoped to plans/active/<slug>/runtime/."
+  }
+}

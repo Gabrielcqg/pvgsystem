@@ -1,0 +1,19 @@
+agents:
+  - id: auth-authorization-builder
+    responsibility: Own authentication and RBAC.
+    output_contract: validated changes within owned files + evidence
+  - id: backend-api-builder
+    responsibility: Own the vendor CRUD API and business logic.
+    output_contract: validated changes within owned files + evidence
+  - id: database-migration-builder
+    responsibility: "Own database schema, migrations, and drift checks."
+    output_contract: validated changes within owned files + evidence
+  - id: frontend-uiux-builder
+    responsibility: Own the vendor UI and its states.
+    output_contract: validated changes within owned files + evidence
+  - id: implementation-task-runner
+    responsibility: Execute bounded bootstrap tasks.
+    output_contract: validated changes within owned files + evidence
+  - id: qa-test-validator
+    responsibility: Own acceptance and regression testing.
+    output_contract: validated changes within owned files + evidence

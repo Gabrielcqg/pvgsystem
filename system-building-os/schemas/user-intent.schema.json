@@ -1,0 +1,74 @@
+{
+  "type": "object",
+  "properties": {
+    "original_request_verbatim": {
+      "type": "string"
+    },
+    "interpreted_business_objective": {
+      "type": "string"
+    },
+    "problem_being_solved": {
+      "type": "string"
+    },
+    "desired_outcome": {
+      "type": "string"
+    },
+    "likely_users": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "known_constraints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "explicit_requirements": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "implicit_requirements": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "non_negotiable_instructions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "open_decisions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "potential_contradictions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "current_system_context": {
+      "type": "string"
+    },
+    "definition_of_success": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "original_request_verbatim",
+    "interpreted_business_objective",
+    "problem_being_solved",
+    "definition_of_success"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "User Intent Model",
+  "$id": "user-intent.schema.json"
+}

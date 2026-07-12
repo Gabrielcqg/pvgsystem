@@ -1,0 +1,85 @@
+# Autonomy policy — the standing authorization model for this OS.
+# The user's initial request to create or implement a system is standing
+# authorization for every safe, reversible, in-scope action required to finish.
+autonomy:
+  mode: full
+  ask_for_routine_confirmation: false
+  continue_until_completion: true
+  plan_autonomously: true
+  choose_reversible_technical_decisions: true
+  document_assumptions: true
+  create_missing_agents: true
+  create_missing_skills: true
+  select_required_mcps: true
+  install_normal_project_dependencies: true
+  create_local_and_development_infrastructure: true
+  initialize_local_database: true
+  create_and_apply_development_migrations: true
+  run_tests: true
+  repair_failures: true
+  retry_with_strategy_change: true
+  refactor_when_required: true
+  generate_documentation: true
+  validate_against_plan: true
+  stop_only_when_completion_gates_pass: true
+
+# "Always yes" list: routine, safe, reversible work that must never prompt.
+routine_actions_always_allowed:
+  - create or edit project files
+  - install normal project dependencies
+  - run the test suite
+  - fix a failing test
+  - refactor a module
+  - create a local development migration
+  - initialize a local development database
+  - run the formatter or linter
+  - continue to the next phase
+  - retry a failed operation with a changed strategy
+  - substitute a compatible library
+  - create an additional implementation skill or agent
+  - delegate a bounded task to another agent
+
+# Reality clause: maximum autonomy never means fabricating reality.
+external_blocker_protocol:
+  when: a credential, account, domain, production environment or external
+        resource that is required is unavailable
+  do_not: stop the whole project or repeatedly ask permission
+  steps:
+    - complete everything that can be completed locally
+    - create a local substitute, mock, adapter or sandbox where possible
+    - create the real integration interface
+    - create automated verification for when the resource becomes available
+    - document the exact external blocker in the deviation / blocker log
+    - keep the project runnable without the unavailable resource where possible
+    - continue with all unaffected tasks
+
+hard_limits:
+  never_fabricate_credentials: true
+  never_print_or_commit_secrets: true
+  never_put_secret_values_in_docs_logs_plans_examples_or_config: true
+  use_env_var_names_and_templates_only: true
+
+profiles:
+  local_full_autonomy:
+    approval_per_task: false
+    destructive_data_ops: allowed_on_synthetic_local_data_only
+  development_full_autonomy:
+    approval_per_task: false
+    destructive_data_ops: allowed_on_development_data
+  staging_full_autonomy:
+    approval_per_task: false
+    destructive_data_ops: guarded_expand_and_contract
+  production_managed_autonomy:
+    approval_per_task: false
+    requires:
+      - pre_deploy_checks
+      - backup_verification
+      - backward_compatible_migrations
+      - expand_and_contract_migration_strategy
+      - shadow_validation
+      - smoke_tests
+      - health_checks
+      - canary_or_staged_rollout_when_applicable
+      - automatic_rollback
+      - post_deploy_validation
+      - deployment_logs

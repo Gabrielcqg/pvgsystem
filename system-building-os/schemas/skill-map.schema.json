@@ -1,0 +1,68 @@
+{
+  "type": "object",
+  "properties": {
+    "skills": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "classification": {
+            "type": "string",
+            "enum": [
+              "core_required",
+              "project_specific",
+              "community_external",
+              "local_fallback",
+              "new_to_create"
+            ]
+          },
+          "runtime": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "claude",
+                "codex",
+                "shared"
+              ]
+            }
+          },
+          "purpose": {
+            "type": "string"
+          },
+          "local_fallback": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          },
+          "trust_level": {
+            "type": "string",
+            "enum": [
+              "builtin",
+              "trusted",
+              "review_required",
+              "untrusted"
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "classification",
+          "runtime"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    }
+  },
+  "required": [
+    "skills"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Skill Map",
+  "$id": "skill-map.schema.json"
+}

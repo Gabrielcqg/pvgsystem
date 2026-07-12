@@ -1,0 +1,19 @@
+{
+  "slug": "data-pipeline",
+  "idea": "A nightly data pipeline that ingests CSV drops, normalizes them, and loads a warehouse for reporting.",
+  "signals": {
+    "stores_data": true,
+    "multi_user": false,
+    "has_ui": false,
+    "uses_ai": false,
+    "external_integrations": true,
+    "is_extension": false
+  },
+  "ambiguities": [],
+  "expect": [
+    "backend_behavior",
+    "database",
+    "integration_fallback"
+  ],
+  "expect_material_question": false
+}

@@ -1,0 +1,57 @@
+{
+  "type": "object",
+  "properties": {
+    "ownership": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "owner_agent": {
+            "type": "string"
+          },
+          "owner_task": {
+            "type": "string"
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "exclusive",
+              "shared_read",
+              "serialized_write"
+            ]
+          },
+          "parallelization_group": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "path",
+          "mode"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "serialize": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "parallelize": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "ownership"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "File Ownership",
+  "$id": "file-ownership.schema.json"
+}

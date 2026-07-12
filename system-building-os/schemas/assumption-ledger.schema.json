@@ -1,0 +1,80 @@
+{
+  "type": "object",
+  "properties": {
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^ASM-[0-9]{3,}$"
+          },
+          "assumption": {
+            "type": "string"
+          },
+          "confidence": {
+            "type": "string",
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ]
+          },
+          "reason": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          },
+          "affected_requirements": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "reversibility": {
+            "type": "string",
+            "enum": [
+              "reversible",
+              "costly",
+              "irreversible"
+            ]
+          },
+          "validation_method": {
+            "type": "string"
+          },
+          "consequence_if_wrong": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "A",
+              "B",
+              "C",
+              "D",
+              "E",
+              "F"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "assumption",
+          "confidence",
+          "reason",
+          "reversibility",
+          "consequence_if_wrong"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "assumptions"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Assumption Ledger",
+  "$id": "assumption-ledger.schema.json"
+}

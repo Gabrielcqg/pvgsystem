@@ -1,0 +1,33 @@
+skills:
+  - name: acceptance-criteria-validation
+    classification: core_required
+    runtime:
+      - codex
+  - name: ai-orchestration-implementation
+    classification: core_required
+    runtime:
+      - codex
+  - name: ai-output-validation
+    classification: core_required
+    runtime:
+      - codex
+  - name: backend-api-implementation
+    classification: core_required
+    runtime:
+      - codex
+  - name: database-migration-implementation
+    classification: core_required
+    runtime:
+      - codex
+  - name: database-schema-implementation
+    classification: core_required
+    runtime:
+      - codex
+  - name: repository-bootstrap
+    classification: core_required
+    runtime:
+      - codex
+  - name: unit-test-loop
+    classification: core_required
+    runtime:
+      - codex

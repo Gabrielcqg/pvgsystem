@@ -1,0 +1,89 @@
+{
+  "generated_at": "2026-07-11T21:45:15+00:00",
+  "generator": "scripts/discover_runtime_capabilities.py",
+  "note": "Regenerate with `python3 scripts/discover_runtime_capabilities.py`. Versions below were detected on the bootstrap host; discovery re-detects at runtime.",
+  "runtimes": [
+    {
+      "runtime": "claude",
+      "detected_version": "2.1.207 (Claude Code)",
+      "supported_instruction_files": [
+        "CLAUDE.md",
+        ".claude/rules/*.md"
+      ],
+      "supported_skill_locations": [
+        ".claude/skills/<name>/SKILL.md"
+      ],
+      "supported_agent_locations": [
+        ".claude/agents/<name>.md"
+      ],
+      "supported_commands": [
+        ".claude/commands/<name>.md"
+      ],
+      "supported_hooks": [
+        "PreToolUse",
+        "PostToolUse",
+        "UserPromptSubmit",
+        "Stop",
+        "SubagentStop",
+        "SessionStart",
+        "Notification"
+      ],
+      "supported_mcp_configuration": [
+        ".mcp.json",
+        ".claude/settings.json (mcpServers)"
+      ],
+      "supported_permission_controls": [
+        ".claude/settings.json permissions.allow/deny/ask"
+      ],
+      "supported_invocation_mechanism": "slash commands + skills (Skill tool) + subagents (Agent/Task tools)",
+      "detected_limitations": [
+        "Long procedures should live in skills, not CLAUDE.md.",
+        "Hooks are shell/CLI scripts wired via settings.json."
+      ],
+      "adapter_generation_timestamp": "2026-07-11T21:45:15+00:00"
+    },
+    {
+      "runtime": "codex",
+      "detected_version": "codex-cli 0.142.3",
+      "supported_instruction_files": [
+        "AGENTS.md"
+      ],
+      "supported_skill_locations": [
+        ".agents/skills/<name>/SKILL.md",
+        ".codex/agents/"
+      ],
+      "supported_agent_locations": [
+        ".codex/agents/<name>.md"
+      ],
+      "supported_commands": [
+        "natural-language entrypoint: 'Implement the active system plan using the implement-max skill.'"
+      ],
+      "supported_hooks": [],
+      "supported_mcp_configuration": [
+        ".codex/config.toml [mcp_servers]"
+      ],
+      "supported_permission_controls": [
+        ".codex/config.toml sandbox + approval policy"
+      ],
+      "supported_invocation_mechanism": "AGENTS.md instructions + config.toml + skills + validation scripts",
+      "detected_limitations": [
+        "No native event-hook system equivalent to Claude PreToolUse/PostToolUse.",
+        "Hook-like behavior is implemented via wrapper scripts, skills, task gates, and CI.",
+        "Codex reads AGENTS.md as its primary instruction file."
+      ],
+      "compatibility_decisions": [
+        "Secret-exposure blocking: Claude uses a PreToolUse hook; Codex uses scan_secrets.py as a mandatory task gate + CI check.",
+        "Phase logging: Claude uses SubagentStop/Stop hooks; Codex uses phase-completion-reporting skill + execution-ledger writes."
+      ],
+      "adapter_generation_timestamp": "2026-07-11T21:45:15+00:00"
+    }
+  ],
+  "existing_repository_config": {
+    "claude_settings_local": ".claude/settings.local.json (preserved; permission allowlist only)",
+    "conflicts_detected": [],
+    "preserved": [
+      ".claude/settings.local.json"
+    ],
+    "backed_up": []
+  }
+}

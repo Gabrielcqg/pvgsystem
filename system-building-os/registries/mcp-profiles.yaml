@@ -1,0 +1,33 @@
+# MCP access profiles per environment + runtime. Least privilege: read-only by
+# default; writes granted explicitly and never to production without the
+# production_managed_autonomy guards. Referenced by the MCP governor.
+profiles:
+  local:
+    default_access: read_write
+    allowed: [mcp-git, mcp-postgres, mcp-browser, mcp-design]
+    write_allowed: [mcp-git, mcp-browser]
+    notes: Local synthetic data only; destructive tools remain disabled.
+  development:
+    default_access: read_write
+    allowed: [mcp-git, mcp-postgres, mcp-browser, mcp-design, mcp-observability]
+    write_allowed: [mcp-git, mcp-browser]
+    notes: Development database writes via migrations only.
+  staging:
+    default_access: read_only
+    allowed: [mcp-git, mcp-observability]
+    write_allowed: []
+    notes: No direct data writes; expand-and-contract migrations via CI.
+  production:
+    default_access: read_only
+    allowed: [mcp-observability]
+    write_allowed: []
+    notes: >
+      production_managed_autonomy only. Writes go through deploy pipeline with
+      backup verification, canary, and automatic rollback. Never via ad-hoc MCP.
+runtime_separation:
+  claude:
+    rationale: Planning needs read + design context, not production writes.
+    permitted_categories: [source_control, design]
+  codex:
+    rationale: Implementation needs DB inspect, browser, git, telemetry.
+    permitted_categories: [source_control, database, browser, design, observability]

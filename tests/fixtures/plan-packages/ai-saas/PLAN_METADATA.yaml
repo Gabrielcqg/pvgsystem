@@ -1,0 +1,10 @@
+project_id: example-ai-saas
+project_slug: ai-saas
+version: 1.0.0
+content_hash: "sha256:example-aisaas-0001"
+created_at: "2026-07-11T00:00:00Z"
+source_request: AI contract-review SaaS for multiple client companies.
+active: true
+superseded_version: null
+implementation_status: not_started
+canonical_os: autonomous-system-building-os

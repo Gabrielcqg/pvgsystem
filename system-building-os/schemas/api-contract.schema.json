@@ -1,0 +1,126 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^API-[0-9]{3,}$"
+    },
+    "method": {
+      "type": "string",
+      "enum": [
+        "GET",
+        "POST",
+        "PUT",
+        "PATCH",
+        "DELETE",
+        "PROCEDURE",
+        "SUBSCRIPTION",
+        "EVENT"
+      ]
+    },
+    "path": {
+      "type": "string"
+    },
+    "purpose": {
+      "type": "string"
+    },
+    "authentication": {
+      "type": "string"
+    },
+    "authorization": {
+      "type": "string"
+    },
+    "path_parameters": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "query_parameters": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "headers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "request_schema": {
+      "type": [
+        "string",
+        "object"
+      ]
+    },
+    "response_schema": {
+      "type": [
+        "string",
+        "object"
+      ]
+    },
+    "validation": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "success_codes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "error_codes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "idempotency": {
+      "type": "string"
+    },
+    "rate_limits": {
+      "type": "string"
+    },
+    "side_effects": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "database_changes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "events_emitted": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "observability": {
+      "type": "string"
+    },
+    "tests": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "id",
+    "method",
+    "path",
+    "purpose",
+    "authentication"
+  ],
+  "additionalProperties": false,
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "API Contract",
+  "$id": "api-contract.schema.json"
+}

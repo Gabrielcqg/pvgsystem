@@ -1,0 +1,110 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^AI-[0-9]{3,}$"
+    },
+    "purpose": {
+      "type": "string"
+    },
+    "where_ai_is_appropriate": {
+      "type": "string"
+    },
+    "where_deterministic_required": {
+      "type": "string"
+    },
+    "user_inputs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "context_inputs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tools": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "memory": {
+      "type": "string"
+    },
+    "prompt_responsibilities": {
+      "type": "string"
+    },
+    "output_schema": {
+      "type": [
+        "string",
+        "object"
+      ]
+    },
+    "confidence_behavior": {
+      "type": "string"
+    },
+    "validation": {
+      "type": "string"
+    },
+    "citations": {
+      "type": "string"
+    },
+    "hallucination_mitigation": {
+      "type": "string"
+    },
+    "refusal_behavior": {
+      "type": "string"
+    },
+    "fallback_behavior": {
+      "type": "string"
+    },
+    "retry_behavior": {
+      "type": "string"
+    },
+    "evaluation_datasets": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "quality_metrics": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "cost_constraints": {
+      "type": "string"
+    },
+    "latency_constraints": {
+      "type": "string"
+    },
+    "human_review": {
+      "type": "string"
+    },
+    "prompt_versioning": {
+      "type": "string"
+    },
+    "model_substitution_strategy": {
+      "type": "string"
+    },
+    "capability_class": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "purpose",
+    "output_schema",
+    "validation",
+    "fallback_behavior"
+  ],
+  "additionalProperties": false,
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AI Flow",
+  "$id": "ai-flow.schema.json"
+}

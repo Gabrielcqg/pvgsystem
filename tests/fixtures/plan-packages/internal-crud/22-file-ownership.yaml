@@ -1,0 +1,16 @@
+ownership:
+  - path: "database/**"
+    mode: exclusive
+    owner_agent: database-migration-builder
+  - path: "<backend>/**"
+    mode: exclusive
+    owner_agent: backend-api-builder
+  - path: "<frontend>/**"
+    mode: exclusive
+    owner_agent: frontend-uiux-builder
+serialize:
+  - "database/migrations/**"
+  - shared config
+parallelize:
+  - frontend module
+  - read-only reviews

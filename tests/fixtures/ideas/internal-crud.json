@@ -1,0 +1,22 @@
+{
+  "slug": "internal-crud",
+  "idea": "An internal tool for our ops team to create, edit and track vendor records with roles and an audit log.",
+  "signals": {
+    "stores_data": true,
+    "multi_user": true,
+    "has_ui": true,
+    "uses_ai": false,
+    "external_integrations": false,
+    "is_extension": false
+  },
+  "ambiguities": [
+    "editable_after_submit"
+  ],
+  "expect": [
+    "authentication",
+    "backend_behavior",
+    "database",
+    "frontend_states"
+  ],
+  "expect_material_question": true
+}

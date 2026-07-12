@@ -1,0 +1,37 @@
+{
+  "note": "Model-neutral capability classes. Mapped to concrete models during runtime discovery; never hardcode a permanent model name in plans.",
+  "classes": {
+    "highest_reasoning": {
+      "use": "orchestration, architecture, adversarial grill, plan-consistency judging",
+      "example_mapping_2026": "claude-opus-4-8",
+      "parallelism": "low"
+    },
+    "balanced_reasoning": {
+      "use": "most planning agents and most implementation tasks",
+      "example_mapping_2026": "claude-sonnet-4-6",
+      "parallelism": "medium"
+    },
+    "fast_read_only": {
+      "use": "repository exploration, documentation research, summarization",
+      "example_mapping_2026": "claude-haiku-4-5",
+      "parallelism": "high"
+    },
+    "implementation_heavy": {
+      "use": "large code-writing tasks, migrations, integrations",
+      "example_mapping_2026": "claude-opus-4-8",
+      "parallelism": "low"
+    },
+    "validation_independent": {
+      "use": "independent judges: plan-consistency-judge, final-acceptance-judge",
+      "example_mapping_2026": "claude-opus-4-8",
+      "constraint": "must be a separate context from the producer it evaluates"
+    }
+  },
+  "budgets": {
+    "planning_context_budget": "keep main thread to intent, decisions, requirements, open questions, synthesis",
+    "implementation_context_budget": "supervisor gets metadata+status; workers get a focused context packet",
+    "max_parallel_agents_default": 4,
+    "retry_budget_per_task_default": 4,
+    "external_service_budget": "record calls in execution ledger; prefer mocks in local/test"
+  }
+}

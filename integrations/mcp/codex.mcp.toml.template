@@ -1,0 +1,17 @@
+# Codex config.toml [mcp_servers] template. Enable ONLY selected servers.
+# Env values are references (${VAR}), never literals. See mcp-registry.yaml.
+
+[mcp_servers.git]
+command = "npx"
+args = ["-y", "@modelcontextprotocol/server-github"]
+env = { GITHUB_TOKEN = "${GITHUB_TOKEN}" }
+
+# Read-only database tools only (write tools are disabled in the registry).
+[mcp_servers.postgres]
+command = "npx"
+args = ["-y", "@modelcontextprotocol/server-postgres"]
+env = { DATABASE_URL = "${DATABASE_URL}" }
+
+[mcp_servers.browser]
+command = "npx"
+args = ["-y", "@modelcontextprotocol/server-playwright"]

@@ -1,0 +1,16 @@
+agents:
+  - id: ai-orchestration-builder
+    responsibility: "AI flow, output validation, evals."
+    output_contract: validated changes within owned files + evidence
+  - id: backend-api-builder
+    responsibility: Review API and advisory decision flow.
+    output_contract: validated changes within owned files + evidence
+  - id: database-migration-builder
+    responsibility: Tenant-isolated schema + migrations.
+    output_contract: validated changes within owned files + evidence
+  - id: implementation-task-runner
+    responsibility: Bootstrap and bounded tasks.
+    output_contract: validated changes within owned files + evidence
+  - id: qa-test-validator
+    responsibility: Acceptance + eval gating.
+    output_contract: validated changes within owned files + evidence

@@ -1,0 +1,26 @@
+{
+  "slug": "ai-saas",
+  "idea": "An AI-assisted SaaS that reviews contracts and suggests risky clauses for multiple client companies.",
+  "signals": {
+    "stores_data": true,
+    "multi_user": true,
+    "has_ui": true,
+    "uses_ai": true,
+    "external_integrations": true,
+    "is_extension": false
+  },
+  "ambiguities": [
+    "multi_tenant",
+    "ai_advisory_vs_auto",
+    "payment_model"
+  ],
+  "expect": [
+    "ai_output_validation",
+    "authentication",
+    "backend_behavior",
+    "database",
+    "frontend_states",
+    "integration_fallback"
+  ],
+  "expect_material_question": true
+}

@@ -1,0 +1,61 @@
+skills:
+  - name: acceptance-criteria-validation
+    classification: core_required
+    runtime:
+      - codex
+  - name: accessibility-implementation
+    classification: core_required
+    runtime:
+      - codex
+  - name: auth-implementation
+    classification: core_required
+    runtime:
+      - codex
+  - name: authorization-validation
+    classification: core_required
+    runtime:
+      - codex
+  - name: backend-api-implementation
+    classification: core_required
+    runtime:
+      - codex
+  - name: business-logic-implementation
+    classification: core_required
+    runtime:
+      - codex
+  - name: database-migration-implementation
+    classification: core_required
+    runtime:
+      - codex
+  - name: database-schema-implementation
+    classification: core_required
+    runtime:
+      - codex
+  - name: database-test-and-drift-check
+    classification: core_required
+    runtime:
+      - codex
+  - name: dependency-management
+    classification: core_required
+    runtime:
+      - codex
+  - name: frontend-implementation
+    classification: core_required
+    runtime:
+      - codex
+  - name: integration-test-loop
+    classification: core_required
+    runtime:
+      - codex
+  - name: repository-bootstrap
+    classification: core_required
+    runtime:
+      - codex
+  - name: responsive-implementation
+    classification: core_required
+    runtime:
+      - codex
+  - name: unit-test-loop
+    classification: core_required
+    runtime:
+      - codex

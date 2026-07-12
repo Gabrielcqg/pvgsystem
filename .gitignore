@@ -1,0 +1,32 @@
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*_rsa
+*_ed25519
+id_rsa*
+id_ed25519*
+credentials.json
+service-account*.json
+*.keystore
+
+# Activated (non-template) Claude settings may contain machine-local choices
+.claude/settings.json
+
+# Python / tooling
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+
+# Node
+node_modules/
+
+# OS / editor
+.DS_Store
+*.swp

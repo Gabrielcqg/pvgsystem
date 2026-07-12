@@ -1,0 +1,132 @@
+tasks:
+  - id: TASK-001
+    title: Bootstrap project + toolchain
+    objective: Create the runnable skeleton and detect package/lint/test/build commands.
+    requirements:
+      - FR-001
+    dependencies: []
+    assigned_agent: implementation-task-runner
+    required_skills:
+      - repository-bootstrap
+      - dependency-management
+    validation_commands:
+      - "<detected build>"
+      - "<detected test>"
+    acceptance_criteria:
+      - AC-001
+    estimated_complexity: s
+    files_to_create:
+      - "<skeleton>"
+    parallelization_group: g0
+  - id: TASK-002
+    title: Vendor schema + migrations
+    objective: Create the vendor + audit schema and reversible migrations.
+    requirements:
+      - FR-001
+      - FR-005
+    dependencies:
+      - TASK-001
+    assigned_agent: database-migration-builder
+    required_skills:
+      - database-schema-implementation
+      - database-migration-implementation
+      - database-test-and-drift-check
+    validation_commands:
+      - "<migrate>"
+      - "<db tests>"
+    acceptance_criteria:
+      - AC-005
+    estimated_complexity: m
+    files_to_create:
+      - "database/schema/*"
+      - "database/migrations/*"
+    parallelization_group: g1
+  - id: TASK-003
+    title: Auth + RBAC
+    objective: "Implement authentication, sessions, and role-based authorization."
+    requirements:
+      - FR-004
+    dependencies:
+      - TASK-002
+    assigned_agent: auth-authorization-builder
+    required_skills:
+      - auth-implementation
+      - authorization-validation
+    validation_commands:
+      - "<auth tests>"
+    acceptance_criteria:
+      - AC-004
+    estimated_complexity: m
+    parallelization_group: g2
+  - id: TASK-004
+    title: Vendor CRUD API
+    objective: Implement create/edit/list APIs with validation and audit writes.
+    requirements:
+      - FR-001
+      - FR-002
+      - FR-003
+      - FR-005
+    dependencies:
+      - TASK-002
+      - TASK-003
+    assigned_agent: backend-api-builder
+    required_skills:
+      - backend-api-implementation
+      - business-logic-implementation
+      - unit-test-loop
+    validation_commands:
+      - "<unit tests>"
+      - "<integration tests>"
+    acceptance_criteria:
+      - AC-001
+      - AC-002
+      - AC-003
+    estimated_complexity: l
+    parallelization_group: g3
+  - id: TASK-005
+    title: Vendor UI
+    objective: Implement list/create/edit screens with all states and accessibility.
+    requirements:
+      - FR-001
+      - FR-002
+      - FR-003
+    dependencies:
+      - TASK-004
+    assigned_agent: frontend-uiux-builder
+    required_skills:
+      - frontend-implementation
+      - responsive-implementation
+      - accessibility-implementation
+    validation_commands:
+      - "<component tests>"
+      - "<e2e>"
+    acceptance_criteria:
+      - AC-003
+    estimated_complexity: l
+    parallelization_group: g4
+  - id: TASK-006
+    title: Acceptance + QA
+    objective: Verify all acceptance criteria with evidence.
+    requirements:
+      - FR-001
+      - FR-002
+      - FR-003
+      - FR-004
+      - FR-005
+    dependencies:
+      - TASK-004
+      - TASK-005
+    assigned_agent: qa-test-validator
+    required_skills:
+      - acceptance-criteria-validation
+      - integration-test-loop
+    validation_commands:
+      - "<full suite>"
+    acceptance_criteria:
+      - AC-001
+      - AC-002
+      - AC-003
+      - AC-004
+      - AC-005
+    estimated_complexity: m
+    parallelization_group: g5

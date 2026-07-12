@@ -1,0 +1,78 @@
+{
+  "type": "object",
+  "properties": {
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^DEC-[0-9]{3,}$"
+          },
+          "decision": {
+            "type": "string"
+          },
+          "conflicting_statements": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "alternatives_considered": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "selected_option": {
+            "type": "string"
+          },
+          "rationale": {
+            "type": "string"
+          },
+          "product_impact": {
+            "type": "string"
+          },
+          "technical_impact": {
+            "type": "string"
+          },
+          "affected_requirements": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "reversibility": {
+            "type": "string",
+            "enum": [
+              "reversible",
+              "costly",
+              "irreversible"
+            ]
+          },
+          "validation": {
+            "type": "string"
+          },
+          "user_input_required": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "decision",
+          "selected_option",
+          "rationale",
+          "reversibility"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "decisions"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Decision Ledger",
+  "$id": "decision-ledger.schema.json"
+}

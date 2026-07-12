@@ -1,0 +1,23 @@
+{
+  "type": "object",
+  "properties": {
+    "completion_gates": {
+      "type": "object"
+    },
+    "gate_semantics": {
+      "type": "object"
+    },
+    "gate_states": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "completion_gates"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Completion Gates",
+  "$id": "completion-gates.schema.json"
+}

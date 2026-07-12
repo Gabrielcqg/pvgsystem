@@ -1,0 +1,64 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^RULE-[0-9]{3,}$"
+    },
+    "trigger": {
+      "type": "string"
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "condition": {
+      "type": "string"
+    },
+    "output": {
+      "type": "string"
+    },
+    "precedence": {
+      "type": [
+        "integer",
+        "string"
+      ]
+    },
+    "exceptions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "failure_behavior": {
+      "type": "string"
+    },
+    "audit_requirement": {
+      "type": "string"
+    },
+    "examples": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tests": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "id",
+    "trigger",
+    "condition",
+    "output"
+  ],
+  "additionalProperties": false,
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Business Rule",
+  "$id": "business-rule.schema.json"
+}

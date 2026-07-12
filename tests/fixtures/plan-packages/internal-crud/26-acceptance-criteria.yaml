@@ -1,0 +1,36 @@
+criteria:
+  - id: AC-001
+    requirement: FR-001
+    action: Editor submits a valid vendor.
+    expected_result: Vendor persisted and an audit event written.
+    verification: automated
+    test_ids:
+      - TEST-001
+  - id: AC-002
+    requirement: FR-002
+    action: Editor edits a vendor.
+    expected_result: Change saved; before/after captured in audit log.
+    verification: automated
+    test_ids:
+      - TEST-002
+  - id: AC-003
+    requirement: FR-003
+    action: Viewer opens the vendor list.
+    expected_result: "Paginated, permission-scoped list renders with empty/loading/error states."
+    verification: automated
+    test_ids:
+      - TEST-003
+  - id: AC-004
+    requirement: FR-004
+    action: Viewer attempts an edit.
+    expected_result: Action denied by RBAC and the denial is audited.
+    verification: automated
+    test_ids:
+      - TEST-004
+  - id: AC-005
+    requirement: FR-005
+    action: Any create/edit/delete occurs.
+    expected_result: "An audit record with actor, timestamp, before/after exists."
+    verification: automated
+    test_ids:
+      - TEST-005

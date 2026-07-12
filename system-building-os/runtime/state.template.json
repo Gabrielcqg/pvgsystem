@@ -1,0 +1,14 @@
+{
+  "project_id": "",
+  "plan_version": "",
+  "plan_hash": "",
+  "phase": "planning",
+  "state": "RECEIVED",
+  "runtime": "claude",
+  "updated_at": "",
+  "history": [],
+  "open_questions": [],
+  "active_task": null,
+  "external_blockers": [],
+  "gates": {}
+}

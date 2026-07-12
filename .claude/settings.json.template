@@ -1,0 +1,72 @@
+{
+  "$comment": "Template Claude Code settings for the Autonomous System Building OS. Copy to .claude/settings.json to activate. Encodes full-autonomy permissions for safe/reversible work and wires the OS hooks. Contains NO secret values.",
+  "permissions": {
+    "allow": [
+      "Read",
+      "Write",
+      "Edit",
+      "Grep",
+      "Glob",
+      "Bash(python3 scripts/*)",
+      "Bash(python3 tests/*)",
+      "Bash(git status)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(npm test:*)",
+      "Bash(npm run:*)",
+      "Bash(pytest:*)",
+      "Skill",
+      "Task"
+    ],
+    "deny": [
+      "Read(.env)",
+      "Read(.env.*)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)",
+      "Read(**/id_rsa*)",
+      "Read(**/credentials.json)"
+    ],
+    "ask": [
+      "Bash(git push:*)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Read|Write|Edit|Bash|NotebookEdit",
+        "hooks": [
+          {"type": "command", "command": "python3 .claude/hooks/block_secret_exposure.py"}
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {"type": "command", "command": "python3 .claude/hooks/guard_destructive.py"}
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {"type": "command", "command": "python3 .claude/hooks/detect_plan_skip.py"}
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {"type": "command", "command": "python3 .claude/hooks/log_phase.py"}
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {"type": "command", "command": "python3 .claude/hooks/log_phase.py"}
+        ]
+      }
+    ]
+  }
+}

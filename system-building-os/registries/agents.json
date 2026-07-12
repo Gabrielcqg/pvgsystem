@@ -1,0 +1,2278 @@
+{
+  "version": "1.0.0",
+  "agents": [
+    {
+      "id": "planning-orchestrator",
+      "canonical_name": "Planning Orchestrator",
+      "kind": "agent",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Owns the complete /plan_max process end to end.",
+      "behavioral_contract": "maintain planning state; invoke relevant planning agents; prevent skipped dimensions; synthesize outputs; resolve conflicts; maintain traceability; ensure no implementation starts; produce the final Codex package",
+      "responsibilities": [
+        "maintain planning state",
+        "invoke relevant planning agents",
+        "prevent skipped dimensions",
+        "synthesize outputs",
+        "resolve conflicts",
+        "maintain traceability",
+        "ensure no implementation starts",
+        "produce the final Codex package"
+      ],
+      "model_profile": "highest_reasoning",
+      "when_to_use": "When the plan requires owns the complete /plan_max process end to end.",
+      "when_not_to_use": "During implementation or outside this agent's responsibilities.",
+      "inputs": [
+        "user intent",
+        "prior planning artifacts",
+        "grill findings"
+      ],
+      "outputs": [
+        "planning artifact(s)",
+        "traceable IDs",
+        "handoff-ready content"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search",
+        "read_only_mcp"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "ask questions Claude can resolve",
+        "skip the grill process"
+      ],
+      "quality_bar": "every output has traceable IDs and no material TBD",
+      "stop_conditions": [
+        "artifact complete and traceable",
+        "returns to orchestrator"
+      ],
+      "required_skills": [
+        "plan-max-orchestration",
+        "requirement-completeness-audit",
+        "decision-resolution"
+      ],
+      "file_ownership": [
+        "plans/active/<slug>/**"
+      ],
+      "claude_adapter": {
+        "mechanism": "subagent",
+        "path": ".claude/agents/planning-orchestrator.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Planning agent; Claude-only. No Codex adapter.",
+      "version": "1.0.0"
+    },
+    {
+      "id": "grill-master",
+      "canonical_name": "Grill Master",
+      "kind": "agent",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Mandatory adversarial reviewer for every planning request.",
+      "behavioral_contract": "challenge assumptions; detect shallow thinking; detect missing requirements; detect contradictions; identify overengineering; identify oversimplification; identify user-adoption risks; identify implementation ambiguity; produce high-value questions",
+      "responsibilities": [
+        "challenge assumptions",
+        "detect shallow thinking",
+        "detect missing requirements",
+        "detect contradictions",
+        "identify overengineering",
+        "identify oversimplification",
+        "identify user-adoption risks",
+        "identify implementation ambiguity",
+        "produce high-value questions"
+      ],
+      "model_profile": "highest_reasoning",
+      "when_to_use": "When the plan requires mandatory adversarial reviewer for every planning request.",
+      "when_not_to_use": "During implementation or outside this agent's responsibilities.",
+      "inputs": [
+        "user intent",
+        "prior planning artifacts",
+        "grill findings"
+      ],
+      "outputs": [
+        "planning artifact(s)",
+        "traceable IDs",
+        "handoff-ready content"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search",
+        "read_only_mcp"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "ask questions Claude can resolve",
+        "skip the grill process"
+      ],
+      "quality_bar": "every output has traceable IDs and no material TBD",
+      "stop_conditions": [
+        "artifact complete and traceable",
+        "returns to orchestrator"
+      ],
+      "required_skills": [
+        "grill-me-planning"
+      ],
+      "file_ownership": [],
+      "claude_adapter": {
+        "mechanism": "subagent",
+        "path": ".claude/agents/grill-master.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Planning agent; Claude-only. No Codex adapter.",
+      "version": "1.0.0"
+    },
+    {
+      "id": "product-requirements-architect",
+      "canonical_name": "Product Requirements Architect",
+      "kind": "agent",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Owns product scope, goals, users, journeys, requirements, business rules, acceptance criteria.",
+      "behavioral_contract": "product scope; goals; users; journeys; requirements; business rules; acceptance criteria",
+      "responsibilities": [
+        "product scope",
+        "goals",
+        "users",
+        "journeys",
+        "requirements",
+        "business rules",
+        "acceptance criteria"
+      ],
+      "model_profile": "balanced_reasoning",
+      "when_to_use": "When the plan requires owns product scope, goals, users, journeys, requirements, business rules, acceptance criteria.",
+      "when_not_to_use": "During implementation or outside this agent's responsibilities.",
+      "inputs": [
+        "user intent",
+        "prior planning artifacts",
+        "grill findings"
+      ],
+      "outputs": [
+        "planning artifact(s)",
+        "traceable IDs",
+        "handoff-ready content"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search",
+        "read_only_mcp"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "ask questions Claude can resolve",
+        "skip the grill process"
+      ],
+      "quality_bar": "every output has traceable IDs and no material TBD",
+      "stop_conditions": [
+        "artifact complete and traceable",
+        "returns to orchestrator"
+      ],
+      "required_skills": [
+        "product-discovery",
+        "requirement-extraction",
+        "user-flow-planning",
+        "business-rule-specification"
+      ],
+      "file_ownership": [
+        "plans/active/<slug>/05-product-system-plan.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "subagent",
+        "path": ".claude/agents/product-requirements-architect.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Planning agent; Claude-only. No Codex adapter.",
+      "version": "1.0.0"
+    },
+    {
+      "id": "system-architect",
+      "canonical_name": "System Architect",
+      "kind": "agent",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Owns system boundaries, components, interfaces, scalability, technical trade-offs, ADRs.",
+      "behavioral_contract": "system boundaries; components; architecture; interfaces; scalability; technical trade-offs; architectural decisions",
+      "responsibilities": [
+        "system boundaries",
+        "components",
+        "architecture",
+        "interfaces",
+        "scalability",
+        "technical trade-offs",
+        "architectural decisions"
+      ],
+      "model_profile": "highest_reasoning",
+      "when_to_use": "When the plan requires owns system boundaries, components, interfaces, scalability, technical trade-offs, ADRs.",
+      "when_not_to_use": "During implementation or outside this agent's responsibilities.",
+      "inputs": [
+        "user intent",
+        "prior planning artifacts",
+        "grill findings"
+      ],
+      "outputs": [
+        "planning artifact(s)",
+        "traceable IDs",
+        "handoff-ready content"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search",
+        "read_only_mcp"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "ask questions Claude can resolve",
+        "skip the grill process"
+      ],
+      "quality_bar": "every output has traceable IDs and no material TBD",
+      "stop_conditions": [
+        "artifact complete and traceable",
+        "returns to orchestrator"
+      ],
+      "required_skills": [
+        "technical-architecture-planning"
+      ],
+      "file_ownership": [
+        "plans/active/<slug>/06-technical-architecture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "subagent",
+        "path": ".claude/agents/system-architect.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Planning agent; Claude-only. No Codex adapter.",
+      "version": "1.0.0"
+    },
+    {
+      "id": "data-architect",
+      "canonical_name": "Data Architect",
+      "kind": "agent",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Owns the data model, storage selection, entities, migrations, retention, reporting.",
+      "behavioral_contract": "data model; storage selection; entities; relationships; indexes; constraints; multi-tenancy; migrations; retention; backup; reporting; vector needs",
+      "responsibilities": [
+        "data model",
+        "storage selection",
+        "entities",
+        "relationships",
+        "indexes",
+        "constraints",
+        "multi-tenancy",
+        "migrations",
+        "retention",
+        "backup",
+        "reporting",
+        "vector needs"
+      ],
+      "model_profile": "highest_reasoning",
+      "when_to_use": "When the plan requires owns the data model, storage selection, entities, migrations, retention, reporting.",
+      "when_not_to_use": "During implementation or outside this agent's responsibilities.",
+      "inputs": [
+        "user intent",
+        "prior planning artifacts",
+        "grill findings"
+      ],
+      "outputs": [
+        "planning artifact(s)",
+        "traceable IDs",
+        "handoff-ready content"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search",
+        "read_only_mcp"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "ask questions Claude can resolve",
+        "skip the grill process"
+      ],
+      "quality_bar": "every output has traceable IDs and no material TBD",
+      "stop_conditions": [
+        "artifact complete and traceable",
+        "returns to orchestrator"
+      ],
+      "required_skills": [
+        "data-architecture-planning",
+        "database-selection",
+        "migration-planning"
+      ],
+      "file_ownership": [
+        "plans/active/<slug>/07-data-architecture.md",
+        "plans/active/<slug>/data-model.yaml"
+      ],
+      "claude_adapter": {
+        "mechanism": "subagent",
+        "path": ".claude/agents/data-architect.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Planning agent; Claude-only. No Codex adapter.",
+      "version": "1.0.0"
+    },
+    {
+      "id": "auth-security-architect",
+      "canonical_name": "Auth & Security Architect",
+      "kind": "agent",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Owns identity, roles, permissions, sessions, isolation, threats, secret boundaries.",
+      "behavioral_contract": "identity; roles; permissions; sessions; organization isolation; threats; secret boundaries; security acceptance criteria",
+      "responsibilities": [
+        "identity",
+        "roles",
+        "permissions",
+        "sessions",
+        "organization isolation",
+        "threats",
+        "secret boundaries",
+        "security acceptance criteria"
+      ],
+      "model_profile": "highest_reasoning",
+      "when_to_use": "When the plan requires owns identity, roles, permissions, sessions, isolation, threats, secret boundaries.",
+      "when_not_to_use": "During implementation or outside this agent's responsibilities.",
+      "inputs": [
+        "user intent",
+        "prior planning artifacts",
+        "grill findings"
+      ],
+      "outputs": [
+        "planning artifact(s)",
+        "traceable IDs",
+        "handoff-ready content"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search",
+        "read_only_mcp"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "ask questions Claude can resolve",
+        "skip the grill process"
+      ],
+      "quality_bar": "every output has traceable IDs and no material TBD",
+      "stop_conditions": [
+        "artifact complete and traceable",
+        "returns to orchestrator"
+      ],
+      "required_skills": [
+        "auth-authorization-planning",
+        "security-threat-model-planning"
+      ],
+      "file_ownership": [
+        "plans/active/<slug>/08-auth-security-plan.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "subagent",
+        "path": ".claude/agents/auth-security-architect.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Planning agent; Claude-only. No Codex adapter.",
+      "version": "1.0.0"
+    },
+    {
+      "id": "backend-api-architect",
+      "canonical_name": "Backend & API Architect",
+      "kind": "agent",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Owns backend modules, domain services, APIs, events, jobs, queues, failure handling.",
+      "behavioral_contract": "backend modules; domain services; APIs; events; jobs; queues; validation; failure handling",
+      "responsibilities": [
+        "backend modules",
+        "domain services",
+        "APIs",
+        "events",
+        "jobs",
+        "queues",
+        "validation",
+        "failure handling"
+      ],
+      "model_profile": "balanced_reasoning",
+      "when_to_use": "When the plan requires owns backend modules, domain services, APIs, events, jobs, queues, failure handling.",
+      "when_not_to_use": "During implementation or outside this agent's responsibilities.",
+      "inputs": [
+        "user intent",
+        "prior planning artifacts",
+        "grill findings"
+      ],
+      "outputs": [
+        "planning artifact(s)",
+        "traceable IDs",
+        "handoff-ready content"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search",
+        "read_only_mcp"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "ask questions Claude can resolve",
+        "skip the grill process"
+      ],
+      "quality_bar": "every output has traceable IDs and no material TBD",
+      "stop_conditions": [
+        "artifact complete and traceable",
+        "returns to orchestrator"
+      ],
+      "required_skills": [
+        "backend-api-planning"
+      ],
+      "file_ownership": [
+        "plans/active/<slug>/10-backend-api-plan.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "subagent",
+        "path": ".claude/agents/backend-api-architect.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Planning agent; Claude-only. No Codex adapter.",
+      "version": "1.0.0"
+    },
+    {
+      "id": "frontend-uiux-architect",
+      "canonical_name": "Frontend & UI/UX Architect",
+      "kind": "agent",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Owns screens, components, navigation, responsiveness, accessibility, hierarchy, motion, states.",
+      "behavioral_contract": "screens; components; navigation; responsiveness; accessibility; hierarchy; alignment; typography; motion; loading; errors; empty states; perceived performance",
+      "responsibilities": [
+        "screens",
+        "components",
+        "navigation",
+        "responsiveness",
+        "accessibility",
+        "hierarchy",
+        "alignment",
+        "typography",
+        "motion",
+        "loading",
+        "errors",
+        "empty states",
+        "perceived performance"
+      ],
+      "model_profile": "balanced_reasoning",
+      "when_to_use": "When the plan requires owns screens, components, navigation, responsiveness, accessibility, hierarchy, motion, states.",
+      "when_not_to_use": "During implementation or outside this agent's responsibilities.",
+      "inputs": [
+        "user intent",
+        "prior planning artifacts",
+        "grill findings"
+      ],
+      "outputs": [
+        "planning artifact(s)",
+        "traceable IDs",
+        "handoff-ready content"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search",
+        "read_only_mcp"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "ask questions Claude can resolve",
+        "skip the grill process"
+      ],
+      "quality_bar": "every output has traceable IDs and no material TBD",
+      "stop_conditions": [
+        "artifact complete and traceable",
+        "returns to orchestrator"
+      ],
+      "required_skills": [
+        "frontend-uiux-planning",
+        "responsive-design-planning",
+        "accessibility-planning",
+        "motion-performance-planning"
+      ],
+      "file_ownership": [
+        "plans/active/<slug>/09-frontend-uiux-plan.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "subagent",
+        "path": ".claude/agents/frontend-uiux-architect.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Planning agent; Claude-only. No Codex adapter.",
+      "version": "1.0.0"
+    },
+    {
+      "id": "ai-orchestration-architect",
+      "canonical_name": "AI Orchestration Architect",
+      "kind": "agent",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Owns AI responsibilities, prompts, tools, context, memory, output schemas, evaluation, safety.",
+      "behavioral_contract": "AI responsibilities; prompts; tools; context; memory; output schemas; evaluation; hallucination control; AI safety; AI cost and latency",
+      "responsibilities": [
+        "AI responsibilities",
+        "prompts",
+        "tools",
+        "context",
+        "memory",
+        "output schemas",
+        "evaluation",
+        "hallucination control",
+        "AI safety",
+        "AI cost and latency"
+      ],
+      "model_profile": "highest_reasoning",
+      "when_to_use": "When the plan requires owns AI responsibilities, prompts, tools, context, memory, output schemas, evaluation, safety.",
+      "when_not_to_use": "During implementation or outside this agent's responsibilities.",
+      "inputs": [
+        "user intent",
+        "prior planning artifacts",
+        "grill findings"
+      ],
+      "outputs": [
+        "planning artifact(s)",
+        "traceable IDs",
+        "handoff-ready content"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search",
+        "read_only_mcp"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "ask questions Claude can resolve",
+        "skip the grill process"
+      ],
+      "quality_bar": "every output has traceable IDs and no material TBD",
+      "stop_conditions": [
+        "artifact complete and traceable",
+        "returns to orchestrator"
+      ],
+      "required_skills": [
+        "ai-flow-planning",
+        "ai-evaluation-planning"
+      ],
+      "file_ownership": [
+        "plans/active/<slug>/11-ai-plan.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "subagent",
+        "path": ".claude/agents/ai-orchestration-architect.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Planning agent; Claude-only. No Codex adapter.",
+      "version": "1.0.0"
+    },
+    {
+      "id": "integration-mcp-architect",
+      "canonical_name": "Integration & MCP Architect",
+      "kind": "agent",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Owns external integrations, MCP selection, access boundaries, tool allowlists, fallbacks.",
+      "behavioral_contract": "external integrations; MCP selection; access boundaries; tool allowlists; fallback integration behavior; environment separation",
+      "responsibilities": [
+        "external integrations",
+        "MCP selection",
+        "access boundaries",
+        "tool allowlists",
+        "fallback integration behavior",
+        "environment separation"
+      ],
+      "model_profile": "balanced_reasoning",
+      "when_to_use": "When the plan requires owns external integrations, MCP selection, access boundaries, tool allowlists, fallbacks.",
+      "when_not_to_use": "During implementation or outside this agent's responsibilities.",
+      "inputs": [
+        "user intent",
+        "prior planning artifacts",
+        "grill findings"
+      ],
+      "outputs": [
+        "planning artifact(s)",
+        "traceable IDs",
+        "handoff-ready content"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search",
+        "read_only_mcp"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "ask questions Claude can resolve",
+        "skip the grill process"
+      ],
+      "quality_bar": "every output has traceable IDs and no material TBD",
+      "stop_conditions": [
+        "artifact complete and traceable",
+        "returns to orchestrator"
+      ],
+      "required_skills": [
+        "integration-planning",
+        "mcp-governance-planning"
+      ],
+      "file_ownership": [
+        "plans/active/<slug>/12-integration-mcp-plan.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "subagent",
+        "path": ".claude/agents/integration-mcp-architect.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Planning agent; Claude-only. No Codex adapter.",
+      "version": "1.0.0"
+    },
+    {
+      "id": "infrastructure-release-architect",
+      "canonical_name": "Infrastructure & Release Architect",
+      "kind": "agent",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Owns environments, infrastructure, CI/CD, deploy, migration order, release, rollback, DR.",
+      "behavioral_contract": "environments; infrastructure; CI/CD; deploy; migration order; release; rollback; disaster recovery",
+      "responsibilities": [
+        "environments",
+        "infrastructure",
+        "CI/CD",
+        "deploy",
+        "migration order",
+        "release",
+        "rollback",
+        "disaster recovery"
+      ],
+      "model_profile": "balanced_reasoning",
+      "when_to_use": "When the plan requires owns environments, infrastructure, CI/CD, deploy, migration order, release, rollback, DR.",
+      "when_not_to_use": "During implementation or outside this agent's responsibilities.",
+      "inputs": [
+        "user intent",
+        "prior planning artifacts",
+        "grill findings"
+      ],
+      "outputs": [
+        "planning artifact(s)",
+        "traceable IDs",
+        "handoff-ready content"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search",
+        "read_only_mcp"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "ask questions Claude can resolve",
+        "skip the grill process"
+      ],
+      "quality_bar": "every output has traceable IDs and no material TBD",
+      "stop_conditions": [
+        "artifact complete and traceable",
+        "returns to orchestrator"
+      ],
+      "required_skills": [
+        "infrastructure-planning",
+        "environment-strategy"
+      ],
+      "file_ownership": [
+        "plans/active/<slug>/13-infrastructure-environment-plan.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "subagent",
+        "path": ".claude/agents/infrastructure-release-architect.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Planning agent; Claude-only. No Codex adapter.",
+      "version": "1.0.0"
+    },
+    {
+      "id": "qa-validation-architect",
+      "canonical_name": "QA & Validation Architect",
+      "kind": "agent",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Owns test strategy, acceptance-test mapping, edge cases, regression, browser QA, final validation.",
+      "behavioral_contract": "test strategy; acceptance-test mapping; edge cases; regression; browser QA; final validation",
+      "responsibilities": [
+        "test strategy",
+        "acceptance-test mapping",
+        "edge cases",
+        "regression",
+        "browser QA",
+        "final validation"
+      ],
+      "model_profile": "balanced_reasoning",
+      "when_to_use": "When the plan requires owns test strategy, acceptance-test mapping, edge cases, regression, browser QA, final validation.",
+      "when_not_to_use": "During implementation or outside this agent's responsibilities.",
+      "inputs": [
+        "user intent",
+        "prior planning artifacts",
+        "grill findings"
+      ],
+      "outputs": [
+        "planning artifact(s)",
+        "traceable IDs",
+        "handoff-ready content"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search",
+        "read_only_mcp"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "ask questions Claude can resolve",
+        "skip the grill process"
+      ],
+      "quality_bar": "every output has traceable IDs and no material TBD",
+      "stop_conditions": [
+        "artifact complete and traceable",
+        "returns to orchestrator"
+      ],
+      "required_skills": [
+        "test-strategy-planning"
+      ],
+      "file_ownership": [
+        "plans/active/<slug>/16-test-validation-plan.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "subagent",
+        "path": ".claude/agents/qa-validation-architect.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Planning agent; Claude-only. No Codex adapter.",
+      "version": "1.0.0"
+    },
+    {
+      "id": "performance-observability-architect",
+      "canonical_name": "Performance & Observability Architect",
+      "kind": "agent",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Owns performance budgets, observability, logs, metrics, traces, alerts, profiling, cost telemetry.",
+      "behavioral_contract": "performance budgets; observability; logs; metrics; traces; alerts; profiling; cost telemetry",
+      "responsibilities": [
+        "performance budgets",
+        "observability",
+        "logs",
+        "metrics",
+        "traces",
+        "alerts",
+        "profiling",
+        "cost telemetry"
+      ],
+      "model_profile": "balanced_reasoning",
+      "when_to_use": "When the plan requires owns performance budgets, observability, logs, metrics, traces, alerts, profiling, cost telemetry.",
+      "when_not_to_use": "During implementation or outside this agent's responsibilities.",
+      "inputs": [
+        "user intent",
+        "prior planning artifacts",
+        "grill findings"
+      ],
+      "outputs": [
+        "planning artifact(s)",
+        "traceable IDs",
+        "handoff-ready content"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search",
+        "read_only_mcp"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "ask questions Claude can resolve",
+        "skip the grill process"
+      ],
+      "quality_bar": "every output has traceable IDs and no material TBD",
+      "stop_conditions": [
+        "artifact complete and traceable",
+        "returns to orchestrator"
+      ],
+      "required_skills": [
+        "performance-budget-planning",
+        "observability-planning"
+      ],
+      "file_ownership": [
+        "plans/active/<slug>/14-observability-plan.md",
+        "plans/active/<slug>/15-performance-plan.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "subagent",
+        "path": ".claude/agents/performance-observability-architect.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Planning agent; Claude-only. No Codex adapter.",
+      "version": "1.0.0"
+    },
+    {
+      "id": "task-decomposer",
+      "canonical_name": "Task Decomposer",
+      "kind": "agent",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Owns atomic tasks, dependencies, phases, parallelism, file ownership, validation commands.",
+      "behavioral_contract": "atomic tasks; dependencies; implementation phases; parallelism; file ownership; validation commands",
+      "responsibilities": [
+        "atomic tasks",
+        "dependencies",
+        "implementation phases",
+        "parallelism",
+        "file ownership",
+        "validation commands"
+      ],
+      "model_profile": "balanced_reasoning",
+      "when_to_use": "When the plan requires owns atomic tasks, dependencies, phases, parallelism, file ownership, validation commands.",
+      "when_not_to_use": "During implementation or outside this agent's responsibilities.",
+      "inputs": [
+        "user intent",
+        "prior planning artifacts",
+        "grill findings"
+      ],
+      "outputs": [
+        "planning artifact(s)",
+        "traceable IDs",
+        "handoff-ready content"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search",
+        "read_only_mcp"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "ask questions Claude can resolve",
+        "skip the grill process"
+      ],
+      "quality_bar": "every output has traceable IDs and no material TBD",
+      "stop_conditions": [
+        "artifact complete and traceable",
+        "returns to orchestrator"
+      ],
+      "required_skills": [
+        "task-decomposition",
+        "file-ownership-planning",
+        "agent-assignment",
+        "skill-assignment"
+      ],
+      "file_ownership": [
+        "plans/active/<slug>/18-task-manifest.yaml"
+      ],
+      "claude_adapter": {
+        "mechanism": "subagent",
+        "path": ".claude/agents/task-decomposer.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Planning agent; Claude-only. No Codex adapter.",
+      "version": "1.0.0"
+    },
+    {
+      "id": "skill-curator",
+      "canonical_name": "Skill Curator",
+      "kind": "agent",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Owns skill discovery, community evaluation, local fallback mapping, new-skill creation.",
+      "behavioral_contract": "available skill discovery; community skill evaluation; local fallback mapping; project-specific skill creation; runtime classification",
+      "responsibilities": [
+        "available skill discovery",
+        "community skill evaluation",
+        "local fallback mapping",
+        "project-specific skill creation",
+        "runtime classification"
+      ],
+      "model_profile": "fast_read_only",
+      "when_to_use": "When the plan requires owns skill discovery, community evaluation, local fallback mapping, new-skill creation.",
+      "when_not_to_use": "During implementation or outside this agent's responsibilities.",
+      "inputs": [
+        "user intent",
+        "prior planning artifacts",
+        "grill findings"
+      ],
+      "outputs": [
+        "planning artifact(s)",
+        "traceable IDs",
+        "handoff-ready content"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search",
+        "read_only_mcp"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "ask questions Claude can resolve",
+        "skip the grill process"
+      ],
+      "quality_bar": "every output has traceable IDs and no material TBD",
+      "stop_conditions": [
+        "artifact complete and traceable",
+        "returns to orchestrator"
+      ],
+      "required_skills": [
+        "skill-assignment"
+      ],
+      "file_ownership": [
+        "plans/active/<slug>/21-skill-map.yaml"
+      ],
+      "claude_adapter": {
+        "mechanism": "subagent",
+        "path": ".claude/agents/skill-curator.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Planning agent; Claude-only. No Codex adapter.",
+      "version": "1.0.0"
+    },
+    {
+      "id": "codex-handoff-writer",
+      "canonical_name": "Codex Handoff Writer",
+      "kind": "agent",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Owns the implementation brief, order, task manifest, context packets, non-negotiables.",
+      "behavioral_contract": "implementation brief; exact implementation order; task manifest; context packets; non-negotiable rules; completion report format",
+      "responsibilities": [
+        "implementation brief",
+        "exact implementation order",
+        "task manifest",
+        "context packets",
+        "non-negotiable rules",
+        "completion report format"
+      ],
+      "model_profile": "balanced_reasoning",
+      "when_to_use": "When the plan requires owns the implementation brief, order, task manifest, context packets, non-negotiables.",
+      "when_not_to_use": "During implementation or outside this agent's responsibilities.",
+      "inputs": [
+        "user intent",
+        "prior planning artifacts",
+        "grill findings"
+      ],
+      "outputs": [
+        "planning artifact(s)",
+        "traceable IDs",
+        "handoff-ready content"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search",
+        "read_only_mcp"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "ask questions Claude can resolve",
+        "skip the grill process"
+      ],
+      "quality_bar": "every output has traceable IDs and no material TBD",
+      "stop_conditions": [
+        "artifact complete and traceable",
+        "returns to orchestrator"
+      ],
+      "required_skills": [
+        "codex-handoff-generation",
+        "context-packet-generation"
+      ],
+      "file_ownership": [
+        "plans/active/<slug>/28-codex-handoff.md",
+        "plans/active/<slug>/29-codex-start.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "subagent",
+        "path": ".claude/agents/codex-handoff-writer.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Planning agent; Claude-only. No Codex adapter.",
+      "version": "1.0.0"
+    },
+    {
+      "id": "plan-consistency-judge",
+      "canonical_name": "Plan Consistency Judge",
+      "kind": "agent",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Independent judge that finds omissions and ambiguity; must be separate from synthesis.",
+      "behavioral_contract": "omissions; contradictions; vague requirements; missing tests; traceability breaks; implementation ambiguity",
+      "responsibilities": [
+        "omissions",
+        "contradictions",
+        "vague requirements",
+        "missing tests",
+        "traceability breaks",
+        "implementation ambiguity"
+      ],
+      "model_profile": "validation_independent",
+      "when_to_use": "When the plan requires independent judge that finds omissions and ambiguity; must be separate from synthesis.",
+      "when_not_to_use": "During implementation or outside this agent's responsibilities.",
+      "inputs": [
+        "user intent",
+        "prior planning artifacts",
+        "grill findings"
+      ],
+      "outputs": [
+        "planning artifact(s)",
+        "traceable IDs",
+        "handoff-ready content"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search",
+        "read_only_mcp"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "ask questions Claude can resolve",
+        "skip the grill process"
+      ],
+      "quality_bar": "every output has traceable IDs and no material TBD",
+      "stop_conditions": [
+        "artifact complete and traceable",
+        "returns to orchestrator"
+      ],
+      "required_skills": [
+        "plan-consistency-validation",
+        "requirement-traceability"
+      ],
+      "file_ownership": [
+        "plans/active/<slug>/30-plan-validation-report.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "subagent",
+        "path": ".claude/agents/plan-consistency-judge.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Planning agent; Claude-only. No Codex adapter.",
+      "version": "1.0.0"
+    },
+    {
+      "id": "autonomous-execution-supervisor",
+      "canonical_name": "Autonomous Execution Supervisor",
+      "kind": "agent",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Primary implementation coordinator; owns the implementation state machine.",
+      "behavioral_contract": "own the implementation state machine; dispatch tasks; manage dependencies; manage parallel work; ensure validations run; reopen failed tasks; invoke recovery; prevent premature completion; produce the final result",
+      "responsibilities": [
+        "own the implementation state machine",
+        "dispatch tasks",
+        "manage dependencies",
+        "manage parallel work",
+        "ensure validations run",
+        "reopen failed tasks",
+        "invoke recovery",
+        "prevent premature completion",
+        "produce the final result"
+      ],
+      "model_profile": "highest_reasoning",
+      "when_to_use": "When the plan requires primary implementation coordinator; owns the implementation state machine.",
+      "when_not_to_use": "During planning or outside this agent's responsibilities.",
+      "inputs": [
+        "assigned task",
+        "context packet",
+        "active plan artifacts"
+      ],
+      "outputs": [
+        "code/tests/docs within owned files",
+        "validation results",
+        "status update"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations",
+        "assigned_mcp_tools"
+      ],
+      "disallowed_actions": [
+        "reinterpret product objective",
+        "expose secrets",
+        "edit files outside ownership",
+        "declare completion without gates"
+      ],
+      "quality_bar": "all owned tasks validated with evidence; no scope creep",
+      "stop_conditions": [
+        "task validated or escalated to recovery",
+        "gate failure reopens task"
+      ],
+      "required_skills": [
+        "implement-max",
+        "active-plan-reader",
+        "task-manifest-runner",
+        "plan-scope-guard"
+      ],
+      "file_ownership": [
+        "runtime/**"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "codex agent",
+        "path": ".codex/agents/autonomous-execution-supervisor.md"
+      },
+      "compatibility_notes": "Implementation agent; Codex-only. No Claude adapter.",
+      "version": "1.0.0"
+    },
+    {
+      "id": "repository-explorer",
+      "canonical_name": "Repository Explorer",
+      "kind": "agent",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Read-only mapper of the existing repository.",
+      "behavioral_contract": "map the existing repository; locate relevant files; identify conventions; identify integration points; return concise evidence",
+      "responsibilities": [
+        "map the existing repository",
+        "locate relevant files",
+        "identify conventions",
+        "identify integration points",
+        "return concise evidence"
+      ],
+      "model_profile": "fast_read_only",
+      "when_to_use": "When the plan requires read-only mapper of the existing repository.",
+      "when_not_to_use": "During planning or outside this agent's responsibilities.",
+      "inputs": [
+        "assigned task",
+        "context packet",
+        "active plan artifacts"
+      ],
+      "outputs": [
+        "code/tests/docs within owned files",
+        "validation results",
+        "status update"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations",
+        "assigned_mcp_tools"
+      ],
+      "disallowed_actions": [
+        "reinterpret product objective",
+        "expose secrets",
+        "edit files outside ownership",
+        "declare completion without gates"
+      ],
+      "quality_bar": "all owned tasks validated with evidence; no scope creep",
+      "stop_conditions": [
+        "task validated or escalated to recovery",
+        "gate failure reopens task"
+      ],
+      "required_skills": [
+        "active-plan-reader"
+      ],
+      "file_ownership": [],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "codex agent",
+        "path": ".codex/agents/repository-explorer.md"
+      },
+      "compatibility_notes": "Implementation agent; Codex-only. No Claude adapter.",
+      "version": "1.0.0"
+    },
+    {
+      "id": "implementation-task-runner",
+      "canonical_name": "Implementation Task Runner",
+      "kind": "agent",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Executes bounded tasks from the manifest; must not expand scope.",
+      "behavioral_contract": "execute a single manifest task; stay within declared file ownership; run validation commands; return control on completion or failure",
+      "responsibilities": [
+        "execute a single manifest task",
+        "stay within declared file ownership",
+        "run validation commands",
+        "return control on completion or failure"
+      ],
+      "model_profile": "implementation_heavy",
+      "when_to_use": "When the plan requires executes bounded tasks from the manifest; must not expand scope.",
+      "when_not_to_use": "During planning or outside this agent's responsibilities.",
+      "inputs": [
+        "assigned task",
+        "context packet",
+        "active plan artifacts"
+      ],
+      "outputs": [
+        "code/tests/docs within owned files",
+        "validation results",
+        "status update"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations",
+        "assigned_mcp_tools"
+      ],
+      "disallowed_actions": [
+        "reinterpret product objective",
+        "expose secrets",
+        "edit files outside ownership",
+        "declare completion without gates"
+      ],
+      "quality_bar": "all owned tasks validated with evidence; no scope creep",
+      "stop_conditions": [
+        "task validated or escalated to recovery",
+        "gate failure reopens task"
+      ],
+      "required_skills": [
+        "task-manifest-runner",
+        "context-packet-loader",
+        "plan-scope-guard"
+      ],
+      "file_ownership": [],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "codex agent",
+        "path": ".codex/agents/implementation-task-runner.md"
+      },
+      "compatibility_notes": "Implementation agent; Codex-only. No Claude adapter.",
+      "version": "1.0.0"
+    },
+    {
+      "id": "frontend-uiux-builder",
+      "canonical_name": "Frontend & UI/UX Builder",
+      "kind": "agent",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Builds frontend, components, layout, states, accessibility, animation, perceived performance.",
+      "behavioral_contract": "frontend; components; layout; responsive behavior; accessibility; loading; empty states; error states; animation; visual consistency; perceived performance",
+      "responsibilities": [
+        "frontend",
+        "components",
+        "layout",
+        "responsive behavior",
+        "accessibility",
+        "loading",
+        "empty states",
+        "error states",
+        "animation",
+        "visual consistency",
+        "perceived performance"
+      ],
+      "model_profile": "implementation_heavy",
+      "when_to_use": "When the plan requires builds frontend, components, layout, states, accessibility, animation, perceived performance.",
+      "when_not_to_use": "During planning or outside this agent's responsibilities.",
+      "inputs": [
+        "assigned task",
+        "context packet",
+        "active plan artifacts"
+      ],
+      "outputs": [
+        "code/tests/docs within owned files",
+        "validation results",
+        "status update"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations",
+        "assigned_mcp_tools"
+      ],
+      "disallowed_actions": [
+        "reinterpret product objective",
+        "expose secrets",
+        "edit files outside ownership",
+        "declare completion without gates"
+      ],
+      "quality_bar": "all owned tasks validated with evidence; no scope creep",
+      "stop_conditions": [
+        "task validated or escalated to recovery",
+        "gate failure reopens task"
+      ],
+      "required_skills": [
+        "frontend-implementation",
+        "frontend-design-fidelity",
+        "responsive-implementation",
+        "accessibility-implementation"
+      ],
+      "file_ownership": [
+        "<frontend source paths from plan>"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "codex agent",
+        "path": ".codex/agents/frontend-uiux-builder.md"
+      },
+      "compatibility_notes": "Implementation agent; Codex-only. No Claude adapter.",
+      "version": "1.0.0"
+    },
+    {
+      "id": "backend-api-builder",
+      "canonical_name": "Backend & API Builder",
+      "kind": "agent",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Builds APIs, services, business logic, validation, jobs, queues, server-side tests.",
+      "behavioral_contract": "APIs; services; business logic; validation; jobs; queues; server-side tests",
+      "responsibilities": [
+        "APIs",
+        "services",
+        "business logic",
+        "validation",
+        "jobs",
+        "queues",
+        "server-side tests"
+      ],
+      "model_profile": "implementation_heavy",
+      "when_to_use": "When the plan requires builds APIs, services, business logic, validation, jobs, queues, server-side tests.",
+      "when_not_to_use": "During planning or outside this agent's responsibilities.",
+      "inputs": [
+        "assigned task",
+        "context packet",
+        "active plan artifacts"
+      ],
+      "outputs": [
+        "code/tests/docs within owned files",
+        "validation results",
+        "status update"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations",
+        "assigned_mcp_tools"
+      ],
+      "disallowed_actions": [
+        "reinterpret product objective",
+        "expose secrets",
+        "edit files outside ownership",
+        "declare completion without gates"
+      ],
+      "quality_bar": "all owned tasks validated with evidence; no scope creep",
+      "stop_conditions": [
+        "task validated or escalated to recovery",
+        "gate failure reopens task"
+      ],
+      "required_skills": [
+        "backend-api-implementation",
+        "business-logic-implementation",
+        "unit-test-loop"
+      ],
+      "file_ownership": [
+        "<backend source paths from plan>"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "codex agent",
+        "path": ".codex/agents/backend-api-builder.md"
+      },
+      "compatibility_notes": "Implementation agent; Codex-only. No Claude adapter.",
+      "version": "1.0.0"
+    },
+    {
+      "id": "database-migration-builder",
+      "canonical_name": "Database & Migration Builder",
+      "kind": "agent",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Builds schemas, migrations, seeds, indexes, constraints, repositories, database tests.",
+      "behavioral_contract": "schemas; migrations; seeds; indexes; constraints; repositories; database tests; migration verification",
+      "responsibilities": [
+        "schemas",
+        "migrations",
+        "seeds",
+        "indexes",
+        "constraints",
+        "repositories",
+        "database tests",
+        "migration verification"
+      ],
+      "model_profile": "implementation_heavy",
+      "when_to_use": "When the plan requires builds schemas, migrations, seeds, indexes, constraints, repositories, database tests.",
+      "when_not_to_use": "During planning or outside this agent's responsibilities.",
+      "inputs": [
+        "assigned task",
+        "context packet",
+        "active plan artifacts"
+      ],
+      "outputs": [
+        "code/tests/docs within owned files",
+        "validation results",
+        "status update"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations",
+        "assigned_mcp_tools"
+      ],
+      "disallowed_actions": [
+        "reinterpret product objective",
+        "expose secrets",
+        "edit files outside ownership",
+        "declare completion without gates"
+      ],
+      "quality_bar": "all owned tasks validated with evidence; no scope creep",
+      "stop_conditions": [
+        "task validated or escalated to recovery",
+        "gate failure reopens task"
+      ],
+      "required_skills": [
+        "database-schema-implementation",
+        "database-migration-implementation",
+        "database-test-and-drift-check"
+      ],
+      "file_ownership": [
+        "database/**"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "codex agent",
+        "path": ".codex/agents/database-migration-builder.md"
+      },
+      "compatibility_notes": "Implementation agent; Codex-only. No Claude adapter.",
+      "version": "1.0.0"
+    },
+    {
+      "id": "auth-authorization-builder",
+      "canonical_name": "Auth & Authorization Builder",
+      "kind": "agent",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Builds authentication, sessions, roles, permissions, org isolation, security tests.",
+      "behavioral_contract": "authentication; sessions; roles; permissions; organization isolation; security tests",
+      "responsibilities": [
+        "authentication",
+        "sessions",
+        "roles",
+        "permissions",
+        "organization isolation",
+        "security tests"
+      ],
+      "model_profile": "implementation_heavy",
+      "when_to_use": "When the plan requires builds authentication, sessions, roles, permissions, org isolation, security tests.",
+      "when_not_to_use": "During planning or outside this agent's responsibilities.",
+      "inputs": [
+        "assigned task",
+        "context packet",
+        "active plan artifacts"
+      ],
+      "outputs": [
+        "code/tests/docs within owned files",
+        "validation results",
+        "status update"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations",
+        "assigned_mcp_tools"
+      ],
+      "disallowed_actions": [
+        "reinterpret product objective",
+        "expose secrets",
+        "edit files outside ownership",
+        "declare completion without gates"
+      ],
+      "quality_bar": "all owned tasks validated with evidence; no scope creep",
+      "stop_conditions": [
+        "task validated or escalated to recovery",
+        "gate failure reopens task"
+      ],
+      "required_skills": [
+        "auth-implementation",
+        "authorization-validation"
+      ],
+      "file_ownership": [
+        "<auth source paths from plan>"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "codex agent",
+        "path": ".codex/agents/auth-authorization-builder.md"
+      },
+      "compatibility_notes": "Implementation agent; Codex-only. No Claude adapter.",
+      "version": "1.0.0"
+    },
+    {
+      "id": "ai-orchestration-builder",
+      "canonical_name": "AI Orchestration Builder",
+      "kind": "agent",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Builds prompts, model interfaces, tools, memory, structured output, validation, fallback, evals.",
+      "behavioral_contract": "prompts; model interfaces; tools; memory; structured output; validation; fallback; AI evaluations",
+      "responsibilities": [
+        "prompts",
+        "model interfaces",
+        "tools",
+        "memory",
+        "structured output",
+        "validation",
+        "fallback",
+        "AI evaluations"
+      ],
+      "model_profile": "implementation_heavy",
+      "when_to_use": "When the plan requires builds prompts, model interfaces, tools, memory, structured output, validation, fallback, evals.",
+      "when_not_to_use": "During planning or outside this agent's responsibilities.",
+      "inputs": [
+        "assigned task",
+        "context packet",
+        "active plan artifacts"
+      ],
+      "outputs": [
+        "code/tests/docs within owned files",
+        "validation results",
+        "status update"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations",
+        "assigned_mcp_tools"
+      ],
+      "disallowed_actions": [
+        "reinterpret product objective",
+        "expose secrets",
+        "edit files outside ownership",
+        "declare completion without gates"
+      ],
+      "quality_bar": "all owned tasks validated with evidence; no scope creep",
+      "stop_conditions": [
+        "task validated or escalated to recovery",
+        "gate failure reopens task"
+      ],
+      "required_skills": [
+        "ai-orchestration-implementation",
+        "ai-output-validation"
+      ],
+      "file_ownership": [
+        "<ai source paths from plan>"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "codex agent",
+        "path": ".codex/agents/ai-orchestration-builder.md"
+      },
+      "compatibility_notes": "Implementation agent; Codex-only. No Claude adapter.",
+      "version": "1.0.0"
+    },
+    {
+      "id": "integration-builder",
+      "canonical_name": "Integration Builder",
+      "kind": "agent",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Builds external API adapters, MCP-backed workflows, webhooks, retries, mocks, contract tests.",
+      "behavioral_contract": "external APIs; MCP-backed workflows; adapters; webhooks; retries; mocks; contract tests",
+      "responsibilities": [
+        "external APIs",
+        "MCP-backed workflows",
+        "adapters",
+        "webhooks",
+        "retries",
+        "mocks",
+        "contract tests"
+      ],
+      "model_profile": "implementation_heavy",
+      "when_to_use": "When the plan requires builds external API adapters, MCP-backed workflows, webhooks, retries, mocks, contract tests.",
+      "when_not_to_use": "During planning or outside this agent's responsibilities.",
+      "inputs": [
+        "assigned task",
+        "context packet",
+        "active plan artifacts"
+      ],
+      "outputs": [
+        "code/tests/docs within owned files",
+        "validation results",
+        "status update"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations",
+        "assigned_mcp_tools"
+      ],
+      "disallowed_actions": [
+        "reinterpret product objective",
+        "expose secrets",
+        "edit files outside ownership",
+        "declare completion without gates"
+      ],
+      "quality_bar": "all owned tasks validated with evidence; no scope creep",
+      "stop_conditions": [
+        "task validated or escalated to recovery",
+        "gate failure reopens task"
+      ],
+      "required_skills": [
+        "integration-implementation",
+        "mcp-tool-usage"
+      ],
+      "file_ownership": [
+        "<integration source paths from plan>"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "codex agent",
+        "path": ".codex/agents/integration-builder.md"
+      },
+      "compatibility_notes": "Implementation agent; Codex-only. No Claude adapter.",
+      "version": "1.0.0"
+    },
+    {
+      "id": "infrastructure-builder",
+      "canonical_name": "Infrastructure Builder",
+      "kind": "agent",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Builds containers, IaC, environment setup, CI/CD, deploy config, observability wiring.",
+      "behavioral_contract": "containers; infrastructure as code; environment setup; CI/CD; deploy configuration; observability wiring",
+      "responsibilities": [
+        "containers",
+        "infrastructure as code",
+        "environment setup",
+        "CI/CD",
+        "deploy configuration",
+        "observability wiring"
+      ],
+      "model_profile": "implementation_heavy",
+      "when_to_use": "When the plan requires builds containers, IaC, environment setup, CI/CD, deploy config, observability wiring.",
+      "when_not_to_use": "During planning or outside this agent's responsibilities.",
+      "inputs": [
+        "assigned task",
+        "context packet",
+        "active plan artifacts"
+      ],
+      "outputs": [
+        "code/tests/docs within owned files",
+        "validation results",
+        "status update"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations",
+        "assigned_mcp_tools"
+      ],
+      "disallowed_actions": [
+        "reinterpret product objective",
+        "expose secrets",
+        "edit files outside ownership",
+        "declare completion without gates"
+      ],
+      "quality_bar": "all owned tasks validated with evidence; no scope creep",
+      "stop_conditions": [
+        "task validated or escalated to recovery",
+        "gate failure reopens task"
+      ],
+      "required_skills": [
+        "infrastructure-implementation",
+        "environment-bootstrap",
+        "observability-implementation"
+      ],
+      "file_ownership": [
+        "infra/**",
+        ".github/**"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "codex agent",
+        "path": ".codex/agents/infrastructure-builder.md"
+      },
+      "compatibility_notes": "Implementation agent; Codex-only. No Claude adapter.",
+      "version": "1.0.0"
+    },
+    {
+      "id": "qa-test-validator",
+      "canonical_name": "QA Test Validator",
+      "kind": "agent",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Owns unit, integration, contract, E2E, regression, and acceptance-criteria tests.",
+      "behavioral_contract": "unit tests; integration tests; contract tests; E2E; regression; acceptance criteria",
+      "responsibilities": [
+        "unit tests",
+        "integration tests",
+        "contract tests",
+        "E2E",
+        "regression",
+        "acceptance criteria"
+      ],
+      "model_profile": "balanced_reasoning",
+      "when_to_use": "When the plan requires owns unit, integration, contract, E2E, regression, and acceptance-criteria tests.",
+      "when_not_to_use": "During planning or outside this agent's responsibilities.",
+      "inputs": [
+        "assigned task",
+        "context packet",
+        "active plan artifacts"
+      ],
+      "outputs": [
+        "code/tests/docs within owned files",
+        "validation results",
+        "status update"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations",
+        "assigned_mcp_tools"
+      ],
+      "disallowed_actions": [
+        "reinterpret product objective",
+        "expose secrets",
+        "edit files outside ownership",
+        "declare completion without gates"
+      ],
+      "quality_bar": "all owned tasks validated with evidence; no scope creep",
+      "stop_conditions": [
+        "task validated or escalated to recovery",
+        "gate failure reopens task"
+      ],
+      "required_skills": [
+        "unit-test-loop",
+        "integration-test-loop",
+        "acceptance-criteria-validation"
+      ],
+      "file_ownership": [
+        "<test paths from plan>"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "codex agent",
+        "path": ".codex/agents/qa-test-validator.md"
+      },
+      "compatibility_notes": "Implementation agent; Codex-only. No Claude adapter.",
+      "version": "1.0.0"
+    },
+    {
+      "id": "browser-ui-validator",
+      "canonical_name": "Browser UI Validator",
+      "kind": "agent",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Runs the app and validates real flows, console, network, responsiveness, a11y. Read-only unless combined.",
+      "behavioral_contract": "running the application; navigating real flows; checking browser console; checking network failures; checking responsiveness; checking accessibility; capturing evidence; reporting visual and behavioral mismatches",
+      "responsibilities": [
+        "running the application",
+        "navigating real flows",
+        "checking browser console",
+        "checking network failures",
+        "checking responsiveness",
+        "checking accessibility",
+        "capturing evidence",
+        "reporting visual and behavioral mismatches"
+      ],
+      "model_profile": "balanced_reasoning",
+      "when_to_use": "When the plan requires runs the app and validates real flows, console, network, responsiveness, a11y. Read-only unless combined.",
+      "when_not_to_use": "During planning or outside this agent's responsibilities.",
+      "inputs": [
+        "assigned task",
+        "context packet",
+        "active plan artifacts"
+      ],
+      "outputs": [
+        "code/tests/docs within owned files",
+        "validation results",
+        "status update"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations",
+        "assigned_mcp_tools"
+      ],
+      "disallowed_actions": [
+        "reinterpret product objective",
+        "expose secrets",
+        "edit files outside ownership",
+        "declare completion without gates"
+      ],
+      "quality_bar": "all owned tasks validated with evidence; no scope creep",
+      "stop_conditions": [
+        "task validated or escalated to recovery",
+        "gate failure reopens task"
+      ],
+      "required_skills": [
+        "e2e-browser-validation",
+        "accessibility-implementation"
+      ],
+      "file_ownership": [],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "codex agent",
+        "path": ".codex/agents/browser-ui-validator.md"
+      },
+      "compatibility_notes": "Implementation agent; Codex-only. No Claude adapter.",
+      "version": "1.0.0"
+    },
+    {
+      "id": "performance-reviewer",
+      "canonical_name": "Performance Reviewer",
+      "kind": "agent",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Reviews profiling, latency, rendering, bundle size, slow queries, interaction smoothness.",
+      "behavioral_contract": "profiling; latency; rendering; bundle size; slow queries; interaction smoothness; performance regressions",
+      "responsibilities": [
+        "profiling",
+        "latency",
+        "rendering",
+        "bundle size",
+        "slow queries",
+        "interaction smoothness",
+        "performance regressions"
+      ],
+      "model_profile": "balanced_reasoning",
+      "when_to_use": "When the plan requires reviews profiling, latency, rendering, bundle size, slow queries, interaction smoothness.",
+      "when_not_to_use": "During planning or outside this agent's responsibilities.",
+      "inputs": [
+        "assigned task",
+        "context packet",
+        "active plan artifacts"
+      ],
+      "outputs": [
+        "code/tests/docs within owned files",
+        "validation results",
+        "status update"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations",
+        "assigned_mcp_tools"
+      ],
+      "disallowed_actions": [
+        "reinterpret product objective",
+        "expose secrets",
+        "edit files outside ownership",
+        "declare completion without gates"
+      ],
+      "quality_bar": "all owned tasks validated with evidence; no scope creep",
+      "stop_conditions": [
+        "task validated or escalated to recovery",
+        "gate failure reopens task"
+      ],
+      "required_skills": [
+        "performance-audit"
+      ],
+      "file_ownership": [],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "codex agent",
+        "path": ".codex/agents/performance-reviewer.md"
+      },
+      "compatibility_notes": "Implementation agent; Codex-only. No Claude adapter.",
+      "version": "1.0.0"
+    },
+    {
+      "id": "security-reviewer",
+      "canonical_name": "Security Reviewer",
+      "kind": "agent",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Read-only-preferred review of auth boundaries, injection, secrets, permissions, dependencies.",
+      "behavioral_contract": "auth boundaries; injection; secrets; permissions; unsafe dependencies; data exposure; insecure configuration",
+      "responsibilities": [
+        "auth boundaries",
+        "injection",
+        "secrets",
+        "permissions",
+        "unsafe dependencies",
+        "data exposure",
+        "insecure configuration"
+      ],
+      "model_profile": "balanced_reasoning",
+      "when_to_use": "When the plan requires read-only-preferred review of auth boundaries, injection, secrets, permissions, dependencies.",
+      "when_not_to_use": "During planning or outside this agent's responsibilities.",
+      "inputs": [
+        "assigned task",
+        "context packet",
+        "active plan artifacts"
+      ],
+      "outputs": [
+        "code/tests/docs within owned files",
+        "validation results",
+        "status update"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations",
+        "assigned_mcp_tools"
+      ],
+      "disallowed_actions": [
+        "reinterpret product objective",
+        "expose secrets",
+        "edit files outside ownership",
+        "declare completion without gates"
+      ],
+      "quality_bar": "all owned tasks validated with evidence; no scope creep",
+      "stop_conditions": [
+        "task validated or escalated to recovery",
+        "gate failure reopens task"
+      ],
+      "required_skills": [
+        "security-review"
+      ],
+      "file_ownership": [],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "codex agent",
+        "path": ".codex/agents/security-reviewer.md"
+      },
+      "compatibility_notes": "Implementation agent; Codex-only. No Claude adapter.",
+      "version": "1.0.0"
+    },
+    {
+      "id": "failure-recovery-agent",
+      "canonical_name": "Failure Recovery Agent",
+      "kind": "agent",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Diagnoses failure, classifies cause, changes strategy, reverts only problematic changes.",
+      "behavioral_contract": "diagnosing failure; classifying cause; reviewing previous attempts; selecting a different strategy; reverting only problematic changes; creating corrective tasks; preventing infinite repetition",
+      "responsibilities": [
+        "diagnosing failure",
+        "classifying cause",
+        "reviewing previous attempts",
+        "selecting a different strategy",
+        "reverting only problematic changes",
+        "creating corrective tasks",
+        "preventing infinite repetition"
+      ],
+      "model_profile": "highest_reasoning",
+      "when_to_use": "When the plan requires diagnoses failure, classifies cause, changes strategy, reverts only problematic changes.",
+      "when_not_to_use": "During planning or outside this agent's responsibilities.",
+      "inputs": [
+        "assigned task",
+        "context packet",
+        "active plan artifacts"
+      ],
+      "outputs": [
+        "code/tests/docs within owned files",
+        "validation results",
+        "status update"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations",
+        "assigned_mcp_tools"
+      ],
+      "disallowed_actions": [
+        "reinterpret product objective",
+        "expose secrets",
+        "edit files outside ownership",
+        "declare completion without gates"
+      ],
+      "quality_bar": "all owned tasks validated with evidence; no scope creep",
+      "stop_conditions": [
+        "task validated or escalated to recovery",
+        "gate failure reopens task"
+      ],
+      "required_skills": [
+        "failure-diagnosis",
+        "failure-recovery",
+        "checkpoint-and-rollback"
+      ],
+      "file_ownership": [],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "codex agent",
+        "path": ".codex/agents/failure-recovery-agent.md"
+      },
+      "compatibility_notes": "Implementation agent; Codex-only. No Claude adapter.",
+      "version": "1.0.0"
+    },
+    {
+      "id": "documentation-writer",
+      "canonical_name": "Documentation Writer",
+      "kind": "agent",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Writes setup, architecture, environment, operations, troubleshooting, final docs.",
+      "behavioral_contract": "setup; architecture; environment; operations; troubleshooting; final implementation documentation",
+      "responsibilities": [
+        "setup",
+        "architecture",
+        "environment",
+        "operations",
+        "troubleshooting",
+        "final implementation documentation"
+      ],
+      "model_profile": "balanced_reasoning",
+      "when_to_use": "When the plan requires writes setup, architecture, environment, operations, troubleshooting, final docs.",
+      "when_not_to_use": "During planning or outside this agent's responsibilities.",
+      "inputs": [
+        "assigned task",
+        "context packet",
+        "active plan artifacts"
+      ],
+      "outputs": [
+        "code/tests/docs within owned files",
+        "validation results",
+        "status update"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations",
+        "assigned_mcp_tools"
+      ],
+      "disallowed_actions": [
+        "reinterpret product objective",
+        "expose secrets",
+        "edit files outside ownership",
+        "declare completion without gates"
+      ],
+      "quality_bar": "all owned tasks validated with evidence; no scope creep",
+      "stop_conditions": [
+        "task validated or escalated to recovery",
+        "gate failure reopens task"
+      ],
+      "required_skills": [
+        "phase-completion-reporting",
+        "final-delivery-report"
+      ],
+      "file_ownership": [
+        "docs/**",
+        "README.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "codex agent",
+        "path": ".codex/agents/documentation-writer.md"
+      },
+      "compatibility_notes": "Implementation agent; Codex-only. No Claude adapter.",
+      "version": "1.0.0"
+    },
+    {
+      "id": "final-acceptance-judge",
+      "canonical_name": "Final Acceptance Judge",
+      "kind": "agent",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Independent, read-only. Compares implementation to plan; prevents false completion.",
+      "behavioral_contract": "comparing implementation against the plan; checking acceptance criteria; checking tests and evidence; identifying missing work; reopening failed criteria; preventing false completion",
+      "responsibilities": [
+        "comparing implementation against the plan",
+        "checking acceptance criteria",
+        "checking tests and evidence",
+        "identifying missing work",
+        "reopening failed criteria",
+        "preventing false completion"
+      ],
+      "model_profile": "validation_independent",
+      "when_to_use": "When the plan requires independent, read-only. Compares implementation to plan; prevents false completion.",
+      "when_not_to_use": "During planning or outside this agent's responsibilities.",
+      "inputs": [
+        "assigned task",
+        "context packet",
+        "active plan artifacts"
+      ],
+      "outputs": [
+        "code/tests/docs within owned files",
+        "validation results",
+        "status update"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations",
+        "assigned_mcp_tools"
+      ],
+      "disallowed_actions": [
+        "reinterpret product objective",
+        "expose secrets",
+        "edit files outside ownership",
+        "declare completion without gates"
+      ],
+      "quality_bar": "all owned tasks validated with evidence; no scope creep",
+      "stop_conditions": [
+        "task validated or escalated to recovery",
+        "gate failure reopens task"
+      ],
+      "required_skills": [
+        "final-plan-comparison",
+        "acceptance-criteria-validation"
+      ],
+      "file_ownership": [],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "codex agent",
+        "path": ".codex/agents/final-acceptance-judge.md"
+      },
+      "compatibility_notes": "Implementation agent; Codex-only. No Claude adapter.",
+      "version": "1.0.0"
+    }
+  ]
+}

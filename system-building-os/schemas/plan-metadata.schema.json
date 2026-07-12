@@ -1,0 +1,62 @@
+{
+  "type": "object",
+  "properties": {
+    "project_id": {
+      "type": "string"
+    },
+    "project_slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "content_hash": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "last_planning_update": {
+      "type": "string"
+    },
+    "source_request": {
+      "type": "string"
+    },
+    "active": {
+      "type": "boolean"
+    },
+    "superseded_version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "implementation_status": {
+      "type": "string",
+      "enum": [
+        "not_started",
+        "in_progress",
+        "blocked_externally",
+        "completed"
+      ]
+    },
+    "canonical_os": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "project_id",
+    "project_slug",
+    "version",
+    "content_hash",
+    "created_at",
+    "source_request",
+    "active",
+    "implementation_status"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Plan Metadata",
+  "$id": "plan-metadata.schema.json"
+}

@@ -1,0 +1,5364 @@
+{
+  "version": "1.0.0",
+  "skills": [
+    {
+      "name": "plan-max-orchestration",
+      "canonical_name": "plan-max-orchestration",
+      "kind": "skill",
+      "scope": "planning",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Drive the full /plan_max pipeline (Phases 0-28) and produce the Codex package.",
+      "behavioral_contract": "Drive the full /plan_max pipeline (Phases 0-28) and produce the Codex package.",
+      "invocation_triggers": [
+        "/plan_max invoked",
+        "/plan_resume"
+      ],
+      "when_not_to_use": [
+        "during implementation",
+        "to write product code"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Run Phase 0 repository/context preflight and set state RECEIVED->UNDERSTANDING.",
+        "Normalize intent (Phase 1); invoke grill-me-planning three passes (Phases 2-4).",
+        "Classify gaps with decision-resolution; resolve A-D, group E questions only.",
+        "Invoke domain planning agents/skills for every system dimension.",
+        "Assemble the numbered plan package under plans/active/<slug>/.",
+        "Invoke plan-consistency-validation; only mark IMPLEMENTATION_READY when it passes."
+      ],
+      "checklist": [
+        "Completed: Run Phase 0 repository/context preflight and set state RECEIVED->UNDERSTANDING",
+        "Completed: Normalize intent (Phase 1)",
+        "Completed: Classify gaps with decision-resolution",
+        "Completed: Invoke domain planning agents/skills for every system dimension",
+        "Completed: Assemble the numbered plan package under plans/active/<slug>/",
+        "Completed: Invoke plan-consistency-validation"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "start implementation"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "planning (read + write artifacts)",
+      "test_fixtures": [
+        "tests/fixtures/skills/plan-max-orchestration.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "skill",
+        "path": ".claude/skills/plan-max-orchestration/SKILL.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Claude planning skill; primary planning belongs to Claude.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "grill-me-planning",
+      "canonical_name": "grill-me-planning",
+      "kind": "skill",
+      "scope": "planning",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Adversarial interrogation of the product and plan; produce concrete findings, not ceremony.",
+      "behavioral_contract": "Adversarial interrogation of the product and plan; produce concrete findings, not ceremony.",
+      "invocation_triggers": [
+        "every planning request",
+        "/grill_max"
+      ],
+      "when_not_to_use": [
+        "never skip; it is mandatory for every plan"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Pass 1 (product reality): is the stated problem the real problem? who has it? why now?",
+        "Pass 2 (system completeness): sweep every dimension (users..rollback) for gaps.",
+        "Pass 3 (implementation ambiguity): could Codex implement without guessing?",
+        "Record findings with severity and the requirement/area they affect.",
+        "Emit high-value questions only for material product ambiguity (Category E)."
+      ],
+      "checklist": [
+        "Completed: Pass 1 (product reality): is the stated problem the real problem? who has it? why now?",
+        "Completed: Pass 2 (system completeness): sweep every dimension (users",
+        "Completed: Pass 3 (implementation ambiguity): could Codex implement without guessing?",
+        "Completed: Record findings with severity and the requirement/area they affect",
+        "Completed: Emit high-value questions only for material product ambiguity (Category E)"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "start implementation"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "planning (read + write artifacts)",
+      "test_fixtures": [
+        "tests/fixtures/skills/grill-me-planning.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "skill",
+        "path": ".claude/skills/grill-me-planning/SKILL.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Claude planning skill; primary planning belongs to Claude.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "product-discovery",
+      "canonical_name": "product-discovery",
+      "kind": "skill",
+      "scope": "planning",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Expand the idea into problem, users, value, and success definition.",
+      "behavioral_contract": "Expand the idea into problem, users, value, and success definition.",
+      "invocation_triggers": [
+        "Phase 1-2 of planning"
+      ],
+      "when_not_to_use": [
+        "for pure technical decisions"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Restate the problem and who experiences it.",
+        "Identify how it is handled today and why a new system is needed.",
+        "Define the value and the concrete definition of success.",
+        "List explicit vs implicit requirements and non-negotiables."
+      ],
+      "checklist": [
+        "Completed: Restate the problem and who experiences it",
+        "Completed: Identify how it is handled today and why a new system is needed",
+        "Completed: Define the value and the concrete definition of success",
+        "Completed: List explicit vs implicit requirements and non-negotiables"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "start implementation"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "planning (read + write artifacts)",
+      "test_fixtures": [
+        "tests/fixtures/skills/product-discovery.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "skill",
+        "path": ".claude/skills/product-discovery/SKILL.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Claude planning skill; primary planning belongs to Claude.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "requirement-extraction",
+      "canonical_name": "requirement-extraction",
+      "kind": "skill",
+      "scope": "planning",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Turn intent into testable requirements with IDs.",
+      "behavioral_contract": "Turn intent into testable requirements with IDs.",
+      "invocation_triggers": [
+        "Phase 8 product plan"
+      ],
+      "when_not_to_use": [
+        "for vague wishlists without acceptance criteria"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Enumerate functional requirements with FR-### ids and all required fields.",
+        "Enumerate non-functional requirements with NFR-### ids and measurable targets.",
+        "Attach actors, preconditions, validation, errors, permissions, dependencies.",
+        "Ensure each requirement is testable and unambiguous."
+      ],
+      "checklist": [
+        "Completed: Enumerate functional requirements with FR-### ids and all required fields",
+        "Completed: Enumerate non-functional requirements with NFR-### ids and measurable targets",
+        "Completed: Attach actors, preconditions, validation, errors, permissions, dependencies",
+        "Completed: Ensure each requirement is testable and unambiguous"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "start implementation"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "planning (read + write artifacts)",
+      "test_fixtures": [
+        "tests/fixtures/skills/requirement-extraction.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "skill",
+        "path": ".claude/skills/requirement-extraction/SKILL.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Claude planning skill; primary planning belongs to Claude.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "requirement-completeness-audit",
+      "canonical_name": "requirement-completeness-audit",
+      "kind": "skill",
+      "scope": "planning",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Detect missing requirements across all system dimensions.",
+      "behavioral_contract": "Detect missing requirements across all system dimensions.",
+      "invocation_triggers": [
+        "after first draft of the product plan"
+      ],
+      "when_not_to_use": [
+        "during implementation"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Check coverage of users, roles, tenancy, journeys, backend, frontend, data, auth, AI.",
+        "Check integrations, notifications, search, admin, observability, failure, rollback.",
+        "Flag every missing dimension as a gap for decision-resolution.",
+        "Confirm no dimension is silently skipped."
+      ],
+      "checklist": [
+        "Completed: Check coverage of users, roles, tenancy, journeys, backend, frontend, data, auth, AI",
+        "Completed: Check integrations, notifications, search, admin, observability, failure, rollback",
+        "Completed: Flag every missing dimension as a gap for decision-resolution",
+        "Completed: Confirm no dimension is silently skipped"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "start implementation"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "planning (read + write artifacts)",
+      "test_fixtures": [
+        "tests/fixtures/skills/requirement-completeness-audit.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "skill",
+        "path": ".claude/skills/requirement-completeness-audit/SKILL.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Claude planning skill; primary planning belongs to Claude.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "assumption-management",
+      "canonical_name": "assumption-management",
+      "kind": "skill",
+      "scope": "planning",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Record and track every autonomously-resolved assumption.",
+      "behavioral_contract": "Record and track every autonomously-resolved assumption.",
+      "invocation_triggers": [
+        "Phase 7"
+      ],
+      "when_not_to_use": [
+        "during implementation"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "For each Category B-D resolution create an ASM-### entry.",
+        "Record confidence, reason, source, reversibility, consequence-if-wrong.",
+        "Link assumptions to affected requirements.",
+        "Validate the ledger against assumption-ledger.schema.json."
+      ],
+      "checklist": [
+        "Completed: For each Category B-D resolution create an ASM-### entry",
+        "Completed: Record confidence, reason, source, reversibility, consequence-if-wrong",
+        "Completed: Link assumptions to affected requirements",
+        "Completed: Validate the ledger against assumption-ledger"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "start implementation"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "planning (read + write artifacts)",
+      "test_fixtures": [
+        "tests/fixtures/skills/assumption-management.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "skill",
+        "path": ".claude/skills/assumption-management/SKILL.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Claude planning skill; primary planning belongs to Claude.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "decision-resolution",
+      "canonical_name": "decision-resolution",
+      "kind": "skill",
+      "scope": "planning",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Classify every gap into Categories A-F and resolve or escalate correctly.",
+      "behavioral_contract": "Classify every gap into Categories A-F and resolve or escalate correctly.",
+      "invocation_triggers": [
+        "Phase 5-6"
+      ],
+      "when_not_to_use": [
+        "to ask questions Claude can answer itself"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Classify each missing decision A/B/C/D/E/F.",
+        "Resolve A-D autonomously; record C/D in the decision ledger.",
+        "Group all E questions into one round with recommended defaults.",
+        "Treat F as an external dependency, not a planning ambiguity."
+      ],
+      "checklist": [
+        "Completed: Classify each missing decision A/B/C/D/E/F",
+        "Completed: Resolve A-D autonomously",
+        "Completed: Group all E questions into one round with recommended defaults",
+        "Completed: Treat F as an external dependency, not a planning ambiguity"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "start implementation"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "planning (read + write artifacts)",
+      "test_fixtures": [
+        "tests/fixtures/skills/decision-resolution.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "skill",
+        "path": ".claude/skills/decision-resolution/SKILL.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Claude planning skill; primary planning belongs to Claude.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "user-flow-planning",
+      "canonical_name": "user-flow-planning",
+      "kind": "skill",
+      "scope": "planning",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Design core user journeys with success, alternative, and error paths.",
+      "behavioral_contract": "Design core user journeys with success, alternative, and error paths.",
+      "invocation_triggers": [
+        "Phase 8.5"
+      ],
+      "when_not_to_use": [
+        "during implementation"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "For each journey assign FLOW-### and actor + trigger + preconditions.",
+        "Write numbered steps and system responses.",
+        "Define success, alternative, error, cancellation, and recovery paths.",
+        "List data changed, audit events, and acceptance criteria."
+      ],
+      "checklist": [
+        "Completed: For each journey assign FLOW-### and actor + trigger + preconditions",
+        "Completed: Write numbered steps and system responses",
+        "Completed: Define success, alternative, error, cancellation, and recovery paths",
+        "Completed: List data changed, audit events, and acceptance criteria"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "start implementation"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "planning (read + write artifacts)",
+      "test_fixtures": [
+        "tests/fixtures/skills/user-flow-planning.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "skill",
+        "path": ".claude/skills/user-flow-planning/SKILL.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Claude planning skill; primary planning belongs to Claude.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "business-rule-specification",
+      "canonical_name": "business-rule-specification",
+      "kind": "skill",
+      "scope": "planning",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Specify exact business rules with conditions, precedence, and examples.",
+      "behavioral_contract": "Specify exact business rules with conditions, precedence, and examples.",
+      "invocation_triggers": [
+        "Phase 8.8"
+      ],
+      "when_not_to_use": [
+        "during implementation"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Assign RULE-### and state trigger, inputs, exact condition, output.",
+        "Define precedence, exceptions, failure behavior, audit requirement.",
+        "Provide worked examples and tests."
+      ],
+      "checklist": [
+        "Completed: Assign RULE-### and state trigger, inputs, exact condition, output",
+        "Completed: Define precedence, exceptions, failure behavior, audit requirement",
+        "Completed: Provide worked examples and tests"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "start implementation"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "planning (read + write artifacts)",
+      "test_fixtures": [
+        "tests/fixtures/skills/business-rule-specification.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "skill",
+        "path": ".claude/skills/business-rule-specification/SKILL.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Claude planning skill; primary planning belongs to Claude.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "technical-architecture-planning",
+      "canonical_name": "technical-architecture-planning",
+      "kind": "skill",
+      "scope": "planning",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Produce the technical architecture with diagrams and ADRs.",
+      "behavioral_contract": "Produce the technical architecture with diagrams and ADRs.",
+      "invocation_triggers": [
+        "Phase 9"
+      ],
+      "when_not_to_use": [
+        "to specify product requirements"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Define components, boundaries, dependency rules, and flows.",
+        "Diagram key request/event flows in Mermaid.",
+        "Record technology choices, alternatives, trade-offs, and ADR-### entries."
+      ],
+      "checklist": [
+        "Completed: Define components, boundaries, dependency rules, and flows",
+        "Completed: Diagram key request/event flows in Mermaid",
+        "Completed: Record technology choices, alternatives, trade-offs, and ADR-### entries"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "start implementation"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "planning (read + write artifacts)",
+      "test_fixtures": [
+        "tests/fixtures/skills/technical-architecture-planning.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "skill",
+        "path": ".claude/skills/technical-architecture-planning/SKILL.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Claude planning skill; primary planning belongs to Claude.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "data-architecture-planning",
+      "canonical_name": "data-architecture-planning",
+      "kind": "skill",
+      "scope": "planning",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Design the data model and produce a machine-readable representation.",
+      "behavioral_contract": "Design the data model and produce a machine-readable representation.",
+      "invocation_triggers": [
+        "Phase 10"
+      ],
+      "when_not_to_use": [
+        "during implementation"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Decide persistence need and database kind(s).",
+        "Define entities (DB-###), fields, types, relationships, constraints, indexes.",
+        "Mark ownership, classification, personal data, retention.",
+        "Emit data-model.yaml validating against data-model.schema.json."
+      ],
+      "checklist": [
+        "Completed: Decide persistence need and database kind(s)",
+        "Completed: Define entities (DB-###), fields, types, relationships, constraints, indexes",
+        "Completed: Mark ownership, classification, personal data, retention",
+        "Completed: Emit data-model"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "start implementation"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "planning (read + write artifacts)",
+      "test_fixtures": [
+        "tests/fixtures/skills/data-architecture-planning.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "skill",
+        "path": ".claude/skills/data-architecture-planning/SKILL.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Claude planning skill; primary planning belongs to Claude.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "database-selection",
+      "canonical_name": "database-selection",
+      "kind": "skill",
+      "scope": "planning",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Select the database from requirements, not by default.",
+      "behavioral_contract": "Select the database from requirements, not by default.",
+      "invocation_triggers": [
+        "Phase 10"
+      ],
+      "when_not_to_use": [
+        "to force one database on every project"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Map requirements to relational/document/kv/graph/vector/search/cache needs.",
+        "Recommend a database + provider with rationale and alternatives.",
+        "Define local/test/staging/production database strategy."
+      ],
+      "checklist": [
+        "Completed: Map requirements to relational/document/kv/graph/vector/search/cache needs",
+        "Completed: Recommend a database + provider with rationale and alternatives",
+        "Completed: Define local/test/staging/production database strategy"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "start implementation"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "planning (read + write artifacts)",
+      "test_fixtures": [
+        "tests/fixtures/skills/database-selection.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "skill",
+        "path": ".claude/skills/database-selection/SKILL.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Claude planning skill; primary planning belongs to Claude.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "migration-planning",
+      "canonical_name": "migration-planning",
+      "kind": "skill",
+      "scope": "planning",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Plan migration ordering, rollback, and drift checks.",
+      "behavioral_contract": "Plan migration ordering, rollback, and drift checks.",
+      "invocation_triggers": [
+        "Phase 10"
+      ],
+      "when_not_to_use": [
+        "during implementation"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Choose a migration tool/approach.",
+        "Define backward-compatible + expand-and-contract strategy for destructive changes.",
+        "Define per-migration rollback and a schema-drift check."
+      ],
+      "checklist": [
+        "Completed: Choose a migration tool/approach",
+        "Completed: Define backward-compatible + expand-and-contract strategy for destructive changes",
+        "Completed: Define per-migration rollback and a schema-drift check"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "start implementation"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "planning (read + write artifacts)",
+      "test_fixtures": [
+        "tests/fixtures/skills/migration-planning.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "skill",
+        "path": ".claude/skills/migration-planning/SKILL.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Claude planning skill; primary planning belongs to Claude.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "auth-authorization-planning",
+      "canonical_name": "auth-authorization-planning",
+      "kind": "skill",
+      "scope": "planning",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Design identity, sessions, and the authorization model.",
+      "behavioral_contract": "Design identity, sessions, and the authorization model.",
+      "invocation_triggers": [
+        "Phase 14"
+      ],
+      "when_not_to_use": [
+        "during implementation"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Decide auth methods and account lifecycle.",
+        "Define session/token strategy, recovery, verification.",
+        "Enumerate roles (AUTH-###), permissions, boundaries, privileged actions, audit."
+      ],
+      "checklist": [
+        "Completed: Decide auth methods and account lifecycle",
+        "Completed: Define session/token strategy, recovery, verification",
+        "Completed: Enumerate roles (AUTH-###), permissions, boundaries, privileged actions, audit"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "start implementation"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "planning (read + write artifacts)",
+      "test_fixtures": [
+        "tests/fixtures/skills/auth-authorization-planning.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "skill",
+        "path": ".claude/skills/auth-authorization-planning/SKILL.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Claude planning skill; primary planning belongs to Claude.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "security-threat-model-planning",
+      "canonical_name": "security-threat-model-planning",
+      "kind": "skill",
+      "scope": "planning",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Build a threat model with misuse cases and concrete controls.",
+      "behavioral_contract": "Build a threat model with misuse cases and concrete controls.",
+      "invocation_triggers": [
+        "Phase 14"
+      ],
+      "when_not_to_use": [
+        "during implementation"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Enumerate threats and misuse cases.",
+        "Attach a control (SEC-###) to each threat.",
+        "Define security tests and incident telemetry mapped to acceptance criteria."
+      ],
+      "checklist": [
+        "Completed: Enumerate threats and misuse cases",
+        "Completed: Attach a control (SEC-###) to each threat",
+        "Completed: Define security tests and incident telemetry mapped to acceptance criteria"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "start implementation"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "planning (read + write artifacts)",
+      "test_fixtures": [
+        "tests/fixtures/skills/security-threat-model-planning.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "skill",
+        "path": ".claude/skills/security-threat-model-planning/SKILL.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Claude planning skill; primary planning belongs to Claude.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "backend-api-planning",
+      "canonical_name": "backend-api-planning",
+      "kind": "skill",
+      "scope": "planning",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Design domain services and API contracts.",
+      "behavioral_contract": "Design domain services and API contracts.",
+      "invocation_triggers": [
+        "Phase 11 & 13"
+      ],
+      "when_not_to_use": [
+        "during implementation"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Define domain modules, service boundaries, and the error model.",
+        "Specify every endpoint (API-###) with request/response schemas and codes.",
+        "Define idempotency, side effects, events, jobs, queues, observability, tests."
+      ],
+      "checklist": [
+        "Completed: Define domain modules, service boundaries, and the error model",
+        "Completed: Specify every endpoint (API-###) with request/response schemas and codes",
+        "Completed: Define idempotency, side effects, events, jobs, queues, observability, tests"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "start implementation"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "planning (read + write artifacts)",
+      "test_fixtures": [
+        "tests/fixtures/skills/backend-api-planning.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "skill",
+        "path": ".claude/skills/backend-api-planning/SKILL.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Claude planning skill; primary planning belongs to Claude.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "frontend-uiux-planning",
+      "canonical_name": "frontend-uiux-planning",
+      "kind": "skill",
+      "scope": "planning",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Design screens and interactions with all states.",
+      "behavioral_contract": "Design screens and interactions with all states.",
+      "invocation_triggers": [
+        "Phase 12"
+      ],
+      "when_not_to_use": [
+        "during implementation"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "For each screen assign UI-### and define layout, components, primary action.",
+        "Define default/loading/empty/error/success/disabled/partial-data states.",
+        "Define responsive, keyboard, accessibility, motion, and visual acceptance criteria.",
+        "Consider community front-design skills; fall back to this skill if absent."
+      ],
+      "checklist": [
+        "Completed: For each screen assign UI-### and define layout, components, primary action",
+        "Completed: Define default/loading/empty/error/success/disabled/partial-data states",
+        "Completed: Define responsive, keyboard, accessibility, motion, and visual acceptance criteria",
+        "Completed: Consider community front-design skills"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "start implementation"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "planning (read + write artifacts)",
+      "test_fixtures": [
+        "tests/fixtures/skills/frontend-uiux-planning.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "skill",
+        "path": ".claude/skills/frontend-uiux-planning/SKILL.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Claude planning skill; primary planning belongs to Claude.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "responsive-design-planning",
+      "canonical_name": "responsive-design-planning",
+      "kind": "skill",
+      "scope": "planning",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Define responsive breakpoints and layout behavior.",
+      "behavioral_contract": "Define responsive breakpoints and layout behavior.",
+      "invocation_triggers": [
+        "Phase 12"
+      ],
+      "when_not_to_use": [
+        "during implementation"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Define breakpoints and per-breakpoint layout for each screen.",
+        "Define touch/keyboard behavior and reflow rules.",
+        "Define acceptance criteria for small/medium/large viewports."
+      ],
+      "checklist": [
+        "Completed: Define breakpoints and per-breakpoint layout for each screen",
+        "Completed: Define touch/keyboard behavior and reflow rules",
+        "Completed: Define acceptance criteria for small/medium/large viewports"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "start implementation"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "planning (read + write artifacts)",
+      "test_fixtures": [
+        "tests/fixtures/skills/responsive-design-planning.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "skill",
+        "path": ".claude/skills/responsive-design-planning/SKILL.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Claude planning skill; primary planning belongs to Claude.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "accessibility-planning",
+      "canonical_name": "accessibility-planning",
+      "kind": "skill",
+      "scope": "planning",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Plan accessibility to a stated conformance target.",
+      "behavioral_contract": "Plan accessibility to a stated conformance target.",
+      "invocation_triggers": [
+        "Phase 12"
+      ],
+      "when_not_to_use": [
+        "during implementation"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Choose a conformance target (e.g. WCAG 2.2 AA).",
+        "Define focus order, labels, roles, contrast, and keyboard operability per screen.",
+        "Define accessibility acceptance criteria and test approach."
+      ],
+      "checklist": [
+        "Completed: Choose a conformance target (e",
+        "Completed: Define focus order, labels, roles, contrast, and keyboard operability per screen",
+        "Completed: Define accessibility acceptance criteria and test approach"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "start implementation"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "planning (read + write artifacts)",
+      "test_fixtures": [
+        "tests/fixtures/skills/accessibility-planning.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "skill",
+        "path": ".claude/skills/accessibility-planning/SKILL.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Claude planning skill; primary planning belongs to Claude.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "motion-performance-planning",
+      "canonical_name": "motion-performance-planning",
+      "kind": "skill",
+      "scope": "planning",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Plan motion and perceived performance.",
+      "behavioral_contract": "Plan motion and perceived performance.",
+      "invocation_triggers": [
+        "Phase 12"
+      ],
+      "when_not_to_use": [
+        "during implementation"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Define motion principles, durations, and reduced-motion behavior.",
+        "Define perceived-performance techniques (skeletons, optimistic UI).",
+        "Attach animation acceptance criteria."
+      ],
+      "checklist": [
+        "Completed: Define motion principles, durations, and reduced-motion behavior",
+        "Completed: Define perceived-performance techniques (skeletons, optimistic UI)",
+        "Completed: Attach animation acceptance criteria"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "start implementation"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "planning (read + write artifacts)",
+      "test_fixtures": [
+        "tests/fixtures/skills/motion-performance-planning.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "skill",
+        "path": ".claude/skills/motion-performance-planning/SKILL.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Claude planning skill; primary planning belongs to Claude.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "ai-flow-planning",
+      "canonical_name": "ai-flow-planning",
+      "kind": "skill",
+      "scope": "planning",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Specify AI behavior with exact inputs, outputs, and validation.",
+      "behavioral_contract": "Specify AI behavior with exact inputs, outputs, and validation.",
+      "invocation_triggers": [
+        "Phase 15"
+      ],
+      "when_not_to_use": [
+        "to write 'use AI to analyze the data' without a contract"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Assign AI-### and state purpose and where deterministic logic is required.",
+        "Define inputs, context, tools, memory, and the output schema.",
+        "Define grounding/citations, hallucination, refusal, and fallback behavior.",
+        "Define token/latency/cost budgets and a model-independent interface."
+      ],
+      "checklist": [
+        "Completed: Assign AI-### and state purpose and where deterministic logic is required",
+        "Completed: Define inputs, context, tools, memory, and the output schema",
+        "Completed: Define grounding/citations, hallucination, refusal, and fallback behavior",
+        "Completed: Define token/latency/cost budgets and a model-independent interface"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "start implementation"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "planning (read + write artifacts)",
+      "test_fixtures": [
+        "tests/fixtures/skills/ai-flow-planning.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "skill",
+        "path": ".claude/skills/ai-flow-planning/SKILL.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Claude planning skill; primary planning belongs to Claude.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "ai-evaluation-planning",
+      "canonical_name": "ai-evaluation-planning",
+      "kind": "skill",
+      "scope": "planning",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Plan AI evaluation with golden and red-team cases.",
+      "behavioral_contract": "Plan AI evaluation with golden and red-team cases.",
+      "invocation_triggers": [
+        "Phase 15"
+      ],
+      "when_not_to_use": [
+        "during implementation"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Define golden test cases and expected outputs.",
+        "Define red-team / prompt-injection cases.",
+        "Define quality metrics and pass thresholds mapped to acceptance criteria."
+      ],
+      "checklist": [
+        "Completed: Define golden test cases and expected outputs",
+        "Completed: Define red-team / prompt-injection cases",
+        "Completed: Define quality metrics and pass thresholds mapped to acceptance criteria"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "start implementation"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "planning (read + write artifacts)",
+      "test_fixtures": [
+        "tests/fixtures/skills/ai-evaluation-planning.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "skill",
+        "path": ".claude/skills/ai-evaluation-planning/SKILL.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Claude planning skill; primary planning belongs to Claude.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "integration-planning",
+      "canonical_name": "integration-planning",
+      "kind": "skill",
+      "scope": "planning",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Specify external integrations with fallback and mock strategy.",
+      "behavioral_contract": "Specify external integrations with fallback and mock strategy.",
+      "invocation_triggers": [
+        "Phase 13"
+      ],
+      "when_not_to_use": [
+        "during implementation"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Assign INT-### and define auth, data in/out, triggers, timeouts, retries.",
+        "Define failure behavior, fallback, sandbox, and mock strategy.",
+        "Define contract tests."
+      ],
+      "checklist": [
+        "Completed: Assign INT-### and define auth, data in/out, triggers, timeouts, retries",
+        "Completed: Define failure behavior, fallback, sandbox, and mock strategy",
+        "Completed: Define contract tests"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "start implementation"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "planning (read + write artifacts)",
+      "test_fixtures": [
+        "tests/fixtures/skills/integration-planning.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "skill",
+        "path": ".claude/skills/integration-planning/SKILL.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Claude planning skill; primary planning belongs to Claude.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "mcp-governance-planning",
+      "canonical_name": "mcp-governance-planning",
+      "kind": "skill",
+      "scope": "planning",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Select and govern MCPs with least privilege.",
+      "behavioral_contract": "Select and govern MCPs with least privilege.",
+      "invocation_triggers": [
+        "Phase 20"
+      ],
+      "when_not_to_use": [
+        "to enable every MCP globally"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Select only necessary MCPs from the registry.",
+        "Apply least privilege, read/write separation, and environment separation.",
+        "Define tool allowlists, blocked destructive tools, health checks, fallbacks.",
+        "Generate separate Claude and Codex MCP configuration."
+      ],
+      "checklist": [
+        "Completed: Select only necessary MCPs from the registry",
+        "Completed: Apply least privilege, read/write separation, and environment separation",
+        "Completed: Define tool allowlists, blocked destructive tools, health checks, fallbacks",
+        "Completed: Generate separate Claude and Codex MCP configuration"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "start implementation"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "planning (read + write artifacts)",
+      "test_fixtures": [
+        "tests/fixtures/skills/mcp-governance-planning.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "skill",
+        "path": ".claude/skills/mcp-governance-planning/SKILL.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Claude planning skill; primary planning belongs to Claude.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "infrastructure-planning",
+      "canonical_name": "infrastructure-planning",
+      "kind": "skill",
+      "scope": "planning",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Plan containers, IaC, hosting, CI/CD, backups, and disaster recovery.",
+      "behavioral_contract": "Plan containers, IaC, hosting, CI/CD, backups, and disaster recovery.",
+      "invocation_triggers": [
+        "Phase 16"
+      ],
+      "when_not_to_use": [
+        "during implementation"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Define container + IaC strategy and hosting.",
+        "Define workers, queues, schedules, storage, and backups.",
+        "Define CI/CD, release, rollback, and disaster recovery."
+      ],
+      "checklist": [
+        "Completed: Define container + IaC strategy and hosting",
+        "Completed: Define workers, queues, schedules, storage, and backups",
+        "Completed: Define CI/CD, release, rollback, and disaster recovery"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "start implementation"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "planning (read + write artifacts)",
+      "test_fixtures": [
+        "tests/fixtures/skills/infrastructure-planning.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "skill",
+        "path": ".claude/skills/infrastructure-planning/SKILL.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Claude planning skill; primary planning belongs to Claude.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "environment-strategy",
+      "canonical_name": "environment-strategy",
+      "kind": "skill",
+      "scope": "planning",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Define local, test, development, staging, and production environments.",
+      "behavioral_contract": "Define local, test, development, staging, and production environments.",
+      "invocation_triggers": [
+        "Phase 16"
+      ],
+      "when_not_to_use": [
+        "to place secret values anywhere"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "For each environment define services, database, variables (names only).",
+        "Define network boundaries, access model, deployment, and migrations.",
+        "Define monitoring, test data, teardown, and rollback."
+      ],
+      "checklist": [
+        "Completed: For each environment define services, database, variables (names only)",
+        "Completed: Define network boundaries, access model, deployment, and migrations",
+        "Completed: Define monitoring, test data, teardown, and rollback"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "start implementation"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "planning (read + write artifacts)",
+      "test_fixtures": [
+        "tests/fixtures/skills/environment-strategy.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "skill",
+        "path": ".claude/skills/environment-strategy/SKILL.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Claude planning skill; primary planning belongs to Claude.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "observability-planning",
+      "canonical_name": "observability-planning",
+      "kind": "skill",
+      "scope": "planning",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Plan logs, metrics, traces, dashboards, and alerts with redaction.",
+      "behavioral_contract": "Plan logs, metrics, traces, dashboards, and alerts with redaction.",
+      "invocation_triggers": [
+        "Phase 17"
+      ],
+      "when_not_to_use": [
+        "during implementation"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Define structured log fields and correlation IDs.",
+        "Define metrics, traces, dashboards, and alerts.",
+        "Define AI cost/latency, MCP operations, audit events, retention, redaction."
+      ],
+      "checklist": [
+        "Completed: Define structured log fields and correlation IDs",
+        "Completed: Define metrics, traces, dashboards, and alerts",
+        "Completed: Define AI cost/latency, MCP operations, audit events, retention, redaction"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "start implementation"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "planning (read + write artifacts)",
+      "test_fixtures": [
+        "tests/fixtures/skills/observability-planning.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "skill",
+        "path": ".claude/skills/observability-planning/SKILL.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Claude planning skill; primary planning belongs to Claude.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "performance-budget-planning",
+      "canonical_name": "performance-budget-planning",
+      "kind": "skill",
+      "scope": "planning",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Set measurable performance budgets and a regression strategy.",
+      "behavioral_contract": "Set measurable performance budgets and a regression strategy.",
+      "invocation_triggers": [
+        "Phase 18 & 21"
+      ],
+      "when_not_to_use": [
+        "during implementation"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Set numeric budgets for load, latency, jobs, AI, bundle, memory.",
+        "Define profiling, load testing, and regression detection.",
+        "Define cost/context budgets via capability classes."
+      ],
+      "checklist": [
+        "Completed: Set numeric budgets for load, latency, jobs, AI, bundle, memory",
+        "Completed: Define profiling, load testing, and regression detection",
+        "Completed: Define cost/context budgets via capability classes"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "start implementation"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "planning (read + write artifacts)",
+      "test_fixtures": [
+        "tests/fixtures/skills/performance-budget-planning.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "skill",
+        "path": ".claude/skills/performance-budget-planning/SKILL.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Claude planning skill; primary planning belongs to Claude.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "test-strategy-planning",
+      "canonical_name": "test-strategy-planning",
+      "kind": "skill",
+      "scope": "planning",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Plan the full test pyramid and map every acceptance criterion to a test.",
+      "behavioral_contract": "Plan the full test pyramid and map every acceptance criterion to a test.",
+      "invocation_triggers": [
+        "Phase 19"
+      ],
+      "when_not_to_use": [
+        "during implementation"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Define static analysis, unit, integration, contract, DB, auth, AI, E2E, a11y tests.",
+        "Map each AC-### to >=1 TEST-###.",
+        "Identify where manual QA is required."
+      ],
+      "checklist": [
+        "Completed: Define static analysis, unit, integration, contract, DB, auth, AI, E2E, a11y tests",
+        "Completed: Map each AC-### to >=1 TEST-###",
+        "Completed: Identify where manual QA is required"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "start implementation"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "planning (read + write artifacts)",
+      "test_fixtures": [
+        "tests/fixtures/skills/test-strategy-planning.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "skill",
+        "path": ".claude/skills/test-strategy-planning/SKILL.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Claude planning skill; primary planning belongs to Claude.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "task-decomposition",
+      "canonical_name": "task-decomposition",
+      "kind": "skill",
+      "scope": "planning",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Break the system into atomic, verifiable tasks.",
+      "behavioral_contract": "Break the system into atomic, verifiable tasks.",
+      "invocation_triggers": [
+        "Phase 22"
+      ],
+      "when_not_to_use": [
+        "to write 'build the backend' as one task"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Create TASK-### entries with objective, requirements, dependencies, files.",
+        "Assign agent, skills, validation commands, and acceptance criteria.",
+        "Ensure the dependency graph is a DAG and tasks are small.",
+        "Validate against task-manifest.schema.json."
+      ],
+      "checklist": [
+        "Completed: Create TASK-### entries with objective, requirements, dependencies, files",
+        "Completed: Assign agent, skills, validation commands, and acceptance criteria",
+        "Completed: Ensure the dependency graph is a DAG and tasks are small",
+        "Completed: Validate against task-manifest"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "start implementation"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "planning (read + write artifacts)",
+      "test_fixtures": [
+        "tests/fixtures/skills/task-decomposition.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "skill",
+        "path": ".claude/skills/task-decomposition/SKILL.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Claude planning skill; primary planning belongs to Claude.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "agent-assignment",
+      "canonical_name": "agent-assignment",
+      "kind": "skill",
+      "scope": "planning",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Assign each task to a Codex agent and produce the agent map.",
+      "behavioral_contract": "Assign each task to a Codex agent and produce the agent map.",
+      "invocation_triggers": [
+        "Phase 23"
+      ],
+      "when_not_to_use": [
+        "during implementation"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Map each task to exactly one assigned agent.",
+        "Define per-agent tools, model profile, and file ownership.",
+        "Validate against agent-map.schema.json."
+      ],
+      "checklist": [
+        "Completed: Map each task to exactly one assigned agent",
+        "Completed: Define per-agent tools, model profile, and file ownership",
+        "Completed: Validate against agent-map"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "start implementation"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "planning (read + write artifacts)",
+      "test_fixtures": [
+        "tests/fixtures/skills/agent-assignment.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "skill",
+        "path": ".claude/skills/agent-assignment/SKILL.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Claude planning skill; primary planning belongs to Claude.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "skill-assignment",
+      "canonical_name": "skill-assignment",
+      "kind": "skill",
+      "scope": "planning",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Classify and assign skills; ensure local fallbacks.",
+      "behavioral_contract": "Classify and assign skills; ensure local fallbacks.",
+      "invocation_triggers": [
+        "Phase 24"
+      ],
+      "when_not_to_use": [
+        "during implementation"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Classify each skill core/project/community/local-fallback/new.",
+        "Ensure every community skill has a local fallback.",
+        "Validate against skill-map.schema.json."
+      ],
+      "checklist": [
+        "Completed: Classify each skill core/project/community/local-fallback/new",
+        "Completed: Ensure every community skill has a local fallback",
+        "Completed: Validate against skill-map"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "start implementation"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "planning (read + write artifacts)",
+      "test_fixtures": [
+        "tests/fixtures/skills/skill-assignment.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "skill",
+        "path": ".claude/skills/skill-assignment/SKILL.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Claude planning skill; primary planning belongs to Claude.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "file-ownership-planning",
+      "canonical_name": "file-ownership-planning",
+      "kind": "skill",
+      "scope": "planning",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Assign file ownership and parallelization groups to prevent write conflicts.",
+      "behavioral_contract": "Assign file ownership and parallelization groups to prevent write conflicts.",
+      "invocation_triggers": [
+        "Phase 25"
+      ],
+      "when_not_to_use": [
+        "during implementation"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Assign each owned path a mode and owner.",
+        "Serialize shared schema/config/manifests/routing/types/migrations.",
+        "Parallelize independent modules and read-only reviews.",
+        "Validate against file-ownership.schema.json."
+      ],
+      "checklist": [
+        "Completed: Assign each owned path a mode and owner",
+        "Completed: Serialize shared schema/config/manifests/routing/types/migrations",
+        "Completed: Parallelize independent modules and read-only reviews",
+        "Completed: Validate against file-ownership"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "start implementation"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "planning (read + write artifacts)",
+      "test_fixtures": [
+        "tests/fixtures/skills/file-ownership-planning.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "skill",
+        "path": ".claude/skills/file-ownership-planning/SKILL.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Claude planning skill; primary planning belongs to Claude.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "context-packet-generation",
+      "canonical_name": "context-packet-generation",
+      "kind": "skill",
+      "scope": "planning",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Produce a focused context packet per task.",
+      "behavioral_contract": "Produce a focused context packet per task.",
+      "invocation_triggers": [
+        "Phase 27"
+      ],
+      "when_not_to_use": [
+        "during implementation"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Include only the task's requirements, architecture, files, tests, skills, MCP tools.",
+        "State the output contract and stop conditions.",
+        "Never include the entire planning corpus."
+      ],
+      "checklist": [
+        "Completed: Include only the task's requirements, architecture, files, tests, skills, MCP tools",
+        "Completed: State the output contract and stop conditions",
+        "Completed: Never include the entire planning corpus"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "start implementation"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "planning (read + write artifacts)",
+      "test_fixtures": [
+        "tests/fixtures/skills/context-packet-generation.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "skill",
+        "path": ".claude/skills/context-packet-generation/SKILL.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Claude planning skill; primary planning belongs to Claude.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "codex-handoff-generation",
+      "canonical_name": "codex-handoff-generation",
+      "kind": "skill",
+      "scope": "planning",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Produce a self-contained Codex handoff and start file.",
+      "behavioral_contract": "Produce a self-contained Codex handoff and start file.",
+      "invocation_triggers": [
+        "Phase 27"
+      ],
+      "when_not_to_use": [
+        "during implementation"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Write the implementation brief and exact order.",
+        "Reference the task manifest and context packets.",
+        "State non-negotiable rules and the completion report format.",
+        "Ensure no material decision lives only in chat history."
+      ],
+      "checklist": [
+        "Completed: Write the implementation brief and exact order",
+        "Completed: Reference the task manifest and context packets",
+        "Completed: State non-negotiable rules and the completion report format",
+        "Completed: Ensure no material decision lives only in chat history"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "start implementation"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "planning (read + write artifacts)",
+      "test_fixtures": [
+        "tests/fixtures/skills/codex-handoff-generation.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "skill",
+        "path": ".claude/skills/codex-handoff-generation/SKILL.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Claude planning skill; primary planning belongs to Claude.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "plan-consistency-validation",
+      "canonical_name": "plan-consistency-validation",
+      "kind": "skill",
+      "scope": "planning",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Independently validate plan completeness and traceability before handoff.",
+      "behavioral_contract": "Independently validate plan completeness and traceability before handoff.",
+      "invocation_triggers": [
+        "Phase 28",
+        "/plan_validate"
+      ],
+      "when_not_to_use": [
+        "to rubber-stamp a plan because files exist"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Run every check in template 32 and compute a validation score.",
+        "List critical findings; do not mark ready with open criticals.",
+        "Assess content quality, not just file existence."
+      ],
+      "checklist": [
+        "Completed: Run every check in template 32 and compute a validation score",
+        "Completed: List critical findings",
+        "Completed: Assess content quality, not just file existence"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "start implementation"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "planning (read + write artifacts)",
+      "test_fixtures": [
+        "tests/fixtures/skills/plan-consistency-validation.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "skill",
+        "path": ".claude/skills/plan-consistency-validation/SKILL.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Claude planning skill; primary planning belongs to Claude.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "requirement-traceability",
+      "canonical_name": "requirement-traceability",
+      "kind": "skill",
+      "scope": "planning",
+      "runtime_scope": [
+        "claude"
+      ],
+      "purpose": "Build and check the full traceability graph.",
+      "behavioral_contract": "Build and check the full traceability graph.",
+      "invocation_triggers": [
+        "Phase 28"
+      ],
+      "when_not_to_use": [
+        "during implementation"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Build goal->requirement->task->files and requirement->AC->test->evidence maps.",
+        "Detect orphan requirements, tasks, and acceptance criteria.",
+        "Validate against traceability.schema.json."
+      ],
+      "checklist": [
+        "Completed: Build goal->requirement->task->files and requirement->AC->test->evidence maps",
+        "Completed: Detect orphan requirements, tasks, and acceptance criteria",
+        "Completed: Validate against traceability"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write_planning_artifacts",
+        "search"
+      ],
+      "disallowed_actions": [
+        "write product code",
+        "expose secrets",
+        "start implementation"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "planning (read + write artifacts)",
+      "test_fixtures": [
+        "tests/fixtures/skills/requirement-traceability.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "skill",
+        "path": ".claude/skills/requirement-traceability/SKILL.md"
+      },
+      "codex_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "compatibility_notes": "Claude planning skill; primary planning belongs to Claude.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "implement-max",
+      "canonical_name": "implement-max",
+      "kind": "skill",
+      "scope": "implementation",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Entry skill: implement the active plan until all completion gates pass.",
+      "behavioral_contract": "Entry skill: implement the active plan until all completion gates pass.",
+      "invocation_triggers": [
+        "'Implement the active system plan using the implement-max skill.'"
+      ],
+      "when_not_to_use": [
+        "to reinterpret the product's core objective"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Locate and validate the active plan; read PLAN_METADATA and EXECUTION.lock.",
+        "Load the task manifest and execute tasks in dependency order.",
+        "Run validations after each task and phase; repair failures autonomously.",
+        "Preserve product scope; record deviations; continue until gates pass.",
+        "Invoke the final-acceptance-judge before declaring completion."
+      ],
+      "checklist": [
+        "Completed: Locate and validate the active plan",
+        "Completed: Load the task manifest and execute tasks in dependency order",
+        "Completed: Run validations after each task and phase",
+        "Completed: Preserve product scope",
+        "Completed: Invoke the final-acceptance-judge before declaring completion"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations"
+      ],
+      "disallowed_actions": [
+        "expose secrets",
+        "reinterpret product scope"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "implementation (read/write/run)",
+      "test_fixtures": [
+        "tests/fixtures/skills/implement-max.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "skill",
+        "path": ".agents/skills/implement-max/SKILL.md"
+      },
+      "compatibility_notes": "Codex implementation skill; contains a runnable procedure.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "active-plan-reader",
+      "canonical_name": "active-plan-reader",
+      "kind": "skill",
+      "scope": "implementation",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Locate, load, and validate the active plan package and its version/hash.",
+      "behavioral_contract": "Locate, load, and validate the active plan package and its version/hash.",
+      "invocation_triggers": [
+        "start of implementation"
+      ],
+      "when_not_to_use": [
+        "to edit the plan"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Find plans/active/<slug>/ and read PLAN_METADATA.yaml.",
+        "Verify the plan hash and EXECUTION.lock status.",
+        "Load task manifest, agent map, skill map, and acceptance criteria.",
+        "Fail fast if the package is incomplete or conflicting."
+      ],
+      "checklist": [
+        "Completed: Find plans/active/<slug>/ and read PLAN_METADATA",
+        "Completed: Verify the plan hash and EXECUTION",
+        "Completed: Load task manifest, agent map, skill map, and acceptance criteria",
+        "Completed: Fail fast if the package is incomplete or conflicting"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations"
+      ],
+      "disallowed_actions": [
+        "expose secrets",
+        "reinterpret product scope"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "implementation (read/write/run)",
+      "test_fixtures": [
+        "tests/fixtures/skills/active-plan-reader.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "skill",
+        "path": ".agents/skills/active-plan-reader/SKILL.md"
+      },
+      "compatibility_notes": "Codex implementation skill; contains a runnable procedure.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "plan-scope-guard",
+      "canonical_name": "plan-scope-guard",
+      "kind": "skill",
+      "scope": "implementation",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Prevent scope creep and unauthorized product-behavior changes.",
+      "behavioral_contract": "Prevent scope creep and unauthorized product-behavior changes.",
+      "invocation_triggers": [
+        "before any code change"
+      ],
+      "when_not_to_use": [
+        "during product discovery"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Compare proposed changes to the active requirements.",
+        "Block Level-3 (product behavior) changes; require a new plan version.",
+        "Allow Level 0-2 deviations with logging/ADR per the deviation policy."
+      ],
+      "checklist": [
+        "Completed: Compare proposed changes to the active requirements",
+        "Completed: Block Level-3 (product behavior) changes",
+        "Completed: Allow Level 0-2 deviations with logging/ADR per the deviation policy"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations"
+      ],
+      "disallowed_actions": [
+        "expose secrets",
+        "reinterpret product scope"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "implementation (read/write/run)",
+      "test_fixtures": [
+        "tests/fixtures/skills/plan-scope-guard.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "skill",
+        "path": ".agents/skills/plan-scope-guard/SKILL.md"
+      },
+      "compatibility_notes": "Codex implementation skill; contains a runnable procedure.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "task-manifest-runner",
+      "canonical_name": "task-manifest-runner",
+      "kind": "skill",
+      "scope": "implementation",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Execute manifest tasks in dependency order with validations.",
+      "behavioral_contract": "Execute manifest tasks in dependency order with validations.",
+      "invocation_triggers": [
+        "main implementation loop"
+      ],
+      "when_not_to_use": [
+        "during product discovery"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Select the next unblocked task from the DAG.",
+        "Load its context packet and enforce file ownership.",
+        "Run the task's validation commands; on failure escalate to failure-diagnosis.",
+        "Mark status and update the execution ledger."
+      ],
+      "checklist": [
+        "Completed: Select the next unblocked task from the DAG",
+        "Completed: Load its context packet and enforce file ownership",
+        "Completed: Run the task's validation commands",
+        "Completed: Mark status and update the execution ledger"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations"
+      ],
+      "disallowed_actions": [
+        "expose secrets",
+        "reinterpret product scope"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "implementation (read/write/run)",
+      "test_fixtures": [
+        "tests/fixtures/skills/task-manifest-runner.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "skill",
+        "path": ".agents/skills/task-manifest-runner/SKILL.md"
+      },
+      "compatibility_notes": "Codex implementation skill; contains a runnable procedure.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "context-packet-loader",
+      "canonical_name": "context-packet-loader",
+      "kind": "skill",
+      "scope": "implementation",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Load only the focused context a task needs.",
+      "behavioral_contract": "Load only the focused context a task needs.",
+      "invocation_triggers": [
+        "before executing a task"
+      ],
+      "when_not_to_use": [
+        "to load the entire planning corpus"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Read the task's context packet.",
+        "Load referenced requirements, files, tests, and skills only.",
+        "Reject work that requires context outside the packet without escalation."
+      ],
+      "checklist": [
+        "Completed: Read the task's context packet",
+        "Completed: Load referenced requirements, files, tests, and skills only",
+        "Completed: Reject work that requires context outside the packet without escalation"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations"
+      ],
+      "disallowed_actions": [
+        "expose secrets",
+        "reinterpret product scope"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "implementation (read/write/run)",
+      "test_fixtures": [
+        "tests/fixtures/skills/context-packet-loader.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "skill",
+        "path": ".agents/skills/context-packet-loader/SKILL.md"
+      },
+      "compatibility_notes": "Codex implementation skill; contains a runnable procedure.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "repository-bootstrap",
+      "canonical_name": "repository-bootstrap",
+      "kind": "skill",
+      "scope": "implementation",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Bootstrap the project skeleton and detect toolchain commands.",
+      "behavioral_contract": "Bootstrap the project skeleton and detect toolchain commands.",
+      "invocation_triggers": [
+        "BOOTSTRAPPING state"
+      ],
+      "when_not_to_use": [
+        "during product discovery"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Detect package manager, lint, test, build, and migration commands.",
+        "Record detected commands in the active plan.",
+        "Create the minimal runnable skeleton per the architecture."
+      ],
+      "checklist": [
+        "Completed: Detect package manager, lint, test, build, and migration commands",
+        "Completed: Record detected commands in the active plan",
+        "Completed: Create the minimal runnable skeleton per the architecture"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations"
+      ],
+      "disallowed_actions": [
+        "expose secrets",
+        "reinterpret product scope"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "implementation (read/write/run)",
+      "test_fixtures": [
+        "tests/fixtures/skills/repository-bootstrap.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "skill",
+        "path": ".agents/skills/repository-bootstrap/SKILL.md"
+      },
+      "compatibility_notes": "Codex implementation skill; contains a runnable procedure.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "dependency-management",
+      "canonical_name": "dependency-management",
+      "kind": "skill",
+      "scope": "implementation",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Install and pin normal project dependencies safely.",
+      "behavioral_contract": "Install and pin normal project dependencies safely.",
+      "invocation_triggers": [
+        "bootstrap and as needed"
+      ],
+      "when_not_to_use": [
+        "during product discovery"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Install required dependencies with the detected package manager.",
+        "Pin versions and record them.",
+        "Never install from untrusted sources; run a dependency security check."
+      ],
+      "checklist": [
+        "Completed: Install required dependencies with the detected package manager",
+        "Completed: Pin versions and record them",
+        "Completed: Never install from untrusted sources"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations"
+      ],
+      "disallowed_actions": [
+        "expose secrets",
+        "reinterpret product scope"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "implementation (read/write/run)",
+      "test_fixtures": [
+        "tests/fixtures/skills/dependency-management.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "skill",
+        "path": ".agents/skills/dependency-management/SKILL.md"
+      },
+      "compatibility_notes": "Codex implementation skill; contains a runnable procedure.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "frontend-implementation",
+      "canonical_name": "frontend-implementation",
+      "kind": "skill",
+      "scope": "implementation",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Implement frontend routes, components, and all screen states.",
+      "behavioral_contract": "Implement frontend routes, components, and all screen states.",
+      "invocation_triggers": [
+        "frontend tasks"
+      ],
+      "when_not_to_use": [
+        "backend or schema files"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Implement routes/layouts/components per the frontend plan.",
+        "Implement default/loading/empty/error/success/disabled states.",
+        "Wire client validation and server-state; add component tests."
+      ],
+      "checklist": [
+        "Completed: Implement routes/layouts/components per the frontend plan",
+        "Completed: Implement default/loading/empty/error/success/disabled states",
+        "Completed: Wire client validation and server-state"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations"
+      ],
+      "disallowed_actions": [
+        "expose secrets",
+        "reinterpret product scope"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "implementation (read/write/run)",
+      "test_fixtures": [
+        "tests/fixtures/skills/frontend-implementation.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "skill",
+        "path": ".agents/skills/frontend-implementation/SKILL.md"
+      },
+      "compatibility_notes": "Codex implementation skill; contains a runnable procedure.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "frontend-design-fidelity",
+      "canonical_name": "frontend-design-fidelity",
+      "kind": "skill",
+      "scope": "implementation",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Match the implementation to the design direction and tokens.",
+      "behavioral_contract": "Match the implementation to the design direction and tokens.",
+      "invocation_triggers": [
+        "frontend tasks with a visual bar"
+      ],
+      "when_not_to_use": [
+        "during product discovery"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Apply design tokens (type, spacing, grid, color).",
+        "Verify hierarchy, alignment, and motion against the plan.",
+        "Capture before/after evidence for visual acceptance criteria."
+      ],
+      "checklist": [
+        "Completed: Apply design tokens (type, spacing, grid, color)",
+        "Completed: Verify hierarchy, alignment, and motion against the plan",
+        "Completed: Capture before/after evidence for visual acceptance criteria"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations"
+      ],
+      "disallowed_actions": [
+        "expose secrets",
+        "reinterpret product scope"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "implementation (read/write/run)",
+      "test_fixtures": [
+        "tests/fixtures/skills/frontend-design-fidelity.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "skill",
+        "path": ".agents/skills/frontend-design-fidelity/SKILL.md"
+      },
+      "compatibility_notes": "Codex implementation skill; contains a runnable procedure.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "responsive-implementation",
+      "canonical_name": "responsive-implementation",
+      "kind": "skill",
+      "scope": "implementation",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Implement responsive behavior across breakpoints.",
+      "behavioral_contract": "Implement responsive behavior across breakpoints.",
+      "invocation_triggers": [
+        "frontend tasks"
+      ],
+      "when_not_to_use": [
+        "during product discovery"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Implement per-breakpoint layouts.",
+        "Verify reflow, touch, and keyboard behavior.",
+        "Add responsive checks to browser validation."
+      ],
+      "checklist": [
+        "Completed: Implement per-breakpoint layouts",
+        "Completed: Verify reflow, touch, and keyboard behavior",
+        "Completed: Add responsive checks to browser validation"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations"
+      ],
+      "disallowed_actions": [
+        "expose secrets",
+        "reinterpret product scope"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "implementation (read/write/run)",
+      "test_fixtures": [
+        "tests/fixtures/skills/responsive-implementation.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "skill",
+        "path": ".agents/skills/responsive-implementation/SKILL.md"
+      },
+      "compatibility_notes": "Codex implementation skill; contains a runnable procedure.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "accessibility-implementation",
+      "canonical_name": "accessibility-implementation",
+      "kind": "skill",
+      "scope": "implementation",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Implement accessibility to the target conformance level.",
+      "behavioral_contract": "Implement accessibility to the target conformance level.",
+      "invocation_triggers": [
+        "frontend tasks",
+        "browser validation"
+      ],
+      "when_not_to_use": [
+        "during product discovery"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Add semantic roles, labels, and focus management.",
+        "Verify contrast and keyboard operability.",
+        "Run an automated a11y check and record results."
+      ],
+      "checklist": [
+        "Completed: Add semantic roles, labels, and focus management",
+        "Completed: Verify contrast and keyboard operability",
+        "Completed: Run an automated a11y check and record results"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations"
+      ],
+      "disallowed_actions": [
+        "expose secrets",
+        "reinterpret product scope"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "implementation (read/write/run)",
+      "test_fixtures": [
+        "tests/fixtures/skills/accessibility-implementation.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "skill",
+        "path": ".agents/skills/accessibility-implementation/SKILL.md"
+      },
+      "compatibility_notes": "Codex implementation skill; contains a runnable procedure.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "backend-api-implementation",
+      "canonical_name": "backend-api-implementation",
+      "kind": "skill",
+      "scope": "implementation",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Implement API endpoints exactly to contract.",
+      "behavioral_contract": "Implement API endpoints exactly to contract.",
+      "invocation_triggers": [
+        "backend tasks"
+      ],
+      "when_not_to_use": [
+        "frontend component files"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Implement each endpoint per its API-### contract.",
+        "Enforce request/response schemas, validation, and error codes.",
+        "Emit events and side effects as specified; add tests."
+      ],
+      "checklist": [
+        "Completed: Implement each endpoint per its API-### contract",
+        "Completed: Enforce request/response schemas, validation, and error codes",
+        "Completed: Emit events and side effects as specified"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations"
+      ],
+      "disallowed_actions": [
+        "expose secrets",
+        "reinterpret product scope"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "implementation (read/write/run)",
+      "test_fixtures": [
+        "tests/fixtures/skills/backend-api-implementation.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "skill",
+        "path": ".agents/skills/backend-api-implementation/SKILL.md"
+      },
+      "compatibility_notes": "Codex implementation skill; contains a runnable procedure.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "business-logic-implementation",
+      "canonical_name": "business-logic-implementation",
+      "kind": "skill",
+      "scope": "implementation",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Implement business rules deterministically.",
+      "behavioral_contract": "Implement business rules deterministically.",
+      "invocation_triggers": [
+        "backend tasks"
+      ],
+      "when_not_to_use": [
+        "during product discovery"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Implement each RULE-### with its exact condition and precedence.",
+        "Handle exceptions and failure behavior.",
+        "Add unit tests including the rule's worked examples."
+      ],
+      "checklist": [
+        "Completed: Implement each RULE-### with its exact condition and precedence",
+        "Completed: Handle exceptions and failure behavior",
+        "Completed: Add unit tests including the rule's worked examples"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations"
+      ],
+      "disallowed_actions": [
+        "expose secrets",
+        "reinterpret product scope"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "implementation (read/write/run)",
+      "test_fixtures": [
+        "tests/fixtures/skills/business-logic-implementation.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "skill",
+        "path": ".agents/skills/business-logic-implementation/SKILL.md"
+      },
+      "compatibility_notes": "Codex implementation skill; contains a runnable procedure.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "database-schema-implementation",
+      "canonical_name": "database-schema-implementation",
+      "kind": "skill",
+      "scope": "implementation",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Implement the schema declaratively from the data model.",
+      "behavioral_contract": "Implement the schema declaratively from the data model.",
+      "invocation_triggers": [
+        "database tasks"
+      ],
+      "when_not_to_use": [
+        "application source outside database/"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Create schema objects for each DB-### entity.",
+        "Add constraints, unique rules, and indexes mapped to queries.",
+        "Keep database/schema/ as the source of truth."
+      ],
+      "checklist": [
+        "Completed: Create schema objects for each DB-### entity",
+        "Completed: Add constraints, unique rules, and indexes mapped to queries",
+        "Completed: Keep database/schema/ as the source of truth"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations"
+      ],
+      "disallowed_actions": [
+        "expose secrets",
+        "reinterpret product scope"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "implementation (read/write/run)",
+      "test_fixtures": [
+        "tests/fixtures/skills/database-schema-implementation.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "skill",
+        "path": ".agents/skills/database-schema-implementation/SKILL.md"
+      },
+      "compatibility_notes": "Codex implementation skill; contains a runnable procedure.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "database-migration-implementation",
+      "canonical_name": "database-migration-implementation",
+      "kind": "skill",
+      "scope": "implementation",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Implement ordered, reversible migrations.",
+      "behavioral_contract": "Implement ordered, reversible migrations.",
+      "invocation_triggers": [
+        "database tasks"
+      ],
+      "when_not_to_use": [
+        "during product discovery"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Write forward + rollback migrations for each change.",
+        "Apply to the local/test database and verify.",
+        "Use expand-and-contract for destructive changes."
+      ],
+      "checklist": [
+        "Completed: Write forward + rollback migrations for each change",
+        "Completed: Apply to the local/test database and verify",
+        "Completed: Use expand-and-contract for destructive changes"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations"
+      ],
+      "disallowed_actions": [
+        "expose secrets",
+        "reinterpret product scope"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "implementation (read/write/run)",
+      "test_fixtures": [
+        "tests/fixtures/skills/database-migration-implementation.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "skill",
+        "path": ".agents/skills/database-migration-implementation/SKILL.md"
+      },
+      "compatibility_notes": "Codex implementation skill; contains a runnable procedure.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "database-test-and-drift-check",
+      "canonical_name": "database-test-and-drift-check",
+      "kind": "skill",
+      "scope": "implementation",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Test the database and check for schema drift.",
+      "behavioral_contract": "Test the database and check for schema drift.",
+      "invocation_triggers": [
+        "after migrations"
+      ],
+      "when_not_to_use": [
+        "during product discovery"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Run database tests including row-level policies where used.",
+        "Diff the applied schema against the declared schema.",
+        "Fail the gate on drift or failing tests."
+      ],
+      "checklist": [
+        "Completed: Run database tests including row-level policies where used",
+        "Completed: Diff the applied schema against the declared schema",
+        "Completed: Fail the gate on drift or failing tests"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations"
+      ],
+      "disallowed_actions": [
+        "expose secrets",
+        "reinterpret product scope"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "implementation (read/write/run)",
+      "test_fixtures": [
+        "tests/fixtures/skills/database-test-and-drift-check.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "skill",
+        "path": ".agents/skills/database-test-and-drift-check/SKILL.md"
+      },
+      "compatibility_notes": "Codex implementation skill; contains a runnable procedure.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "auth-implementation",
+      "canonical_name": "auth-implementation",
+      "kind": "skill",
+      "scope": "implementation",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Implement authentication and session management.",
+      "behavioral_contract": "Implement authentication and session management.",
+      "invocation_triggers": [
+        "auth tasks"
+      ],
+      "when_not_to_use": [
+        "during product discovery"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Implement account lifecycle, login/logout, and sessions.",
+        "Reference secrets by env-var name only.",
+        "Add auth tests covering success and failure paths."
+      ],
+      "checklist": [
+        "Completed: Implement account lifecycle, login/logout, and sessions",
+        "Completed: Reference secrets by env-var name only",
+        "Completed: Add auth tests covering success and failure paths"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations"
+      ],
+      "disallowed_actions": [
+        "expose secrets",
+        "reinterpret product scope"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "implementation (read/write/run)",
+      "test_fixtures": [
+        "tests/fixtures/skills/auth-implementation.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "skill",
+        "path": ".agents/skills/auth-implementation/SKILL.md"
+      },
+      "compatibility_notes": "Codex implementation skill; contains a runnable procedure.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "authorization-validation",
+      "canonical_name": "authorization-validation",
+      "kind": "skill",
+      "scope": "implementation",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Implement and test authorization boundaries and isolation.",
+      "behavioral_contract": "Implement and test authorization boundaries and isolation.",
+      "invocation_triggers": [
+        "auth tasks"
+      ],
+      "when_not_to_use": [
+        "during product discovery"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Enforce roles/permissions on every protected action.",
+        "Enforce organization/tenant isolation.",
+        "Add authorization tests including negative cases."
+      ],
+      "checklist": [
+        "Completed: Enforce roles/permissions on every protected action",
+        "Completed: Enforce organization/tenant isolation",
+        "Completed: Add authorization tests including negative cases"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations"
+      ],
+      "disallowed_actions": [
+        "expose secrets",
+        "reinterpret product scope"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "implementation (read/write/run)",
+      "test_fixtures": [
+        "tests/fixtures/skills/authorization-validation.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "skill",
+        "path": ".agents/skills/authorization-validation/SKILL.md"
+      },
+      "compatibility_notes": "Codex implementation skill; contains a runnable procedure.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "ai-orchestration-implementation",
+      "canonical_name": "ai-orchestration-implementation",
+      "kind": "skill",
+      "scope": "implementation",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Implement AI flows behind model-independent interfaces.",
+      "behavioral_contract": "Implement AI flows behind model-independent interfaces.",
+      "invocation_triggers": [
+        "AI tasks"
+      ],
+      "when_not_to_use": [
+        "during product discovery"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Implement prompt/tool/memory contracts and structured output.",
+        "Add validation and fallback per the AI plan.",
+        "Keep the model behind an interface for substitution."
+      ],
+      "checklist": [
+        "Completed: Implement prompt/tool/memory contracts and structured output",
+        "Completed: Add validation and fallback per the AI plan",
+        "Completed: Keep the model behind an interface for substitution"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations"
+      ],
+      "disallowed_actions": [
+        "expose secrets",
+        "reinterpret product scope"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "implementation (read/write/run)",
+      "test_fixtures": [
+        "tests/fixtures/skills/ai-orchestration-implementation.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "skill",
+        "path": ".agents/skills/ai-orchestration-implementation/SKILL.md"
+      },
+      "compatibility_notes": "Codex implementation skill; contains a runnable procedure.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "ai-output-validation",
+      "canonical_name": "ai-output-validation",
+      "kind": "skill",
+      "scope": "implementation",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Validate AI outputs against schema and evals.",
+      "behavioral_contract": "Validate AI outputs against schema and evals.",
+      "invocation_triggers": [
+        "AI tasks"
+      ],
+      "when_not_to_use": [
+        "during product discovery"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Validate every AI output against its output schema.",
+        "Run golden and red-team evals; enforce thresholds.",
+        "Trigger fallback/refusal behavior on low confidence."
+      ],
+      "checklist": [
+        "Completed: Validate every AI output against its output schema",
+        "Completed: Run golden and red-team evals",
+        "Completed: Trigger fallback/refusal behavior on low confidence"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations"
+      ],
+      "disallowed_actions": [
+        "expose secrets",
+        "reinterpret product scope"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "implementation (read/write/run)",
+      "test_fixtures": [
+        "tests/fixtures/skills/ai-output-validation.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "skill",
+        "path": ".agents/skills/ai-output-validation/SKILL.md"
+      },
+      "compatibility_notes": "Codex implementation skill; contains a runnable procedure.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "integration-implementation",
+      "canonical_name": "integration-implementation",
+      "kind": "skill",
+      "scope": "implementation",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Implement external integrations with retries, mocks, and contract tests.",
+      "behavioral_contract": "Implement external integrations with retries, mocks, and contract tests.",
+      "invocation_triggers": [
+        "integration tasks"
+      ],
+      "when_not_to_use": [
+        "during product discovery"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Implement the adapter per the INT-### contract.",
+        "Add timeouts, retries, idempotency, and fallback.",
+        "Provide a mock/sandbox and contract tests."
+      ],
+      "checklist": [
+        "Completed: Implement the adapter per the INT-### contract",
+        "Completed: Add timeouts, retries, idempotency, and fallback",
+        "Completed: Provide a mock/sandbox and contract tests"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations"
+      ],
+      "disallowed_actions": [
+        "expose secrets",
+        "reinterpret product scope"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "implementation (read/write/run)",
+      "test_fixtures": [
+        "tests/fixtures/skills/integration-implementation.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "skill",
+        "path": ".agents/skills/integration-implementation/SKILL.md"
+      },
+      "compatibility_notes": "Codex implementation skill; contains a runnable procedure.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "mcp-tool-usage",
+      "canonical_name": "mcp-tool-usage",
+      "kind": "skill",
+      "scope": "implementation",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Use MCP tools within governed least-privilege boundaries.",
+      "behavioral_contract": "Use MCP tools within governed least-privilege boundaries.",
+      "invocation_triggers": [
+        "tasks using MCP-backed workflows"
+      ],
+      "when_not_to_use": [
+        "production writes without guards"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Use only allowlisted tools for the current environment.",
+        "Never use disabled/destructive tools.",
+        "Fall back to the local equivalent when the MCP is unavailable."
+      ],
+      "checklist": [
+        "Completed: Use only allowlisted tools for the current environment",
+        "Completed: Never use disabled/destructive tools",
+        "Completed: Fall back to the local equivalent when the MCP is unavailable"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations"
+      ],
+      "disallowed_actions": [
+        "expose secrets",
+        "reinterpret product scope"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "implementation (read/write/run)",
+      "test_fixtures": [
+        "tests/fixtures/skills/mcp-tool-usage.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "skill",
+        "path": ".agents/skills/mcp-tool-usage/SKILL.md"
+      },
+      "compatibility_notes": "Codex implementation skill; contains a runnable procedure.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "infrastructure-implementation",
+      "canonical_name": "infrastructure-implementation",
+      "kind": "skill",
+      "scope": "implementation",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Implement containers, IaC, and CI/CD.",
+      "behavioral_contract": "Implement containers, IaC, and CI/CD.",
+      "invocation_triggers": [
+        "infrastructure tasks"
+      ],
+      "when_not_to_use": [
+        "during product discovery"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Write container + IaC definitions per the infra plan.",
+        "Wire CI/CD stages and deploy configuration.",
+        "Never embed secret values; use env-var references."
+      ],
+      "checklist": [
+        "Completed: Write container + IaC definitions per the infra plan",
+        "Completed: Wire CI/CD stages and deploy configuration",
+        "Completed: Never embed secret values"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations"
+      ],
+      "disallowed_actions": [
+        "expose secrets",
+        "reinterpret product scope"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "implementation (read/write/run)",
+      "test_fixtures": [
+        "tests/fixtures/skills/infrastructure-implementation.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "skill",
+        "path": ".agents/skills/infrastructure-implementation/SKILL.md"
+      },
+      "compatibility_notes": "Codex implementation skill; contains a runnable procedure.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "environment-bootstrap",
+      "canonical_name": "environment-bootstrap",
+      "kind": "skill",
+      "scope": "implementation",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Bring up local/test/development environments.",
+      "behavioral_contract": "Bring up local/test/development environments.",
+      "invocation_triggers": [
+        "environment tasks"
+      ],
+      "when_not_to_use": [
+        "during product discovery"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Create env config from .env.example (names only).",
+        "Start required services and the local database.",
+        "Verify health checks pass."
+      ],
+      "checklist": [
+        "Completed: Create env config from ",
+        "Completed: Start required services and the local database",
+        "Completed: Verify health checks pass"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations"
+      ],
+      "disallowed_actions": [
+        "expose secrets",
+        "reinterpret product scope"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "implementation (read/write/run)",
+      "test_fixtures": [
+        "tests/fixtures/skills/environment-bootstrap.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "skill",
+        "path": ".agents/skills/environment-bootstrap/SKILL.md"
+      },
+      "compatibility_notes": "Codex implementation skill; contains a runnable procedure.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "observability-implementation",
+      "canonical_name": "observability-implementation",
+      "kind": "skill",
+      "scope": "implementation",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Wire structured logs, metrics, traces, and alerts.",
+      "behavioral_contract": "Wire structured logs, metrics, traces, and alerts.",
+      "invocation_triggers": [
+        "observability tasks"
+      ],
+      "when_not_to_use": [
+        "during product discovery"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Emit structured logs with correlation IDs and redaction.",
+        "Expose metrics and traces per the observability plan.",
+        "Wire alerts and verify they fire in test."
+      ],
+      "checklist": [
+        "Completed: Emit structured logs with correlation IDs and redaction",
+        "Completed: Expose metrics and traces per the observability plan",
+        "Completed: Wire alerts and verify they fire in test"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations"
+      ],
+      "disallowed_actions": [
+        "expose secrets",
+        "reinterpret product scope"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "implementation (read/write/run)",
+      "test_fixtures": [
+        "tests/fixtures/skills/observability-implementation.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "skill",
+        "path": ".agents/skills/observability-implementation/SKILL.md"
+      },
+      "compatibility_notes": "Codex implementation skill; contains a runnable procedure.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "unit-test-loop",
+      "canonical_name": "unit-test-loop",
+      "kind": "skill",
+      "scope": "implementation",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Write and run unit tests until green.",
+      "behavioral_contract": "Write and run unit tests until green.",
+      "invocation_triggers": [
+        "every code task"
+      ],
+      "when_not_to_use": [
+        "during product discovery"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Write unit tests for the task's units.",
+        "Run them; on failure escalate to failure-diagnosis.",
+        "Do not mark done until unit tests pass."
+      ],
+      "checklist": [
+        "Completed: Write unit tests for the task's units",
+        "Completed: Run them",
+        "Completed: Do not mark done until unit tests pass"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations"
+      ],
+      "disallowed_actions": [
+        "expose secrets",
+        "reinterpret product scope"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "implementation (read/write/run)",
+      "test_fixtures": [
+        "tests/fixtures/skills/unit-test-loop.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "skill",
+        "path": ".agents/skills/unit-test-loop/SKILL.md"
+      },
+      "compatibility_notes": "Codex implementation skill; contains a runnable procedure.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "integration-test-loop",
+      "canonical_name": "integration-test-loop",
+      "kind": "skill",
+      "scope": "implementation",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Write and run integration/contract tests until green.",
+      "behavioral_contract": "Write and run integration/contract tests until green.",
+      "invocation_triggers": [
+        "integration tasks"
+      ],
+      "when_not_to_use": [
+        "during product discovery"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Write integration/contract tests across module boundaries.",
+        "Run them; repair failures.",
+        "Verify contracts match the API/data schemas."
+      ],
+      "checklist": [
+        "Completed: Write integration/contract tests across module boundaries",
+        "Completed: Run them",
+        "Completed: Verify contracts match the API/data schemas"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations"
+      ],
+      "disallowed_actions": [
+        "expose secrets",
+        "reinterpret product scope"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "implementation (read/write/run)",
+      "test_fixtures": [
+        "tests/fixtures/skills/integration-test-loop.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "skill",
+        "path": ".agents/skills/integration-test-loop/SKILL.md"
+      },
+      "compatibility_notes": "Codex implementation skill; contains a runnable procedure.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "e2e-browser-validation",
+      "canonical_name": "e2e-browser-validation",
+      "kind": "skill",
+      "scope": "implementation",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Run real end-to-end flows in a browser and capture evidence.",
+      "behavioral_contract": "Run real end-to-end flows in a browser and capture evidence.",
+      "invocation_triggers": [
+        "UI present"
+      ],
+      "when_not_to_use": [
+        "editing code unless configured as combined role"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Launch the app and navigate each critical flow.",
+        "Check console errors, network failures, responsiveness, a11y.",
+        "Capture screenshots/logs as evidence for acceptance criteria."
+      ],
+      "checklist": [
+        "Completed: Launch the app and navigate each critical flow",
+        "Completed: Check console errors, network failures, responsiveness, a11y",
+        "Completed: Capture screenshots/logs as evidence for acceptance criteria"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations"
+      ],
+      "disallowed_actions": [
+        "expose secrets",
+        "reinterpret product scope"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "implementation (read/write/run)",
+      "test_fixtures": [
+        "tests/fixtures/skills/e2e-browser-validation.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "skill",
+        "path": ".agents/skills/e2e-browser-validation/SKILL.md"
+      },
+      "compatibility_notes": "Codex implementation skill; contains a runnable procedure.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "acceptance-criteria-validation",
+      "canonical_name": "acceptance-criteria-validation",
+      "kind": "skill",
+      "scope": "implementation",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Verify each acceptance criterion with evidence.",
+      "behavioral_contract": "Verify each acceptance criterion with evidence.",
+      "invocation_triggers": [
+        "VALIDATING_ACCEPTANCE state"
+      ],
+      "when_not_to_use": [
+        "during product discovery"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "For each AC-### run its setup/action and check the expected result.",
+        "Attach evidence and mark automated/manual.",
+        "Reopen the mapped task on failure."
+      ],
+      "checklist": [
+        "Completed: For each AC-### run its setup/action and check the expected result",
+        "Completed: Attach evidence and mark automated/manual",
+        "Completed: Reopen the mapped task on failure"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations"
+      ],
+      "disallowed_actions": [
+        "expose secrets",
+        "reinterpret product scope"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "implementation (read/write/run)",
+      "test_fixtures": [
+        "tests/fixtures/skills/acceptance-criteria-validation.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "skill",
+        "path": ".agents/skills/acceptance-criteria-validation/SKILL.md"
+      },
+      "compatibility_notes": "Codex implementation skill; contains a runnable procedure.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "performance-audit",
+      "canonical_name": "performance-audit",
+      "kind": "skill",
+      "scope": "implementation",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Measure against performance budgets and detect regressions.",
+      "behavioral_contract": "Measure against performance budgets and detect regressions.",
+      "invocation_triggers": [
+        "REVIEWING state"
+      ],
+      "when_not_to_use": [
+        "during product discovery"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Measure load/latency/bundle/query metrics.",
+        "Compare to budgets; flag regressions.",
+        "Record results as the performance gate evidence."
+      ],
+      "checklist": [
+        "Completed: Measure load/latency/bundle/query metrics",
+        "Completed: Compare to budgets",
+        "Completed: Record results as the performance gate evidence"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations"
+      ],
+      "disallowed_actions": [
+        "expose secrets",
+        "reinterpret product scope"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "implementation (read/write/run)",
+      "test_fixtures": [
+        "tests/fixtures/skills/performance-audit.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "skill",
+        "path": ".agents/skills/performance-audit/SKILL.md"
+      },
+      "compatibility_notes": "Codex implementation skill; contains a runnable procedure.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "security-review",
+      "canonical_name": "security-review",
+      "kind": "skill",
+      "scope": "implementation",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Review for injection, secrets, permissions, and unsafe config (read-only preferred).",
+      "behavioral_contract": "Review for injection, secrets, permissions, and unsafe config (read-only preferred).",
+      "invocation_triggers": [
+        "REVIEWING state"
+      ],
+      "when_not_to_use": [
+        "to weaken protections for convenience"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Scan for secret exposure and insecure configuration.",
+        "Check auth boundaries, injection, and permissions.",
+        "Run a dependency security check; record findings."
+      ],
+      "checklist": [
+        "Completed: Scan for secret exposure and insecure configuration",
+        "Completed: Check auth boundaries, injection, and permissions",
+        "Completed: Run a dependency security check"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations"
+      ],
+      "disallowed_actions": [
+        "expose secrets",
+        "reinterpret product scope"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "implementation (read/write/run)",
+      "test_fixtures": [
+        "tests/fixtures/skills/security-review.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "skill",
+        "path": ".agents/skills/security-review/SKILL.md"
+      },
+      "compatibility_notes": "Codex implementation skill; contains a runnable procedure.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "failure-diagnosis",
+      "canonical_name": "failure-diagnosis",
+      "kind": "skill",
+      "scope": "implementation",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Classify a failure and collect minimal evidence.",
+      "behavioral_contract": "Classify a failure and collect minimal evidence.",
+      "invocation_triggers": [
+        "any failure"
+      ],
+      "when_not_to_use": [
+        "during product discovery"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Classify the failure into a category.",
+        "Collect the minimal reproducing evidence.",
+        "Review previous attempts before proposing a fix."
+      ],
+      "checklist": [
+        "Completed: Classify the failure into a category",
+        "Completed: Collect the minimal reproducing evidence",
+        "Completed: Review previous attempts before proposing a fix"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations"
+      ],
+      "disallowed_actions": [
+        "expose secrets",
+        "reinterpret product scope"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "implementation (read/write/run)",
+      "test_fixtures": [
+        "tests/fixtures/skills/failure-diagnosis.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "skill",
+        "path": ".agents/skills/failure-diagnosis/SKILL.md"
+      },
+      "compatibility_notes": "Codex implementation skill; contains a runnable procedure.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "failure-recovery",
+      "canonical_name": "failure-recovery",
+      "kind": "skill",
+      "scope": "implementation",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Apply a bounded, strategy-changing repair without infinite loops.",
+      "behavioral_contract": "Apply a bounded, strategy-changing repair without infinite loops.",
+      "invocation_triggers": [
+        "REPAIRING state"
+      ],
+      "when_not_to_use": [
+        "identical retries"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Choose a repair strategy different from prior identical attempts.",
+        "Checkpoint, apply a bounded correction, run targeted + regression validation.",
+        "After the attempt budget, escalate or mark externally blocked with a reason."
+      ],
+      "checklist": [
+        "Completed: Choose a repair strategy different from prior identical attempts",
+        "Completed: Checkpoint, apply a bounded correction, run targeted + regression validation",
+        "Completed: After the attempt budget, escalate or mark externally blocked with a reason"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations"
+      ],
+      "disallowed_actions": [
+        "expose secrets",
+        "reinterpret product scope"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "implementation (read/write/run)",
+      "test_fixtures": [
+        "tests/fixtures/skills/failure-recovery.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "skill",
+        "path": ".agents/skills/failure-recovery/SKILL.md"
+      },
+      "compatibility_notes": "Codex implementation skill; contains a runnable procedure.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "checkpoint-and-rollback",
+      "canonical_name": "checkpoint-and-rollback",
+      "kind": "skill",
+      "scope": "implementation",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Create checkpoints and revert only problematic changes.",
+      "behavioral_contract": "Create checkpoints and revert only problematic changes.",
+      "invocation_triggers": [
+        "before risky changes",
+        "on repeated failure"
+      ],
+      "when_not_to_use": [
+        "during product discovery"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Checkpoint before risky changes.",
+        "On failure revert only the failed approach, preserving good work.",
+        "Record the checkpoint and rollback in the ledger."
+      ],
+      "checklist": [
+        "Completed: Checkpoint before risky changes",
+        "Completed: On failure revert only the failed approach, preserving good work",
+        "Completed: Record the checkpoint and rollback in the ledger"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations"
+      ],
+      "disallowed_actions": [
+        "expose secrets",
+        "reinterpret product scope"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "implementation (read/write/run)",
+      "test_fixtures": [
+        "tests/fixtures/skills/checkpoint-and-rollback.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "skill",
+        "path": ".agents/skills/checkpoint-and-rollback/SKILL.md"
+      },
+      "compatibility_notes": "Codex implementation skill; contains a runnable procedure.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "implementation-deviation-reporting",
+      "canonical_name": "implementation-deviation-reporting",
+      "kind": "skill",
+      "scope": "implementation",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Record deviations per the deviation policy.",
+      "behavioral_contract": "Record deviations per the deviation policy.",
+      "invocation_triggers": [
+        "on any implementation deviation"
+      ],
+      "when_not_to_use": [
+        "during product discovery"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Classify the deviation level 0-3.",
+        "For level 2 record an ADR and update artifacts/tests.",
+        "For level 3 preserve the requirement and surface the contradiction."
+      ],
+      "checklist": [
+        "Completed: Classify the deviation level 0-3",
+        "Completed: For level 2 record an ADR and update artifacts/tests",
+        "Completed: For level 3 preserve the requirement and surface the contradiction"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations"
+      ],
+      "disallowed_actions": [
+        "expose secrets",
+        "reinterpret product scope"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "implementation (read/write/run)",
+      "test_fixtures": [
+        "tests/fixtures/skills/implementation-deviation-reporting.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "skill",
+        "path": ".agents/skills/implementation-deviation-reporting/SKILL.md"
+      },
+      "compatibility_notes": "Codex implementation skill; contains a runnable procedure.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "phase-completion-reporting",
+      "canonical_name": "phase-completion-reporting",
+      "kind": "skill",
+      "scope": "implementation",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Report phase completion and update state.",
+      "behavioral_contract": "Report phase completion and update state.",
+      "invocation_triggers": [
+        "end of each phase"
+      ],
+      "when_not_to_use": [
+        "during product discovery"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Summarize what completed and validation status.",
+        "Write a phase log and update runtime state.",
+        "Confirm gates relevant to the phase are green."
+      ],
+      "checklist": [
+        "Completed: Summarize what completed and validation status",
+        "Completed: Write a phase log and update runtime state",
+        "Completed: Confirm gates relevant to the phase are green"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations"
+      ],
+      "disallowed_actions": [
+        "expose secrets",
+        "reinterpret product scope"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "implementation (read/write/run)",
+      "test_fixtures": [
+        "tests/fixtures/skills/phase-completion-reporting.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "skill",
+        "path": ".agents/skills/phase-completion-reporting/SKILL.md"
+      },
+      "compatibility_notes": "Codex implementation skill; contains a runnable procedure.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "final-plan-comparison",
+      "canonical_name": "final-plan-comparison",
+      "kind": "skill",
+      "scope": "implementation",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Compare the implementation to the plan before delivery.",
+      "behavioral_contract": "Compare the implementation to the plan before delivery.",
+      "invocation_triggers": [
+        "final acceptance"
+      ],
+      "when_not_to_use": [
+        "to pass with unverified items"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Walk requirement->task->files and acceptance->test->evidence.",
+        "List any missing or failing items and reopen them.",
+        "Only pass when every required item is satisfied with evidence."
+      ],
+      "checklist": [
+        "Completed: Walk requirement->task->files and acceptance->test->evidence",
+        "Completed: List any missing or failing items and reopen them",
+        "Completed: Only pass when every required item is satisfied with evidence"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations"
+      ],
+      "disallowed_actions": [
+        "expose secrets",
+        "reinterpret product scope"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "implementation (read/write/run)",
+      "test_fixtures": [
+        "tests/fixtures/skills/final-plan-comparison.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "skill",
+        "path": ".agents/skills/final-plan-comparison/SKILL.md"
+      },
+      "compatibility_notes": "Codex implementation skill; contains a runnable procedure.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "final-delivery-report",
+      "canonical_name": "final-delivery-report",
+      "kind": "skill",
+      "scope": "implementation",
+      "runtime_scope": [
+        "codex"
+      ],
+      "purpose": "Produce the truthful, evidence-based final report.",
+      "behavioral_contract": "Produce the truthful, evidence-based final report.",
+      "invocation_triggers": [
+        "READY_FOR_DELIVERY"
+      ],
+      "when_not_to_use": [
+        "to claim untested success"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Report every completion gate PASS/FAIL/NA with evidence.",
+        "List deviations, external blockers, and honest failures.",
+        "Validate against final-report.schema.json."
+      ],
+      "checklist": [
+        "Completed: Report every completion gate PASS/FAIL/NA with evidence",
+        "Completed: List deviations, external blockers, and honest failures",
+        "Completed: Validate against final-report"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations"
+      ],
+      "disallowed_actions": [
+        "expose secrets",
+        "reinterpret product scope"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "implementation (read/write/run)",
+      "test_fixtures": [
+        "tests/fixtures/skills/final-delivery-report.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "n/a",
+        "path": null
+      },
+      "codex_adapter": {
+        "mechanism": "skill",
+        "path": ".agents/skills/final-delivery-report/SKILL.md"
+      },
+      "compatibility_notes": "Codex implementation skill; contains a runnable procedure.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "secret-scanning",
+      "canonical_name": "secret-scanning",
+      "kind": "skill",
+      "scope": "shared",
+      "runtime_scope": [
+        "claude",
+        "codex"
+      ],
+      "purpose": "Scan for secret exposure in files, diffs, and command output.",
+      "behavioral_contract": "Scan for secret exposure in files, diffs, and command output.",
+      "invocation_triggers": [
+        "before any file read/write/commit",
+        "CI"
+      ],
+      "when_not_to_use": [
+        "during product discovery"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Match protected-path patterns and known secret signatures.",
+        "Block reads/writes/commits that would expose secrets.",
+        "Report only metadata (never the secret value)."
+      ],
+      "checklist": [
+        "Completed: Match protected-path patterns and known secret signatures",
+        "Completed: Block reads/writes/commits that would expose secrets",
+        "Completed: Report only metadata (never the secret value)"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations"
+      ],
+      "disallowed_actions": [
+        "expose secrets",
+        "reinterpret product scope"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "implementation (read/write/run)",
+      "test_fixtures": [
+        "tests/fixtures/skills/secret-scanning.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "skill",
+        "path": ".claude/skills/secret-scanning/SKILL.md"
+      },
+      "codex_adapter": {
+        "mechanism": "skill",
+        "path": ".agents/skills/secret-scanning/SKILL.md"
+      },
+      "compatibility_notes": "Shared: one canonical definition projected into both runtimes.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "schema-validation",
+      "canonical_name": "schema-validation",
+      "kind": "skill",
+      "scope": "shared",
+      "runtime_scope": [
+        "claude",
+        "codex"
+      ],
+      "purpose": "Validate a JSON/YAML artifact against a canonical schema.",
+      "behavioral_contract": "Validate a JSON/YAML artifact against a canonical schema.",
+      "invocation_triggers": [
+        "whenever an artifact is produced"
+      ],
+      "when_not_to_use": [
+        "during product discovery"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Select the schema by artifact type.",
+        "Validate with jsonschema_lite and report errors.",
+        "Fail the gate on any schema error."
+      ],
+      "checklist": [
+        "Completed: Select the schema by artifact type",
+        "Completed: Validate with jsonschema_lite and report errors",
+        "Completed: Fail the gate on any schema error"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations"
+      ],
+      "disallowed_actions": [
+        "expose secrets",
+        "reinterpret product scope"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "implementation (read/write/run)",
+      "test_fixtures": [
+        "tests/fixtures/skills/schema-validation.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "skill",
+        "path": ".claude/skills/schema-validation/SKILL.md"
+      },
+      "codex_adapter": {
+        "mechanism": "skill",
+        "path": ".agents/skills/schema-validation/SKILL.md"
+      },
+      "compatibility_notes": "Shared: one canonical definition projected into both runtimes.",
+      "version": "1.0.0"
+    },
+    {
+      "name": "plan-hash-validation",
+      "canonical_name": "plan-hash-validation",
+      "kind": "skill",
+      "scope": "shared",
+      "runtime_scope": [
+        "claude",
+        "codex"
+      ],
+      "purpose": "Verify the active plan version and content hash match EXECUTION.lock.",
+      "behavioral_contract": "Verify the active plan version and content hash match EXECUTION.lock.",
+      "invocation_triggers": [
+        "start of implementation",
+        "on plan change"
+      ],
+      "when_not_to_use": [
+        "during product discovery"
+      ],
+      "expected_inputs": [
+        "relevant plan artifacts",
+        "task/context as applicable"
+      ],
+      "required_context": "focused context packet or planning artifact set",
+      "outputs": [
+        "artifact(s) and/or validation results with traceable IDs"
+      ],
+      "procedure": [
+        "Compute the plan package hash.",
+        "Compare against PLAN_METADATA and EXECUTION.lock.",
+        "Block implementation on mismatch or conflicting versions."
+      ],
+      "checklist": [
+        "Completed: Compute the plan package hash",
+        "Completed: Compare against PLAN_METADATA and EXECUTION",
+        "Completed: Block implementation on mismatch or conflicting versions"
+      ],
+      "quality_bar": "output is specific, testable, and traceable; no vague language",
+      "failure_conditions": [
+        "missing required fields",
+        "vague/untestable output",
+        "secret exposure",
+        "scope violation"
+      ],
+      "allowed_tools": [
+        "read",
+        "write",
+        "run_tests",
+        "run_validations"
+      ],
+      "disallowed_actions": [
+        "expose secrets",
+        "reinterpret product scope"
+      ],
+      "related_agents": [],
+      "dependencies": [],
+      "tool_access": "implementation (read/write/run)",
+      "test_fixtures": [
+        "tests/fixtures/skills/plan-hash-validation.fixture.md"
+      ],
+      "claude_adapter": {
+        "mechanism": "skill",
+        "path": ".claude/skills/plan-hash-validation/SKILL.md"
+      },
+      "codex_adapter": {
+        "mechanism": "skill",
+        "path": ".agents/skills/plan-hash-validation/SKILL.md"
+      },
+      "compatibility_notes": "Shared: one canonical definition projected into both runtimes.",
+      "version": "1.0.0"
+    }
+  ]
+}

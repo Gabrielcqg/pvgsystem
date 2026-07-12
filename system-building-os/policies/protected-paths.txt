@@ -1,0 +1,26 @@
+# Protected-path glob patterns. Contents must never be read, printed, or committed.
+# One glob per line. '#' comments allowed. Used by scan_secrets.py and hooks.
+.env
+.env.*
+!.env.example
+!secrets-manifest.yaml
+*.pem
+*.key
+*.p12
+*.pfx
+*_rsa
+*_dsa
+*_ed25519
+id_rsa*
+id_ed25519*
+credentials.json
+service-account*.json
+*serviceaccount*.json
+*.keystore
+*.jks
+secrets.*
+*secret*.yaml
+*secret*.yml
+.npmrc
+.pypirc
+.netrc

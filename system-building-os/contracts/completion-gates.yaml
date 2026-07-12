@@ -1,0 +1,41 @@
+# Completion gates — Codex must not declare success because files were created.
+# A failed gate reopens the relevant tasks. Gates marked required_when_* are
+# conditionally required based on plan facts (has_database, has_auth, has_ui,
+# has_ai, lint_configured, types_applicable).
+completion_gates:
+  active_plan_valid: required
+  product_requirements_implemented: required
+  requirement_traceability_complete: required
+  acceptance_criteria_passed: required
+  build_passed: required
+  lint_passed: required_when_configured
+  typecheck_passed: required_when_applicable
+  unit_tests_passed: required
+  integration_tests_passed: required_when_applicable
+  contract_tests_passed: required_when_applicable
+  database_tests_passed: required_when_database_exists
+  migration_validation_passed: required_when_database_exists
+  auth_tests_passed: required_when_auth_exists
+  authorization_tests_passed: required_when_auth_exists
+  e2e_tests_passed: required_when_ui_exists
+  browser_validation_passed: required_when_ui_exists
+  accessibility_validation_passed: required_when_ui_exists
+  ai_evaluations_passed: required_when_ai_exists
+  security_review_passed: required
+  performance_review_passed: required
+  observability_verified: required_when_applicable
+  documentation_complete: required
+  deviation_report_complete: required
+  external_blockers_documented: required
+  final_acceptance_judge_passed: required
+
+# Semantics used by scripts/evaluate_completion_gates.py
+gate_semantics:
+  required: must be PASS to complete
+  required_when_configured: PASS or N/A(if the tool/command is not configured)
+  required_when_applicable: PASS or N/A(if not applicable to this plan)
+  required_when_database_exists: PASS when plan.has_database else N/A
+  required_when_auth_exists: PASS when plan.has_auth else N/A
+  required_when_ui_exists: PASS when plan.has_ui else N/A
+  required_when_ai_exists: PASS when plan.has_ai else N/A
+gate_states: [PASS, FAIL, NA, PENDING]

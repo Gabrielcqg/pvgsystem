@@ -1,0 +1,57 @@
+goal_to_requirement:
+  GOAL-001:
+    - FR-001
+    - FR-002
+    - FR-003
+    - FR-004
+    - FR-005
+requirement_to_component:
+  FR-001:
+    - backend
+    - database
+  FR-004:
+    - auth
+requirement_to_task:
+  FR-001:
+    - TASK-002
+    - TASK-004
+  FR-002:
+    - TASK-004
+  FR-003:
+    - TASK-004
+    - TASK-005
+  FR-004:
+    - TASK-003
+  FR-005:
+    - TASK-002
+    - TASK-004
+task_to_files:
+  TASK-002:
+    - "database/**"
+  TASK-004:
+    - "<backend>/**"
+requirement_to_acceptance:
+  FR-001:
+    - AC-001
+  FR-002:
+    - AC-002
+  FR-003:
+    - AC-003
+  FR-004:
+    - AC-004
+  FR-005:
+    - AC-005
+acceptance_to_test:
+  AC-001:
+    - TEST-001
+  AC-002:
+    - TEST-002
+  AC-003:
+    - TEST-003
+  AC-004:
+    - TEST-004
+  AC-005:
+    - TEST-005
+test_to_evidence:
+  TEST-001:
+    - "<ci-run-link>"

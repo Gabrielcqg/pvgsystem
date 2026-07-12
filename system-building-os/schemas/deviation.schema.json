@@ -1,0 +1,54 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^DEV-[0-9]{3,}$"
+    },
+    "level": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 3
+    },
+    "summary": {
+      "type": "string"
+    },
+    "original_requirement": {
+      "type": "string"
+    },
+    "what_changed": {
+      "type": "string"
+    },
+    "reason": {
+      "type": "string"
+    },
+    "affected_requirements": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "adr_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "acceptance_still_valid": {
+      "type": "boolean"
+    },
+    "recorded_at": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "level",
+    "summary",
+    "reason"
+  ],
+  "additionalProperties": false,
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Deviation Record",
+  "$id": "deviation.schema.json"
+}

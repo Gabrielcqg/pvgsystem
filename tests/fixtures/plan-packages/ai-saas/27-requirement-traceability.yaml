@@ -1,0 +1,46 @@
+goal_to_requirement:
+  GOAL-001:
+    - FR-001
+    - FR-002
+    - FR-003
+    - FR-004
+requirement_to_component:
+  FR-002:
+    - ai
+  FR-004:
+    - database
+    - auth
+requirement_to_task:
+  FR-001:
+    - TASK-002
+    - TASK-004
+  FR-002:
+    - TASK-003
+  FR-003:
+    - TASK-004
+  FR-004:
+    - TASK-002
+task_to_files:
+  TASK-003:
+    - "<ai>/**"
+requirement_to_acceptance:
+  FR-001:
+    - AC-001
+  FR-002:
+    - AC-002
+  FR-003:
+    - AC-003
+  FR-004:
+    - AC-004
+acceptance_to_test:
+  AC-001:
+    - TEST-001
+  AC-002:
+    - TEST-002
+  AC-003:
+    - TEST-003
+  AC-004:
+    - TEST-004
+test_to_evidence:
+  TEST-002:
+    - "<eval-report>"

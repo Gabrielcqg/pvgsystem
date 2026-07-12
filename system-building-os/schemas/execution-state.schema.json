@@ -1,0 +1,60 @@
+{
+  "type": "object",
+  "properties": {
+    "project_id": {
+      "type": "string"
+    },
+    "plan_version": {
+      "type": "string"
+    },
+    "plan_hash": {
+      "type": "string"
+    },
+    "phase": {
+      "type": "string",
+      "enum": [
+        "planning",
+        "implementation"
+      ]
+    },
+    "state": {
+      "type": "string"
+    },
+    "runtime": {
+      "type": "string",
+      "enum": [
+        "claude",
+        "codex"
+      ]
+    },
+    "updated_at": {
+      "type": "string"
+    },
+    "history": {
+      "type": "array"
+    },
+    "open_questions": {
+      "type": "array"
+    },
+    "active_task": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "external_blockers": {
+      "type": "array"
+    },
+    "gates": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "phase",
+    "state",
+    "runtime"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Execution State",
+  "$id": "execution-state.schema.json"
+}

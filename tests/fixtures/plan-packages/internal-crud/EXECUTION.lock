@@ -1,0 +1,21 @@
+execution_mode: autonomous
+plan_status: implementation_ready
+human_approval_per_task: false
+continue_until_completion: true
+active_plan_version: 1.0.0
+active_plan_hash: "sha256:example-crud-0001"
+created_at: "2026-07-11T00:00:00Z"
+autonomy_profile: development_full_autonomy
+required_completion_gates:
+  - active_plan_valid
+  - product_requirements_implemented
+  - requirement_traceability_complete
+  - acceptance_criteria_passed
+  - build_passed
+  - unit_tests_passed
+  - security_review_passed
+  - performance_review_passed
+  - documentation_complete
+  - deviation_report_complete
+  - external_blockers_documented
+  - final_acceptance_judge_passed

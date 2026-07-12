@@ -1,0 +1,92 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^INT-[0-9]{3,}$"
+    },
+    "external_system": {
+      "type": "string"
+    },
+    "purpose": {
+      "type": "string"
+    },
+    "authentication_mechanism": {
+      "type": "string"
+    },
+    "data_sent": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "data_received": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "triggers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "frequency": {
+      "type": "string"
+    },
+    "timeouts": {
+      "type": "string"
+    },
+    "retries": {
+      "type": "string"
+    },
+    "idempotency": {
+      "type": "string"
+    },
+    "rate_limits": {
+      "type": "string"
+    },
+    "failure_behavior": {
+      "type": "string"
+    },
+    "fallback": {
+      "type": "string"
+    },
+    "data_sensitivity": {
+      "type": "string",
+      "enum": [
+        "public",
+        "internal",
+        "personal",
+        "sensitive"
+      ]
+    },
+    "audit_requirements": {
+      "type": "string"
+    },
+    "sandbox_support": {
+      "type": "boolean"
+    },
+    "mock_strategy": {
+      "type": "string"
+    },
+    "tests": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "id",
+    "external_system",
+    "purpose",
+    "failure_behavior",
+    "fallback"
+  ],
+  "additionalProperties": false,
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Integration",
+  "$id": "integration.schema.json"
+}
