@@ -1,0 +1,33 @@
+ai_is_central: true
+production_path:
+  - order: 1
+    stage: frontend user interaction
+  - order: 2
+    stage: backend AI endpoint + input validation
+  - order: 3
+    stage: context construction + provider-independent interface
+  - order: 4
+    stage: "concrete provider adapter -> real provider API call"
+  - order: 5
+    stage: "structured-output + domain validation -> persistence"
+  - order: 6
+    stage: frontend response/stream
+provider_contract_ref: ai/ai-provider-contract.yaml
+responsibility_matrix_ref: ai-responsibility-matrix.yaml
+frontend_ai_states:
+  - constructing context
+  - generating
+  - validating
+  - streaming
+centrality_tests:
+  - "different input context -> materially different output"
+  - next step is not from a fixed linear sequence
+  - invalid model output is rejected or repaired
+  - mock mode is not active in production configuration
+  - real provider adapter initializes when credentials exist
+required_env_vars:
+  - OPENAI_API_KEY
+  - OPENAI_MODEL
+mock_policy: Mocks are test doubles only; never the production default.
+setup_instructions: Configure OPENAI_API_KEY + OPENAI_MODEL to run the real path.
+completion_gate: real_ai_integration_verified

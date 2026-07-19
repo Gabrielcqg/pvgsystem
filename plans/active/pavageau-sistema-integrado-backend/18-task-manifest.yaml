@@ -1,0 +1,653 @@
+# Generated from 23-task-decomposition.md (document order) + 44-vertical-traceability.md.
+# Owners match 22-file-ownership.yaml. Task ids: TASK-ID-MAP.json · Test ids: TEST-ID-MAP.json
+tasks:
+  - id: "TASK-004"
+    title: "Characterization tests against the already-versioned canonical scraper \u2014 TEST-SCRAPER-01 (hash pin), TEST-SCRAPER-02 (eproc_eventos golden),\u2026"
+    objective: "Deliver: Characterization tests against the already-versioned canonical scraper \u2014 TEST-SCRAPER-01 (hash pin), TEST-SCRAPER-02 (eproc_eventos golden),\u2026"
+    requirements: ["FR-048", "NFR-011"]
+    assigned_agent: "qa-test-validator"
+    phase: "phase-0"
+    dependencies: []
+    files_to_create: ["tests/scraper/**"]
+    acceptance_criteria: ["AC-063", "AC-078", "AC-079"]
+    validation_commands: ["python3 -m pytest -q -m scraper"]
+  - id: "TASK-001"
+    title: "Create the product repo; copy vendor/ in as radar/scrapers/vendor/ + tests/fixtures/scraper/, preserving hashes"
+    objective: "Deliver: Create the product repo; copy vendor/ in as radar/scrapers/vendor/ + tests/fixtures/scraper/, preserving hashes"
+    requirements: ["FR-048"]
+    assigned_agent: "integration-builder"
+    phase: "phase-0"
+    dependencies: ["TASK-004"]
+    files_to_create: ["radar/scrapers/vendor/**"]
+    acceptance_criteria: ["AC-063"]
+    validation_commands: ["python3 -m pytest -q -m scraper"]
+  - id: "TASK-002"
+    title: "docker compose local stack (Postgres 16) \u2014 the environment every phase is verified on"
+    objective: "Deliver: docker compose local stack (Postgres 16) \u2014 the environment every phase is verified on"
+    requirements: ["FR-047"]
+    assigned_agent: "infrastructure-builder"
+    phase: "phase-0"
+    dependencies: ["TASK-001"]
+    files_to_create: ["docker-compose.yml", "Makefile"]
+    acceptance_criteria: ["AC-060"]
+    validation_commands: ["python3 -m pytest -q -m config"]
+  - id: "TASK-003"
+    title: "pyproject.toml with the 11 pytest markers (scraper, config, arch, schema, calc, api, radar, security, e2e, loader, browser) \u2014 every task's\u2026"
+    objective: "Deliver: pyproject.toml with the 11 pytest markers (scraper, config, arch, schema, calc, api, radar, security, e2e, loader, browser) \u2014 every task's\u2026"
+    requirements: ["FR-047"]
+    assigned_agent: "infrastructure-builder"
+    phase: "phase-0"
+    dependencies: ["TASK-002"]
+    files_to_create: ["pyproject.toml"]
+    acceptance_criteria: ["AC-060"]
+    validation_commands: ["python3 -m pytest -q -m config"]
+  - id: "TASK-005"
+    title: "Pin dependencies (vendor/scraper/requirements.txt is the starting point), .env.example with names only, and app/config.py with the validated\u2026"
+    objective: "Deliver: Pin dependencies (vendor/scraper/requirements.txt is the starting point), .env.example with names only, and app/config.py with the validated\u2026"
+    requirements: ["FR-046", "FR-047"]
+    assigned_agent: "infrastructure-builder"
+    phase: "phase-0"
+    dependencies: ["TASK-003"]
+    files_to_create: ["app/config.py", "requirements.txt", ".env.example"]
+    acceptance_criteria: ["AC-059", "AC-060"]
+    validation_commands: ["python3 -m pytest -q -m config"]
+  - id: "TASK-006"
+    title: "CI import-graph assertion (NFR-10: radar/scrapers/ imports no DB module)"
+    objective: "Deliver: CI import-graph assertion (NFR-10: radar/scrapers/ imports no DB module)"
+    requirements: ["NFR-010"]
+    assigned_agent: "infrastructure-builder"
+    phase: "phase-0"
+    dependencies: ["TASK-005"]
+    files_to_create: [".github/**"]
+    acceptance_criteria: ["AC-077"]
+    validation_commands: ["python3 -m pytest -q -m config"]
+  - id: "TASK-009"
+    title: "Bootstrap: pgcrypto; local-only stub auth schema + auth.users + authenticated role, all IF NOT EXISTS (DEC-30)"
+    objective: "Deliver: Bootstrap: pgcrypto; local-only stub auth schema + auth.users + authenticated role, all IF NOT EXISTS (DEC-30)"
+    requirements: ["FR-047"]
+    assigned_agent: "database-migration-builder"
+    phase: "phase-1"
+    dependencies: ["TASK-006"]
+    files_to_create: ["migrations/**"]
+    acceptance_criteria: ["AC-060"]
+    validation_commands: ["python3 -m pytest -q -m schema"]
+  - id: "TASK-010"
+    title: "Enums (incl. tribunal_sigla) + parceiros seeded"
+    objective: "Deliver: Enums (incl. tribunal_sigla) + parceiros seeded"
+    requirements: ["FR-003", "FR-001"]
+    assigned_agent: "database-migration-builder"
+    phase: "phase-1"
+    dependencies: ["TASK-009"]
+    files_to_create: ["migrations/**"]
+    acceptance_criteria: ["AC-003", "AC-004", "AC-001"]
+    validation_commands: ["python3 -m pytest -q -m schema"]
+  - id: "TASK-011"
+    title: "contratos, parcelas + constraints + revisar columns + set_atualizado_em() trigger"
+    objective: "Deliver: contratos, parcelas + constraints + revisar columns + set_atualizado_em() trigger"
+    requirements: ["FR-004", "FR-002"]
+    assigned_agent: "database-migration-builder"
+    phase: "phase-1"
+    dependencies: ["TASK-010"]
+    files_to_create: ["migrations/**"]
+    acceptance_criteria: ["AC-005", "AC-006", "AC-002"]
+    validation_commands: ["python3 -m pytest -q -m schema"]
+  - id: "TASK-012"
+    title: "lancamentos, custos_fixos, parametros, configuracoes + ux_lanc_origem"
+    objective: "Deliver: lancamentos, custos_fixos, parametros, configuracoes + ux_lanc_origem"
+    requirements: ["FR-006", "FR-009", "FR-010"]
+    assigned_agent: "database-migration-builder"
+    phase: "phase-1"
+    dependencies: ["TASK-011"]
+    files_to_create: ["migrations/**"]
+    acceptance_criteria: ["AC-008", "AC-016", "AC-017"]
+    validation_commands: ["python3 -m pytest -q -m schema"]
+  - id: "TASK-013"
+    title: "Radar tables (processos, execucoes_radar, resultados_consulta, movimentacoes_novas)"
+    objective: "Deliver: Radar tables (processos, execucoes_radar, resultados_consulta, movimentacoes_novas)"
+    requirements: ["FR-017"]
+    assigned_agent: "database-migration-builder"
+    phase: "phase-1"
+    dependencies: ["TASK-012"]
+    files_to_create: ["migrations/**"]
+    acceptance_criteria: ["AC-025"]
+    validation_commands: ["python3 -m pytest -q -m schema"]
+  - id: "TASK-014"
+    title: "tarefas + both idempotency indexes \u2014 after radar (DEC-29: it FKs movimentacoes_novas and processos)"
+    objective: "Deliver: tarefas + both idempotency indexes \u2014 after radar (DEC-29: it FKs movimentacoes_novas and processos)"
+    requirements: ["FR-014", "FR-016"]
+    assigned_agent: "database-migration-builder"
+    phase: "phase-1"
+    dependencies: ["TASK-013"]
+    files_to_create: ["migrations/**"]
+    acceptance_criteria: ["AC-021", "AC-023", "AC-024"]
+    validation_commands: ["python3 -m pytest -q -m schema"]
+  - id: "TASK-015"
+    title: "auditoria + import_log + insert-only triggers + redaction"
+    objective: "Deliver: auditoria + import_log + insert-only triggers + redaction"
+    requirements: ["FR-028", "FR-040", "FR-050"]
+    assigned_agent: "database-migration-builder"
+    phase: "phase-1"
+    dependencies: ["TASK-014"]
+    files_to_create: ["migrations/**"]
+    acceptance_criteria: ["AC-036", "AC-048", "AC-049", "AC-050", "AC-051", "AC-052", "AC-053", "AC-062"]
+    validation_commands: ["python3 -m pytest -q -m schema"]
+  - id: "TASK-016"
+    title: "All six ind_ tables with full columns + REVOKE writes"
+    objective: "Deliver: All six ind_ tables with full columns + REVOKE writes"
+    requirements: ["FR-027"]
+    assigned_agent: "database-migration-builder"
+    phase: "phase-1"
+    dependencies: ["TASK-015"]
+    files_to_create: ["migrations/**"]
+    acceptance_criteria: ["AC-035"]
+    validation_commands: ["python3 -m pytest -q -m schema"]
+  - id: "TASK-017"
+    title: "RLS enabled + policies for every table incl. import_log (insert-only)"
+    objective: "Deliver: RLS enabled + policies for every table incl. import_log (insert-only)"
+    requirements: ["NFR-005"]
+    assigned_agent: "database-migration-builder"
+    phase: "phase-1"
+    dependencies: ["TASK-016"]
+    files_to_create: ["migrations/**"]
+    acceptance_criteria: ["AC-072"]
+    validation_commands: ["python3 -m pytest -q -m schema"]
+  - id: "TASK-019"
+    title: "CREATE ROLE radar_worker + scoped GRANTs + policies TO radar_worker (09 \u00a73.1) \u2014 without it the worker is denied by RLS and the orchestrator cannot\u2026"
+    objective: "Deliver: CREATE ROLE radar_worker + scoped GRANTs + policies TO radar_worker (09 \u00a73.1) \u2014 without it the worker is denied by RLS and the orchestrator cannot\u2026"
+    requirements: ["FR-043"]
+    assigned_agent: "database-migration-builder"
+    phase: "phase-1"
+    dependencies: ["TASK-017"]
+    files_to_create: ["migrations/**"]
+    acceptance_criteria: ["AC-056"]
+    validation_commands: ["python3 -m pytest -q -m schema"]
+  - id: "TASK-018"
+    title: "Verify: rebuild from zero on both local Postgres and Supabase, run TEST-RLS-01/02"
+    objective: "Deliver: Verify: rebuild from zero on both local Postgres and Supabase, run TEST-RLS-01/02"
+    requirements: ["FR-047", "NFR-005"]
+    assigned_agent: "database-migration-builder"
+    phase: "phase-1"
+    dependencies: ["TASK-019"]
+    files_to_create: ["migrations/**"]
+    acceptance_criteria: ["AC-060", "AC-072"]
+    validation_commands: ["python3 -m pytest -q -m schema"]
+  - id: "TASK-020"
+    title: "recalcular_mes() \u2014 fluxo, DRE, balan\u00e7o"
+    objective: "Deliver: recalcular_mes() \u2014 fluxo, DRE, balan\u00e7o"
+    requirements: ["FR-027", "NFR-002"]
+    assigned_agent: "database-migration-builder"
+    phase: "phase-2"
+    dependencies: ["TASK-018"]
+    files_to_create: ["app/reports/**", "migrations/**"]
+    acceptance_criteria: ["AC-035", "AC-069"]
+    validation_commands: ["python3 -m pytest -q -m calc"]
+  - id: "TASK-021"
+    title: "Monthly chaining seeded from caixa_inicial_ano"
+    objective: "Deliver: Monthly chaining seeded from caixa_inicial_ano"
+    requirements: ["NFR-002"]
+    assigned_agent: "database-migration-builder"
+    phase: "phase-2"
+    dependencies: ["TASK-020"]
+    files_to_create: ["app/reports/**", "migrations/**"]
+    acceptance_criteria: ["AC-069"]
+    validation_commands: ["python3 -m pytest -q -m calc"]
+  - id: "TASK-022"
+    title: "ind_painel aggregation incl. projected success split (quota = partner)"
+    objective: "Deliver: ind_painel aggregation incl. projected success split (quota = partner)"
+    requirements: ["FR-036", "FR-037", "FR-038"]
+    assigned_agent: "database-migration-builder"
+    phase: "phase-2"
+    dependencies: ["TASK-021"]
+    files_to_create: ["app/reports/**", "migrations/**"]
+    acceptance_criteria: ["AC-044", "AC-045", "AC-046"]
+    validation_commands: ["python3 -m pytest -q -m calc"]
+  - id: "TASK-023"
+    title: "Triggers on all five fact tables, in-transaction"
+    objective: "Deliver: Triggers on all five fact tables, in-transaction"
+    requirements: ["NFR-002", "NFR-004"]
+    assigned_agent: "database-migration-builder"
+    phase: "phase-2"
+    dependencies: ["TASK-022"]
+    files_to_create: ["app/reports/**", "migrations/**"]
+    acceptance_criteria: ["AC-069", "AC-071"]
+    validation_commands: ["python3 -m pytest -q -m calc"]
+  - id: "TASK-024"
+    title: "TEST-CALC-01..19, especially TEST-CALC-07 (invariant), TEST-CALC-10 (historical tables unchanged) and TEST-CALC-19 (ind_painel rollover)"
+    objective: "Deliver: TEST-CALC-01..19, especially TEST-CALC-07 (invariant), TEST-CALC-10 (historical tables unchanged) and TEST-CALC-19 (ind_painel rollover)"
+    requirements: ["NFR-002"]
+    assigned_agent: "database-migration-builder"
+    phase: "phase-2"
+    dependencies: ["TASK-023"]
+    files_to_create: ["app/reports/**", "migrations/**"]
+    acceptance_criteria: ["AC-069"]
+    validation_commands: ["python3 -m pytest -q -m calc"]
+  - id: "TASK-025"
+    title: "recalcular_meses(ano, mes_de, mes_ate) range form + per-table trigger month resolution (07 \u00a76)"
+    objective: "Deliver: recalcular_meses(ano, mes_de, mes_ate) range form + per-table trigger month resolution (07 \u00a76)"
+    requirements: ["NFR-004"]
+    assigned_agent: "database-migration-builder"
+    phase: "phase-2"
+    dependencies: ["TASK-024"]
+    files_to_create: ["app/reports/**", "migrations/**"]
+    acceptance_criteria: ["AC-071"]
+    validation_commands: ["python3 -m pytest -q -m calc"]
+  - id: "TASK-026"
+    title: "refresh_painel() + its monthly schedule (07 \u00a76.1)"
+    objective: "Deliver: refresh_painel() + its monthly schedule (07 \u00a76.1)"
+    requirements: ["NFR-014"]
+    assigned_agent: "database-migration-builder"
+    phase: "phase-2"
+    dependencies: ["TASK-025"]
+    files_to_create: ["app/reports/**", "migrations/**"]
+    acceptance_criteria: ["AC-067", "AC-068"]
+    validation_commands: ["python3 -m pytest -q -m calc"]
+  - id: "TASK-030"
+    title: "CRUD contratos + parceiros (+ audit)"
+    objective: "Deliver: CRUD contratos + parceiros (+ audit)"
+    requirements: ["FR-001", "FR-002"]
+    assigned_agent: "backend-api-builder"
+    phase: "phase-3"
+    dependencies: ["TASK-026"]
+    files_to_create: ["app/domain/**", "app/api/**"]
+    acceptance_criteria: ["AC-001", "AC-002"]
+    validation_commands: ["python3 -m pytest -q -m api"]
+  - id: "TASK-031"
+    title: "CRUD parcelas; contract deletion policy with 409/cascade"
+    objective: "Deliver: CRUD parcelas; contract deletion policy with 409/cascade"
+    requirements: ["FR-005"]
+    assigned_agent: "backend-api-builder"
+    phase: "phase-3"
+    dependencies: ["TASK-030"]
+    files_to_create: ["app/domain/**", "app/api/**"]
+    acceptance_criteria: ["AC-007"]
+    validation_commands: ["python3 -m pytest -q -m api"]
+  - id: "TASK-032"
+    title: "CRUD lan\u00e7amentos with scoped recalculation"
+    objective: "Deliver: CRUD lan\u00e7amentos with scoped recalculation"
+    requirements: ["FR-006", "FR-007"]
+    assigned_agent: "backend-api-builder"
+    phase: "phase-3"
+    dependencies: ["TASK-031"]
+    files_to_create: ["app/domain/**", "app/api/**"]
+    acceptance_criteria: ["AC-008", "AC-009", "AC-010", "AC-011"]
+    validation_commands: ["python3 -m pytest -q -m api"]
+  - id: "TASK-033"
+    title: "GET /parametros/:ano, PUT /parametros/:ano \u2014 the only 4 configuration numbers (FR-10)"
+    objective: "Deliver: GET /parametros/:ano, PUT /parametros/:ano \u2014 the only 4 configuration numbers (FR-10)"
+    requirements: ["FR-010"]
+    assigned_agent: "backend-api-builder"
+    phase: "phase-3"
+    dependencies: ["TASK-032"]
+    files_to_create: ["app/domain/**", "app/api/**"]
+    acceptance_criteria: ["AC-017"]
+    validation_commands: ["python3 -m pytest -q -m api"]
+  - id: "TASK-034"
+    title: "Link 1: confirm/reverse instalment, transactional"
+    objective: "Deliver: Link 1: confirm/reverse instalment, transactional"
+    requirements: ["FR-011", "FR-012"]
+    assigned_agent: "backend-api-builder"
+    phase: "phase-3"
+    dependencies: ["TASK-033"]
+    files_to_create: ["app/domain/**", "app/api/**"]
+    acceptance_criteria: ["AC-018", "AC-019"]
+    validation_commands: ["python3 -m pytest -q -m api"]
+  - id: "TASK-035"
+    title: "Link 2: entry with optional instalment settlement"
+    objective: "Deliver: Link 2: entry with optional instalment settlement"
+    requirements: ["FR-013"]
+    assigned_agent: "backend-api-builder"
+    phase: "phase-3"
+    dependencies: ["TASK-034"]
+    files_to_create: ["app/domain/**", "app/api/**"]
+    acceptance_criteria: ["AC-020"]
+    validation_commands: ["python3 -m pytest -q -m api"]
+  - id: "TASK-036"
+    title: "Fixed costs + monthly posting with idempotency key"
+    objective: "Deliver: Fixed costs + monthly posting with idempotency key"
+    requirements: ["FR-051", "FR-008"]
+    assigned_agent: "backend-api-builder"
+    phase: "phase-3"
+    dependencies: ["TASK-035"]
+    files_to_create: ["app/domain/**", "app/api/**"]
+    acceptance_criteria: ["AC-015", "AC-012", "AC-013"]
+    validation_commands: ["python3 -m pytest -q -m api"]
+  - id: "TASK-037"
+    title: "TEST-PERF-01 (NFR-03 latency budget) \u2014 gated with the read endpoints it measures"
+    objective: "Deliver: TEST-PERF-01 (NFR-03 latency budget) \u2014 gated with the read endpoints it measures"
+    requirements: ["NFR-003"]
+    assigned_agent: "backend-api-builder"
+    phase: "phase-3"
+    dependencies: ["TASK-036"]
+    files_to_create: ["app/domain/**", "app/api/**"]
+    acceptance_criteria: ["AC-070"]
+    validation_commands: ["python3 -m pytest -q -m api"]
+  - id: "TASK-038"
+    title: "Read endpoints: painel, fluxo, DRE, balan\u00e7o, an\u00e1lises \u2014 field names reconciled against vendor/frontend/FRONTEND_REFERENCE_PAVAGEAU.md (vendored,\u2026"
+    objective: "Deliver: Read endpoints: painel, fluxo, DRE, balan\u00e7o, an\u00e1lises \u2014 field names reconciled against vendor/frontend/FRONTEND_REFERENCE_PAVAGEAU.md (vendored,\u2026"
+    requirements: ["FR-027", "FR-035"]
+    assigned_agent: "backend-api-builder"
+    phase: "phase-3"
+    dependencies: ["TASK-037"]
+    files_to_create: ["app/api/**"]
+    acceptance_criteria: ["AC-035", "AC-043"]
+    validation_commands: ["python3 -m pytest -q -m api"]
+  - id: "TASK-039"
+    title: "GET /configuracoes, PUT /configuracoes/:chave (FR-30, FR-31)"
+    objective: "Deliver: GET /configuracoes, PUT /configuracoes/:chave (FR-30, FR-31)"
+    requirements: ["FR-030", "FR-031"]
+    assigned_agent: "backend-api-builder"
+    phase: "phase-3"
+    dependencies: ["TASK-038"]
+    files_to_create: ["app/domain/**", "app/api/**"]
+    acceptance_criteria: ["AC-038", "AC-039"]
+    validation_commands: ["python3 -m pytest -q -m api"]
+  - id: "TASK-040"
+    title: "Write/response allowlists on every endpoint (DEC-34)"
+    objective: "Deliver: Write/response allowlists on every endpoint (DEC-34)"
+    requirements: ["NFR-013"]
+    assigned_agent: "backend-api-builder"
+    phase: "phase-3"
+    dependencies: ["TASK-039"]
+    files_to_create: ["app/api/**"]
+    acceptance_criteria: ["AC-066"]
+    validation_commands: ["python3 -m pytest -q -m api"]
+  - id: "TASK-041"
+    title: "TEST-TX-01..16, TEST-SCHEMA-01/02, TEST-CFG-01/02, TEST-AUD-01..06"
+    objective: "Deliver: TEST-TX-01..16, TEST-SCHEMA-01/02, TEST-CFG-01/02, TEST-AUD-01..06"
+    requirements: ["FR-011", "FR-040"]
+    assigned_agent: "backend-api-builder"
+    phase: "phase-3"
+    dependencies: ["TASK-040"]
+    files_to_create: ["app/domain/**", "app/api/**"]
+    acceptance_criteria: ["AC-018", "AC-048", "AC-049", "AC-050", "AC-051", "AC-052", "AC-053"]
+    validation_commands: ["python3 -m pytest -q -m api"]
+  - id: "TASK-042"
+    title: "ScraperTribunal protocol + registry with TJCE/TJBA slots reserved (DEC-15)"
+    objective: "Deliver: ScraperTribunal protocol + registry with TJCE/TJBA slots reserved (DEC-15)"
+    requirements: ["FR-017", "FR-018", "NFR-009"]
+    assigned_agent: "integration-builder"
+    phase: "phase-4"
+    dependencies: ["TASK-004", "TASK-026"]
+    files_to_create: ["app/radar/**"]
+    acceptance_criteria: ["AC-025", "AC-026", "AC-076"]
+    validation_commands: ["python3 -m pytest -q -m radar"]
+  - id: "TASK-043"
+    title: "TJSP adapter wrapping the frozen core"
+    objective: "Deliver: TJSP adapter wrapping the frozen core"
+    requirements: ["FR-048", "NFR-008", "NFR-009"]
+    assigned_agent: "integration-builder"
+    phase: "phase-4"
+    dependencies: ["TASK-004", "TASK-042"]
+    files_to_create: ["app/radar/**"]
+    acceptance_criteria: ["AC-063", "AC-075", "AC-076"]
+    validation_commands: ["python3 -m pytest -q -m radar"]
+  - id: "TASK-044"
+    title: "Deterministic key + baseline comparison (reusing chave_texto)"
+    objective: "Deliver: Deterministic key + baseline comparison (reusing chave_texto)"
+    requirements: ["FR-019", "FR-020"]
+    assigned_agent: "integration-builder"
+    phase: "phase-4"
+    dependencies: ["TASK-043"]
+    files_to_create: ["app/radar/**"]
+    acceptance_criteria: ["AC-027", "AC-028"]
+    validation_commands: ["python3 -m pytest -q -m radar"]
+  - id: "TASK-045"
+    title: "Orchestrator: advisory lock, incremental persistence, per-process isolation"
+    objective: "Deliver: Orchestrator: advisory lock, incremental persistence, per-process isolation"
+    requirements: ["FR-022", "FR-023", "FR-024"]
+    assigned_agent: "integration-builder"
+    phase: "phase-4"
+    dependencies: ["TASK-044"]
+    files_to_create: ["app/radar/**"]
+    acceptance_criteria: ["AC-030", "AC-031", "AC-032"]
+    validation_commands: ["python3 -m pytest -q -m radar"]
+  - id: "TASK-046"
+    title: "pendente_implementacao path for reserved slots"
+    objective: "Deliver: pendente_implementacao path for reserved slots"
+    requirements: ["FR-018", "FR-045"]
+    assigned_agent: "integration-builder"
+    phase: "phase-4"
+    dependencies: ["TASK-045"]
+    files_to_create: ["app/radar/**"]
+    acceptance_criteria: ["AC-026", "AC-058"]
+    validation_commands: ["python3 -m pytest -q -m radar"]
+  - id: "TASK-047"
+    title: "Vault + PUT /processos/:id/senha"
+    objective: "Deliver: Vault + PUT /processos/:id/senha"
+    requirements: ["FR-021", "NFR-007"]
+    assigned_agent: "auth-authorization-builder"
+    phase: "phase-4"
+    dependencies: ["TASK-046"]
+    files_to_create: ["app/security/**"]
+    acceptance_criteria: ["AC-029", "AC-074"]
+    validation_commands: ["python3 -m pytest -q -m security"]
+  - id: "TASK-048"
+    title: "submeter_senha() \u2014 additive function only (DEC-20)"
+    objective: "Deliver: submeter_senha() \u2014 additive function only (DEC-20)"
+    requirements: ["FR-039"]
+    assigned_agent: "auth-authorization-builder"
+    phase: "phase-4"
+    dependencies: ["TASK-047"]
+    files_to_create: ["app/security/**"]
+    acceptance_criteria: ["AC-047"]
+    validation_commands: ["python3 -m pytest -q -m security"]
+  - id: "TASK-049"
+    title: "Inertia rule: 30 days, idempotent, successes only (DEC-19)"
+    objective: "Deliver: Inertia rule: 30 days, idempotent, successes only (DEC-19)"
+    requirements: ["FR-016"]
+    assigned_agent: "integration-builder"
+    phase: "phase-4"
+    dependencies: ["TASK-048"]
+    files_to_create: ["app/radar/**"]
+    acceptance_criteria: ["AC-023", "AC-024"]
+    validation_commands: ["python3 -m pytest -q -m radar"]
+  - id: "TASK-050"
+    title: "Link 3: movement \u2192 task"
+    objective: "Deliver: Link 3: movement \u2192 task"
+    requirements: ["FR-014", "FR-015"]
+    assigned_agent: "integration-builder"
+    phase: "phase-4"
+    dependencies: ["TASK-049"]
+    files_to_create: ["app/radar/**"]
+    acceptance_criteria: ["AC-021", "AC-022"]
+    validation_commands: ["python3 -m pytest -q -m radar"]
+  - id: "TASK-051"
+    title: "Weekly scheduler reading configuracoes.radar_cron + POST /radar/executar"
+    objective: "Deliver: Weekly scheduler reading configuracoes.radar_cron + POST /radar/executar"
+    requirements: ["FR-030"]
+    assigned_agent: "integration-builder"
+    phase: "phase-4"
+    dependencies: ["TASK-050"]
+    files_to_create: ["app/radar/**"]
+    acceptance_criteria: ["AC-038"]
+    validation_commands: ["python3 -m pytest -q -m radar"]
+  - id: "TASK-052"
+    title: "Missing-run watchdog off-host: pg_cron \u2192 pg_net \u2192 Edge Function \u2192 email (\u00a78 integration plan)"
+    objective: "Deliver: Missing-run watchdog off-host: pg_cron \u2192 pg_net \u2192 Edge Function \u2192 email (\u00a78 integration plan)"
+    requirements: ["FR-034"]
+    assigned_agent: "integration-builder"
+    phase: "phase-4"
+    dependencies: ["TASK-051"]
+    files_to_create: ["app/radar/**"]
+    acceptance_criteria: ["AC-042"]
+    validation_commands: ["python3 -m pytest -q -m radar"]
+  - id: "TASK-053"
+    title: "Technical error email \u2014 redacted, configurable recipient, carries etapa (FR-32)"
+    objective: "Deliver: Technical error email \u2014 redacted, configurable recipient, carries etapa (FR-32)"
+    requirements: ["FR-025", "FR-032", "FR-033"]
+    assigned_agent: "integration-builder"
+    phase: "phase-4"
+    dependencies: ["TASK-052"]
+    files_to_create: ["app/radar/**"]
+    acceptance_criteria: ["AC-033", "AC-040", "AC-041"]
+    validation_commands: ["python3 -m pytest -q -m radar"]
+  - id: "TASK-054"
+    title: "Radar read endpoints"
+    objective: "Deliver: Radar read endpoints"
+    requirements: ["FR-029"]
+    assigned_agent: "integration-builder"
+    phase: "phase-4"
+    dependencies: ["TASK-053"]
+    files_to_create: ["app/radar/**"]
+    acceptance_criteria: ["AC-037"]
+    validation_commands: ["python3 -m pytest -q -m radar"]
+  - id: "TASK-055"
+    title: "Processos CRUD incl. DELETE /processos/:id \u2014 permanent removal cascading run history (FR-26, DEC-08)"
+    objective: "Deliver: Processos CRUD incl. DELETE /processos/:id \u2014 permanent removal cascading run history (FR-26, DEC-08)"
+    requirements: ["FR-026"]
+    assigned_agent: "integration-builder"
+    phase: "phase-4"
+    dependencies: ["TASK-054"]
+    files_to_create: ["app/radar/**"]
+    acceptance_criteria: ["AC-034"]
+    validation_commands: ["python3 -m pytest -q -m radar"]
+  - id: "TASK-056"
+    title: "Seed processos from vendor/seed/processos_seed.csv (118 rows: 106 TJSP \u00b7 7 TJCE \u00b7 5 TJBA). The 1 row flagged valido=false is reported and skipped,\u2026"
+    objective: "Deliver: Seed processos from vendor/seed/processos_seed.csv (118 rows: 106 TJSP \u00b7 7 TJCE \u00b7 5 TJBA). The 1 row flagged valido=false is reported and skipped,\u2026"
+    requirements: ["FR-049"]
+    assigned_agent: "integration-builder"
+    phase: "phase-4"
+    dependencies: ["TASK-055"]
+    files_to_create: ["app/radar/**"]
+    acceptance_criteria: ["AC-061"]
+    validation_commands: ["python3 -m pytest -q -m radar"]
+  - id: "TASK-057"
+    title: "TEST-RADAR-01..25 + TEST-RADAR-29 (fixture/service tier)"
+    objective: "Deliver: TEST-RADAR-01..25 + TEST-RADAR-29 (fixture/service tier)"
+    requirements: ["FR-017"]
+    assigned_agent: "integration-builder"
+    phase: "phase-4"
+    dependencies: ["TASK-056"]
+    files_to_create: ["app/radar/**"]
+    acceptance_criteria: ["AC-025"]
+    validation_commands: ["python3 -m pytest -q -m radar"]
+  - id: "TASK-058"
+    title: "TEST-RADAR-26..28 (browser tier, pytest -m browser) \u2014 password submission + artifact suppression; TEST-RADAR-29 is service-level and belongs to T-052"
+    objective: "Deliver: TEST-RADAR-26..28 (browser tier, pytest -m browser) \u2014 password submission + artifact suppression; TEST-RADAR-29 is service-level and belongs to T-052"
+    requirements: ["FR-039"]
+    assigned_agent: "auth-authorization-builder"
+    phase: "phase-4"
+    dependencies: ["TASK-057"]
+    files_to_create: ["app/security/**"]
+    acceptance_criteria: ["AC-047"]
+    validation_commands: ["python3 -m pytest -q -m security"]
+  - id: "TASK-060"
+    title: "Redaction across all five leak channels, incl. suppressing debug artifacts for password-bearing processes"
+    objective: "Deliver: Redaction across all five leak channels, incl. suppressing debug artifacts for password-bearing processes"
+    requirements: ["NFR-006"]
+    assigned_agent: "auth-authorization-builder"
+    phase: "phase-5"
+    dependencies: ["TASK-041", "TASK-058"]
+    files_to_create: ["app/security/**"]
+    acceptance_criteria: ["AC-073"]
+    validation_commands: ["python3 -m pytest -q -m security"]
+  - id: "TASK-061"
+    title: "TEST-SEC-01..07, TEST-RLS-01..02 \u2014 incl. TEST-SEC-05 (API is not service_role) and TEST-SEC-06 (radar-owned columns rejected)"
+    objective: "Deliver: TEST-SEC-01..07, TEST-RLS-01..02 \u2014 incl. TEST-SEC-05 (API is not service_role) and TEST-SEC-06 (radar-owned columns rejected)"
+    requirements: ["NFR-001", "FR-043"]
+    assigned_agent: "qa-test-validator"
+    phase: "phase-5"
+    dependencies: ["TASK-060"]
+    files_to_create: ["tests/security/**"]
+    acceptance_criteria: ["AC-064", "AC-065", "AC-056"]
+    validation_commands: ["python3 -m pytest -q -m security"]
+  - id: "TASK-062"
+    title: "notificacao.py alert delivery for FR-41/FR-42 \u2014 captcha-rate and degradation alerts through the error-report mail path (app/radar/)"
+    objective: "Deliver: notificacao.py alert delivery for FR-41/FR-42 \u2014 captcha-rate and degradation alerts through the error-report mail path (app/radar/)"
+    requirements: ["FR-041", "FR-042"]
+    assigned_agent: "integration-builder"
+    phase: "phase-5"
+    dependencies: ["TASK-061"]
+    files_to_create: ["app/radar/**"]
+    acceptance_criteria: ["AC-054", "AC-055"]
+    validation_commands: ["python3 -m pytest -q -m radar"]
+  - id: "TASK-063"
+    title: "Radar telemetry and its two alerts: captcha_timeout rate > 20% and taxa_conclusiva < 0.70, delivered through the same mail path as the error\u2026"
+    objective: "Deliver: Radar telemetry and its two alerts: captcha_timeout rate > 20% and taxa_conclusiva < 0.70, delivered through the same mail path as the error\u2026"
+    requirements: ["FR-041", "FR-042"]
+    assigned_agent: "qa-test-validator"
+    phase: "phase-5"
+    dependencies: ["TASK-062"]
+    files_to_create: ["tests/e2e/**", "docs/evidence/**"]
+    acceptance_criteria: ["AC-054", "AC-055"]
+    validation_commands: ["python3 -m pytest -q -m e2e"]
+  - id: "TASK-064"
+    title: "End-to-end run on the deployment host"
+    objective: "Deliver: End-to-end run on the deployment host"
+    requirements: ["NFR-012"]
+    assigned_agent: "qa-test-validator"
+    phase: "phase-5"
+    dependencies: ["TASK-063"]
+    files_to_create: ["tests/e2e/**", "docs/evidence/**"]
+    acceptance_criteria: ["AC-080"]
+    validation_commands: ["python3 -m pytest -q -m e2e"]
+  - id: "TASK-065"
+    title: "README + run report + evidence index (docs/) \u2014 satisfies documentation_complete and deviation_report_complete"
+    objective: "Deliver: README + run report + evidence index (docs/) \u2014 satisfies documentation_complete and deviation_report_complete"
+    requirements: ["FR-052"]
+    assigned_agent: "documentation-writer"
+    phase: "phase-5"
+    dependencies: ["TASK-064"]
+    files_to_create: ["docs/**"]
+    acceptance_criteria: ["AC-014"]
+    validation_commands: ["python3 -m pytest -q -m docs"]
+  - id: "TASK-069"
+    title: "gerar_sinteticas.py \u2014 generate both workbooks reproducing every known defect + esperado.json"
+    objective: "Deliver: gerar_sinteticas.py \u2014 generate both workbooks reproducing every known defect + esperado.json"
+    requirements: ["FR-044"]
+    assigned_agent: "integration-builder"
+    phase: "phase-6"
+    dependencies: ["TASK-062"]
+    files_to_create: ["app/loader/**"]
+    acceptance_criteria: ["AC-057"]
+    validation_commands: ["python3 -m pytest -q -m loader"]
+  - id: "TASK-070"
+    title: "COLUMN_ALIASES mapping table + two-pass header resolution (reusing chave_texto())"
+    objective: "Deliver: COLUMN_ALIASES mapping table + two-pass header resolution (reusing chave_texto())"
+    requirements: ["FR-044"]
+    assigned_agent: "integration-builder"
+    phase: "phase-6"
+    dependencies: ["TASK-069"]
+    files_to_create: ["app/loader/**"]
+    acceptance_criteria: ["AC-057"]
+    validation_commands: ["python3 -m pytest -q -m loader"]
+  - id: "TASK-071"
+    title: "Idempotent, auditable loader with vocabulary normalization + import_log"
+    objective: "Deliver: Idempotent, auditable loader with vocabulary normalization + import_log"
+    requirements: ["FR-044", "FR-050"]
+    assigned_agent: "integration-builder"
+    phase: "phase-6"
+    dependencies: ["TASK-070"]
+    files_to_create: ["app/loader/**"]
+    acceptance_criteria: ["AC-057", "AC-062"]
+    validation_commands: ["python3 -m pytest -q -m loader"]
+  - id: "TASK-072"
+    title: "Reconcile orphan instalments; auto-create missing contracts/partners, flagged revisar"
+    objective: "Deliver: Reconcile orphan instalments; auto-create missing contracts/partners, flagged revisar"
+    requirements: ["FR-044"]
+    assigned_agent: "integration-builder"
+    phase: "phase-6"
+    dependencies: ["TASK-071"]
+    files_to_create: ["app/loader/**"]
+    acceptance_criteria: ["AC-057"]
+    validation_commands: ["python3 -m pytest -q -m loader"]
+  - id: "TASK-073"
+    title: "Recompute the cash chain, discarding typed balances; report per-month delta"
+    objective: "Deliver: Recompute the cash chain, discarding typed balances; report per-month delta"
+    requirements: ["FR-044"]
+    assigned_agent: "integration-builder"
+    phase: "phase-6"
+    dependencies: ["TASK-072"]
+    files_to_create: ["app/loader/**"]
+    acceptance_criteria: ["AC-057"]
+    validation_commands: ["python3 -m pytest -q -m loader"]
+  - id: "TASK-074"
+    title: "--validate-only dry-run mode (the \u00a76 step-2 gate)"
+    objective: "Deliver: --validate-only dry-run mode (the \u00a76 step-2 gate)"
+    requirements: ["FR-044"]
+    assigned_agent: "integration-builder"
+    phase: "phase-6"
+    dependencies: ["TASK-073"]
+    files_to_create: ["app/loader/**"]
+    acceptance_criteria: ["AC-057"]
+    validation_commands: ["python3 -m pytest -q -m loader"]

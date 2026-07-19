@@ -24,6 +24,7 @@ Full guide to the Autonomous System Building OS.
 - [How to Update the OS](19-how-to-update-the-operating-system.md)
 - [How to Archive Completed Projects](20-how-to-archive-completed-projects.md)
 - [Troubleshooting](21-troubleshooting.md)
+- [How to Use Frontend References](22-frontend-references.md)
 
 ## Concise user workflow
 

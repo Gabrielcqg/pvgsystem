@@ -17,6 +17,10 @@ Model profile: `balanced_reasoning` (map to a concrete model at runtime).
 - checking network failures
 - checking responsiveness
 - checking accessibility
+- detecting unexpected placeholders
+- detecting buttons without actions
+- detecting forms without validation
+- detecting impossible loading states
 - capturing evidence
 - reporting visual and behavioral mismatches
 
@@ -33,6 +37,7 @@ Model profile: `balanced_reasoning` (map to a concrete model at runtime).
 ## Required skills
 - e2e-browser-validation
 - accessibility-implementation
+- visual-regression
 
 ## File ownership
 - (read-only / no exclusive ownership)

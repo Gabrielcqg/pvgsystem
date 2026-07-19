@@ -1,0 +1,45 @@
+{
+  "original_request_verbatim": "Plano de construcao - Backend e banco de dados do Sistema Integrado Pavageau. Este documento descreve, em texto corrido, como construir a camada de dados e a camada de servidor do Sistema Integrado Pavageau. Ele nao trata do frontend: o frontend de referencia ja existe no rascunho Pavageau v3.jsx e serve como contrato visual e funcional do que o backend precisa entregar. A regra que atravessa o plano inteiro e a mesma que rege o rascunho: nenhum numero e digitado duas vezes, o usuario preenche apenas fatos primarios (contratos, parcelas, lancamentos, custos fixos, processos), e tudo o mais - caixa, DRE, balanco, projecoes, inadimplencia, conversao - e derivado por calculo, nunca digitado nem editavel a mao.",
+  "interpreted_business_objective": "Replace two hand-maintained Excel workbooks with a database-backed system in which the office enters only primary facts and every report is a derived, non-editable function of those facts, plus automated weekly monitoring of TJSP court-process movements.",
+  "problem_being_solved": "The spreadsheets accumulated structural defects that discipline cannot fix: monthly cash typed over formulas breaking the balance chain; the same status spelled multiple ways and counted separately; ~15 spellings for 8 fee types; a partner with active contracts invisible on the dashboard; and 4 clients with instalments but no contract row.",
+  "desired_outcome": "A Supabase/PostgreSQL backend where derived values are materialized read-only, three (four) transactional links guarantee no number is entered twice, and the already-validated TJSP scraper is wrapped rather than rewritten.",
+  "likely_users": [
+    "Escritorio Pavageau - single office account (no roles in v1)"
+  ],
+  "known_constraints": [
+    "Frontend is out of build scope; it is the API contract",
+    "The validated TJSP scraper must not be rewritten (sha256 c9429f2a...)",
+    "Only the 3 most recent movements are captured, compared by deterministic key",
+    "Process passwords live in a vault; the DB stores only a reference",
+    "LGPD: Brazilian law-firm data; region sa-east-1",
+    "Gabriel writes any non-TJSP scraper himself; DataJud is rejected"
+  ],
+  "explicit_requirements": [
+    "Closed vocabularies (enums) replacing free text",
+    "Referential integrity between parcelas and contratos",
+    "Materialized indicator tables recomputed in the same transaction as the fact",
+    "Audit trail from day one, insert-only",
+    "Weekly radar run at a configurable time with a global concurrency lock",
+    "Technical error email with process number, status, message, step and timestamp",
+    "30-day inertia rule creating an idempotent task automatically",
+    "New movements enter task creation by manual curation"
+  ],
+  "implicit_requirements": [
+    "No column or endpoint may ever accept a calculated value",
+    "A timeout must not be mistaken for absence of movement",
+    "Machine-created rows must be distinguishable from human ones in the audit trail"
+  ],
+  "non_negotiable_instructions": [
+    "Do not rewrite consulta_tjsp_lote.py; changes go in adapters",
+    "Do not implement TJCE/TJBA scrapers or substitute an API for them",
+    "Never log, return, email, audit or screenshot a password",
+    "Implementation gates stay PENDING until proven"
+  ],
+  "open_decisions": [],
+  "potential_contradictions": [
+    "Source document claimed the scraper receives Excel and returns JSON and is fully validated; the canonical file confirms this, but an earlier superseded copy did not - resolved by hash adjudication (DEC-39)",
+    "Source document cited Pavageau v3.jsx which does not exist; resolved to FRONTEND_REFERENCE_PAVAGEAU.md (DEC-21, vendored DEC-40)"
+  ],
+  "current_system_context": "Two Excel workbooks (fluxo de caixa with DASHBOARD/CONFIG/JAN-DEZ; contratos with DASHBOARD/CONTRATOS/ENCERRADOS/PENDENTES/MENSAIS) plus a validated Python/DrissionPage TJSP batch scraper that ran 106 processes with 94 successes and 282 movements extracted.",
+  "definition_of_success": "The office enters only primary facts; every report opens instantly from materialized tables that provably match a from-scratch recomputation; no user can overwrite a calculated number; the weekly radar runs unattended, detects new movements by deterministic key, and reports the 12 out-of-scope TJCE/TJBA processes as pending without failing the run."
+}

@@ -1,0 +1,28 @@
+agents:
+  - id: repository-explorer
+    responsibility: Vendor intake - copy the frozen scraper and fixtures into the product repo, preserving hashes
+    output_contract: radar/scrapers/vendor/** matches sha256 c9429f2aa3ac05a30fe53075ce56fb2def63e5cc82f229a0531b94ba73701ad8
+  - id: infrastructure-builder
+    responsibility: Local docker stack, app/config.py with the validated AWS_REGION, .env.example, CI workflows
+    output_contract: Every phase builds and tests on local Postgres with no Supabase credentials; TEST-CFG-03/04 and TEST-ARCH-01 green
+  - id: auth-authorization-builder
+    responsibility: Supabase Auth wiring, vault adapter, redaction across the five leak channels
+    output_contract: No password in logs, responses, email, audit values or debug artifacts; app/security/** implemented
+  - id: database-migration-builder
+    responsibility: Migrations 000-010, enums, constraints, RLS, indicator tables, recalculation functions
+    output_contract: DB rebuilds from zero on local Postgres and Supabase; GATE-SCHEMA + GATE-RLS + GATE-CALC
+  - id: backend-api-builder
+    responsibility: Domain services, four transactional links, REST surface, write/response allowlists
+    output_contract: All endpoints implemented with allowlists and documented status codes; GATE-TX
+  - id: integration-builder
+    responsibility: Scraper adapter, registry with reserved slots, orchestrator, vault, scheduler, email, loader
+    output_contract: Radar runs end to end with incremental persistence and concurrency lock; GATE-RADAR + GATE-LOAD
+  - id: security-reviewer
+    responsibility: Read-only review of RLS policies, radar_worker confinement and secret handling
+    output_contract: Security review report; no exclusive file ownership
+  - id: qa-test-validator
+    responsibility: Characterization tests, security/e2e test authoring, full suite execution, EVID-01 evidence capture
+    output_contract: TEST-SCRAPER-01..03, TEST-SEC-01..07, TEST-RLS-01..02 green; docs/evidence/prod-run-<date>.md
+  - id: documentation-writer
+    responsibility: README, run report, evidence index
+    output_contract: documentation_complete satisfied

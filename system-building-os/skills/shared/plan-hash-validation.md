@@ -3,7 +3,7 @@ name: plan-hash-validation
 kind: skill
 scope: shared
 runtime_scope: [claude, codex]
-version: 1.0.0
+version: 1.1.0
 ---
 
 # Skill: `plan-hash-validation`

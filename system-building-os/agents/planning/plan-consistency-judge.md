@@ -4,7 +4,7 @@ canonical_name: Plan Consistency Judge
 kind: agent
 runtime_scope: [claude]
 model_profile: validation_independent
-version: 1.0.0
+version: 1.1.0
 ---
 
 # Plan Consistency Judge (`plan-consistency-judge`)
@@ -20,9 +20,16 @@ version: 1.0.0
 - missing tests
 - traceability breaks
 - implementation ambiguity
+- cross-layer gaps
+- AI-vs-deterministic responsibility drift
+- frontend completeness
+- real-AI-integration completeness
+- production-readiness
+- gate-state separation
+- fake production paths
 
 ## Behavioral contract
-omissions; contradictions; vague requirements; missing tests; traceability breaks; implementation ambiguity
+omissions; contradictions; vague requirements; missing tests; traceability breaks; implementation ambiguity; cross-layer gaps; AI-vs-deterministic responsibility drift; frontend completeness; real-AI-integration completeness; production-readiness; gate-state separation; fake production paths
 
 ## When to use
 When the plan requires independent judge that finds omissions and ambiguity; must be separate from synthesis.
@@ -55,6 +62,7 @@ During implementation or outside this agent's responsibilities.
 ## Required skills
 - plan-consistency-validation
 - requirement-traceability
+- cross-layer-reconciliation
 
 ## File ownership
 - plans/active/<slug>/30-plan-validation-report.md

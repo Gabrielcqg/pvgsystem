@@ -1,0 +1,85 @@
+definition_satisfied: true
+layers:
+  - layer: product_behavior
+    applicable: true
+    planned: true
+    implementation_gate: product_requirements_implemented
+    evidence: 05-product-system-plan.md; 44-vertical-traceability.md
+  - layer: business_logic
+    applicable: true
+    planned: true
+    implementation_gate: unit_tests_passed
+    evidence: 07-data-architecture-plan.md section 5; business rules BR-01..BR-08
+  - layer: database
+    applicable: true
+    planned: true
+    implementation_gate: database_implemented
+    evidence: 07-data-architecture-plan.md; migrations 000-010
+  - layer: backend
+    applicable: true
+    planned: true
+    implementation_gate: backend_implemented
+    evidence: 13-api-contract-plan.md
+  - layer: authentication
+    applicable: true
+    planned: true
+    implementation_gate: authentication_implemented
+    evidence: 09-auth-authorization-plan.md; Supabase Auth; sign-up disabled after the office account
+  - layer: authorization
+    applicable: true
+    planned: true
+    implementation_gate: authorization_tests_passed
+    evidence: 09-auth-authorization-plan.md; RLS on every table; radar_worker policies
+  - layer: integrations
+    applicable: true
+    planned: true
+    implementation_gate: integration_tests_passed
+    evidence: 15-integration-plan.md; frozen TJSP scraper; reserved TJCE/TJBA slots
+  - layer: environment_configuration
+    applicable: true
+    planned: true
+    implementation_gate: build_passed
+    evidence: 17-deployment-and-configuration.md; AWS_REGION validated config
+  - layer: observability
+    applicable: true
+    planned: true
+    implementation_gate: observability_verified
+    evidence: 15-integration-plan.md section 8; captcha-rate and degradation alerts
+  - layer: security
+    applicable: true
+    planned: true
+    implementation_gate: security_review_passed
+    evidence: 09-auth-authorization-plan.md section 5; five leak channels
+  - layer: performance
+    applicable: true
+    planned: true
+    implementation_gate: performance_review_passed
+    evidence: NFR-003 p95 under 300ms; TEST-PERF-01; materialized reads
+  - layer: tests
+    applicable: true
+    planned: true
+    implementation_gate: unit_tests_passed
+    evidence: 21-test-validation-plan.md; 65 requirements verified
+  - layer: deployment
+    applicable: true
+    planned: true
+    implementation_gate: production_like_run_verified
+    evidence: 17-deployment-and-configuration.md section 3; EXT-DEP-01
+  - layer: rollback
+    applicable: true
+    planned: true
+    implementation_gate: migration_validation_passed
+    evidence: Loader runs in one transaction; migrations rebuild from zero
+  - layer: documentation
+    applicable: true
+    planned: true
+    implementation_gate: documentation_complete
+    evidence: 28-codex-handoff.md; 29-codex-start.md; vendor/PROVENANCE.md
+  - layer: frontend
+    applicable: false
+    planned: false
+    notes: Out of build scope (DEC-14). The existing frontend is the API contract and is vendored at vendor/frontend/ for field-name reconciliation.
+  - layer: ai_behavior
+    applicable: false
+    planned: false
+    notes: Deterministic product. The product-logic grill ran and the AI responsibility matrix is empty by design; every decision is owned by deterministic_backend or human.

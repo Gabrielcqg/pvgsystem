@@ -30,6 +30,7 @@ SUITE = [
     ("unit:secret-protection", ["tests/unit/test_secret_protection.py"]),
     ("unit:state-transitions", ["tests/unit/test_state_transitions.py"]),
     ("unit:schema-validation", ["tests/unit/test_schema_validation.py"]),
+    ("unit:production-complete", ["tests/unit/test_production_complete.py"]),
 ]
 
 

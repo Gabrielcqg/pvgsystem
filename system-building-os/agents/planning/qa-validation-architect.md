@@ -4,7 +4,7 @@ canonical_name: QA & Validation Architect
 kind: agent
 runtime_scope: [claude]
 model_profile: balanced_reasoning
-version: 1.0.0
+version: 1.1.0
 ---
 
 # QA & Validation Architect (`qa-validation-architect`)

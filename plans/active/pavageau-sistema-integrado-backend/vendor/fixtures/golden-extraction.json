@@ -1,0 +1,137 @@
+{
+  "01_10399951520248260114_20260716_233534.html": {
+    "layout": "container_movimentacao",
+    "sha256": "d3fd13576cb94db3e43965c5da4c3ffb23829a47964b65f7e8dd49dd487c0ce7",
+    "quantidade_movimentacoes": 3,
+    "movimentacoes": [
+      {
+        "evento": null,
+        "data_hora": "19/06/2026",
+        "descricao": "Mandado Devolvido Cumprido Positivo CERTIDÃO - MANDADO CUMPRIDO POSITIVO CERTIFICO eu, Oficial de Justiça, que em cumprimento ao mandado nº 114.2026/031328-9 dirigi-me por diversas vezes, em dias e horários diferentes, ao endereço nele indicado, Rua Marcos Roberto Corte, 845 - Residencial Miravista - Mirassol/SP, no entanto, nas referidas diligencias, encontrei o imóvel fechado e não obtive êxito em ser atendida. Certifico mais que no dia 20 de maio, por volta das 16:10 hs, dirigi-me novamente ao endereço supracitado, e aí sendo, citei e adverti Livia de Souza Pereira, por todo o teor e fins contidos no mandado, que lhe li, aceitou a contrafé que lhe ofereci, de tudo ciente ficou e exarou sua assinatura. O referido é verdade e dou fé. Mirassol, 21 de maio de 2026. Número de Cotas: 01 diligencia - 03 UFESPs - R$ 115,26 - guia 257327.",
+        "usuario": null
+      },
+      {
+        "evento": null,
+        "data_hora": "19/06/2026",
+        "descricao": "Mandado Juntado",
+        "usuario": null
+      },
+      {
+        "evento": null,
+        "data_hora": "01/04/2026",
+        "descricao": "Mandado Expedido Mandado nº: 114.2026/031328-9 Situação: Cumprido - Ato positivo em 21/05/2026 Local: Oficial de justiça - Ana Helena Giroldo Lavia",
+        "usuario": null
+      }
+    ],
+    "accessRequired": false,
+    "captchaFound": false
+  },
+  "02_00085271220128260586_20260716_233910.html": {
+    "layout": "container_movimentacao",
+    "sha256": "0e516348a41eb8ae226408061518605a5824b8b4ea10aaabf8cddad73626d41c",
+    "quantidade_movimentacoes": 3,
+    "movimentacoes": [
+      {
+        "evento": null,
+        "data_hora": "25/07/2019",
+        "descricao": "Petição Juntada Juntada a petição diversa - Tipo: Petição Intermediária em Ação de Exigir Contas - Número: 80024 - Complemento: Prot 100 FCAS.19.00081917-0 120719",
+        "usuario": null
+      },
+      {
+        "evento": null,
+        "data_hora": "24/04/2018",
+        "descricao": "Petição Juntada Juntada a petição diversa - Tipo: Petição Intermediária em Ação de Exigir Contas - Número: 80019 - Protocolo: FCIV16000025480 - Complemento: Regularizado para fins de sistema.",
+        "usuario": null
+      },
+      {
+        "evento": null,
+        "data_hora": "06/09/2017",
+        "descricao": "Baixa Definitiva",
+        "usuario": null
+      }
+    ],
+    "accessRequired": false,
+    "captchaFound": false
+  },
+  "03_10399951520248260114_20260716_225819.html": {
+    "layout": "container_movimentacao",
+    "sha256": "5e0c08a4ce354f3494496f104635cd3217a852b74e5061219d5a11881766cec2",
+    "quantidade_movimentacoes": 3,
+    "movimentacoes": [
+      {
+        "evento": null,
+        "data_hora": "19/06/2026",
+        "descricao": "Mandado Devolvido Cumprido Positivo CERTIDÃO - MANDADO CUMPRIDO POSITIVO CERTIFICO eu, Oficial de Justiça, que em cumprimento ao mandado nº 114.2026/031328-9 dirigi-me por diversas vezes, em dias e horários diferentes, ao endereço nele indicado, Rua Marcos Roberto Corte, 845 - Residencial Miravista - Mirassol/SP, no entanto, nas referidas diligencias, encontrei o imóvel fechado e não obtive êxito em ser atendida. Certifico mais que no dia 20 de maio, por volta das 16:10 hs, dirigi-me novamente ao endereço supracitado, e aí sendo, citei e adverti Livia de Souza Pereira, por todo o teor e fins contidos no mandado, que lhe li, aceitou a contrafé que lhe ofereci, de tudo ciente ficou e exarou sua assinatura. O referido é verdade e dou fé. Mirassol, 21 de maio de 2026. Número de Cotas: 01 diligencia - 03 UFESPs - R$ 115,26 - guia 257327.",
+        "usuario": null
+      },
+      {
+        "evento": null,
+        "data_hora": "19/06/2026",
+        "descricao": "Mandado Juntado",
+        "usuario": null
+      },
+      {
+        "evento": null,
+        "data_hora": "01/04/2026",
+        "descricao": "Mandado Expedido Mandado nº: 114.2026/031328-9 Situação: Cumprido - Ato positivo em 21/05/2026 Local: Oficial de justiça - Ana Helena Giroldo Lavia",
+        "usuario": null
+      }
+    ],
+    "accessRequired": false,
+    "captchaFound": false
+  },
+  "pagina_20260715_231126.html": {
+    "layout": "eproc_eventos",
+    "sha256": "4e6a9b8975058b2cb3fa990ace00a165b48d1376da0860d07d87878b2ec11f8a",
+    "quantidade_movimentacoes": 3,
+    "movimentacoes": [
+      {
+        "evento": "36",
+        "data_hora": "14/07/2026 15:14:45",
+        "descricao": "PETIÇÃO - Refer. aos Eventos: 32 e 33",
+        "usuario": "SP531770"
+      },
+      {
+        "evento": "35",
+        "data_hora": "29/06/2026 07:56:47",
+        "descricao": "Publicado no DJ Eletrônico - no dia 29/06/2026 - Refer. aos Eventos: 31, 32, 33",
+        "usuario": "secde"
+      },
+      {
+        "evento": "34",
+        "data_hora": "26/06/2026 03:56:08",
+        "descricao": "Disponibilizado no DJ Eletrônico - no dia 26/06/2026 - Refer. aos Eventos: 31, 32, 33",
+        "usuario": "secde"
+      }
+    ],
+    "accessRequired": false,
+    "captchaFound": false
+  },
+  "pagina_20260715_231156.html": {
+    "layout": "eproc_eventos",
+    "sha256": "4e6a9b8975058b2cb3fa990ace00a165b48d1376da0860d07d87878b2ec11f8a",
+    "quantidade_movimentacoes": 3,
+    "movimentacoes": [
+      {
+        "evento": "36",
+        "data_hora": "14/07/2026 15:14:45",
+        "descricao": "PETIÇÃO - Refer. aos Eventos: 32 e 33",
+        "usuario": "SP531770"
+      },
+      {
+        "evento": "35",
+        "data_hora": "29/06/2026 07:56:47",
+        "descricao": "Publicado no DJ Eletrônico - no dia 29/06/2026 - Refer. aos Eventos: 31, 32, 33",
+        "usuario": "secde"
+      },
+      {
+        "evento": "34",
+        "data_hora": "26/06/2026 03:56:08",
+        "descricao": "Disponibilizado no DJ Eletrônico - no dia 26/06/2026 - Refer. aos Eventos: 31, 32, 33",
+        "usuario": "secde"
+      }
+    ],
+    "accessRequired": false,
+    "captchaFound": false
+  }
+}

@@ -1,0 +1,25 @@
+provider: openai
+provider_independent_interface: AIJudge interface (model-independent).
+concrete_adapter: OpenAIJudge adapter implementing AIJudge.
+model_env_var: OPENAI_MODEL
+api_key_env_var: OPENAI_API_KEY
+model_config: temperature + max tokens from config
+timeout: 30s
+retry: 3 attempts with backoff
+rate_limit_handling: respect 429 + backoff
+structured_output: true
+output_schema: output.schema.json
+prompt_contract: "system + user template, versioned"
+prompt_versioning: prompt-v1
+streaming: false
+token_cost_logging: log tokens + cost per call
+error_mapping: "provider errors -> domain error types"
+fallback_behavior: human review on failure/low confidence
+startup_validation: fail fast if OPENAI_API_KEY is missing
+mock_mode_policy: test_double_only
+env_example_keys:
+  - OPENAI_API_KEY
+  - OPENAI_MODEL
+production_setup_instructions: "Set OPENAI_API_KEY and OPENAI_MODEL, then start the app."
+tests:
+  - TEST-002

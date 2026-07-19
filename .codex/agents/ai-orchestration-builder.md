@@ -19,6 +19,8 @@ Model profile: `implementation_heavy` (map to a concrete model at runtime).
 - validation
 - fallback
 - AI evaluations
+- real provider adapter
+- startup config validation
 
 ## Inputs
 - assigned task
@@ -33,6 +35,7 @@ Model profile: `implementation_heavy` (map to a concrete model at runtime).
 ## Required skills
 - ai-orchestration-implementation
 - ai-output-validation
+- ai-interface-implementation
 
 ## File ownership
 - <ai source paths from plan>

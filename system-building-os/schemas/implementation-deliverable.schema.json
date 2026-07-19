@@ -1,0 +1,105 @@
+{
+  "type": "object",
+  "properties": {
+    "deliverables": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "deliverable_id": {
+            "type": "string",
+            "pattern": "^DEL-[0-9]{3,}$"
+          },
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "frontend",
+              "backend",
+              "database",
+              "authentication",
+              "ai_integration",
+              "local_environment",
+              "production_environment",
+              "e2e_suite",
+              "observability",
+              "documentation",
+              "deployment",
+              "final_report",
+              "other"
+            ]
+          },
+          "purpose": {
+            "type": "string"
+          },
+          "requirements": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "expected_files": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "expected_runtime_behavior": {
+            "type": "string"
+          },
+          "dependencies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "configuration": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "tests": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "completion_conditions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "completion_gate": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "deliverable_id",
+          "name",
+          "type",
+          "purpose",
+          "expected_runtime_behavior",
+          "completion_conditions"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    }
+  },
+  "required": [
+    "deliverables"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Implementation Deliverables Contract",
+  "$id": "implementation-deliverable.schema.json"
+}

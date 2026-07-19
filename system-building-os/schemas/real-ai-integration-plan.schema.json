@@ -1,0 +1,76 @@
+{
+  "type": "object",
+  "properties": {
+    "ai_is_central": {
+      "type": "boolean"
+    },
+    "production_path": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "order": {
+            "type": "integer"
+          },
+          "stage": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "order",
+          "stage"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "provider_contract_ref": {
+      "type": "string"
+    },
+    "responsibility_matrix_ref": {
+      "type": "string"
+    },
+    "frontend_ai_states": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "centrality_tests": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "required_env_vars": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "mock_policy": {
+      "type": "string"
+    },
+    "setup_instructions": {
+      "type": "string"
+    },
+    "completion_gate": {
+      "type": "string",
+      "const": "real_ai_integration_verified"
+    }
+  },
+  "required": [
+    "ai_is_central",
+    "production_path",
+    "provider_contract_ref",
+    "centrality_tests",
+    "required_env_vars",
+    "mock_policy"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Real AI Integration Plan",
+  "$id": "real-ai-integration-plan.schema.json"
+}

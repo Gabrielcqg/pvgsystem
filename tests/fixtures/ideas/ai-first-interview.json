@@ -1,0 +1,23 @@
+{
+  "slug": "ai-first-interview",
+  "idea": "An AI-first interview system where the AI, using the accumulated conversation, decides and formulates the next question — not a fixed questionnaire.",
+  "signals": {
+    "stores_data": true,
+    "multi_user": true,
+    "has_ui": true,
+    "uses_ai": true,
+    "ai_central": true,
+    "external_integrations": false,
+    "is_extension": false
+  },
+  "ambiguities": [],
+  "expect": [
+    "ai_centrality",
+    "ai_output_validation",
+    "authentication",
+    "backend_behavior",
+    "database",
+    "frontend_states"
+  ],
+  "expect_material_question": false
+}

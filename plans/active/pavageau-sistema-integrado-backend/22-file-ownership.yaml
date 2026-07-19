@@ -1,0 +1,89 @@
+# Owner of each path == the assigned_agent of the tasks that write it (18-task-manifest.yaml).
+# Read-only canonical agents (repository-explorer, security-reviewer, performance-reviewer,
+# final-acceptance-judge) hold NO exclusive ownership, per system-building-os/agents/implementation/.
+# Precedence: the MOST SPECIFIC matching path wins (docs/evidence/** beats docs/**).
+ownership:
+  - path: radar/scrapers/vendor/**
+    mode: serialized_write
+    owner_agent: integration-builder
+    parallelization_group: vendor
+  - path: migrations/**
+    mode: serialized_write
+    owner_agent: database-migration-builder
+    parallelization_group: db
+  - path: app/reports/**
+    mode: exclusive
+    owner_agent: database-migration-builder
+    parallelization_group: db
+  - path: app/domain/**
+    mode: exclusive
+    owner_agent: backend-api-builder
+    parallelization_group: api
+  - path: app/api/**
+    mode: exclusive
+    owner_agent: backend-api-builder
+    parallelization_group: api
+  - path: app/radar/**
+    mode: exclusive
+    owner_agent: integration-builder
+    parallelization_group: radar
+  - path: app/security/**
+    mode: exclusive
+    owner_agent: auth-authorization-builder
+    parallelization_group: security
+  - path: app/loader/**
+    mode: exclusive
+    owner_agent: integration-builder
+    parallelization_group: loader
+  - path: app/config.py
+    mode: exclusive
+    owner_agent: infrastructure-builder
+    parallelization_group: infra
+  - path: docker-compose.yml
+    mode: exclusive
+    owner_agent: infrastructure-builder
+    parallelization_group: infra
+  - path: Makefile
+    mode: exclusive
+    owner_agent: infrastructure-builder
+    parallelization_group: infra
+  - path: requirements.txt
+    mode: exclusive
+    owner_agent: infrastructure-builder
+    parallelization_group: infra
+  - path: pyproject.toml
+    mode: exclusive
+    owner_agent: infrastructure-builder
+    parallelization_group: infra
+  - path: .env.example
+    mode: exclusive
+    owner_agent: infrastructure-builder
+    parallelization_group: infra
+  - path: .github/**
+    mode: exclusive
+    owner_agent: infrastructure-builder
+    parallelization_group: infra
+  - path: tests/fixtures/**
+    mode: exclusive
+    owner_agent: integration-builder
+    parallelization_group: fixtures
+  - path: tests/**
+    mode: exclusive
+    owner_agent: qa-test-validator
+    parallelization_group: tests
+  - path: docs/evidence/**
+    mode: exclusive
+    owner_agent: qa-test-validator
+    parallelization_group: tests
+  - path: docs/**
+    mode: exclusive
+    owner_agent: documentation-writer
+    parallelization_group: docs
+serialize:
+  - migrations/**
+  - radar/scrapers/vendor/**
+parallelize:
+  - app/domain/**
+  - app/api/**
+  - app/radar/**
+  - app/security/**

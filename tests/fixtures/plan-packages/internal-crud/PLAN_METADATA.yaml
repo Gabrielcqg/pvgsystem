@@ -8,3 +8,7 @@ active: true
 superseded_version: null
 implementation_status: not_started
 canonical_os: autonomous-system-building-os
+has_ui: true
+has_database: true
+has_auth: true
+has_ai: false

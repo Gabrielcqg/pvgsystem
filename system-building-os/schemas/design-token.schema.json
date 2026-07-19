@@ -1,0 +1,45 @@
+{
+  "type": "object",
+  "properties": {
+    "color": {
+      "type": "object"
+    },
+    "typography": {
+      "type": "object"
+    },
+    "spacing": {
+      "type": "object"
+    },
+    "radius": {
+      "type": "object"
+    },
+    "shadow": {
+      "type": "object"
+    },
+    "motion": {
+      "type": "object"
+    },
+    "breakpoints": {
+      "type": "object"
+    },
+    "z_index": {
+      "type": "object"
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "user",
+        "references",
+        "inference"
+      ]
+    }
+  },
+  "required": [
+    "color",
+    "typography",
+    "spacing"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Design Tokens",
+  "$id": "design-token.schema.json"
+}

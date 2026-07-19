@@ -4,7 +4,7 @@ canonical_name: Auth & Security Architect
 kind: agent
 runtime_scope: [claude]
 model_profile: highest_reasoning
-version: 1.0.0
+version: 1.1.0
 ---
 
 # Auth & Security Architect (`auth-security-architect`)

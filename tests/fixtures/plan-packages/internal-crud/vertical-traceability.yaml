@@ -1,0 +1,91 @@
+requirements:
+  - requirement_id: FR-001
+    goal_id: GOAL-001
+    backend_components:
+      - BACK-001
+    api_contracts:
+      - API-001
+    acceptance_criteria:
+      - AC-001
+    tests:
+      - TEST-001
+    evidence:
+      - "<ci-run>"
+    database_entities:
+      - DB-001
+    frontend_surfaces:
+      - UI-001
+    frontend_states:
+      - STATE-001
+  - requirement_id: FR-002
+    goal_id: GOAL-001
+    backend_components:
+      - BACK-001
+    api_contracts:
+      - API-001
+    acceptance_criteria:
+      - AC-002
+    tests:
+      - TEST-002
+    evidence:
+      - "<ci-run>"
+    database_entities:
+      - DB-001
+    frontend_surfaces:
+      - UI-001
+    frontend_states:
+      - STATE-001
+  - requirement_id: FR-003
+    goal_id: GOAL-001
+    backend_components:
+      - BACK-001
+    api_contracts:
+      - API-001
+    acceptance_criteria:
+      - AC-003
+    tests:
+      - TEST-003
+    evidence:
+      - "<ci-run>"
+    database_entities:
+      - DB-001
+    frontend_surfaces:
+      - UI-001
+    frontend_states:
+      - STATE-001
+  - requirement_id: FR-004
+    goal_id: GOAL-001
+    backend_components:
+      - BACK-001
+    api_contracts:
+      - API-001
+    acceptance_criteria:
+      - AC-004
+    tests:
+      - TEST-004
+    evidence:
+      - "<ci-run>"
+    database_entities:
+      - DB-001
+    frontend_surfaces:
+      - UI-001
+    frontend_states:
+      - STATE-001
+  - requirement_id: FR-005
+    goal_id: GOAL-001
+    backend_components:
+      - BACK-001
+    api_contracts:
+      - API-001
+    acceptance_criteria:
+      - AC-005
+    tests:
+      - TEST-005
+    evidence:
+      - "<ci-run>"
+    database_entities:
+      - DB-001
+    frontend_surfaces:
+      - UI-001
+    frontend_states:
+      - STATE-001

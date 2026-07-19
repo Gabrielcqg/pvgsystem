@@ -1,0 +1,211 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^UI-[0-9]{3,}$"
+    },
+    "purpose": {
+      "type": "string"
+    },
+    "user_role": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "route": {
+      "type": "string"
+    },
+    "user_objective": {
+      "type": "string"
+    },
+    "information_hierarchy": {
+      "type": "string"
+    },
+    "main_content": {
+      "type": "string"
+    },
+    "layout": {
+      "type": "string"
+    },
+    "sections": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "components": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "primary_action": {
+      "type": "string"
+    },
+    "secondary_actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "data_displayed": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "data_source": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "backend_dependency": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "ai_dependency": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "permissions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "validations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "states": {
+      "type": "object",
+      "properties": {
+        "default": {
+          "type": "string"
+        },
+        "loading": {
+          "type": "string"
+        },
+        "streaming": {
+          "type": "string"
+        },
+        "generating": {
+          "type": "string"
+        },
+        "reconnecting": {
+          "type": "string"
+        },
+        "empty": {
+          "type": "string"
+        },
+        "partial_data": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        },
+        "success": {
+          "type": "string"
+        },
+        "disabled": {
+          "type": "string"
+        },
+        "permission_denied": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "default",
+        "loading",
+        "empty",
+        "error"
+      ]
+    },
+    "responsive_behavior": {
+      "type": "string"
+    },
+    "keyboard_behavior": {
+      "type": "string"
+    },
+    "focus_behavior": {
+      "type": "string"
+    },
+    "accessibility": {
+      "type": "string"
+    },
+    "animation": {
+      "type": "string"
+    },
+    "transition": {
+      "type": "string"
+    },
+    "scroll_behavior": {
+      "type": "string"
+    },
+    "persistence": {
+      "type": "string"
+    },
+    "optimistic_behavior": {
+      "type": "string"
+    },
+    "analytics": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "requirement_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "api_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "state_machine_states": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "acceptance_criteria": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tests": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "id",
+    "purpose",
+    "route",
+    "user_objective",
+    "primary_action",
+    "states",
+    "data_source",
+    "acceptance_criteria"
+  ],
+  "additionalProperties": false,
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Screen Contract",
+  "$id": "screen-contract.schema.json"
+}

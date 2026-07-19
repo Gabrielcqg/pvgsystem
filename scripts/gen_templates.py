@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate the 34 canonical plan templates into system-building-os/templates/
+"""Generate the canonical plan templates into system-building-os/templates/
 and mirror them into plans/templates/. Each template has YAML frontmatter
 (template id, artifact, schema, phase, runtime), an instructions block, the
 required fields/sections, and a completeness checklist. Re-run to regenerate.
@@ -375,6 +375,226 @@ TEMPLATES = [
    "Validation commands used", "Honest list of any failures"],
   ["Every completion gate reported with PASS/FAIL/NA", "Evidence attached",
    "Failures reported honestly", "Validates against final-report.schema.json"]),
+
+ # ======================================================================
+ # Production-complete update: frontend depth, AI centrality, cross-layer
+ # reconciliation, deliverables, production readiness.
+ # ======================================================================
+
+ ("34-frontend-reference-intake", "Frontend Reference Intake", "planning", "claude",
+  "frontend-reference", "frontend/frontend-reference.yaml (+ project-reference/frontend/)",
+  "Inspect project-reference/frontend/ BEFORE frontend planning. Read FRONTEND_REFERENCE.md, "
+  "design-tokens.yaml, screen-inventory.yaml, assets/ and inspiration/. Classify each reference "
+  "MUST_FOLLOW / STRONG_INSPIRATION / GENERAL_INSPIRATION / AVOID. If the package is absent or "
+  "empty, infer an initial direction from the product, propose a reference file, and ask only "
+  "grouped material visual questions when a choice substantially changes product identity.",
+  ["Provenance (user / references / inference)", "Visual direction", "Brand personality",
+   "Product feeling", "Target polish (utilitarian/polished/premium/flagship)",
+   "Color / typography / spacing / surfaces / iconography preferences",
+   "Navigation + animation + scroll style", "Responsive + accessibility expectations",
+   "References with classification + notes", "Liked / disliked examples",
+   "Avoid patterns", "Non-negotiable visual rules", "Decision provenance map"],
+  ["project-reference/frontend/ inspected (or inferred + proposed when absent)",
+   "Every reference classified", "Non-negotiable visual rules captured",
+   "Provenance recorded per decision (user/references/inference)",
+   "Validates against frontend-reference.schema.json"]),
+
+ ("35-product-intelligence-grill", "Product Logic & Intelligence Grill", "planning", "claude",
+  "ai-responsibility-matrix", "35-product-intelligence-grill.md + ai-responsibility-matrix.yaml",
+  "Mandatory. Determine the actual central value of the system and WHO owns each decision "
+  "(ai / deterministic_backend / frontend / human). Reject any plan that replaces intended "
+  "AI-centered behavior with a fixed automated flow. Produce the intelligence responsibility matrix.",
+  ["What is the central value of the system?",
+   "Is the central value produced by deterministic workflow, rules, AI, or a combination?",
+   "Which decisions MUST be made by AI?", "Which decisions must NEVER be delegated to AI?",
+   "Which steps require interpretation vs automation?",
+   "Which steps depend on accumulated interaction context?",
+   "Which steps are static vs must adapt dynamically?",
+   "Which steps require tools or external information?", "Which steps require human review?",
+   "What would make this feel like a normal workflow instead of an AI-first product?",
+   "How must the product behave when AI is unavailable? Minimum deterministic fallback?",
+   "What part of the experience proves the intelligence is actually working?",
+   "Responsibility matrix: step_id/description/owner/decision_type/inputs/context/tools/"
+   "output_contract/validation/fallback/user_visible_effect"],
+  ["Central value + owner stated", "AI-vs-deterministic responsibility explicit per step",
+   "Decisions never delegated to AI listed", "Behavior when AI unavailable defined",
+   "Intelligence proof identified", "Not a disguised fixed workflow when AI is the point",
+   "Validates against ai-responsibility-matrix.schema.json"]),
+
+ ("36-frontend-experience-grill", "Frontend Experience Grill", "planning", "claude",
+  "visual-quality-review", "36-frontend-experience-grill.md",
+  "Mandatory dedicated frontend grill after product + system logic are understood. Challenge "
+  "product communication, information architecture, creativity/differentiation, usability, "
+  "responsiveness and visual quality. Output concrete frontend decisions, not generic advice.",
+  ["Product communication: does the UI communicate central value + what the AI is doing?",
+   "Information architecture: what is primary / supporting / progressive disclosure / hidden?",
+   "Creativity: does it look like a generic admin dashboard? what custom visualization fits?",
+   "Usability: can the main flow be completed without docs? are errors actionable?",
+   "Responsiveness: what stacks / becomes a drawer / stays desktop-first?",
+   "Visual quality: hierarchy, spacing, typography, dead areas, stretched cards, transitions",
+   "Per-dimension verdict (pass/warn/fail) + finding + evidence",
+   "Concrete decisions fed back into the frontend plan"],
+  ["All six dimensions challenged", "Findings are concrete frontend decisions",
+   "Generic-dashboard risk explicitly assessed", "Feeds screen/interaction contracts",
+   "Validates against visual-quality-review.schema.json"]),
+
+ ("37-frontend-plan", "Frontend Plan (Screens & Interactions)", "planning", "claude",
+  "screen-contract", "frontend/screen-contracts/*.yaml + frontend/frontend-plan.md",
+  "Detailed, per-surface frontend plan. NOT a list of page names. For every page/route/modal/"
+  "panel/significant component produce a full screen contract with every state and its data + "
+  "backend + AI dependencies. Every surface that exposes product logic references its "
+  "requirement, API/action, state-machine state, data/AI result, error/fallback, and tests.",
+  ["Per-screen: id/purpose/user_role/route/user_objective/information_hierarchy",
+   "main_content/layout/sections/components/primary_action/secondary_actions",
+   "data_displayed/data_source/backend_dependency/ai_dependency/permissions/validations",
+   "States: default/loading/streaming/generating/reconnecting/empty/partial_data/error/"
+   "success/disabled/permission_denied",
+   "responsive/keyboard/focus/accessibility/animation/transition/scroll/persistence/optimistic",
+   "analytics", "requirement_refs / api_refs / state_machine_states",
+   "acceptance_criteria / tests"],
+  ["Every surface has a UI-### screen contract", "All applicable states defined per surface",
+   "Each surface maps requirement + API/action + state + tests",
+   "No screen exposes fake/static data in a production path",
+   "Validates against screen-contract.schema.json"]),
+
+ ("38-component-contract", "Component Contracts", "planning", "claude",
+  "component-contract", "frontend/component-contracts.yaml",
+  "For each significant reusable component define what it reflects (db/ai/api result), the "
+  "requirement it represents, the API it consumes, the states it shows, and its error fallback.",
+  ["Component id (CMP-###)", "Name/purpose", "Used in screens", "Requirement ref",
+   "Consumes API", "State shown", "Reflects (db/ai/api result)", "Props/states",
+   "Error fallback", "Accessibility", "Acceptance criteria / tests"],
+  ["Every product-logic component references a requirement",
+   "Every data component names its API/AI source", "Error fallback defined",
+   "Validates against component-contract.schema.json"]),
+
+ ("39-interaction-contract", "Frontend-to-Backend Interaction Contracts", "planning", "claude",
+  "interaction-contract", "frontend/interaction-contracts.yaml",
+  "For every user interaction, bind the frontend action to its backend/local behavior end to end. "
+  "Reject buttons with no implementation contract and backend features with no user surface "
+  "(unless explicitly administrative, background-only, or API-only).",
+  ["Interaction id (IX-###)", "screen_id/component_id", "user_action",
+   "frontend_validation", "request_contract", "backend_handler", "business_rule",
+   "ai_behavior", "database_effect", "success_response", "error_responses",
+   "loading_state/streaming_state/retry_behavior/optimistic_behavior",
+   "user_feedback", "analytics_event", "acceptance_criteria / tests"],
+  ["Every user-facing action maps to a backend or local behavior",
+   "Every user-visible backend capability maps to a surface (unless admin/background/API-only)",
+   "No placeholder/fake-data contracts", "Validates against interaction-contract.schema.json"]),
+
+ ("40-frontend-state-inventory", "Frontend State Inventory", "planning", "claude",
+  "frontend-state", "frontend/frontend-states.yaml",
+  "Enumerate every non-trivial UI state as a first-class STATE-### with its trigger, data "
+  "source, user feedback, and tests. Include AI states: constructing context, generating, "
+  "validating, streaming, saving, retrying, provider unavailable.",
+  ["State id (STATE-###)", "Name", "Applies to (screen/component)", "Kind",
+   "Trigger", "UI representation", "Data source", "User feedback",
+   "Exit transitions", "Acceptance criteria / tests"],
+  ["Every screen's declared states appear here", "AI generating/validating/streaming states present",
+   "reconnecting/offline handled where applicable", "Validates against frontend-state.schema.json"]),
+
+ ("41-design-tokens", "Design Tokens", "planning", "claude",
+  "design-token", "frontend/design-tokens.yaml",
+  "Concrete design tokens (color, typography, spacing, radius, shadow, motion, breakpoints) "
+  "derived from the frontend reference package. Not generic advice — actual token values.",
+  ["Color scale", "Typography scale", "Spacing scale", "Radius", "Shadow/elevation",
+   "Motion (durations/easings/reduced-motion)", "Breakpoints", "Z-index layers", "Source"],
+  ["Tokens are concrete values", "Derived from the reference package where present",
+   "Reduced-motion accounted for", "Validates against design-token.schema.json"]),
+
+ ("42-ai-provider-contract", "AI Provider Contract", "planning", "claude",
+  "ai-provider-contract", "ai/ai-provider-contract.yaml",
+  "When the product depends on an external AI provider, specify a production-capable integration "
+  "behind a provider-independent interface WITH at least one concrete adapter. Mock/scripted "
+  "providers may exist only as test doubles / offline-dev / CI / explicit demo — never as the "
+  "default production path.",
+  ["Provider", "Provider-independent interface", "Concrete adapter",
+   "Model env var + API key env var (names only)", "Model config",
+   "Timeout / retry / rate-limit handling", "Structured output + input/output schema",
+   "Prompt contract + prompt versioning", "Streaming", "Token/cost logging",
+   "Error mapping", "Fallback behavior", "Startup validation for missing config",
+   "Mock-mode policy", ".env.example keys (names only)",
+   "Production setup instructions", "Tests (fakes + optional real-key integration test)"],
+  ["Provider-independent interface + concrete adapter both specified",
+   "Runnable after configuring named env vars", "Startup validation for missing config",
+   "Mock mode is not the production default", "Secrets by env-var name only",
+   "Validates against ai-provider-contract.schema.json"]),
+
+ ("43-real-ai-integration-plan", "Real AI Integration Plan", "planning", "claude",
+  "real-ai-integration-plan", "ai/real-ai-integration-plan.yaml",
+  "When AI is the product's central value, define the full production path and the centrality "
+  "tests that prove the AI (not a fixed sequence) is responsible for behavior.",
+  ["AI is central? (bool)",
+   "Production path: frontend -> AI endpoint -> validation -> context -> interface -> adapter "
+   "-> provider call -> structured-output validation -> domain validation -> persistence -> "
+   "frontend response/stream",
+   "Provider contract ref", "Responsibility matrix ref", "Frontend AI states",
+   "Centrality tests (different context -> different behavior; not a fixed sequence; uses stored "
+   "context; schema-valid output; invalid output rejected/repaired; tools influence output; "
+   "fallback on failure; mock not active in prod; adapter initializes with credentials)",
+   "Required env vars (names only)", "Mock policy", "Setup instructions"],
+  ["Full production path enumerated", "Centrality tests present and meaningful",
+   "Env vars named (no values)", "Mock policy forbids scripted production conversation",
+   "completion gate real_ai_integration_verified referenced",
+   "Validates against real-ai-integration-plan.schema.json"]),
+
+ ("44-vertical-traceability", "Vertical Traceability", "planning", "claude",
+  "vertical-traceability", "vertical-traceability.yaml",
+  "Prove how each user-facing requirement travels through EVERY applicable layer: goal -> product "
+  "requirement -> business rule -> AI/deterministic responsibility -> backend service -> database "
+  "entity/integration -> API contract -> frontend surface -> frontend state -> acceptance "
+  "criterion -> test -> evidence. Validation fails when an applicable layer is missing.",
+  ["Per requirement: requirement_id/goal_id", "business_rules", "ai_behaviors",
+   "backend_components", "database_entities", "api_contracts",
+   "frontend_surfaces", "frontend_states", "acceptance_criteria", "tests", "evidence",
+   "layers_applicable map (which layers apply to this product)"],
+  ["Every user-facing requirement maps across all applicable layers",
+   "No applicable layer omitted for any requirement",
+   "Frontend surfaces + states present for UI requirements",
+   "AI behaviors present for AI requirements",
+   "Validates against vertical-traceability.schema.json"]),
+
+ ("45-implementation-deliverables", "Implementation Deliverables Contract", "planning", "claude",
+  "implementation-deliverable", "implementation-deliverables.yaml",
+  "State EXACTLY what the final implementation must contain and how each deliverable is proven "
+  "complete. Not what the product does — what Codex must deliver.",
+  ["Deliverable id (DEL-###)", "Name", "Type (frontend/backend/database/authentication/"
+   "ai_integration/local_environment/production_environment/e2e_suite/observability/"
+   "documentation/deployment/final_report)", "Purpose", "Requirements",
+   "Expected files", "Expected runtime behavior", "Dependencies", "Configuration",
+   "Tests", "Evidence", "Completion conditions", "Completion gate"],
+  ["Every applicable layer has a deliverable", "Runtime behavior stated per deliverable",
+   "Completion conditions objective", "Maps to completion gates",
+   "Validates against implementation-deliverable.schema.json"]),
+
+ ("46-production-readiness", "Production Readiness Matrix", "planning", "claude",
+  "production-readiness", "production-readiness.yaml",
+  "Enumerate every vertical layer, mark applicability, confirm it is planned, and bind it to an "
+  "implementation gate. A plan is not production-ready when an applicable layer is omitted, "
+  "superficial, or delegated to Codex to define.",
+  ["Per layer: layer/applicable/planned/implementation_gate/evidence/notes",
+   "Layers: product_behavior, business_logic, ai_behavior, frontend, backend, database, "
+   "authentication, authorization, integrations, environment_configuration, observability, "
+   "security, performance, tests, deployment, rollback, documentation",
+   "definition_satisfied (bool)"],
+  ["Every applicable layer planned + gated", "No applicable layer superficial or deferred",
+   "Frontend mandatory when there is a UI; DB when persistence; auth when private/roles; "
+   "real AI path when AI is central", "Validates against production-readiness.schema.json"]),
+
+ ("47-production-like-run", "Production-like Run Verification", "planning", "claude",
+  "production-like-run", "production-like-run.md (plan) -> executed by Codex",
+  "Define the clean production-like verification Codex must run: install from clean, init DB, "
+  "migrate, configure non-secret env, build, start, health, core browser flows, auth, "
+  "persistence, AI config behavior, real-provider init when credentials present, controlled "
+  "behavior when absent, logs, console, failed requests, security/perf checks, evidence.",
+  ["Ordered steps: action / expected / evidence / status",
+   "Gates verified (production_like_run_verified + related)",
+   "Behavior with credentials present vs absent",
+   "Log / console / failed-request inspection"],
+  ["Steps are ordered and objective", "Covers install->build->run->health->flows->evidence",
+   "Credential-present and credential-absent paths verified",
+   "completion gate production_like_run_verified referenced",
+   "Validates against production-like-run.schema.json"]),
 ]
 
 

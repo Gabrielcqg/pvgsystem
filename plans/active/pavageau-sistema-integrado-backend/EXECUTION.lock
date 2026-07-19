@@ -1,0 +1,70 @@
+execution_mode: autonomous
+plan_status: implementation_ready
+human_approval_per_task: false
+continue_until_completion: true
+active_plan_version: "2.5.1"
+active_plan_hash: "sha256:9f9fe612f27977042e46edf34a7ce4daae5eb0f11b0f0aa501268f08514ba36c"
+created_at: "2026-07-19"
+autonomy_profile: development_full_autonomy
+
+required_completion_gates:
+  - active_plan_valid
+  - planning_package_complete
+  - independent_plan_audit_passed
+  - codex_handoff_valid
+  - product_requirements_implemented
+  - requirement_traceability_complete
+  - backend_implemented
+  - database_implemented
+  - authentication_implemented
+  - acceptance_criteria_passed
+  - build_passed
+  - lint_passed
+  - typecheck_passed
+  - unit_tests_passed
+  - integration_tests_passed
+  - contract_tests_passed
+  - database_tests_passed
+  - migration_validation_passed
+  - auth_tests_passed
+  - authorization_tests_passed
+  - security_review_passed
+  - performance_review_passed
+  - observability_verified
+  - production_like_run_verified
+  - documentation_complete
+  - deviation_report_complete
+  - external_blockers_documented
+  - final_acceptance_judge_passed
+
+plan_facts:
+  has_database: true
+  has_auth: true
+  has_ui: false
+  has_ai: false
+  lint_configured: true
+  types_applicable: true
+
+closure_pass:
+  unresolved_material_decisions: 0
+  codex_questions_required: 0
+  external_files_required_at_implementation_start: 0
+  requirements_total: 66
+  requirements_with_verification: 66
+  requirements_without_verification: 0
+
+canonical_scraper:
+  path: vendor/scraper/consulta_tjsp_lote.py
+  sha256: "c9429f2aa3ac05a30fe53075ce56fb2def63e5cc82f229a0531b94ba73701ad8"
+  verified_run: {processes: 106, successes: 94, movements: 282, captcha_timeout: 0, erro: 0}
+  protected_branches: [eproc_eventos, container_movimentacao]
+  frozen: true
+
+external_dependencies:
+  EXT-DEP-01:
+    what: Supabase project in sa-east-1 plus SUPABASE_URL, SUPABASE_ANON_KEY, SUPABASE_SERVICE_ROLE_KEY, RADAR_DB_URL
+    owner: Gabriel (operator action)
+    blocks: [production_like_run_verified]
+    blocks_codex: false
+
+open_items: none

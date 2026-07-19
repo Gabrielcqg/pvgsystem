@@ -1,0 +1,86 @@
+{
+  "type": "object",
+  "properties": {
+    "states": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^STATE-[0-9]{3,}$"
+          },
+          "name": {
+            "type": "string"
+          },
+          "applies_to": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "default",
+              "loading",
+              "streaming",
+              "generating",
+              "reconnecting",
+              "empty",
+              "partial_data",
+              "error",
+              "success",
+              "disabled",
+              "permission_denied",
+              "optimistic",
+              "offline"
+            ]
+          },
+          "trigger": {
+            "type": "string"
+          },
+          "ui_representation": {
+            "type": "string"
+          },
+          "data_source": {
+            "type": "string"
+          },
+          "user_feedback": {
+            "type": "string"
+          },
+          "exit_transitions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "acceptance_criteria": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "tests": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "applies_to",
+          "kind",
+          "ui_representation"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    }
+  },
+  "required": [
+    "states"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Frontend State Inventory",
+  "$id": "frontend-state.schema.json"
+}

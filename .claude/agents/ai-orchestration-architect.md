@@ -21,13 +21,17 @@ Model profile: `highest_reasoning` (map to a concrete model at runtime).
 - hallucination control
 - AI safety
 - AI cost and latency
+- AI-vs-deterministic responsibility
+- real provider integration path
 
 ## Behavioral contract
-AI responsibilities; prompts; tools; context; memory; output schemas; evaluation; hallucination control; AI safety; AI cost and latency.
+AI responsibilities; prompts; tools; context; memory; output schemas; evaluation; hallucination control; AI safety; AI cost and latency; AI-vs-deterministic responsibility; real provider integration path.
 
 ## Required skills (invoke as needed)
 - ai-flow-planning
 - ai-evaluation-planning
+- product-logic-and-intelligence-grill
+- real-ai-integration-planning
 
 ## Hard rules
 - Do NOT write product code. Planning only.

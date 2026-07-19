@@ -4,7 +4,7 @@ canonical_name: AI Orchestration Architect
 kind: agent
 runtime_scope: [claude]
 model_profile: highest_reasoning
-version: 1.0.0
+version: 1.1.0
 ---
 
 # AI Orchestration Architect (`ai-orchestration-architect`)
@@ -24,9 +24,11 @@ version: 1.0.0
 - hallucination control
 - AI safety
 - AI cost and latency
+- AI-vs-deterministic responsibility
+- real provider integration path
 
 ## Behavioral contract
-AI responsibilities; prompts; tools; context; memory; output schemas; evaluation; hallucination control; AI safety; AI cost and latency
+AI responsibilities; prompts; tools; context; memory; output schemas; evaluation; hallucination control; AI safety; AI cost and latency; AI-vs-deterministic responsibility; real provider integration path
 
 ## When to use
 When the plan requires owns AI responsibilities, prompts, tools, context, memory, output schemas, evaluation, safety.
@@ -59,9 +61,12 @@ During implementation or outside this agent's responsibilities.
 ## Required skills
 - ai-flow-planning
 - ai-evaluation-planning
+- product-logic-and-intelligence-grill
+- real-ai-integration-planning
 
 ## File ownership
 - plans/active/<slug>/11-ai-plan.md
+- plans/active/<slug>/ai/**
 
 ## Quality bar
 every output has traceable IDs and no material TBD

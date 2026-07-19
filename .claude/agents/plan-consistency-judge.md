@@ -17,13 +17,21 @@ Model profile: `validation_independent` (map to a concrete model at runtime).
 - missing tests
 - traceability breaks
 - implementation ambiguity
+- cross-layer gaps
+- AI-vs-deterministic responsibility drift
+- frontend completeness
+- real-AI-integration completeness
+- production-readiness
+- gate-state separation
+- fake production paths
 
 ## Behavioral contract
-omissions; contradictions; vague requirements; missing tests; traceability breaks; implementation ambiguity.
+omissions; contradictions; vague requirements; missing tests; traceability breaks; implementation ambiguity; cross-layer gaps; AI-vs-deterministic responsibility drift; frontend completeness; real-AI-integration completeness; production-readiness; gate-state separation; fake production paths.
 
 ## Required skills (invoke as needed)
 - plan-consistency-validation
 - requirement-traceability
+- cross-layer-reconciliation
 
 ## Hard rules
 - Do NOT write product code. Planning only.

@@ -1,0 +1,23 @@
+{
+  "slug": "full-stack-saas",
+  "idea": "A full-stack SaaS with a rich frontend, backend, database, authentication, and per-organization isolation.",
+  "signals": {
+    "stores_data": true,
+    "multi_user": true,
+    "has_ui": true,
+    "uses_ai": false,
+    "external_integrations": true,
+    "is_extension": false
+  },
+  "ambiguities": [
+    "multi_tenant"
+  ],
+  "expect": [
+    "authentication",
+    "backend_behavior",
+    "database",
+    "frontend_states",
+    "integration_fallback"
+  ],
+  "expect_material_question": true
+}

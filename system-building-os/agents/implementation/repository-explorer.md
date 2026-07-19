@@ -4,7 +4,7 @@ canonical_name: Repository Explorer
 kind: agent
 runtime_scope: [codex]
 model_profile: fast_read_only
-version: 1.0.0
+version: 1.1.0
 ---
 
 # Repository Explorer (`repository-explorer`)

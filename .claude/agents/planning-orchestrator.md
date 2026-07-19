@@ -27,6 +27,9 @@ maintain planning state; invoke relevant planning agents; prevent skipped dimens
 - plan-max-orchestration
 - requirement-completeness-audit
 - decision-resolution
+- cross-layer-reconciliation
+- implementation-deliverables-planning
+- production-readiness-planning
 
 ## Hard rules
 - Do NOT write product code. Planning only.

@@ -1,0 +1,641 @@
+criteria:
+  - id: "AC-001"
+    requirement: "FR-001"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-001: Register partners as references, never free text"
+    expected_result: "Register partners as references, never free text"
+    verification: automated
+    test_ids: ["TEST-051"]
+    evidence: "pytest report for TEST-TX-15"
+  - id: "AC-002"
+    requirement: "FR-002"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-002: Unify CONTRATOS/ENCERRADOS/PENDENTES into one table with a status"
+    expected_result: "Unify CONTRATOS/ENCERRADOS/PENDENTES into one table with a status"
+    verification: automated
+    test_ids: ["TEST-052"]
+    evidence: "pytest report for TEST-TX-16"
+  - id: "AC-003"
+    requirement: "FR-003"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-003: Close the honorarium vocabulary (15 spellings \u2192 8 types)"
+    expected_result: "Close the honorarium vocabulary (15 spellings \u2192 8 types)"
+    verification: automated
+    test_ids: ["TEST-095"]
+    evidence: "pytest report for TEST-LOAD-02"
+  - id: "AC-004"
+    requirement: "FR-003"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-003: Close the honorarium vocabulary (15 spellings \u2192 8 types)"
+    expected_result: "Close the honorarium vocabulary (15 spellings \u2192 8 types)"
+    verification: automated
+    test_ids: ["TEST-088"]
+    evidence: "pytest report for TEST-SCHEMA-01"
+  - id: "AC-005"
+    requirement: "FR-004"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-004: Instalments always reference a contract"
+    expected_result: "Instalments always reference a contract"
+    verification: automated
+    test_ids: ["TEST-096"]
+    evidence: "pytest report for TEST-LOAD-03"
+  - id: "AC-006"
+    requirement: "FR-004"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-004: Instalments always reference a contract"
+    expected_result: "Instalments always reference a contract"
+    verification: automated
+    test_ids: ["TEST-089"]
+    evidence: "pytest report for TEST-SCHEMA-02"
+  - id: "AC-007"
+    requirement: "FR-005"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-005: Contract deletion decides the fate of instalments explicitly"
+    expected_result: "Contract deletion decides the fate of instalments explicitly"
+    verification: automated
+    test_ids: ["TEST-045"]
+    evidence: "pytest report for TEST-TX-09"
+  - id: "AC-008"
+    requirement: "FR-006"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-006: Entries are the only place money is typed"
+    expected_result: "Entries are the only place money is typed"
+    verification: automated
+    test_ids: ["TEST-059"]
+    evidence: "pytest report for TEST-CALC-01"
+  - id: "AC-009"
+    requirement: "FR-007"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-007: Entries carry provenance (origin + origin id)"
+    expected_result: "Entries carry provenance (origin + origin id)"
+    verification: automated
+    test_ids: ["TEST-037"]
+    evidence: "pytest report for TEST-TX-01"
+  - id: "AC-010"
+    requirement: "FR-007"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-007: Entries carry provenance (origin + origin id)"
+    expected_result: "Entries carry provenance (origin + origin id)"
+    verification: automated
+    test_ids: ["TEST-038"]
+    evidence: "pytest report for TEST-TX-02"
+  - id: "AC-011"
+    requirement: "FR-007"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-007: Entries carry provenance (origin + origin id)"
+    expected_result: "Entries carry provenance (origin + origin id)"
+    verification: automated
+    test_ids: ["TEST-039"]
+    evidence: "pytest report for TEST-TX-03"
+  - id: "AC-012"
+    requirement: "FR-008"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-008: Fixed costs have an end of validity"
+    expected_result: "Fixed costs have an end of validity"
+    verification: automated
+    test_ids: ["TEST-073"]
+    evidence: "pytest report for TEST-CALC-15"
+  - id: "AC-013"
+    requirement: "FR-008"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-008: Fixed costs have an end of validity"
+    expected_result: "Fixed costs have an end of validity"
+    verification: automated
+    test_ids: ["TEST-047"]
+    evidence: "pytest report for TEST-TX-11"
+  - id: "AC-014"
+    requirement: "FR-052"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-052: README, run report and evidence index are delivered \u2014 satisfies documentation_complete and deviation_report_co"
+    expected_result: "README, run report and evidence index are delivered \u2014 satisfies documentation_complete and deviation_report_complete"
+    verification: automated
+    test_ids: ["TEST-102"]
+    evidence: "pytest report for TEST-DOC-01"
+  - id: "AC-015"
+    requirement: "FR-051"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-051: Fixed costs offer a per-month post-to-cash action"
+    expected_result: "Fixed costs offer a per-month post-to-cash action"
+    verification: automated
+    test_ids: ["TEST-046"]
+    evidence: "pytest report for TEST-TX-10"
+  - id: "AC-016"
+    requirement: "FR-009"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-009: A fixed cost cannot post twice in the same month"
+    expected_result: "A fixed cost cannot post twice in the same month"
+    verification: automated
+    test_ids: ["TEST-042"]
+    evidence: "pytest report for TEST-TX-06"
+  - id: "AC-017"
+    requirement: "FR-010"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-010: Only 4 configuration numbers exist"
+    expected_result: "Only 4 configuration numbers exist"
+    verification: automated
+    test_ids: ["TEST-060"]
+    evidence: "pytest report for TEST-CALC-02"
+  - id: "AC-018"
+    requirement: "FR-011"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-011: Confirming an instalment creates its entry, atomically"
+    expected_result: "Confirming an instalment creates its entry, atomically"
+    verification: automated
+    test_ids: ["TEST-037"]
+    evidence: "pytest report for TEST-TX-01"
+  - id: "AC-019"
+    requirement: "FR-012"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-012: Reversal undoes both sides, atomically"
+    expected_result: "Reversal undoes both sides, atomically"
+    verification: automated
+    test_ids: ["TEST-038"]
+    evidence: "pytest report for TEST-TX-02"
+  - id: "AC-020"
+    requirement: "FR-013"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-013: An entry may settle an instalment in one transaction"
+    expected_result: "An entry may settle an instalment in one transaction"
+    verification: automated
+    test_ids: ["TEST-039"]
+    evidence: "pytest report for TEST-TX-03"
+  - id: "AC-021"
+    requirement: "FR-014"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-014: A new movement becomes a task, once"
+    expected_result: "A new movement becomes a task, once"
+    verification: automated
+    test_ids: ["TEST-043"]
+    evidence: "pytest report for TEST-TX-07"
+  - id: "AC-022"
+    requirement: "FR-015"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-015: New movements enter by manual curation"
+    expected_result: "New movements enter by manual curation"
+    verification: automated
+    test_ids: ["TEST-003"]
+    evidence: "pytest report for TEST-RADAR-03"
+  - id: "AC-023"
+    requirement: "FR-016"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-016: 30-day inertia fires automatically and idempotently"
+    expected_result: "30-day inertia fires automatically and idempotently"
+    verification: automated
+    test_ids: ["TEST-011"]
+    evidence: "pytest report for TEST-RADAR-11"
+  - id: "AC-024"
+    requirement: "FR-016"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-016: 30-day inertia fires automatically and idempotently"
+    expected_result: "30-day inertia fires automatically and idempotently"
+    verification: automated
+    test_ids: ["TEST-044"]
+    evidence: "pytest report for TEST-TX-08"
+  - id: "AC-025"
+    requirement: "FR-017"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-017: One run dispatches by tribunal behind a common interface"
+    expected_result: "One run dispatches by tribunal behind a common interface"
+    verification: automated
+    test_ids: ["TEST-016"]
+    evidence: "pytest report for TEST-RADAR-16"
+  - id: "AC-026"
+    requirement: "FR-018"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-018: Unimplemented tribunals record pendente_implementacao without breaking the run"
+    expected_result: "Unimplemented tribunals record pendente_implementacao without breaking the run"
+    verification: automated
+    test_ids: ["TEST-016"]
+    evidence: "pytest report for TEST-RADAR-16"
+  - id: "AC-027"
+    requirement: "FR-019"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-019: Only the 3 most recent movements; compare by deterministic key"
+    expected_result: "Only the 3 most recent movements; compare by deterministic key"
+    verification: automated
+    test_ids: ["TEST-018"]
+    evidence: "pytest report for TEST-RADAR-18"
+  - id: "AC-028"
+    requirement: "FR-020"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-020: First query creates the baseline without flagging novelty"
+    expected_result: "First query creates the baseline without flagging novelty"
+    verification: automated
+    test_ids: ["TEST-001"]
+    evidence: "pytest report for TEST-RADAR-01"
+  - id: "AC-029"
+    requirement: "FR-021"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-021: Password-gated processes are recorded and become queryable after registration"
+    expected_result: "Password-gated processes are recorded and become queryable after registration"
+    verification: automated
+    test_ids: ["TEST-006"]
+    evidence: "pytest report for TEST-RADAR-06"
+  - id: "AC-030"
+    requirement: "FR-022"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-022: Two runs can never overlap"
+    expected_result: "Two runs can never overlap"
+    verification: automated
+    test_ids: ["TEST-010"]
+    evidence: "pytest report for TEST-RADAR-10"
+  - id: "AC-031"
+    requirement: "FR-023"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-023: Incremental persistence survives interruption"
+    expected_result: "Incremental persistence survives interruption"
+    verification: automated
+    test_ids: ["TEST-009"]
+    evidence: "pytest report for TEST-RADAR-09"
+  - id: "AC-032"
+    requirement: "FR-024"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-024: One process failing never stops the run"
+    expected_result: "One process failing never stops the run"
+    verification: automated
+    test_ids: ["TEST-008"]
+    evidence: "pytest report for TEST-RADAR-08"
+  - id: "AC-033"
+    requirement: "FR-025"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-025: Technical error email at end of run, configurable, redacted"
+    expected_result: "Technical error email at end of run, configurable, redacted"
+    verification: automated
+    test_ids: ["TEST-083"]
+    evidence: "pytest report for TEST-SEC-03"
+  - id: "AC-034"
+    requirement: "FR-026"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-026: Closing a process deletes it and its history"
+    expected_result: "Closing a process deletes it and its history"
+    verification: automated
+    test_ids: ["TEST-012"]
+    evidence: "pytest report for TEST-RADAR-12"
+  - id: "AC-035"
+    requirement: "FR-027"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-027: Derived reports served from materialized tables"
+    expected_result: "Derived reports served from materialized tables"
+    verification: automated
+    test_ids: ["TEST-065"]
+    evidence: "pytest report for TEST-CALC-07"
+  - id: "AC-036"
+    requirement: "FR-028"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-028: Audit trail records who changed what, insert-only"
+    expected_result: "Audit trail records who changed what, insert-only"
+    verification: automated
+    test_ids: ["TEST-082"]
+    evidence: "pytest report for TEST-SEC-02"
+  - id: "AC-037"
+    requirement: "FR-029"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-029: Newly registered processes are not queried immediately"
+    expected_result: "Newly registered processes are not queried immediately"
+    verification: automated
+    test_ids: ["TEST-036"]
+    evidence: "pytest report for TEST-RADAR-29"
+  - id: "AC-038"
+    requirement: "FR-030"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-030: Weekly run at a configurable time"
+    expected_result: "Weekly run at a configurable time"
+    verification: automated
+    test_ids: ["TEST-090"]
+    evidence: "pytest report for TEST-CFG-01"
+  - id: "AC-039"
+    requirement: "FR-031"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-031: Error email recipient is configurable"
+    expected_result: "Error email recipient is configurable"
+    verification: automated
+    test_ids: ["TEST-091"]
+    evidence: "pytest report for TEST-CFG-02"
+  - id: "AC-040"
+    requirement: "FR-032"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-032: Error email carries number, status, message, step, timestamp"
+    expected_result: "Error email carries number, status, message, step, timestamp"
+    verification: automated
+    test_ids: ["TEST-022"]
+    evidence: "pytest report for TEST-RADAR-22"
+  - id: "AC-041"
+    requirement: "FR-033"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-033: A failed email never fails the run"
+    expected_result: "A failed email never fails the run"
+    verification: automated
+    test_ids: ["TEST-020"]
+    evidence: "pytest report for TEST-RADAR-20"
+  - id: "AC-042"
+    requirement: "FR-034"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-034: Alert when no run completes within N days"
+    expected_result: "Alert when no run completes within N days"
+    verification: automated
+    test_ids: ["TEST-023"]
+    evidence: "pytest report for TEST-RADAR-23"
+  - id: "AC-043"
+    requirement: "FR-035"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-035: Monthly analyses: faturamento, gastos/categoria, clientes fechados, restitui\u00e7\u00f5es, inadimpl\u00eancia"
+    expected_result: "Monthly analyses: faturamento, gastos/categoria, clientes fechados, restitui\u00e7\u00f5es, inadimpl\u00eancia"
+    verification: automated
+    test_ids: ["TEST-063"]
+    evidence: "pytest report for TEST-CALC-05"
+  - id: "AC-044"
+    requirement: "FR-036"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-036: Conversion rate, year-scoped"
+    expected_result: "Conversion rate, year-scoped"
+    verification: automated
+    test_ids: ["TEST-070"]
+    evidence: "pytest report for TEST-CALC-12"
+  - id: "AC-045"
+    requirement: "FR-037"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-037: Derived indicators with no fields: reserve months, % recurring revenue, monthly fixed cost, % goal"
+    expected_result: "Derived indicators with no fields: reserve months, % recurring revenue, monthly fixed cost, % goal"
+    verification: automated
+    test_ids: ["TEST-071"]
+    evidence: "pytest report for TEST-CALC-13"
+  - id: "AC-046"
+    requirement: "FR-038"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-038: Projected success/sucumb\u00eancia split, open contracts only"
+    expected_result: "Projected success/sucumb\u00eancia split, open contracts only"
+    verification: automated
+    test_ids: ["TEST-064"]
+    evidence: "pytest report for TEST-CALC-06"
+  - id: "AC-047"
+    requirement: "FR-039"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-039: A password-gated process becomes queryable after registration"
+    expected_result: "A password-gated process becomes queryable after registration"
+    verification: automated
+    test_ids: ["TEST-034"]
+    evidence: "pytest report for TEST-RADAR-27"
+  - id: "AC-048"
+    requirement: "FR-040"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-040: Audit rows are actually written for every sensitive operation"
+    expected_result: "Audit rows are actually written for every sensitive operation"
+    verification: automated
+    test_ids: ["TEST-053"]
+    evidence: "pytest report for TEST-AUD-01"
+  - id: "AC-049"
+    requirement: "FR-040"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-040: Audit rows are actually written for every sensitive operation"
+    expected_result: "Audit rows are actually written for every sensitive operation"
+    verification: automated
+    test_ids: ["TEST-054"]
+    evidence: "pytest report for TEST-AUD-02"
+  - id: "AC-050"
+    requirement: "FR-040"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-040: Audit rows are actually written for every sensitive operation"
+    expected_result: "Audit rows are actually written for every sensitive operation"
+    verification: automated
+    test_ids: ["TEST-055"]
+    evidence: "pytest report for TEST-AUD-03"
+  - id: "AC-051"
+    requirement: "FR-040"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-040: Audit rows are actually written for every sensitive operation"
+    expected_result: "Audit rows are actually written for every sensitive operation"
+    verification: automated
+    test_ids: ["TEST-056"]
+    evidence: "pytest report for TEST-AUD-04"
+  - id: "AC-052"
+    requirement: "FR-040"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-040: Audit rows are actually written for every sensitive operation"
+    expected_result: "Audit rows are actually written for every sensitive operation"
+    verification: automated
+    test_ids: ["TEST-057"]
+    evidence: "pytest report for TEST-AUD-05"
+  - id: "AC-053"
+    requirement: "FR-040"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-040: Audit rows are actually written for every sensitive operation"
+    expected_result: "Audit rows are actually written for every sensitive operation"
+    verification: automated
+    test_ids: ["TEST-058"]
+    evidence: "pytest report for TEST-AUD-06"
+  - id: "AC-054"
+    requirement: "FR-041"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-041: Alert when the captcha-timeout rate exceeds 20% in a run"
+    expected_result: "Alert when the captcha-timeout rate exceeds 20% in a run"
+    verification: automated
+    test_ids: ["TEST-026"]
+    evidence: "pytest report for TEST-RADAR-30"
+  - id: "AC-055"
+    requirement: "FR-042"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-042: Alert when taxa_conclusiva falls below 0.70"
+    expected_result: "Alert when taxa_conclusiva falls below 0.70"
+    verification: automated
+    test_ids: ["TEST-026"]
+    evidence: "pytest report for TEST-RADAR-30"
+  - id: "AC-056"
+    requirement: "FR-043"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-043: radar_worker can do its job and nothing more"
+    expected_result: "radar_worker can do its job and nothing more"
+    verification: automated
+    test_ids: ["TEST-087"]
+    evidence: "pytest report for TEST-SEC-07"
+  - id: "AC-057"
+    requirement: "FR-044"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-044: Idempotent, auditable spreadsheet loader with vocabulary normalization and orphan reconciliation"
+    expected_result: "Idempotent, auditable spreadsheet loader with vocabulary normalization and orphan reconciliation"
+    verification: automated
+    test_ids: ["TEST-094"]
+    evidence: "pytest report for TEST-LOAD-01"
+  - id: "AC-058"
+    requirement: "FR-045"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-045: A run with 12 pending processes finishes concluida"
+    expected_result: "A run with 12 pending processes finishes concluida"
+    verification: automated
+    test_ids: ["TEST-028"]
+    evidence: "pytest report for TEST-RADAR-31"
+  - id: "AC-059"
+    requirement: "FR-046"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-046: Deployment region is validated configuration (AWS_REGION, default sa-east-1)"
+    expected_result: "Deployment region is validated configuration (AWS_REGION, default sa-east-1)"
+    verification: automated
+    test_ids: ["TEST-092"]
+    evidence: "pytest report for TEST-CFG-03"
+  - id: "AC-060"
+    requirement: "FR-047"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-047: Local/CI implementation runs with no region or Supabase configuration"
+    expected_result: "Local/CI implementation runs with no region or Supabase configuration"
+    verification: automated
+    test_ids: ["TEST-093"]
+    evidence: "pytest report for TEST-CFG-04"
+  - id: "AC-061"
+    requirement: "FR-049"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-049: The 118 known processes are seeded from a vendored list (106 TJSP \u00b7 7 TJCE \u00b7 5 TJBA); the 1 malformed CNJ is r"
+    expected_result: "The 118 known processes are seeded from a vendored list (106 TJSP \u00b7 7 TJCE \u00b7 5 TJBA); the 1 malformed CNJ is reported and skipped"
+    verification: automated
+    test_ids: ["TEST-027"]
+    evidence: "pytest report for TEST-RADAR-32"
+  - id: "AC-062"
+    requirement: "FR-050"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-050: import_log records every loader decision and is insert-only"
+    expected_result: "import_log records every loader decision and is insert-only"
+    verification: automated
+    test_ids: ["TEST-099"]
+    evidence: "pytest report for TEST-LOAD-07"
+  - id: "AC-063"
+    requirement: "FR-048"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise FR-048: The canonical scraper is byte-frozen and both layout branches are golden-tested"
+    expected_result: "The canonical scraper is byte-frozen and both layout branches are golden-tested"
+    verification: automated
+    test_ids: ["TEST-030"]
+    evidence: "pytest report for TEST-SCRAPER-01"
+  - id: "AC-064"
+    requirement: "NFR-001"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise NFR-001: No calculated value is user-writable"
+    expected_result: "No calculated value is user-writable"
+    verification: automated
+    test_ids: ["TEST-081"]
+    evidence: "pytest report for TEST-SEC-01"
+  - id: "AC-065"
+    requirement: "NFR-001"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise NFR-001: No calculated value is user-writable"
+    expected_result: "No calculated value is user-writable"
+    verification: automated
+    test_ids: ["TEST-085"]
+    evidence: "pytest report for TEST-SEC-05"
+  - id: "AC-066"
+    requirement: "NFR-013"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise NFR-013: Radar-owned state is not API-writable"
+    expected_result: "Radar-owned state is not API-writable"
+    verification: automated
+    test_ids: ["TEST-086"]
+    evidence: "pytest report for TEST-SEC-06"
+  - id: "AC-067"
+    requirement: "NFR-014"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise NFR-014: Historical report values survive a month boundary unchanged; only ind_painel rolls with the calendar (07 \u00a76.1)"
+    expected_result: "Historical report values survive a month boundary unchanged; only ind_painel rolls with the calendar (07 \u00a76.1)"
+    verification: automated
+    test_ids: ["TEST-068"]
+    evidence: "pytest report for TEST-CALC-10"
+  - id: "AC-068"
+    requirement: "NFR-014"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise NFR-014: Historical report values survive a month boundary unchanged; only ind_painel rolls with the calendar (07 \u00a76.1)"
+    expected_result: "Historical report values survive a month boundary unchanged; only ind_painel rolls with the calendar (07 \u00a76.1)"
+    verification: automated
+    test_ids: ["TEST-077"]
+    evidence: "pytest report for TEST-CALC-19"
+  - id: "AC-069"
+    requirement: "NFR-002"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise NFR-002: Materialized value never diverges from a from-scratch recomputation"
+    expected_result: "Materialized value never diverges from a from-scratch recomputation"
+    verification: automated
+    test_ids: ["TEST-065"]
+    evidence: "pytest report for TEST-CALC-07"
+  - id: "AC-070"
+    requirement: "NFR-003"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise NFR-003: Reports open fast: p95 < 300 ms on GET /painel and /fluxo-caixa"
+    expected_result: "Reports open fast: p95 < 300 ms on GET /painel and /fluxo-caixa"
+    verification: automated
+    test_ids: ["TEST-078"]
+    evidence: "pytest report for TEST-PERF-01"
+  - id: "AC-071"
+    requirement: "NFR-004"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise NFR-004: Recalculation is incremental and scoped"
+    expected_result: "Recalculation is incremental and scoped"
+    verification: automated
+    test_ids: ["TEST-066"]
+    evidence: "pytest report for TEST-CALC-08"
+  - id: "AC-072"
+    requirement: "NFR-005"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise NFR-005: Nothing readable/writable unauthenticated"
+    expected_result: "Nothing readable/writable unauthenticated"
+    verification: automated
+    test_ids: ["TEST-079"]
+    evidence: "pytest report for TEST-RLS-01"
+  - id: "AC-073"
+    requirement: "NFR-006"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise NFR-006: Passwords never in logs, responses, email, audit, or debug artifacts"
+    expected_result: "Passwords never in logs, responses, email, audit, or debug artifacts"
+    verification: automated
+    test_ids: ["TEST-083"]
+    evidence: "pytest report for TEST-SEC-03"
+  - id: "AC-074"
+    requirement: "NFR-007"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise NFR-007: Process passwords in a vault, DB holds a reference"
+    expected_result: "Process passwords in a vault, DB holds a reference"
+    verification: automated
+    test_ids: ["TEST-084"]
+    evidence: "pytest report for TEST-SEC-04"
+  - id: "AC-075"
+    requirement: "NFR-008"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise NFR-008: The validated scraper core is not rewritten"
+    expected_result: "The validated scraper core is not rewritten"
+    verification: automated
+    test_ids: ["TEST-017"]
+    evidence: "pytest report for TEST-RADAR-17"
+  - id: "AC-076"
+    requirement: "NFR-009"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise NFR-009: Adding a tribunal touches only a new file + one registry line"
+    expected_result: "Adding a tribunal touches only a new file + one registry line"
+    verification: automated
+    test_ids: ["TEST-016"]
+    evidence: "pytest report for TEST-RADAR-16"
+  - id: "AC-077"
+    requirement: "NFR-010"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise NFR-010: Scraper never queries the DB"
+    expected_result: "Scraper never queries the DB"
+    verification: automated
+    test_ids: ["TEST-029"]
+    evidence: "pytest report for TEST-ARCH-01"
+  - id: "AC-078"
+    requirement: "NFR-011"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise NFR-011: Extraction testable with no browser/network"
+    expected_result: "Extraction testable with no browser/network"
+    verification: automated
+    test_ids: ["TEST-031"]
+    evidence: "pytest report for TEST-SCRAPER-02"
+  - id: "AC-079"
+    requirement: "NFR-011"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise NFR-011: Extraction testable with no browser/network"
+    expected_result: "Extraction testable with no browser/network"
+    verification: automated
+    test_ids: ["TEST-032"]
+    evidence: "pytest report for TEST-SCRAPER-03"
+  - id: "AC-080"
+    requirement: "NFR-012"
+    setup: "Package v2.5.1 applied to a clean local Postgres stack"
+    action: "Exercise NFR-012: A run proven on the actual deployment host"
+    expected_result: "A run proven on the actual deployment host"
+    verification: manual
+    test_ids: ["TEST-101"]
+    evidence: "recorded evidence artifact for EVID-01"

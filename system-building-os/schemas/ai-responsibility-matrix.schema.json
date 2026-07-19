@@ -1,0 +1,121 @@
+{
+  "type": "object",
+  "properties": {
+    "central_value": {
+      "type": "string"
+    },
+    "central_value_owner": {
+      "type": "string",
+      "enum": [
+        "ai",
+        "deterministic_workflow",
+        "combination"
+      ]
+    },
+    "decisions_never_delegated_to_ai": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "behavior_when_ai_unavailable": {
+      "type": "string"
+    },
+    "minimum_deterministic_fallback": {
+      "type": "string"
+    },
+    "intelligence_proof": {
+      "type": "string"
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "step_id": {
+            "type": "string",
+            "pattern": "^STEP-[0-9]{3,}$"
+          },
+          "description": {
+            "type": "string"
+          },
+          "owner": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "ai",
+                "deterministic_backend",
+                "frontend",
+                "human"
+              ]
+            },
+            "minItems": 1
+          },
+          "decision_type": {
+            "type": "string",
+            "enum": [
+              "interpretation",
+              "generation",
+              "classification",
+              "retrieval",
+              "deterministic_rule",
+              "orchestration",
+              "human_review",
+              "static"
+            ]
+          },
+          "inputs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "context": {
+            "type": "string"
+          },
+          "tools": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "output_contract": {
+            "type": "string"
+          },
+          "validation": {
+            "type": "string"
+          },
+          "fallback": {
+            "type": "string"
+          },
+          "user_visible_effect": {
+            "type": "string"
+          },
+          "adapts_dynamically": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "step_id",
+          "description",
+          "owner",
+          "decision_type",
+          "output_contract",
+          "fallback"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    }
+  },
+  "required": [
+    "central_value",
+    "central_value_owner",
+    "steps",
+    "behavior_when_ai_unavailable"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AI Responsibility Matrix",
+  "$id": "ai-responsibility-matrix.schema.json"
+}

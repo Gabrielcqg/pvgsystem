@@ -24,15 +24,238 @@ def y(obj) -> str:
 
 
 def write(pkg: str, name: str, content: str) -> None:
-    d = os.path.join(OUT, pkg)
-    os.makedirs(d, exist_ok=True)
-    with open(os.path.join(d, name), "w", encoding="utf-8") as fh:
+    full = os.path.join(OUT, pkg, name)
+    os.makedirs(os.path.dirname(full), exist_ok=True)
+    with open(full, "w", encoding="utf-8") as fh:
         fh.write(content if content.endswith("\n") else content + "\n")
+
+
+# --- production-complete artifact generators -------------------------------
+
+_ALL_LAYERS = [
+    ("product_behavior", "product_requirements_implemented", True),
+    ("business_logic", "backend_implemented", True),
+    ("ai_behavior", "real_ai_integration_verified", "has_ai"),
+    ("frontend", "frontend_implemented", "has_ui"),
+    ("backend", "backend_implemented", True),
+    ("database", "database_implemented", "has_database"),
+    ("authentication", "authentication_implemented", "has_auth"),
+    ("authorization", "authorization_tests_passed", "has_auth"),
+    ("integrations", "integration_tests_passed", "has_integration"),
+    ("environment_configuration", "build_passed", True),
+    ("observability", "observability_verified", True),
+    ("security", "security_review_passed", True),
+    ("performance", "performance_review_passed", True),
+    ("tests", "unit_tests_passed", True),
+    ("deployment", "production_like_run_verified", True),
+    ("rollback", "production_like_run_verified", True),
+    ("documentation", "documentation_complete", True),
+]
+
+
+def _production_readiness(facts: dict) -> dict:
+    layers = []
+    for name, gate, applicable in _ALL_LAYERS:
+        appl = applicable if isinstance(applicable, bool) else bool(facts.get(applicable))
+        layer = {"layer": name, "applicable": appl, "planned": appl}
+        if appl:
+            layer["implementation_gate"] = gate
+            layer["evidence"] = "<planned; produced during implementation>"
+        layers.append(layer)
+    return {"layers": layers, "definition_satisfied": True}
+
+
+def _deliverables(facts: dict) -> dict:
+    items = [
+        ("DEL-001", "Runnable backend", "backend", "backend_implemented",
+         "Backend starts and serves the specified APIs."),
+        ("DEL-010", "E2E test suite", "e2e_suite", "acceptance_criteria_passed",
+         "E2E suite runs the core flows and passes."),
+        ("DEL-011", "Documentation", "documentation", "documentation_complete",
+         "Setup + operations docs let a new engineer run the system."),
+        ("DEL-012", "Final report", "final_report", "final_acceptance_judge_passed",
+         "Truthful evidence-based delivery report is produced."),
+    ]
+    if facts.get("has_database"):
+        items.append(("DEL-002", "Database schema + migrations", "database",
+                      "database_implemented", "Schema applied via reversible migrations."))
+    if facts.get("has_auth"):
+        items.append(("DEL-003", "Authentication", "authentication",
+                      "authentication_implemented", "Sessions enforced; RBAC applied."))
+    if facts.get("has_ui"):
+        items.append(("DEL-004", "Runnable frontend", "frontend", "frontend_implemented",
+                      "Frontend builds, renders all states, and calls real APIs."))
+    if facts.get("has_ai"):
+        items.append(("DEL-005", "Real AI provider integration", "ai_integration",
+                      "real_ai_integration_verified",
+                      "Provider adapter runs from named env vars; mock not used in production."))
+    deliverables = []
+    for did, name, typ, gate, behavior in items:
+        deliverables.append({
+            "deliverable_id": did, "name": name, "type": typ,
+            "purpose": behavior,
+            "expected_runtime_behavior": behavior,
+            "completion_conditions": ["gate " + gate + " PASS with evidence"],
+            "completion_gate": gate,
+        })
+    return {"deliverables": deliverables}
+
+
+def _vertical_traceability(traceability: dict, facts: dict) -> dict:
+    r2t = traceability.get("requirement_to_task", {})
+    r2c = traceability.get("requirement_to_component", {})
+    r2a = traceability.get("requirement_to_acceptance", {})
+    a2test = traceability.get("acceptance_to_test", {})
+    rows = []
+    for rid in r2t:
+        comps = r2c.get(rid, [])
+        acs = r2a.get(rid, []) or ["AC-001"]
+        tests = sorted({t for ac in acs for t in a2test.get(ac, [])}) or ["TEST-001"]
+        row = {
+            "requirement_id": rid, "goal_id": "GOAL-001",
+            "backend_components": ["BACK-001"], "api_contracts": ["API-001"],
+            "acceptance_criteria": acs, "tests": tests, "evidence": ["<ci-run>"],
+        }
+        if facts.get("has_database"):
+            row["database_entities"] = ["DB-001"]
+        if facts.get("has_ui"):
+            row["frontend_surfaces"] = ["UI-001"]
+            row["frontend_states"] = ["STATE-001"]
+        if facts.get("has_ai") and "ai" in comps:
+            row["ai_behaviors"] = ["AI-001"]
+        rows.append(row)
+    if facts.get("has_ai") and rows and not any(r.get("ai_behaviors") for r in rows):
+        rows[0]["ai_behaviors"] = ["AI-001"]
+    return {"requirements": rows}
+
+
+def _frontend_reference() -> dict:
+    return {
+        "provenance": "inference",
+        "visual_direction": "Clean, information-dense but calm; product logic is visible, "
+                            "not buried in generic cards.",
+        "brand_personality": "trustworthy, precise, quietly modern",
+        "product_feeling": "in control and informed",
+        "target_polish": "polished",
+        "non_negotiable_visual_rules": [
+            "Every data surface has explicit loading/empty/error states.",
+            "No dead space or cards stretched only to fill the container.",
+            "Primary action is visually dominant on each screen.",
+        ],
+        "avoid_patterns": ["generic admin dashboard with only cards and tables"],
+    }
+
+
+def _screen_contract() -> dict:
+    return {
+        "id": "UI-001", "purpose": "Primary working surface for the core flow.",
+        "user_role": ["authenticated user"], "route": "/", "user_objective":
+        "Complete the product's core task and see the result.",
+        "information_hierarchy": "Primary result first; supporting detail secondary; "
+                                 "advanced controls progressively disclosed.",
+        "primary_action": "Run the core action",
+        "data_source": ["GET /api/core"], "backend_dependency": ["core service"],
+        "states": {
+            "default": "Result view with primary action available.",
+            "loading": "Skeleton while data loads.",
+            "empty": "Guidance + primary CTA when there is nothing yet.",
+            "error": "Actionable error with retry.",
+            "success": "Confirmation and updated result.",
+        },
+        "responsive_behavior": "Two-column on desktop; stacked with a drawer on mobile.",
+        "accessibility": "Labeled controls, visible focus, keyboard operable.",
+        "requirement_refs": ["FR-001"], "acceptance_criteria": ["AC-001"],
+        "tests": ["TEST-001"],
+    }
+
+
+def _ai_responsibility_matrix() -> dict:
+    return {
+        "central_value": "AI interprets the input and produces the judgement that is the product.",
+        "central_value_owner": "ai",
+        "decisions_never_delegated_to_ai": ["final accept/reject stays with the human reviewer"],
+        "behavior_when_ai_unavailable": "Degrade to a queued human-review task; never fabricate output.",
+        "minimum_deterministic_fallback": "Schema-validated empty result + human-review flag.",
+        "intelligence_proof": "Different input context yields materially different output.",
+        "steps": [
+            {"step_id": "STEP-001", "description": "Interpret input and generate the judgement.",
+             "owner": ["ai"], "decision_type": "generation",
+             "inputs": ["user input", "accumulated context"], "context": "prior interaction state",
+             "output_contract": "JSON validated against the output schema",
+             "validation": "schema + domain validation; repair on invalid",
+             "fallback": "human review on low confidence",
+             "user_visible_effect": "The generated judgement the user acts on.",
+             "adapts_dynamically": True},
+        ],
+    }
+
+
+def _ai_provider_contract() -> dict:
+    return {
+        "provider": "openai",
+        "provider_independent_interface": "AIJudge interface (model-independent).",
+        "concrete_adapter": "OpenAIJudge adapter implementing AIJudge.",
+        "model_env_var": "OPENAI_MODEL", "api_key_env_var": "OPENAI_API_KEY",
+        "model_config": "temperature + max tokens from config", "timeout": "30s",
+        "retry": "3 attempts with backoff", "rate_limit_handling": "respect 429 + backoff",
+        "structured_output": True, "output_schema": "output.schema.json",
+        "prompt_contract": "system + user template, versioned", "prompt_versioning": "prompt-v1",
+        "streaming": False, "token_cost_logging": "log tokens + cost per call",
+        "error_mapping": "provider errors -> domain error types",
+        "fallback_behavior": "human review on failure/low confidence",
+        "startup_validation": "fail fast if OPENAI_API_KEY is missing",
+        "mock_mode_policy": "test_double_only",
+        "env_example_keys": ["OPENAI_API_KEY", "OPENAI_MODEL"],
+        "production_setup_instructions": "Set OPENAI_API_KEY and OPENAI_MODEL, then start the app.",
+        "tests": ["TEST-002"],
+    }
+
+
+def _real_ai_integration_plan() -> dict:
+    return {
+        "ai_is_central": True,
+        "production_path": [
+            {"order": 1, "stage": "frontend user interaction"},
+            {"order": 2, "stage": "backend AI endpoint + input validation"},
+            {"order": 3, "stage": "context construction + provider-independent interface"},
+            {"order": 4, "stage": "concrete provider adapter -> real provider API call"},
+            {"order": 5, "stage": "structured-output + domain validation -> persistence"},
+            {"order": 6, "stage": "frontend response/stream"},
+        ],
+        "provider_contract_ref": "ai/ai-provider-contract.yaml",
+        "responsibility_matrix_ref": "ai-responsibility-matrix.yaml",
+        "frontend_ai_states": ["constructing context", "generating", "validating", "streaming"],
+        "centrality_tests": [
+            "different input context -> materially different output",
+            "next step is not from a fixed linear sequence",
+            "invalid model output is rejected or repaired",
+            "mock mode is not active in production configuration",
+            "real provider adapter initializes when credentials exist",
+        ],
+        "required_env_vars": ["OPENAI_API_KEY", "OPENAI_MODEL"],
+        "mock_policy": "Mocks are test doubles only; never the production default.",
+        "setup_instructions": "Configure OPENAI_API_KEY + OPENAI_MODEL to run the real path.",
+        "completion_gate": "real_ai_integration_verified",
+    }
+
+
+def write_production_complete(slug: str, facts: dict, traceability: dict) -> None:
+    write(slug, "vertical-traceability.yaml", y(_vertical_traceability(traceability, facts)))
+    write(slug, "implementation-deliverables.yaml", y(_deliverables(facts)))
+    write(slug, "production-readiness.yaml", y(_production_readiness(facts)))
+    if facts.get("has_ui"):
+        write(slug, "frontend/frontend-reference.yaml", y(_frontend_reference()))
+        write(slug, "frontend/screen-contracts/UI-001.yaml", y(_screen_contract()))
+    if facts.get("has_ai"):
+        write(slug, "ai-responsibility-matrix.yaml", y(_ai_responsibility_matrix()))
+        write(slug, "ai/ai-provider-contract.yaml", y(_ai_provider_contract()))
+        write(slug, "ai/real-ai-integration-plan.yaml", y(_real_ai_integration_plan()))
 
 
 def build(slug: str, meta: dict, intent: dict, product_md: str, tasks: list,
           agents: list, skills: list, ownership: dict, criteria: list,
-          traceability: dict, gates: list) -> None:
+          traceability: dict, gates: list, facts: dict) -> None:
+    meta = dict(meta, **facts)
     write(slug, "PLAN_METADATA.yaml", y(meta))
     write(slug, "01-user-intent.json", json.dumps(intent, indent=2))
     write(slug, "05-product-system-plan.md", product_md)
@@ -66,6 +289,7 @@ def build(slug: str, meta: dict, intent: dict, product_md: str, tasks: list,
           "deviations; do not complete until the listed completion gates pass; "
           "use the final-acceptance-judge before delivery.\n\n"
           f"Active plan version {meta['version']} (hash {meta['content_hash']}).\n")
+    write_production_complete(slug, facts, traceability)
     write(slug, "29-codex-start.md",
           "# Codex Start\n\n"
           "1. Locate this active plan and run "
@@ -242,8 +466,9 @@ def internal_crud() -> None:
             "AC-004": ["TEST-004"], "AC-005": ["TEST-005"]},
         "test_to_evidence": {"TEST-001": ["<ci-run-link>"]},
     }
+    facts = {"has_ui": True, "has_database": True, "has_auth": True, "has_ai": False}
     build("internal-crud", meta, intent, product_md, tasks, agents, skills,
-          ownership, criteria, traceability, COMMON_GATES)
+          ownership, criteria, traceability, COMMON_GATES, facts)
 
 
 def ai_saas() -> None:
@@ -366,8 +591,12 @@ def ai_saas() -> None:
                                "AC-003": ["TEST-003"], "AC-004": ["TEST-004"]},
         "test_to_evidence": {"TEST-002": ["<eval-report>"]},
     }
+    facts = {"has_ui": True, "has_database": True, "has_auth": True, "has_ai": True}
     build("ai-saas", meta, intent, product_md, tasks, agents, skills, ownership,
-          criteria, traceability, COMMON_GATES + ["ai_evaluations_passed"])
+          criteria, traceability,
+          COMMON_GATES + ["ai_evaluations_passed", "real_ai_integration_verified",
+                          "frontend_experience_review_passed", "production_like_run_verified"],
+          facts)
 
 
 def main() -> int:

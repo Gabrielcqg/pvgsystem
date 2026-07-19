@@ -1,0 +1,26 @@
+id: UI-001
+purpose: Primary working surface for the core flow.
+user_role:
+  - authenticated user
+route: /
+user_objective: "Complete the product's core task and see the result."
+information_hierarchy: Primary result first; supporting detail secondary; advanced controls progressively disclosed.
+primary_action: Run the core action
+data_source:
+  - GET /api/core
+backend_dependency:
+  - core service
+states:
+  default: Result view with primary action available.
+  loading: Skeleton while data loads.
+  empty: Guidance + primary CTA when there is nothing yet.
+  error: Actionable error with retry.
+  success: Confirmation and updated result.
+responsive_behavior: Two-column on desktop; stacked with a drawer on mobile.
+accessibility: "Labeled controls, visible focus, keyboard operable."
+requirement_refs:
+  - FR-001
+acceptance_criteria:
+  - AC-001
+tests:
+  - TEST-001

@@ -1,0 +1,22 @@
+{
+  "slug": "chatbot",
+  "idea": "An AI chatbot product whose value is the model's responses; it must use a real provider, not a scripted conversation.",
+  "signals": {
+    "stores_data": true,
+    "multi_user": false,
+    "has_ui": true,
+    "uses_ai": true,
+    "ai_central": true,
+    "external_integrations": false,
+    "is_extension": false
+  },
+  "ambiguities": [],
+  "expect": [
+    "ai_centrality",
+    "ai_output_validation",
+    "backend_behavior",
+    "database",
+    "frontend_states"
+  ],
+  "expect_material_question": false
+}

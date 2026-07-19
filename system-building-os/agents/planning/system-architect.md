@@ -4,7 +4,7 @@ canonical_name: System Architect
 kind: agent
 runtime_scope: [claude]
 model_profile: highest_reasoning
-version: 1.0.0
+version: 1.1.0
 ---
 
 # System Architect (`system-architect`)

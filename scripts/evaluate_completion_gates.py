@@ -29,6 +29,10 @@ COND = {
     "typecheck_passed": ("required_when_applicable", "types_applicable"),
     "integration_tests_passed": ("required_when_applicable", "has_integration"),
     "contract_tests_passed": ("required_when_applicable", "has_integration"),
+    "frontend_implemented": ("required_when_ui_exists", "has_ui"),
+    "database_implemented": ("required_when_database_exists", "has_database"),
+    "authentication_implemented": ("required_when_auth_exists", "has_auth"),
+    "real_ai_integration_verified": ("required_when_ai_exists", "has_ai"),
     "database_tests_passed": ("required_when_database_exists", "has_database"),
     "migration_validation_passed": ("required_when_database_exists", "has_database"),
     "auth_tests_passed": ("required_when_auth_exists", "has_auth"),
@@ -36,13 +40,31 @@ COND = {
     "e2e_tests_passed": ("required_when_ui_exists", "has_ui"),
     "browser_validation_passed": ("required_when_ui_exists", "has_ui"),
     "accessibility_validation_passed": ("required_when_ui_exists", "has_ui"),
+    "frontend_experience_review_passed": ("required_when_ui_exists", "has_ui"),
     "ai_evaluations_passed": ("required_when_ai_exists", "has_ai"),
     "observability_verified": ("required_when_applicable", "has_observability"),
 }
 
 
+def _load_contract() -> dict:
+    return osutil.load_yaml("system-building-os/contracts/completion-gates.yaml")
+
+
 def load_gates() -> dict:
-    return osutil.load_yaml("system-building-os/contracts/completion-gates.yaml")["completion_gates"]
+    return _load_contract()["completion_gates"]
+
+
+def gate_phase() -> dict:
+    """Return {"planning": [...], "implementation": [...]} gate classification."""
+    return _load_contract().get("gate_phase", {"planning": [], "implementation": []})
+
+
+def planning_gates() -> set:
+    return set(gate_phase().get("planning", []))
+
+
+def implementation_gates() -> set:
+    return set(gate_phase().get("implementation", []))
 
 
 def evaluate(facts: dict, results: dict):

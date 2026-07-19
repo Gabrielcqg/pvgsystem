@@ -1,0 +1,31 @@
+skills:
+  - name: implement-max
+    classification: core_required
+    runtime: [codex]
+  - name: database-migration-builder
+    classification: core_required
+    runtime: [codex]
+  - name: backend-api-builder
+    classification: core_required
+    runtime: [codex]
+  - name: integration-builder
+    classification: core_required
+    runtime: [codex]
+  - name: infrastructure-builder
+    classification: core_required
+    runtime: [codex]
+  - name: auth-authorization-builder
+    classification: core_required
+    runtime: [codex]
+  - name: documentation-writer
+    classification: core_required
+    runtime: [codex]
+  - name: security-reviewer
+    classification: core_required
+    runtime: [codex]
+  - name: qa-test-validator
+    classification: core_required
+    runtime: [codex]
+  - name: plan-hash-validation
+    classification: core_required
+    runtime: [claude, codex]

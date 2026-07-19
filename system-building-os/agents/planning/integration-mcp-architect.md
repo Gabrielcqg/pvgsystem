@@ -4,7 +4,7 @@ canonical_name: Integration & MCP Architect
 kind: agent
 runtime_scope: [claude]
 model_profile: balanced_reasoning
-version: 1.0.0
+version: 1.1.0
 ---
 
 # Integration & MCP Architect (`integration-mcp-architect`)

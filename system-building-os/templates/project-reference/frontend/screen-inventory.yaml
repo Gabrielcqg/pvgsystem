@@ -1,0 +1,18 @@
+# classification: user-customizable
+# Optional: seed the screens you already know you want. /plan_max expands this
+# into full screen contracts (screen-contract.schema.json) with every state and
+# each surface's data/backend/AI dependency. Leave empty to let Claude derive the
+# inventory from the product plan.
+screens:
+  # - id: UI-001
+  #   name: Dashboard
+  #   route: /
+  #   user_role: [authenticated]
+  #   purpose: Primary working surface for the core flow.
+  #   priority: must
+  #   notes: This is where the product's central value must be visible.
+  # - id: UI-002
+  #   name: Detail
+  #   route: /items/:id
+  #   user_role: [authenticated]
+  #   purpose: Inspect and act on a single item.

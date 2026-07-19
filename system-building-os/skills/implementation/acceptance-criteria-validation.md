@@ -3,7 +3,7 @@ name: acceptance-criteria-validation
 kind: skill
 scope: implementation
 runtime_scope: [codex]
-version: 1.0.0
+version: 1.1.0
 ---
 
 # Skill: `acceptance-criteria-validation`

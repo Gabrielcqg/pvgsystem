@@ -4,7 +4,7 @@ canonical_name: Infrastructure & Release Architect
 kind: agent
 runtime_scope: [claude]
 model_profile: balanced_reasoning
-version: 1.0.0
+version: 1.1.0
 ---
 
 # Infrastructure & Release Architect (`infrastructure-release-architect`)

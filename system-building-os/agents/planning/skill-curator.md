@@ -4,7 +4,7 @@ canonical_name: Skill Curator
 kind: agent
 runtime_scope: [claude]
 model_profile: fast_read_only
-version: 1.0.0
+version: 1.1.0
 ---
 
 # Skill Curator (`skill-curator`)

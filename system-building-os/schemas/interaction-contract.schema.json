@@ -1,0 +1,94 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^IX-[0-9]{3,}$"
+    },
+    "screen_id": {
+      "type": "string"
+    },
+    "component_id": {
+      "type": "string"
+    },
+    "user_action": {
+      "type": "string"
+    },
+    "frontend_validation": {
+      "type": "string"
+    },
+    "request_contract": {
+      "type": "string"
+    },
+    "backend_handler": {
+      "type": "string"
+    },
+    "business_rule": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "ai_behavior": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "database_effect": {
+      "type": "string"
+    },
+    "success_response": {
+      "type": "string"
+    },
+    "error_responses": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "loading_state": {
+      "type": "string"
+    },
+    "streaming_state": {
+      "type": "string"
+    },
+    "retry_behavior": {
+      "type": "string"
+    },
+    "optimistic_behavior": {
+      "type": "string"
+    },
+    "user_feedback": {
+      "type": "string"
+    },
+    "analytics_event": {
+      "type": "string"
+    },
+    "acceptance_criteria": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tests": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "id",
+    "screen_id",
+    "user_action",
+    "request_contract",
+    "backend_handler",
+    "success_response",
+    "error_responses"
+  ],
+  "additionalProperties": false,
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Interaction Contract",
+  "$id": "interaction-contract.schema.json"
+}

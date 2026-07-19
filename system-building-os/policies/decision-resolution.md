@@ -44,6 +44,13 @@ multiple companies share one platform; whether legal approval is in the core
 workflow; whether records are editable after submission; whether AI output is
 advisory or auto-executed; whether payment is one-time or subscription.
 
+Material **visual identity** choices are Category E only when they substantially
+change the product identity (e.g. a consumer brand look vs a utilitarian internal
+tool). Reversible visual choices (spacing, minor animation, empty-state wording,
+secondary-button placement) are Category C/D — resolve them and record provenance.
+`frontend-reference-intake` reads `project-reference/frontend/`; when it is absent
+Claude infers a direction and proposes a reference file rather than asking.
+
 Rules for Category E questions:
 - Group all questions into ONE coherent decision round. Never one-at-a-time.
 - For each: state the decision required, why it matters, affected areas, a

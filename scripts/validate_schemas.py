@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check that all 25 canonical schemas are well-formed and that the canonical
+"""Check that all canonical schemas are well-formed and that the canonical
 artifacts which currently exist validate against their schemas."""
 from __future__ import annotations
 
@@ -17,6 +17,12 @@ EXPECTED = [
     "mcp-registry", "task-manifest", "agent-map", "skill-map", "file-ownership",
     "acceptance-criteria", "traceability", "execution-state", "completion-gates",
     "deviation", "final-report",
+    # production-complete update: frontend, AI, reconciliation, deliverables
+    "frontend-reference", "design-token", "frontend-state", "screen-contract",
+    "component-contract", "interaction-contract", "visual-quality-review",
+    "ai-responsibility-matrix", "ai-provider-contract", "real-ai-integration-plan",
+    "vertical-traceability", "implementation-deliverable", "production-readiness",
+    "production-like-run",
 ]
 
 # canonical artifacts that always exist in the factory, mapped to their schema

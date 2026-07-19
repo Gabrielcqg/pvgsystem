@@ -4,7 +4,7 @@ canonical_name: Documentation Writer
 kind: agent
 runtime_scope: [codex]
 model_profile: balanced_reasoning
-version: 1.0.0
+version: 1.1.0
 ---
 
 # Documentation Writer (`documentation-writer`)

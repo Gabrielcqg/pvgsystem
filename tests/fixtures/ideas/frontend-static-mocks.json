@@ -1,0 +1,22 @@
+{
+  "slug": "frontend-static-mocks",
+  "idea": "An existing frontend that renders static mock data and a faked AI response; wire it to real backend and AI paths.",
+  "signals": {
+    "stores_data": true,
+    "multi_user": false,
+    "has_ui": true,
+    "uses_ai": true,
+    "external_integrations": false,
+    "is_extension": true,
+    "static_mocks": true
+  },
+  "ambiguities": [],
+  "expect": [
+    "ai_output_validation",
+    "backend_behavior",
+    "database",
+    "fake_data_paths",
+    "frontend_states"
+  ],
+  "expect_material_question": false
+}

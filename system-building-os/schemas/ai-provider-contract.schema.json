@@ -1,0 +1,108 @@
+{
+  "type": "object",
+  "properties": {
+    "provider": {
+      "type": "string"
+    },
+    "provider_independent_interface": {
+      "type": "string"
+    },
+    "concrete_adapter": {
+      "type": "string"
+    },
+    "model_env_var": {
+      "type": "string"
+    },
+    "api_key_env_var": {
+      "type": "string"
+    },
+    "model_config": {
+      "type": "string"
+    },
+    "timeout": {
+      "type": "string"
+    },
+    "retry": {
+      "type": "string"
+    },
+    "rate_limit_handling": {
+      "type": "string"
+    },
+    "structured_output": {
+      "type": "boolean"
+    },
+    "input_schema": {
+      "type": [
+        "string",
+        "object"
+      ]
+    },
+    "output_schema": {
+      "type": [
+        "string",
+        "object"
+      ]
+    },
+    "prompt_contract": {
+      "type": "string"
+    },
+    "prompt_versioning": {
+      "type": "string"
+    },
+    "streaming": {
+      "type": "boolean"
+    },
+    "token_cost_logging": {
+      "type": "string"
+    },
+    "error_mapping": {
+      "type": "string"
+    },
+    "fallback_behavior": {
+      "type": "string"
+    },
+    "startup_validation": {
+      "type": "string"
+    },
+    "mock_mode_policy": {
+      "type": "string",
+      "enum": [
+        "test_double_only",
+        "offline_dev_only",
+        "ci_substitute",
+        "explicit_demo_mode",
+        "not_used_in_production"
+      ]
+    },
+    "env_example_keys": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "production_setup_instructions": {
+      "type": "string"
+    },
+    "tests": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "provider",
+    "provider_independent_interface",
+    "concrete_adapter",
+    "api_key_env_var",
+    "model_env_var",
+    "output_schema",
+    "fallback_behavior",
+    "startup_validation",
+    "mock_mode_policy"
+  ],
+  "additionalProperties": false,
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AI Provider Contract",
+  "$id": "ai-provider-contract.schema.json"
+}

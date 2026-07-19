@@ -1,0 +1,49 @@
+deliverables:
+  - deliverable_id: DEL-001
+    name: Versioned SQL migrations 000-010 plus Supabase-only 011
+    type: database
+    purpose: Rebuild the schema from zero on local Postgres and on Supabase
+    expected_runtime_behavior: Applying 000-010 to an empty database yields the full schema with RLS enabled on every table
+    completion_conditions: [database_implemented, migration_validation_passed, database_tests_passed]
+  - deliverable_id: DEL-002
+    name: Materialized calculation engine
+    type: backend
+    purpose: Derive every report from facts and rewrite indicator tables in the same transaction
+    expected_runtime_behavior: A materialized value never diverges from a from-scratch recomputation
+    completion_conditions: [backend_implemented, unit_tests_passed]
+  - deliverable_id: DEL-003
+    name: Domain services and REST API
+    type: backend
+    purpose: CRUD plus the four transactional links and read-only report endpoints
+    expected_runtime_behavior: Instalment confirm and reverse are atomic; idempotency conflicts return 409
+    completion_conditions: [backend_implemented, contract_tests_passed, integration_tests_passed]
+  - deliverable_id: DEL-004
+    name: Supabase Auth integration with RLS and radar_worker role
+    type: authentication
+    purpose: Authenticated-only access, three separate runtime identities, least-privilege worker
+    expected_runtime_behavior: Anonymous access is denied everywhere; the API connects as the caller and never as service_role
+    completion_conditions: [authentication_implemented, auth_tests_passed, authorization_tests_passed]
+  - deliverable_id: DEL-005
+    name: Radar orchestration with reserved tribunal slots
+    type: backend
+    purpose: Run the frozen TJSP scraper over active processes and persist incrementally
+    expected_runtime_behavior: A full run of 106 TJSP plus 12 pending finishes concluida
+    completion_conditions: [integration_tests_passed, observability_verified]
+  - deliverable_id: DEL-006
+    name: Security hardening and audit trail
+    type: backend
+    purpose: Five leak channels closed, insert-only audit, vault-backed process passwords
+    expected_runtime_behavior: No password appears in logs, responses, email, audit values or debug artifacts
+    completion_conditions: [security_review_passed]
+  - deliverable_id: DEL-007
+    name: Spreadsheet loader
+    type: backend
+    purpose: Idempotent auditable import with vocabulary normalization and orphan reconciliation
+    expected_runtime_behavior: Re-running duplicates nothing; every decision lands in import_log
+    completion_conditions: [unit_tests_passed, documentation_complete]
+  - deliverable_id: DEL-008
+    name: Production run evidence
+    type: documentation
+    purpose: Prove the radar works on the actual deployment host
+    expected_runtime_behavior: Recorded run with taxa_conclusiva at or above 0.70 and layout distribution near the 51/43 baseline
+    completion_conditions: [production_like_run_verified]

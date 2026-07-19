@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate the 25 canonical machine-readable contracts into
+"""Generate the canonical machine-readable contracts into
 system-building-os/schemas/*.schema.json.
 
 Schemas are a draft-07-compatible subset understood by scripts/lib/jsonschema_lite.
@@ -385,6 +385,266 @@ schema("final-report", obj({
     "final_acceptance_judge_passed": {"type": "boolean"},
 }, required=["project_id", "generated_at", "completion_gates",
              "final_acceptance_judge_passed"]), "Final Implementation Report")
+
+
+# ===========================================================================
+# Production-complete planning contracts (frontend, AI, reconciliation,
+# deliverables, production readiness). Added by the production-complete update.
+# ===========================================================================
+
+_PROVENANCE = {"type": S, "enum": ["user", "references", "inference"]}
+_REF_CLASS = {"type": S, "enum": ["MUST_FOLLOW", "STRONG_INSPIRATION",
+                                  "GENERAL_INSPIRATION", "AVOID"]}
+
+# -- frontend-reference ------------------------------------------------------
+_fe_reference = obj({
+    "classification": _REF_CLASS, "name": STR, "location": STR,
+    "notes": STR, "applies_to": STRLIST,
+}, required=["classification", "notes"], additional=False)
+schema("frontend-reference", obj({
+    "provenance": _PROVENANCE,
+    "visual_direction": STR, "brand_personality": STR, "product_feeling": STR,
+    "target_polish": {"type": S, "enum": ["utilitarian", "polished", "premium", "flagship"]},
+    "color_preferences": STR, "typography_preferences": STR,
+    "spacing_density": STR, "surface_and_border_preferences": STR,
+    "iconography": STR, "card_behavior": STR, "navigation_style": STR,
+    "animation_style": STR, "scroll_behavior": STR,
+    "responsive_expectations": STR, "accessibility_expectations": STR,
+    "references": arr(_fe_reference),
+    "liked_examples": STRLIST, "disliked_examples": STRLIST,
+    "avoid_patterns": STRLIST, "non_negotiable_visual_rules": STRLIST,
+    "decisions_provenance": {"type": "object"},
+}, required=["provenance", "visual_direction", "target_polish",
+             "non_negotiable_visual_rules"]),
+   "Frontend Reference")
+
+# -- design-token ------------------------------------------------------------
+schema("design-token", obj({
+    "color": {"type": "object"}, "typography": {"type": "object"},
+    "spacing": {"type": "object"}, "radius": {"type": "object"},
+    "shadow": {"type": "object"}, "motion": {"type": "object"},
+    "breakpoints": {"type": "object"}, "z_index": {"type": "object"},
+    "source": _PROVENANCE,
+}, required=["color", "typography", "spacing"]), "Design Tokens")
+
+# -- frontend-state ----------------------------------------------------------
+_fe_state = obj({
+    "id": {"type": S, "pattern": "^STATE-[0-9]{3,}$"},
+    "name": STR, "applies_to": STR,
+    "kind": {"type": S, "enum": [
+        "default", "loading", "streaming", "generating", "reconnecting",
+        "empty", "partial_data", "error", "success", "disabled",
+        "permission_denied", "optimistic", "offline"]},
+    "trigger": STR, "ui_representation": STR, "data_source": STR,
+    "user_feedback": STR, "exit_transitions": STRLIST,
+    "acceptance_criteria": STRLIST, "tests": STRLIST,
+}, required=["id", "name", "applies_to", "kind", "ui_representation"],
+   additional=False)
+schema("frontend-state", obj({"states": arr(_fe_state, minItems=1)},
+       required=["states"]), "Frontend State Inventory")
+
+# -- screen-contract (detailed per-screen contract, superset of ui-screen) ---
+_screen_states = obj({
+    "default": STR, "loading": STR, "streaming": STR, "generating": STR,
+    "reconnecting": STR, "empty": STR, "partial_data": STR, "error": STR,
+    "success": STR, "disabled": STR, "permission_denied": STR,
+}, required=["default", "loading", "empty", "error"])
+schema("screen-contract", obj({
+    "id": {"type": S, "pattern": "^UI-[0-9]{3,}$"},
+    "purpose": STR, "user_role": STRLIST, "route": STR, "user_objective": STR,
+    "information_hierarchy": STR, "main_content": STR, "layout": STR,
+    "sections": STRLIST, "components": STRLIST,
+    "primary_action": STR, "secondary_actions": STRLIST,
+    "data_displayed": STRLIST, "data_source": STRLIST,
+    "backend_dependency": STRLIST, "ai_dependency": STRLIST,
+    "permissions": STRLIST, "validations": STRLIST,
+    "states": _screen_states,
+    "responsive_behavior": STR, "keyboard_behavior": STR, "focus_behavior": STR,
+    "accessibility": STR, "animation": STR, "transition": STR,
+    "scroll_behavior": STR, "persistence": STR, "optimistic_behavior": STR,
+    "analytics": STRLIST,
+    "requirement_refs": STRLIST, "api_refs": STRLIST,
+    "state_machine_states": STRLIST,
+    "acceptance_criteria": STRLIST, "tests": STRLIST,
+}, required=["id", "purpose", "route", "user_objective", "primary_action",
+             "states", "data_source", "acceptance_criteria"], additional=False),
+   "Screen Contract")
+
+# -- component-contract ------------------------------------------------------
+schema("component-contract", obj({
+    "id": {"type": S, "pattern": "^CMP-[0-9]{3,}$"},
+    "name": STR, "purpose": STR, "used_in_screens": STRLIST,
+    "requirement_ref": STRLIST, "consumes_api": STRLIST,
+    "state_shown": STRLIST, "reflects": STR,
+    "props": STRLIST, "states": STRLIST,
+    "error_fallback": STR, "accessibility": STR,
+    "acceptance_criteria": STRLIST, "tests": STRLIST,
+}, required=["id", "name", "purpose", "reflects", "error_fallback", "tests"],
+   additional=False), "Component Contract")
+
+# -- interaction-contract (frontend->backend contract, section 9) ------------
+schema("interaction-contract", obj({
+    "id": {"type": S, "pattern": "^IX-[0-9]{3,}$"},
+    "screen_id": STR, "component_id": STR, "user_action": STR,
+    "frontend_validation": STR, "request_contract": STR,
+    "backend_handler": STR, "business_rule": STRLIST, "ai_behavior": STRLIST,
+    "database_effect": STR, "success_response": STR, "error_responses": STRLIST,
+    "loading_state": STR, "streaming_state": STR, "retry_behavior": STR,
+    "optimistic_behavior": STR, "user_feedback": STR, "analytics_event": STR,
+    "acceptance_criteria": STRLIST, "tests": STRLIST,
+}, required=["id", "screen_id", "user_action", "request_contract",
+             "backend_handler", "success_response", "error_responses"],
+   additional=False), "Interaction Contract")
+
+# -- visual-quality-review ---------------------------------------------------
+_vq_check = obj({
+    "id": STR, "dimension": {"type": S, "enum": [
+        "product_communication", "information_architecture", "creativity",
+        "usability", "responsiveness", "visual_quality", "state_completeness",
+        "reference_compliance"]},
+    "question": STR,
+    "verdict": {"type": S, "enum": ["pass", "warn", "fail"]},
+    "evidence": STR, "finding": STR,
+}, required=["id", "dimension", "verdict"], additional=False)
+schema("visual-quality-review", obj({
+    "checks": arr(_vq_check, minItems=1),
+    "overall_verdict": {"type": S, "enum": ["pass", "fail"]},
+    "gate": {"type": S, "const": "frontend_experience_review_passed"},
+    "screens_reviewed": STRLIST, "evidence": STRLIST,
+}, required=["checks", "overall_verdict"]), "Visual Quality Review")
+
+# -- ai-responsibility-matrix ------------------------------------------------
+_ai_step = obj({
+    "step_id": {"type": S, "pattern": "^STEP-[0-9]{3,}$"},
+    "description": STR,
+    "owner": {"type": "array", "items": {"type": S, "enum": [
+        "ai", "deterministic_backend", "frontend", "human"]}, "minItems": 1},
+    "decision_type": {"type": S, "enum": [
+        "interpretation", "generation", "classification", "retrieval",
+        "deterministic_rule", "orchestration", "human_review", "static"]},
+    "inputs": STRLIST, "context": STR, "tools": STRLIST,
+    "output_contract": STR, "validation": STR, "fallback": STR,
+    "user_visible_effect": STR, "adapts_dynamically": {"type": "boolean"},
+}, required=["step_id", "description", "owner", "decision_type",
+             "output_contract", "fallback"], additional=False)
+schema("ai-responsibility-matrix", obj({
+    "central_value": STR,
+    "central_value_owner": {"type": S, "enum": [
+        "ai", "deterministic_workflow", "combination"]},
+    "decisions_never_delegated_to_ai": STRLIST,
+    "behavior_when_ai_unavailable": STR,
+    "minimum_deterministic_fallback": STR,
+    "intelligence_proof": STR,
+    "steps": arr(_ai_step, minItems=1),
+}, required=["central_value", "central_value_owner", "steps",
+             "behavior_when_ai_unavailable"]), "AI Responsibility Matrix")
+
+# -- ai-provider-contract ----------------------------------------------------
+schema("ai-provider-contract", obj({
+    "provider": STR, "provider_independent_interface": STR,
+    "concrete_adapter": STR,
+    "model_env_var": STR, "api_key_env_var": STR,
+    "model_config": STR, "timeout": STR, "retry": STR, "rate_limit_handling": STR,
+    "structured_output": {"type": "boolean"},
+    "input_schema": {"type": [S, "object"]},
+    "output_schema": {"type": [S, "object"]},
+    "prompt_contract": STR, "prompt_versioning": STR,
+    "streaming": {"type": "boolean"}, "token_cost_logging": STR,
+    "error_mapping": STR, "fallback_behavior": STR,
+    "startup_validation": STR,
+    "mock_mode_policy": {"type": S, "enum": [
+        "test_double_only", "offline_dev_only", "ci_substitute",
+        "explicit_demo_mode", "not_used_in_production"]},
+    "env_example_keys": STRLIST,
+    "production_setup_instructions": STR, "tests": STRLIST,
+}, required=["provider", "provider_independent_interface", "concrete_adapter",
+             "api_key_env_var", "model_env_var", "output_schema",
+             "fallback_behavior", "startup_validation", "mock_mode_policy"],
+   additional=False), "AI Provider Contract")
+
+# -- real-ai-integration-plan ------------------------------------------------
+_prod_path_step = obj({
+    "order": {"type": "integer"}, "stage": STR, "detail": STR,
+}, required=["order", "stage"], additional=False)
+schema("real-ai-integration-plan", obj({
+    "ai_is_central": {"type": "boolean"},
+    "production_path": arr(_prod_path_step, minItems=1),
+    "provider_contract_ref": STR,
+    "responsibility_matrix_ref": STR,
+    "frontend_ai_states": STRLIST,
+    "centrality_tests": STRLIST,
+    "required_env_vars": STRLIST,
+    "mock_policy": STR,
+    "setup_instructions": STR,
+    "completion_gate": {"type": S, "const": "real_ai_integration_verified"},
+}, required=["ai_is_central", "production_path", "provider_contract_ref",
+             "centrality_tests", "required_env_vars", "mock_policy"]),
+   "Real AI Integration Plan")
+
+# -- vertical-traceability ---------------------------------------------------
+_vt_row = obj({
+    "requirement_id": ID, "goal_id": STR,
+    "business_rules": STRLIST, "ai_behaviors": STRLIST,
+    "backend_components": STRLIST, "database_entities": STRLIST,
+    "api_contracts": STRLIST, "frontend_surfaces": STRLIST,
+    "frontend_states": STRLIST, "acceptance_criteria": STRLIST,
+    "tests": STRLIST, "evidence": STRLIST,
+}, required=["requirement_id", "acceptance_criteria", "tests"],
+   additional=False)
+schema("vertical-traceability", obj({
+    "requirements": arr(_vt_row, minItems=1),
+    "layers_applicable": {"type": "object"},
+}, required=["requirements"]), "Vertical Traceability")
+
+# -- implementation-deliverable ----------------------------------------------
+_deliverable = obj({
+    "deliverable_id": {"type": S, "pattern": "^DEL-[0-9]{3,}$"},
+    "name": STR,
+    "type": {"type": S, "enum": [
+        "frontend", "backend", "database", "authentication", "ai_integration",
+        "local_environment", "production_environment", "e2e_suite",
+        "observability", "documentation", "deployment", "final_report", "other"]},
+    "purpose": STR, "requirements": STRLIST, "expected_files": STRLIST,
+    "expected_runtime_behavior": STR, "dependencies": STRLIST,
+    "configuration": STRLIST, "tests": STRLIST, "evidence": STRLIST,
+    "completion_conditions": STRLIST,
+    "completion_gate": STR,
+}, required=["deliverable_id", "name", "type", "purpose",
+             "expected_runtime_behavior", "completion_conditions"],
+   additional=False)
+schema("implementation-deliverable", obj({
+    "deliverables": arr(_deliverable, minItems=1),
+}, required=["deliverables"]), "Implementation Deliverables Contract")
+
+# -- production-readiness ----------------------------------------------------
+_layer = obj({
+    "layer": {"type": S, "enum": [
+        "product_behavior", "business_logic", "ai_behavior", "frontend",
+        "backend", "database", "authentication", "authorization",
+        "integrations", "environment_configuration", "observability",
+        "security", "performance", "tests", "deployment", "rollback",
+        "documentation"]},
+    "applicable": {"type": "boolean"},
+    "planned": {"type": "boolean"},
+    "implementation_gate": STR,
+    "evidence": STR, "notes": STR,
+}, required=["layer", "applicable", "planned"], additional=False)
+schema("production-readiness", obj({
+    "layers": arr(_layer, minItems=1),
+    "definition_satisfied": {"type": "boolean"},
+}, required=["layers"]), "Production Readiness Matrix")
+
+# -- production-like-run ------------------------------------------------------
+_run_step = obj({
+    "order": {"type": "integer"}, "action": STR,
+    "expected": STR, "evidence": STR,
+    "status": {"type": S, "enum": ["PASS", "FAIL", "NA", "PENDING"]},
+}, required=["order", "action", "expected"], additional=False)
+schema("production-like-run", obj({
+    "steps": arr(_run_step, minItems=1),
+    "gates_verified": STRLIST,
+    "completion_gate": {"type": S, "const": "production_like_run_verified"},
+}, required=["steps"]), "Production-like Run Verification")
 
 
 def main() -> int:

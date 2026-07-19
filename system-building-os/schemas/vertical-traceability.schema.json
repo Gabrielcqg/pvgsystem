@@ -1,0 +1,96 @@
+{
+  "type": "object",
+  "properties": {
+    "requirements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "requirement_id": {
+            "type": "string",
+            "pattern": "^[A-Z]+-[0-9]{3,}$"
+          },
+          "goal_id": {
+            "type": "string"
+          },
+          "business_rules": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "ai_behaviors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "backend_components": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "database_entities": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "api_contracts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "frontend_surfaces": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "frontend_states": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "acceptance_criteria": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "tests": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "requirement_id",
+          "acceptance_criteria",
+          "tests"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "layers_applicable": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "requirements"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Vertical Traceability",
+  "$id": "vertical-traceability.schema.json"
+}

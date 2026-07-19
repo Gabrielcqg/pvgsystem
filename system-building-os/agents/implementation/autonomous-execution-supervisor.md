@@ -4,7 +4,7 @@ canonical_name: Autonomous Execution Supervisor
 kind: agent
 runtime_scope: [codex]
 model_profile: highest_reasoning
-version: 1.0.0
+version: 1.1.0
 ---
 
 # Autonomous Execution Supervisor (`autonomous-execution-supervisor`)

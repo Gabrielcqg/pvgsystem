@@ -4,7 +4,7 @@ canonical_name: Planning Orchestrator
 kind: agent
 runtime_scope: [claude]
 model_profile: highest_reasoning
-version: 1.0.0
+version: 1.1.0
 ---
 
 # Planning Orchestrator (`planning-orchestrator`)
@@ -58,6 +58,9 @@ During implementation or outside this agent's responsibilities.
 - plan-max-orchestration
 - requirement-completeness-audit
 - decision-resolution
+- cross-layer-reconciliation
+- implementation-deliverables-planning
+- production-readiness-planning
 
 ## File ownership
 - plans/active/<slug>/**

@@ -1,0 +1,325 @@
+layers_applicable:
+  database: true
+  backend: true
+  authentication: true
+  authorization: true
+  integrations: true
+  observability: true
+  performance: true
+  tests: true
+  frontend: false
+  ai_behavior: false
+requirements:
+  - requirement_id: "FR-001"
+    acceptance_criteria: ["AC-001"]
+    tests: ["TEST-051"]
+    database_entities: ["parceiros"]
+    backend_components: ["app.api"]
+  - requirement_id: "FR-002"
+    acceptance_criteria: ["AC-002"]
+    tests: ["TEST-052"]
+    database_entities: ["contratos"]
+    backend_components: ["app.api"]
+  - requirement_id: "FR-003"
+    acceptance_criteria: ["AC-003", "AC-004"]
+    tests: ["TEST-095", "TEST-088"]
+    database_entities: ["contratos"]
+    backend_components: ["app.api"]
+  - requirement_id: "FR-004"
+    acceptance_criteria: ["AC-005", "AC-006"]
+    tests: ["TEST-096", "TEST-089"]
+    database_entities: ["contratos", "parcelas"]
+    backend_components: ["app.api"]
+  - requirement_id: "FR-005"
+    acceptance_criteria: ["AC-007"]
+    tests: ["TEST-045"]
+    backend_components: ["app.domain"]
+  - requirement_id: "FR-006"
+    acceptance_criteria: ["AC-008"]
+    tests: ["TEST-059"]
+    database_entities: ["lancamentos"]
+    backend_components: ["app.api"]
+  - requirement_id: "FR-007"
+    acceptance_criteria: ["AC-009", "AC-010", "AC-011"]
+    tests: ["TEST-037", "TEST-038", "TEST-039"]
+    backend_components: ["app.domain"]
+  - requirement_id: "FR-008"
+    acceptance_criteria: ["AC-012", "AC-013"]
+    tests: ["TEST-073", "TEST-047"]
+    database_entities: ["custos_fixos"]
+    backend_components: ["app.api"]
+  - requirement_id: "FR-052"
+    acceptance_criteria: ["AC-014"]
+    tests: ["TEST-102"]
+    backend_components: ["app.api"]
+  - requirement_id: "FR-051"
+    acceptance_criteria: ["AC-015"]
+    tests: ["TEST-046"]
+    database_entities: ["custos_fixos"]
+    backend_components: ["app.api"]
+  - requirement_id: "FR-009"
+    acceptance_criteria: ["AC-016"]
+    tests: ["TEST-042"]
+    backend_components: ["app.domain"]
+  - requirement_id: "FR-010"
+    acceptance_criteria: ["AC-017"]
+    tests: ["TEST-060"]
+    database_entities: ["parametros"]
+    backend_components: ["app.api"]
+  - requirement_id: "FR-011"
+    acceptance_criteria: ["AC-018"]
+    tests: ["TEST-037"]
+    database_entities: ["parcelas"]
+    backend_components: ["app.api"]
+  - requirement_id: "FR-012"
+    acceptance_criteria: ["AC-019"]
+    tests: ["TEST-038"]
+    database_entities: ["parcelas"]
+    backend_components: ["app.api"]
+  - requirement_id: "FR-013"
+    acceptance_criteria: ["AC-020"]
+    tests: ["TEST-039"]
+    database_entities: ["lancamentos"]
+    backend_components: ["app.api"]
+  - requirement_id: "FR-014"
+    acceptance_criteria: ["AC-021"]
+    tests: ["TEST-043"]
+    database_entities: ["tarefas", "movimentacoes_novas"]
+    backend_components: ["app.api"]
+  - requirement_id: "FR-015"
+    acceptance_criteria: ["AC-022"]
+    tests: ["TEST-003"]
+    database_entities: ["movimentacoes_novas"]
+    backend_components: ["app.radar", "app.api"]
+  - requirement_id: "FR-016"
+    acceptance_criteria: ["AC-023", "AC-024"]
+    tests: ["TEST-011", "TEST-044"]
+    database_entities: ["tarefas"]
+    backend_components: ["app.radar.inercia"]
+  - requirement_id: "FR-017"
+    acceptance_criteria: ["AC-025"]
+    tests: ["TEST-016"]
+    database_entities: ["processos"]
+    backend_components: ["app.domain"]
+  - requirement_id: "FR-018"
+    acceptance_criteria: ["AC-026"]
+    tests: ["TEST-016"]
+    database_entities: ["processos"]
+    backend_components: ["app.domain"]
+  - requirement_id: "FR-019"
+    acceptance_criteria: ["AC-027"]
+    tests: ["TEST-018"]
+    database_entities: ["movimentacoes_novas"]
+    backend_components: ["app.domain"]
+  - requirement_id: "FR-020"
+    acceptance_criteria: ["AC-028"]
+    tests: ["TEST-001"]
+    backend_components: ["app.domain"]
+  - requirement_id: "FR-021"
+    acceptance_criteria: ["AC-029"]
+    tests: ["TEST-006"]
+    database_entities: ["processos"]
+    backend_components: ["app.security.vault", "app.api"]
+  - requirement_id: "FR-022"
+    acceptance_criteria: ["AC-030"]
+    tests: ["TEST-010"]
+    database_entities: ["execucoes_radar"]
+    backend_components: ["app.domain"]
+  - requirement_id: "FR-023"
+    acceptance_criteria: ["AC-031"]
+    tests: ["TEST-009"]
+    backend_components: ["app.domain"]
+  - requirement_id: "FR-024"
+    acceptance_criteria: ["AC-032"]
+    tests: ["TEST-008"]
+    backend_components: ["app.domain"]
+  - requirement_id: "FR-025"
+    acceptance_criteria: ["AC-033"]
+    tests: ["TEST-083"]
+    backend_components: ["app.domain"]
+  - requirement_id: "FR-026"
+    acceptance_criteria: ["AC-034"]
+    tests: ["TEST-012"]
+    database_entities: ["processos"]
+    backend_components: ["app.api"]
+  - requirement_id: "FR-027"
+    acceptance_criteria: ["AC-035"]
+    tests: ["TEST-065"]
+    database_entities: ["ind_fluxo_mensal"]
+    backend_components: ["app.reports", "app.api"]
+  - requirement_id: "FR-028"
+    acceptance_criteria: ["AC-036"]
+    tests: ["TEST-082"]
+    database_entities: ["auditoria"]
+    backend_components: ["app.security.audit"]
+  - requirement_id: "FR-029"
+    acceptance_criteria: ["AC-037"]
+    tests: ["TEST-036"]
+    database_entities: ["processos"]
+    backend_components: ["app.api"]
+  - requirement_id: "FR-030"
+    acceptance_criteria: ["AC-038"]
+    tests: ["TEST-090"]
+    database_entities: ["configuracoes"]
+    backend_components: ["app.radar", "app.api"]
+  - requirement_id: "FR-031"
+    acceptance_criteria: ["AC-039"]
+    tests: ["TEST-091"]
+    database_entities: ["configuracoes"]
+    backend_components: ["app.radar", "app.api"]
+  - requirement_id: "FR-032"
+    acceptance_criteria: ["AC-040"]
+    tests: ["TEST-022"]
+    database_entities: ["resultados_consulta"]
+    backend_components: ["app.domain"]
+  - requirement_id: "FR-033"
+    acceptance_criteria: ["AC-041"]
+    tests: ["TEST-020"]
+    backend_components: ["app.domain"]
+  - requirement_id: "FR-034"
+    acceptance_criteria: ["AC-042"]
+    tests: ["TEST-023"]
+    database_entities: ["configuracoes"]
+    backend_components: ["app.domain"]
+  - requirement_id: "FR-035"
+    acceptance_criteria: ["AC-043"]
+    tests: ["TEST-063"]
+    database_entities: ["ind_analise_mensal", "ind_gastos_categoria"]
+    backend_components: ["app.reports", "app.api"]
+  - requirement_id: "FR-036"
+    acceptance_criteria: ["AC-044"]
+    tests: ["TEST-070"]
+    database_entities: ["ind_painel"]
+    backend_components: ["app.reports", "app.api"]
+  - requirement_id: "FR-037"
+    acceptance_criteria: ["AC-045"]
+    tests: ["TEST-071"]
+    database_entities: ["ind_painel"]
+    backend_components: ["app.reports", "app.api"]
+  - requirement_id: "FR-038"
+    acceptance_criteria: ["AC-046"]
+    tests: ["TEST-064"]
+    database_entities: ["ind_painel"]
+    backend_components: ["app.reports", "app.api"]
+  - requirement_id: "FR-039"
+    acceptance_criteria: ["AC-047"]
+    tests: ["TEST-034"]
+    database_entities: ["processos"]
+    backend_components: ["app.security.vault", "app.api"]
+  - requirement_id: "FR-040"
+    acceptance_criteria: ["AC-048", "AC-049", "AC-050", "AC-051", "AC-052", "AC-053"]
+    tests: ["TEST-053", "TEST-054", "TEST-055", "TEST-056", "TEST-057", "TEST-058"]
+    database_entities: ["auditoria"]
+    backend_components: ["app.security.audit"]
+  - requirement_id: "FR-041"
+    acceptance_criteria: ["AC-054"]
+    tests: ["TEST-026"]
+    backend_components: ["app.domain"]
+  - requirement_id: "FR-042"
+    acceptance_criteria: ["AC-055"]
+    tests: ["TEST-026"]
+    backend_components: ["app.domain"]
+  - requirement_id: "FR-043"
+    acceptance_criteria: ["AC-056"]
+    tests: ["TEST-087"]
+    database_entities: ["processos"]
+    backend_components: ["app.radar"]
+  - requirement_id: "FR-044"
+    acceptance_criteria: ["AC-057"]
+    tests: ["TEST-094"]
+    database_entities: ["import_log"]
+    backend_components: ["app.security.audit", "app.loader"]
+  - requirement_id: "FR-045"
+    acceptance_criteria: ["AC-058"]
+    tests: ["TEST-028"]
+    backend_components: ["app.domain"]
+  - requirement_id: "FR-046"
+    acceptance_criteria: ["AC-059"]
+    tests: ["TEST-092"]
+    backend_components: ["app.config", "app.api"]
+  - requirement_id: "FR-047"
+    acceptance_criteria: ["AC-060"]
+    tests: ["TEST-093"]
+    backend_components: ["app.api"]
+  - requirement_id: "FR-049"
+    acceptance_criteria: ["AC-061"]
+    tests: ["TEST-027"]
+    database_entities: ["processos"]
+    backend_components: ["app.api"]
+  - requirement_id: "FR-050"
+    acceptance_criteria: ["AC-062"]
+    tests: ["TEST-099"]
+    database_entities: ["import_log"]
+    backend_components: ["app.loader"]
+  - requirement_id: "FR-048"
+    acceptance_criteria: ["AC-063"]
+    tests: ["TEST-030"]
+    database_entities: ["processos"]
+    backend_components: ["app.radar.scrapers", "app.api"]
+  - requirement_id: "NFR-001"
+    acceptance_criteria: ["AC-064", "AC-065"]
+    tests: ["TEST-081", "TEST-085"]
+    backend_components: ["app.api"]
+  - requirement_id: "NFR-013"
+    acceptance_criteria: ["AC-066"]
+    tests: ["TEST-086"]
+    database_entities: ["processos"]
+    backend_components: ["app.radar"]
+  - requirement_id: "NFR-014"
+    acceptance_criteria: ["AC-067", "AC-068"]
+    tests: ["TEST-068", "TEST-077"]
+    database_entities: ["ind_painel"]
+    backend_components: ["app.reports"]
+  - requirement_id: "NFR-002"
+    acceptance_criteria: ["AC-069"]
+    tests: ["TEST-065"]
+    database_entities: ["ind_fluxo_mensal"]
+    backend_components: ["app.reports"]
+  - requirement_id: "NFR-003"
+    acceptance_criteria: ["AC-070"]
+    tests: ["TEST-078"]
+    database_entities: ["ind_painel", "ind_fluxo_mensal"]
+    backend_components: ["app.reports", "app.api"]
+  - requirement_id: "NFR-004"
+    acceptance_criteria: ["AC-071"]
+    tests: ["TEST-066"]
+    database_entities: ["ind_fluxo_mensal"]
+    backend_components: ["app.reports"]
+  - requirement_id: "NFR-005"
+    acceptance_criteria: ["AC-072"]
+    tests: ["TEST-079"]
+    backend_components: ["app.security", "app.api"]
+  - requirement_id: "NFR-006"
+    acceptance_criteria: ["AC-073"]
+    tests: ["TEST-083"]
+    database_entities: ["auditoria"]
+    backend_components: ["app.security.audit"]
+  - requirement_id: "NFR-007"
+    acceptance_criteria: ["AC-074"]
+    tests: ["TEST-084"]
+    database_entities: ["processos"]
+    backend_components: ["app.security.vault"]
+  - requirement_id: "NFR-008"
+    acceptance_criteria: ["AC-075"]
+    tests: ["TEST-017"]
+    database_entities: ["processos"]
+    backend_components: ["app.radar", "app.radar.scrapers"]
+  - requirement_id: "NFR-009"
+    acceptance_criteria: ["AC-076"]
+    tests: ["TEST-016"]
+    database_entities: ["processos"]
+    backend_components: ["app.radar"]
+  - requirement_id: "NFR-010"
+    acceptance_criteria: ["AC-077"]
+    tests: ["TEST-029"]
+    database_entities: ["processos", "import_log"]
+    backend_components: ["app.radar.scrapers", "app.loader", "app.api"]
+  - requirement_id: "NFR-011"
+    acceptance_criteria: ["AC-078", "AC-079"]
+    tests: ["TEST-031", "TEST-032"]
+    database_entities: ["processos"]
+    backend_components: ["app.radar.scrapers", "app.api"]
+  - requirement_id: "NFR-012"
+    acceptance_criteria: ["AC-080"]
+    tests: ["TEST-101"]
+    backend_components: ["app.domain"]

@@ -1,0 +1,85 @@
+layers:
+  - layer: product_behavior
+    applicable: true
+    planned: true
+    implementation_gate: product_requirements_implemented
+    evidence: "<planned; produced during implementation>"
+  - layer: business_logic
+    applicable: true
+    planned: true
+    implementation_gate: backend_implemented
+    evidence: "<planned; produced during implementation>"
+  - layer: ai_behavior
+    applicable: true
+    planned: true
+    implementation_gate: real_ai_integration_verified
+    evidence: "<planned; produced during implementation>"
+  - layer: frontend
+    applicable: true
+    planned: true
+    implementation_gate: frontend_implemented
+    evidence: "<planned; produced during implementation>"
+  - layer: backend
+    applicable: true
+    planned: true
+    implementation_gate: backend_implemented
+    evidence: "<planned; produced during implementation>"
+  - layer: database
+    applicable: true
+    planned: true
+    implementation_gate: database_implemented
+    evidence: "<planned; produced during implementation>"
+  - layer: authentication
+    applicable: true
+    planned: true
+    implementation_gate: authentication_implemented
+    evidence: "<planned; produced during implementation>"
+  - layer: authorization
+    applicable: true
+    planned: true
+    implementation_gate: authorization_tests_passed
+    evidence: "<planned; produced during implementation>"
+  - layer: integrations
+    applicable: false
+    planned: false
+  - layer: environment_configuration
+    applicable: true
+    planned: true
+    implementation_gate: build_passed
+    evidence: "<planned; produced during implementation>"
+  - layer: observability
+    applicable: true
+    planned: true
+    implementation_gate: observability_verified
+    evidence: "<planned; produced during implementation>"
+  - layer: security
+    applicable: true
+    planned: true
+    implementation_gate: security_review_passed
+    evidence: "<planned; produced during implementation>"
+  - layer: performance
+    applicable: true
+    planned: true
+    implementation_gate: performance_review_passed
+    evidence: "<planned; produced during implementation>"
+  - layer: tests
+    applicable: true
+    planned: true
+    implementation_gate: unit_tests_passed
+    evidence: "<planned; produced during implementation>"
+  - layer: deployment
+    applicable: true
+    planned: true
+    implementation_gate: production_like_run_verified
+    evidence: "<planned; produced during implementation>"
+  - layer: rollback
+    applicable: true
+    planned: true
+    implementation_gate: production_like_run_verified
+    evidence: "<planned; produced during implementation>"
+  - layer: documentation
+    applicable: true
+    planned: true
+    implementation_gate: documentation_complete
+    evidence: "<planned; produced during implementation>"
+definition_satisfied: true

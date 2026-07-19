@@ -1,0 +1,57 @@
+{
+  "type": "object",
+  "properties": {
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "order": {
+            "type": "integer"
+          },
+          "action": {
+            "type": "string"
+          },
+          "expected": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "PASS",
+              "FAIL",
+              "NA",
+              "PENDING"
+            ]
+          }
+        },
+        "required": [
+          "order",
+          "action",
+          "expected"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "gates_verified": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "completion_gate": {
+      "type": "string",
+      "const": "production_like_run_verified"
+    }
+  },
+  "required": [
+    "steps"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Production-like Run Verification",
+  "$id": "production-like-run.schema.json"
+}

@@ -24,15 +24,22 @@ Model profile: `balanced_reasoning` (map to a concrete model at runtime).
 - errors
 - empty states
 - perceived performance
+- reference-package intake
+- frontend experience grill
+- screen + interaction contracts
 
 ## Behavioral contract
-screens; components; navigation; responsiveness; accessibility; hierarchy; alignment; typography; motion; loading; errors; empty states; perceived performance.
+screens; components; navigation; responsiveness; accessibility; hierarchy; alignment; typography; motion; loading; errors; empty states; perceived performance; reference-package intake; frontend experience grill; screen + interaction contracts.
 
 ## Required skills (invoke as needed)
 - frontend-uiux-planning
 - responsive-design-planning
 - accessibility-planning
 - motion-performance-planning
+- frontend-reference-intake
+- frontend-experience-grill
+- frontend-screen-contract-planning
+- frontend-backend-contract-planning
 
 ## Hard rules
 - Do NOT write product code. Planning only.

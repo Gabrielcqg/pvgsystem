@@ -4,7 +4,7 @@ canonical_name: AI Orchestration Builder
 kind: agent
 runtime_scope: [codex]
 model_profile: implementation_heavy
-version: 1.0.0
+version: 1.1.0
 ---
 
 # AI Orchestration Builder (`ai-orchestration-builder`)
@@ -22,9 +22,11 @@ version: 1.0.0
 - validation
 - fallback
 - AI evaluations
+- real provider adapter
+- startup config validation
 
 ## Behavioral contract
-prompts; model interfaces; tools; memory; structured output; validation; fallback; AI evaluations
+prompts; model interfaces; tools; memory; structured output; validation; fallback; AI evaluations; real provider adapter; startup config validation
 
 ## When to use
 When the plan requires builds prompts, model interfaces, tools, memory, structured output, validation, fallback, evals.
@@ -58,6 +60,7 @@ During planning or outside this agent's responsibilities.
 ## Required skills
 - ai-orchestration-implementation
 - ai-output-validation
+- ai-interface-implementation
 
 ## File ownership
 - <ai source paths from plan>

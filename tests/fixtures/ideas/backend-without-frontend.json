@@ -1,0 +1,21 @@
+{
+  "slug": "backend-without-frontend",
+  "idea": "An existing backend service with APIs and a database but no user-facing interface; extend it into a usable product.",
+  "signals": {
+    "stores_data": true,
+    "multi_user": true,
+    "has_ui": false,
+    "uses_ai": false,
+    "external_integrations": false,
+    "is_extension": true,
+    "missing_frontend": true
+  },
+  "ambiguities": [],
+  "expect": [
+    "authentication",
+    "backend_behavior",
+    "database",
+    "missing_frontend_interface"
+  ],
+  "expect_material_question": false
+}

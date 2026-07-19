@@ -1,0 +1,66 @@
+{
+  "type": "object",
+  "properties": {
+    "layers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "layer": {
+            "type": "string",
+            "enum": [
+              "product_behavior",
+              "business_logic",
+              "ai_behavior",
+              "frontend",
+              "backend",
+              "database",
+              "authentication",
+              "authorization",
+              "integrations",
+              "environment_configuration",
+              "observability",
+              "security",
+              "performance",
+              "tests",
+              "deployment",
+              "rollback",
+              "documentation"
+            ]
+          },
+          "applicable": {
+            "type": "boolean"
+          },
+          "planned": {
+            "type": "boolean"
+          },
+          "implementation_gate": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "string"
+          },
+          "notes": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "layer",
+          "applicable",
+          "planned"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "definition_satisfied": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "layers"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Production Readiness Matrix",
+  "$id": "production-readiness.schema.json"
+}

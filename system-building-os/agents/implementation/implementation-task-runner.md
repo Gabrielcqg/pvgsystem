@@ -4,7 +4,7 @@ canonical_name: Implementation Task Runner
 kind: agent
 runtime_scope: [codex]
 model_profile: implementation_heavy
-version: 1.0.0
+version: 1.1.0
 ---
 
 # Implementation Task Runner (`implementation-task-runner`)

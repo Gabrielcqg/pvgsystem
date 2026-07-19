@@ -1,0 +1,84 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^CMP-[0-9]{3,}$"
+    },
+    "name": {
+      "type": "string"
+    },
+    "purpose": {
+      "type": "string"
+    },
+    "used_in_screens": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "requirement_ref": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "consumes_api": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "state_shown": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "reflects": {
+      "type": "string"
+    },
+    "props": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "states": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "error_fallback": {
+      "type": "string"
+    },
+    "accessibility": {
+      "type": "string"
+    },
+    "acceptance_criteria": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tests": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "purpose",
+    "reflects",
+    "error_fallback",
+    "tests"
+  ],
+  "additionalProperties": false,
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Component Contract",
+  "$id": "component-contract.schema.json"
+}

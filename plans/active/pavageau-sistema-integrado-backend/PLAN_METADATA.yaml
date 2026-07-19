@@ -1,0 +1,17 @@
+project_id: pavageau-sistema-integrado
+project_slug: pavageau-sistema-integrado-backend
+version: 2.5.1
+content_hash: "sha256:9f9fe612f27977042e46edf34a7ce4daae5eb0f11b0f0aa501268f08514ba36c"
+created_at: "2026-07-19"
+last_planning_update: "2026-07-19"
+source_request: "Plano de construcao - Backend e banco de dados do Sistema Integrado Pavageau: camada de dados e servidor sobre Supabase/PostgreSQL, motor de calculo materializado, integracao do scraper TJSP existente, RLS, trilha de auditoria e carga a partir das planilhas."
+active: true
+superseded_version: null
+implementation_status: not_started
+canonical_os: system-building-os
+has_database: true
+has_auth: true
+has_ui: false
+has_ai: false
+lint_configured: true
+types_applicable: true

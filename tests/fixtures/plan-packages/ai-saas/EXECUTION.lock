@@ -20,3 +20,6 @@ required_completion_gates:
   - external_blockers_documented
   - final_acceptance_judge_passed
   - ai_evaluations_passed
+  - real_ai_integration_verified
+  - frontend_experience_review_passed
+  - production_like_run_verified

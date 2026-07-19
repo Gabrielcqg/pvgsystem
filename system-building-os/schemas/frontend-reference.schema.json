@@ -1,0 +1,137 @@
+{
+  "type": "object",
+  "properties": {
+    "provenance": {
+      "type": "string",
+      "enum": [
+        "user",
+        "references",
+        "inference"
+      ]
+    },
+    "visual_direction": {
+      "type": "string"
+    },
+    "brand_personality": {
+      "type": "string"
+    },
+    "product_feeling": {
+      "type": "string"
+    },
+    "target_polish": {
+      "type": "string",
+      "enum": [
+        "utilitarian",
+        "polished",
+        "premium",
+        "flagship"
+      ]
+    },
+    "color_preferences": {
+      "type": "string"
+    },
+    "typography_preferences": {
+      "type": "string"
+    },
+    "spacing_density": {
+      "type": "string"
+    },
+    "surface_and_border_preferences": {
+      "type": "string"
+    },
+    "iconography": {
+      "type": "string"
+    },
+    "card_behavior": {
+      "type": "string"
+    },
+    "navigation_style": {
+      "type": "string"
+    },
+    "animation_style": {
+      "type": "string"
+    },
+    "scroll_behavior": {
+      "type": "string"
+    },
+    "responsive_expectations": {
+      "type": "string"
+    },
+    "accessibility_expectations": {
+      "type": "string"
+    },
+    "references": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "classification": {
+            "type": "string",
+            "enum": [
+              "MUST_FOLLOW",
+              "STRONG_INSPIRATION",
+              "GENERAL_INSPIRATION",
+              "AVOID"
+            ]
+          },
+          "name": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "notes": {
+            "type": "string"
+          },
+          "applies_to": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "classification",
+          "notes"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "liked_examples": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "disliked_examples": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "avoid_patterns": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "non_negotiable_visual_rules": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "decisions_provenance": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "provenance",
+    "visual_direction",
+    "target_polish",
+    "non_negotiable_visual_rules"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Frontend Reference",
+  "$id": "frontend-reference.schema.json"
+}

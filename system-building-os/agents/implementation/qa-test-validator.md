@@ -4,7 +4,7 @@ canonical_name: QA Test Validator
 kind: agent
 runtime_scope: [codex]
 model_profile: balanced_reasoning
-version: 1.0.0
+version: 1.1.0
 ---
 
 # QA Test Validator (`qa-test-validator`)

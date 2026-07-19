@@ -41,9 +41,31 @@ plans/active/<project-slug>/
 ├── 28-codex-handoff.md
 ├── 29-codex-start.md
 ├── 30-plan-validation-report.md
+│
+│   # ---- production-complete artifacts (closed-loop update) ----
+├── ai-responsibility-matrix.yaml       # schema: ai-responsibility-matrix (who owns each decision)
+├── vertical-traceability.yaml          # schema: vertical-traceability (REQUIRED — cross-layer closure)
+├── implementation-deliverables.yaml    # schema: implementation-deliverable (REQUIRED — what Codex must deliver)
+├── production-readiness.yaml           # schema: production-readiness (REQUIRED — applicable layers planned + gated)
+├── frontend/                           # present when has_ui
+│   ├── frontend-reference.yaml         # schema: frontend-reference (from project-reference/frontend/)
+│   ├── design-tokens.yaml              # schema: design-token
+│   ├── screen-contracts/*.yaml         # schema: screen-contract (one per surface, all states)
+│   ├── component-contracts.yaml        # schema: component-contract
+│   ├── interaction-contracts.yaml      # schema: interaction-contract (IX-### per user action)
+│   └── frontend-states.yaml            # schema: frontend-state
+├── ai/                                 # present when AI is central
+│   ├── ai-provider-contract.yaml       # schema: ai-provider-contract (real provider adapter)
+│   └── real-ai-integration-plan.yaml   # schema: real-ai-integration-plan (production path + centrality tests)
 └── runtime/                      # state.json, execution-ledger.jsonl, task-status.yaml,
                                   # checkpoints/, phase-logs/, deviations.jsonl
 ```
+
+`PLAN_METADATA.yaml` records the layer facts (`has_ui`, `has_database`, `has_auth`,
+`has_ai`) that make the frontend / database / auth / real-AI artifacts mandatory.
+All implementation gates in `EXECUTION.lock` (and any `gate-status.yaml`) remain
+`PENDING` until Codex proves them; the validator fails if an implementation gate is
+marked `PASS` at planning time.
 
 Validate a package with:
 ```

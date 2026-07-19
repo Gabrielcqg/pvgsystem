@@ -1,0 +1,22 @@
+central_value: AI interprets the input and produces the judgement that is the product.
+central_value_owner: ai
+decisions_never_delegated_to_ai:
+  - final accept/reject stays with the human reviewer
+behavior_when_ai_unavailable: Degrade to a queued human-review task; never fabricate output.
+minimum_deterministic_fallback: Schema-validated empty result + human-review flag.
+intelligence_proof: Different input context yields materially different output.
+steps:
+  - step_id: STEP-001
+    description: Interpret input and generate the judgement.
+    owner:
+      - ai
+    decision_type: generation
+    inputs:
+      - user input
+      - accumulated context
+    context: prior interaction state
+    output_contract: JSON validated against the output schema
+    validation: schema + domain validation; repair on invalid
+    fallback: human review on low confidence
+    user_visible_effect: The generated judgement the user acts on.
+    adapts_dynamically: true

@@ -11,10 +11,14 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 
 STEPS = [
+    ["gen_schemas.py"],
+    ["gen_templates.py"],
     ["gen_registries.py"],
     ["generate_canonical.py"],
     ["generate_claude_adapter.py"],
     ["generate_codex_adapter.py"],
+    ["validate_schemas.py"],
+    ["validate_state_machine.py"],
     ["validate_agent_contracts.py"],
     ["validate_skill_contracts.py"],
     ["validate_runtime_parity.py"],

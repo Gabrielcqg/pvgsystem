@@ -1,0 +1,65 @@
+deliverables:
+  - deliverable_id: DEL-001
+    name: Runnable backend
+    type: backend
+    purpose: Backend starts and serves the specified APIs.
+    expected_runtime_behavior: Backend starts and serves the specified APIs.
+    completion_conditions:
+      - gate backend_implemented PASS with evidence
+    completion_gate: backend_implemented
+  - deliverable_id: DEL-010
+    name: E2E test suite
+    type: e2e_suite
+    purpose: E2E suite runs the core flows and passes.
+    expected_runtime_behavior: E2E suite runs the core flows and passes.
+    completion_conditions:
+      - gate acceptance_criteria_passed PASS with evidence
+    completion_gate: acceptance_criteria_passed
+  - deliverable_id: DEL-011
+    name: Documentation
+    type: documentation
+    purpose: Setup + operations docs let a new engineer run the system.
+    expected_runtime_behavior: Setup + operations docs let a new engineer run the system.
+    completion_conditions:
+      - gate documentation_complete PASS with evidence
+    completion_gate: documentation_complete
+  - deliverable_id: DEL-012
+    name: Final report
+    type: final_report
+    purpose: Truthful evidence-based delivery report is produced.
+    expected_runtime_behavior: Truthful evidence-based delivery report is produced.
+    completion_conditions:
+      - gate final_acceptance_judge_passed PASS with evidence
+    completion_gate: final_acceptance_judge_passed
+  - deliverable_id: DEL-002
+    name: Database schema + migrations
+    type: database
+    purpose: Schema applied via reversible migrations.
+    expected_runtime_behavior: Schema applied via reversible migrations.
+    completion_conditions:
+      - gate database_implemented PASS with evidence
+    completion_gate: database_implemented
+  - deliverable_id: DEL-003
+    name: Authentication
+    type: authentication
+    purpose: Sessions enforced; RBAC applied.
+    expected_runtime_behavior: Sessions enforced; RBAC applied.
+    completion_conditions:
+      - gate authentication_implemented PASS with evidence
+    completion_gate: authentication_implemented
+  - deliverable_id: DEL-004
+    name: Runnable frontend
+    type: frontend
+    purpose: "Frontend builds, renders all states, and calls real APIs."
+    expected_runtime_behavior: "Frontend builds, renders all states, and calls real APIs."
+    completion_conditions:
+      - gate frontend_implemented PASS with evidence
+    completion_gate: frontend_implemented
+  - deliverable_id: DEL-005
+    name: Real AI provider integration
+    type: ai_integration
+    purpose: Provider adapter runs from named env vars; mock not used in production.
+    expected_runtime_behavior: Provider adapter runs from named env vars; mock not used in production.
+    completion_conditions:
+      - gate real_ai_integration_verified PASS with evidence
+    completion_gate: real_ai_integration_verified

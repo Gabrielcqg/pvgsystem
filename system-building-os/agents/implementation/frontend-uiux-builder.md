@@ -4,7 +4,7 @@ canonical_name: Frontend & UI/UX Builder
 kind: agent
 runtime_scope: [codex]
 model_profile: implementation_heavy
-version: 1.0.0
+version: 1.1.0
 ---
 
 # Frontend & UI/UX Builder (`frontend-uiux-builder`)
@@ -25,9 +25,14 @@ version: 1.0.0
 - animation
 - visual consistency
 - perceived performance
+- product translation
+- creative UI concept
+- information hierarchy
+- frontend-backend contract wiring
+- AI-state surfaces
 
 ## Behavioral contract
-frontend; components; layout; responsive behavior; accessibility; loading; empty states; error states; animation; visual consistency; perceived performance
+frontend; components; layout; responsive behavior; accessibility; loading; empty states; error states; animation; visual consistency; perceived performance; product translation; creative UI concept; information hierarchy; frontend-backend contract wiring; AI-state surfaces
 
 ## When to use
 When the plan requires builds frontend, components, layout, states, accessibility, animation, perceived performance.
@@ -63,6 +68,16 @@ During planning or outside this agent's responsibilities.
 - frontend-design-fidelity
 - responsive-implementation
 - accessibility-implementation
+- frontend-product-translation
+- creative-ui-concept
+- information-hierarchy
+- frontend-design-system
+- animation-and-microinteraction
+- frontend-state-completeness
+- loading-error-empty-states
+- frontend-backend-contract
+- design-reference-compliance
+- frontend-performance
 
 ## File ownership
 - <frontend source paths from plan>

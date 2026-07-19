@@ -19,7 +19,9 @@ import sys
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "lib"))
 import osutil  # noqa: E402
 
-# Always-on planning skills (grill is mandatory; these run for every idea).
+# Always-on planning skills (grill is mandatory; these run for every idea). The
+# closed-loop update adds the intelligence grill, cross-layer reconciliation,
+# deliverables, and production-readiness — they run for every plan.
 ALWAYS = [
     "plan-max-orchestration", "grill-me-planning", "product-discovery",
     "requirement-extraction", "requirement-completeness-audit", "decision-resolution",
@@ -29,14 +31,22 @@ ALWAYS = [
     "file-ownership-planning", "context-packet-generation", "codex-handoff-generation",
     "plan-consistency-validation", "requirement-traceability", "environment-strategy",
     "infrastructure-planning", "observability-planning", "performance-budget-planning",
+    "product-logic-and-intelligence-grill", "cross-layer-reconciliation",
+    "implementation-deliverables-planning", "production-readiness-planning",
 ]
 # Conditional skill activation keyed on idea signals.
 CONDITIONAL = {
     "stores_data": ["data-architecture-planning", "database-selection", "migration-planning"],
     "multi_user": ["auth-authorization-planning", "security-threat-model-planning"],
     "has_ui": ["frontend-uiux-planning", "responsive-design-planning",
-               "accessibility-planning", "motion-performance-planning"],
+               "accessibility-planning", "motion-performance-planning",
+               "frontend-reference-intake", "frontend-experience-grill",
+               "frontend-screen-contract-planning", "frontend-backend-contract-planning"],
     "uses_ai": ["ai-flow-planning", "ai-evaluation-planning"],
+    "ai_central": ["real-ai-integration-planning"],
+    "missing_frontend": ["frontend-uiux-planning", "frontend-experience-grill",
+                         "frontend-screen-contract-planning"],
+    "static_mocks": ["frontend-backend-contract-planning"],
     "external_integrations": ["integration-planning", "mcp-governance-planning"],
 }
 # Which decisions a signal implies must be resolved (gap detection).
@@ -46,6 +56,10 @@ DECISION_FOR = {
     "has_ui": "frontend_states",
     "uses_ai": "ai_output_validation",
     "external_integrations": "integration_fallback",
+    # closed-loop update: AI centrality, missing UI, and fake-data detection
+    "ai_central": "ai_centrality",
+    "missing_frontend": "missing_frontend_interface",
+    "static_mocks": "fake_data_paths",
 }
 # Material (Category E) ambiguities -> a grouped question.
 MATERIAL_QUESTIONS = {

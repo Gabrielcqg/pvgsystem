@@ -1,0 +1,37 @@
+# classification: user-customizable
+# Starting design tokens for the product. /plan_max reads these and refines them
+# into plans/active/<slug>/frontend/design-tokens.yaml (validated against
+# design-token.schema.json). Fill in real values or leave the placeholders and
+# Claude will infer them from the product + FRONTEND_REFERENCE.md.
+source: user            # user | references | inference
+color:
+  # background: "#0B0C0E"
+  # surface: "#14161A"
+  # text: "#E8EAED"
+  # accent: "#4F8CFF"
+  # positive: "#3FB950"
+  # warning: "#D29922"
+  # danger: "#F85149"
+typography:
+  # font_family: "Inter, system-ui, sans-serif"
+  # scale: [12, 14, 16, 20, 24, 32, 40]
+  # weights: [400, 500, 600, 700]
+spacing:
+  # base_unit: 4
+  # scale: [4, 8, 12, 16, 24, 32, 48, 64]
+radius:
+  # sm: 6
+  # md: 10
+  # lg: 16
+shadow:
+  # elevation_1: "0 1px 2px rgba(0,0,0,0.2)"
+motion:
+  # duration_fast: 120
+  # duration_base: 200
+  # easing: "cubic-bezier(0.2, 0, 0, 1)"
+  # respect_reduced_motion: true
+breakpoints:
+  # sm: 640
+  # md: 768
+  # lg: 1024
+  # xl: 1280

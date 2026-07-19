@@ -1,7 +1,7 @@
 os_name: Autonomous System Building OS
 canonical_slug: autonomous-system-building-os
 short_name: System Building OS
-version: 1.0.0
+version: 1.1.0
 description: >
   A permanent, reusable, runtime-neutral operating system for planning and
   implementing software systems. Claude is the planning runtime; Codex is the
@@ -28,10 +28,14 @@ source_of_truth:
     - integrations/mcp
 projection_scripts:
   discover: scripts/discover_runtime_capabilities.py
+  gen_schemas: scripts/gen_schemas.py
+  gen_templates: scripts/gen_templates.py
+  gen_registries: scripts/gen_registries.py
   generate_canonical: scripts/generate_canonical.py
   generate_claude: scripts/generate_claude_adapter.py
   generate_codex: scripts/generate_codex_adapter.py
   sync: scripts/sync_runtime_adapters.py
+  install_project_reference: scripts/install_project_reference.py
 principles:
   - Build the factory, not a product.
   - Claude plans deeply; Codex implements deterministically.
@@ -40,3 +44,8 @@ principles:
   - Secrets are never read, printed, or committed.
   - The plan must be so complete that Codex never guesses material behavior.
   - Completion is gated by evidence, not by file existence.
+  - Production-ready means a complete vertical product (frontend, backend, data,
+    auth, real AI path) — never core logic alone. See policies/production-ready.md.
+  - /plan_max is a closed loop: it audits and repairs its own plan before it is ready.
+  - Planning gates may pass during planning; implementation gates stay PENDING
+    until Codex proves them with evidence.

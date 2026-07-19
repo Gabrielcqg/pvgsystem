@@ -1,0 +1,11 @@
+provenance: inference
+visual_direction: "Clean, information-dense but calm; product logic is visible, not buried in generic cards."
+brand_personality: "trustworthy, precise, quietly modern"
+product_feeling: in control and informed
+target_polish: polished
+non_negotiable_visual_rules:
+  - Every data surface has explicit loading/empty/error states.
+  - No dead space or cards stretched only to fill the container.
+  - Primary action is visually dominant on each screen.
+avoid_patterns:
+  - generic admin dashboard with only cards and tables

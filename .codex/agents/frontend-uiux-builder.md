@@ -22,6 +22,11 @@ Model profile: `implementation_heavy` (map to a concrete model at runtime).
 - animation
 - visual consistency
 - perceived performance
+- product translation
+- creative UI concept
+- information hierarchy
+- frontend-backend contract wiring
+- AI-state surfaces
 
 ## Inputs
 - assigned task
@@ -38,6 +43,16 @@ Model profile: `implementation_heavy` (map to a concrete model at runtime).
 - frontend-design-fidelity
 - responsive-implementation
 - accessibility-implementation
+- frontend-product-translation
+- creative-ui-concept
+- information-hierarchy
+- frontend-design-system
+- animation-and-microinteraction
+- frontend-state-completeness
+- loading-error-empty-states
+- frontend-backend-contract
+- design-reference-compliance
+- frontend-performance
 
 ## File ownership
 - <frontend source paths from plan>

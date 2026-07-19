@@ -4,7 +4,7 @@ canonical_name: Final Acceptance Judge
 kind: agent
 runtime_scope: [codex]
 model_profile: validation_independent
-version: 1.0.0
+version: 1.1.0
 ---
 
 # Final Acceptance Judge (`final-acceptance-judge`)
