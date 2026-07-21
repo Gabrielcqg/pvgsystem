@@ -1,0 +1,194 @@
+{
+  "ok": true,
+  "errors": [],
+  "warnings": [
+    "canonical plan package byte-hash algorithm is absent; validated metadata/lock hash equality and recorded attempted manifest digests"
+  ],
+  "plan": {
+    "slug": "pavageau-sistema-integrado-backend",
+    "version": "2.5.1",
+    "hash": "sha256:9f9fe612f27977042e46edf34a7ce4daae5eb0f11b0f0aa501268f08514ba36c"
+  },
+  "counts": {
+    "requirements": 66,
+    "acceptance_criteria": 80,
+    "completion_gates": 35
+  },
+  "gates": [
+    {
+      "gate": "active_plan_valid",
+      "state": "PASS",
+      "note": ""
+    },
+    {
+      "gate": "planning_package_complete",
+      "state": "PASS",
+      "note": ""
+    },
+    {
+      "gate": "independent_plan_audit_passed",
+      "state": "PASS",
+      "note": ""
+    },
+    {
+      "gate": "codex_handoff_valid",
+      "state": "PASS",
+      "note": ""
+    },
+    {
+      "gate": "product_requirements_implemented",
+      "state": "PASS",
+      "note": ""
+    },
+    {
+      "gate": "requirement_traceability_complete",
+      "state": "PASS",
+      "note": ""
+    },
+    {
+      "gate": "frontend_implemented",
+      "state": "NA",
+      "note": "not applicable"
+    },
+    {
+      "gate": "backend_implemented",
+      "state": "PASS",
+      "note": ""
+    },
+    {
+      "gate": "database_implemented",
+      "state": "PASS",
+      "note": ""
+    },
+    {
+      "gate": "authentication_implemented",
+      "state": "PASS",
+      "note": ""
+    },
+    {
+      "gate": "real_ai_integration_verified",
+      "state": "NA",
+      "note": "not applicable"
+    },
+    {
+      "gate": "acceptance_criteria_passed",
+      "state": "PASS",
+      "note": ""
+    },
+    {
+      "gate": "build_passed",
+      "state": "PASS",
+      "note": ""
+    },
+    {
+      "gate": "lint_passed",
+      "state": "PASS",
+      "note": ""
+    },
+    {
+      "gate": "typecheck_passed",
+      "state": "PASS",
+      "note": ""
+    },
+    {
+      "gate": "unit_tests_passed",
+      "state": "PASS",
+      "note": ""
+    },
+    {
+      "gate": "integration_tests_passed",
+      "state": "PASS",
+      "note": ""
+    },
+    {
+      "gate": "contract_tests_passed",
+      "state": "PASS",
+      "note": ""
+    },
+    {
+      "gate": "database_tests_passed",
+      "state": "PASS",
+      "note": ""
+    },
+    {
+      "gate": "migration_validation_passed",
+      "state": "PASS",
+      "note": ""
+    },
+    {
+      "gate": "auth_tests_passed",
+      "state": "PASS",
+      "note": ""
+    },
+    {
+      "gate": "authorization_tests_passed",
+      "state": "PASS",
+      "note": ""
+    },
+    {
+      "gate": "e2e_tests_passed",
+      "state": "NA",
+      "note": "not applicable"
+    },
+    {
+      "gate": "browser_validation_passed",
+      "state": "NA",
+      "note": "not applicable"
+    },
+    {
+      "gate": "accessibility_validation_passed",
+      "state": "NA",
+      "note": "not applicable"
+    },
+    {
+      "gate": "frontend_experience_review_passed",
+      "state": "NA",
+      "note": "not applicable"
+    },
+    {
+      "gate": "ai_evaluations_passed",
+      "state": "NA",
+      "note": "not applicable"
+    },
+    {
+      "gate": "security_review_passed",
+      "state": "PASS",
+      "note": ""
+    },
+    {
+      "gate": "performance_review_passed",
+      "state": "PASS",
+      "note": ""
+    },
+    {
+      "gate": "observability_verified",
+      "state": "PASS",
+      "note": ""
+    },
+    {
+      "gate": "production_like_run_verified",
+      "state": "PASS",
+      "note": ""
+    },
+    {
+      "gate": "documentation_complete",
+      "state": "PASS",
+      "note": ""
+    },
+    {
+      "gate": "deviation_report_complete",
+      "state": "PASS",
+      "note": ""
+    },
+    {
+      "gate": "external_blockers_documented",
+      "state": "PASS",
+      "note": ""
+    },
+    {
+      "gate": "final_acceptance_judge_passed",
+      "state": "PASS",
+      "note": ""
+    }
+  ]
+}

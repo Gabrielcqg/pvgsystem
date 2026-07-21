@@ -1,0 +1,37 @@
+{
+  "plan_package_validation": {
+    "command": "python3 scripts/validate_plan_package.py plans/active/pavageau-sistema-integrado-backend",
+    "result": "PASS",
+    "evidence": "681/681 checks passed"
+  },
+  "secret_scan": {
+    "command": "python3 scripts/scan_secrets.py",
+    "result": "PASS",
+    "evidence": "SECRET SCAN: clean"
+  },
+  "migrations_clean_database": {
+    "command": "MIGRATION_DATABASE_URL=postgresql://gabrielcamargo@localhost:54339/pavageau .venv/bin/python -m app.db.migrate",
+    "result": "PASS",
+    "evidence": "applied migrations 000_bootstrap.sql through 010_radar_role.sql on a clean local Postgres database"
+  },
+  "full_pytest": {
+    "command": "DATABASE_URL=postgresql://gabrielcamargo@localhost:54339/pavageau .venv/bin/python -m pytest -q",
+    "result": "PASS",
+    "evidence": "39 passed"
+  },
+  "lint": {
+    "command": ".venv/bin/python -m ruff check app tests",
+    "result": "PASS",
+    "evidence": "All checks passed"
+  },
+  "typecheck": {
+    "command": ".venv/bin/python -m mypy app",
+    "result": "PASS",
+    "evidence": "Success: no issues found in 29 source files"
+  },
+  "production_like_local": {
+    "command": "uvicorn app.api.main:app with clean local database; health/API persistence/performance checks",
+    "result": "PASS",
+    "evidence": "Local production-like evidence captured in EVID-01-local-production-like-run.json; /fluxo-caixa p95 7.51 ms over 30 HTTP requests; external Supabase production host remains EXT-DEP-01"
+  }
+}

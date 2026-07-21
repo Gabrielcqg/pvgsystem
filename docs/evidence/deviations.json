@@ -1,0 +1,23 @@
+[
+  {
+    "id": "DEV-001",
+    "level": 1,
+    "summary": "Docker daemon was unavailable in this Codex environment.",
+    "impact": "No product behavior change. Clean database validation ran on isolated local Homebrew PostgreSQL 18.3 on port 54339 instead of the Docker PostgreSQL 16 container.",
+    "status": "documented"
+  },
+  {
+    "id": "DEV-002",
+    "level": 1,
+    "summary": "The active plan package has no 23-context-packets/ directory.",
+    "impact": "No product behavior change. The package validator and handoff artifacts pass; implementation used 23-task-decomposition.md, manifest, traceability, decision ledger, and plan sections as the focused context.",
+    "status": "documented"
+  },
+  {
+    "id": "DEV-003",
+    "level": 1,
+    "summary": "No canonical byte-hash recomputation script exists for the plan package hash.",
+    "impact": "Metadata and EXECUTION.lock match the expected SHA-256 and package validation passes. Local exploratory byte-manifest attempts were not used as completion evidence because the canonical algorithm is absent.",
+    "status": "documented"
+  }
+]

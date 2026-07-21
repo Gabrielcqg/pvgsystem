@@ -1,0 +1,10 @@
+{
+  "id": "EVID-01",
+  "generated_at": "2026-07-20T00:32:47.227842+00:00",
+  "scope": "local production-like verification with clean database and no AWS/Supabase provisioning",
+  "database": "migrations 000-010 applied to a clean local Postgres database",
+  "api": "FastAPI health, authenticated persistence routes, derived report routes, and password redaction covered by tests",
+  "radar": "TJSP adapter fixture path, TJCE/TJBA pending placeholders, seed parsing, full pending run behavior, alerts and password behavior covered by tests",
+  "performance": "Materialized /fluxo-caixa endpoint measured p95 7.51 ms over 30 local HTTP requests, under the 300 ms target.",
+  "external_limit": "This is not the real Supabase/office-host radar run; EXT-DEP-01 remains documented for production provisioning."
+}

@@ -1,0 +1,10 @@
+{
+  "canonical_path": "plans/active/pavageau-sistema-integrado-backend/vendor/scraper/consulta_tjsp_lote.py",
+  "runtime_path": "radar/scrapers/vendor/consulta_tjsp_lote.py",
+  "sha256": "c9429f2aa3ac05a30fe53075ce56fb2def63e5cc82f229a0531b94ba73701ad8",
+  "protected_branches": [
+    "eproc_eventos",
+    "container_movimentacao"
+  ],
+  "characterization": "TEST-SCRAPER-01/02/03 passed against golden fixtures"
+}

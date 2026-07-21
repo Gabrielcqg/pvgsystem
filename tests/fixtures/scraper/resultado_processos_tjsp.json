@@ -1,0 +1,3878 @@
+{
+  "portal": "TJSP - Consulta pública",
+  "arquivo_excel": "/Users/gabrielcamargo/Downloads/processos.xlsx",
+  "coluna_processo": "PROCESSO",
+  "iniciado_em": "2026-07-19T01:49:05-03:00",
+  "ultima_atualizacao": "2026-07-19T01:53:34-03:00",
+  "total_processos_excel": 106,
+  "resumo": {
+    "total_processados": 106,
+    "sucesso": 94,
+    "nao_localizado": 0,
+    "numero_invalido": 1,
+    "senha_necessaria": 5,
+    "captcha_timeout": 0,
+    "pagina_intermediaria": 0,
+    "timeout": 6,
+    "erro": 0,
+    "total_movimentacoes": 282
+  },
+  "processos": [
+    {
+      "status": "timeout",
+      "mensagem": "Nenhuma mudança útil ocorreu dentro do watchdog de 10s.",
+      "layout_movimentacoes": null,
+      "quantidade_movimentacoes": 0,
+      "movimentacoes": [],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_unificada_publica/consultar",
+      "tipo_pagina": "desconhecida",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 10.7402,
+      "numero_processo": "0038490-26.2012.8.26.0114",
+      "linha_excel": 2,
+      "valor_original_excel": "0038490-26.2012.8.26.0114",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 2,
+      "consultado_em": "2026-07-19T01:49:46-03:00",
+      "duracao_total_segundos": 16.0018,
+      "erros_tentativas_anteriores": [
+        {
+          "tentativa": 1,
+          "tipo": "StatusTransitorio",
+          "status": "timeout",
+          "mensagem": "Nenhuma mudança útil ocorreu dentro do watchdog de 10s.",
+          "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_unificada_publica/consultar",
+          "ocorrido_em": "2026-07-19T01:49:28-03:00"
+        }
+      ]
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "container_movimentacao",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": null,
+          "data_hora": "14/05/2026",
+          "descricao": "Petição Juntada Nº Protocolo: WCAS.26.70196204-1 Tipo da Petição: Petições Diversas Data: 14/05/2026 13:53",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "07/05/2026",
+          "descricao": "Certidão de Publicação Expedida Relação: 1028/2026 Data da Publicação: 08/05/2026",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "06/05/2026",
+          "descricao": "Remetido ao DJE Relação: 1028/2026 Teor do ato: Conforme consulta junto ao Sisbajud, não há bloqueio relativo a estes autos. Advogados(s): Denise Teixeira Leite Landwehrkamp (OAB 129438/SP), Daniel Andre Paes - réu-revel , Réu Revel (OAB R/SP), Joao Pedro Tozzi Pavageau (OAB 515632/SP)",
+          "usuario": null
+        }
+      ],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=36Z0C0TP70000&processo.foro=114&processo.numero=0038491-11.2012.8.26.0114",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.7019,
+      "numero_processo": "0038491-11.2012.8.26.0114",
+      "linha_excel": 3,
+      "valor_original_excel": "0038491-11.2012.8.26.0114",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:29:42-03:00",
+      "duracao_total_segundos": 5.8654,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "senha_necessaria",
+      "mensagem": "Página solicitou senha ou chave de acesso ao processo.",
+      "layout_movimentacoes": null,
+      "quantidade_movimentacoes": 0,
+      "movimentacoes": [],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=8L000LCV60000&processo.foro=309&processo.numero=1001723-75.2026.8.26.0309",
+      "tipo_pagina": "senha_necessaria",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.969,
+      "numero_processo": "1001723-75.2026.8.26.0309",
+      "linha_excel": 4,
+      "valor_original_excel": "1001723-75.2026.8.26.0309",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-19T01:49:53-03:00",
+      "duracao_total_segundos": 5.6899,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "container_movimentacao",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": null,
+          "data_hora": "16/06/2026",
+          "descricao": "Certidão de Publicação Expedida Relação: 1171/2026 Data da Publicação: 17/06/2026",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "15/06/2026",
+          "descricao": "Remetido ao DJE Relação: 1171/2026 Teor do ato: Cumpra-se o V. Acórdão, observando que eventual cumprimento de sentença deverá ser cadastrado como incidente. Arquivem-se definitivamente estes autos. Advogados(s): Alexandre Luiz Braghetto (OAB 223260/SP), Eduardo Roberto de Barros (OAB 454731/SP), Joao Pedro Tozzi Pavageau (OAB 515632/SP), Louis Dolabela (OAB 124826/MG)",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "15/06/2026",
+          "descricao": "Ato Ordinatório - Intimação - DJE Cumpra-se o V. Acórdão, observando que eventual cumprimento de sentença deverá ser cadastrado como incidente. Arquivem-se definitivamente estes autos.",
+          "usuario": null
+        }
+      ],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=360017MI60000&processo.foro=114&processo.numero=1026667-81.2025.8.26.0114",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.5798,
+      "numero_processo": "1026667-81.2025.8.26.0114",
+      "linha_excel": 5,
+      "valor_original_excel": "1026667-81.2025.8.26.0114",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:29:55-03:00",
+      "duracao_total_segundos": 5.2873,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "container_movimentacao",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": null,
+          "data_hora": "16/06/2026",
+          "descricao": "Baixa Definitiva",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "16/06/2026",
+          "descricao": "Arquivado Definitivamente",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "15/06/2026",
+          "descricao": "Trânsito em Julgado às partes - Proc. em Andamento Trânsito em julgado",
+          "usuario": null
+        }
+      ],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=1H000XNI50000&processo.foro=53&processo.numero=1143711-13.2025.8.26.0053",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.6277,
+      "numero_processo": "1143711-13.2025.8.26.0053",
+      "linha_excel": 6,
+      "valor_original_excel": "1143711-13.2025.8.26.0053",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:30:03-03:00",
+      "duracao_total_segundos": 6.2327,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "61",
+          "data_hora": "11/05/2026 13:00:50",
+          "descricao": "Remetidos os Autos - Remessa Externa - MOMOR01CUM -> TJSP",
+          "usuario": "M358329"
+        },
+        {
+          "evento": "60",
+          "data_hora": "11/05/2026 13:00:00",
+          "descricao": "Juntada de certidão - encerrado prazo - Refer. aos Eventos: 52 e 53",
+          "usuario": "M358329"
+        },
+        {
+          "evento": "59",
+          "data_hora": "30/04/2026 13:53:50",
+          "descricao": "Decorrido prazo - Refer. aos Eventos: 43 e 46",
+          "usuario": "SECFP"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40009537020258260372&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=bedfcf90a0cc800a41aba7e98c1ceed737278cc4cf3915799307f11c99245557&hash=88d89b75fc6f53f3bac06619ea21587b",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.9683,
+      "numero_processo": "4000953-70.2025.8.26.0372",
+      "linha_excel": 7,
+      "valor_original_excel": "4000953-70.2025.8.26.0372",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:30:10-03:00",
+      "duracao_total_segundos": 5.4845,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "92",
+          "data_hora": "07/07/2026 09:55:03",
+          "descricao": "IMPUGNAÇÃO AOS EMBARGOS",
+          "usuario": "SP515632"
+        },
+        {
+          "evento": "91",
+          "data_hora": "30/05/2026 01:32:16",
+          "descricao": "Decorrido prazo - Refer. ao Evento: 86",
+          "usuario": "SECFP"
+        },
+        {
+          "evento": "90",
+          "data_hora": "18/05/2026 10:30:11",
+          "descricao": "Conclusos para decisão com Embargos de Declaração",
+          "usuario": "secautoloc"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40108043420258260114&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=6b35e834d018e0af3ae1f81ae8bf3fbca5b036ad1e74077e0e1ac5c003dcd76b&hash=60faea598000a0197026450a3914c667",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.8661,
+      "numero_processo": "4010804-34.2025.8.26.0114",
+      "linha_excel": 8,
+      "valor_original_excel": "4010804-34.2025.8.26.0114",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:30:16-03:00",
+      "duracao_total_segundos": 5.3126,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "28",
+          "data_hora": "08/07/2026 02:36:22",
+          "descricao": "Decorrido prazo - Refer. ao Evento: 25",
+          "usuario": "SECFP"
+        },
+        {
+          "evento": "27",
+          "data_hora": "16/06/2026 11:15:03",
+          "descricao": "Publicado no DJ Eletrônico - no dia 16/06/2026 - Refer. ao Evento: 25",
+          "usuario": "secde"
+        },
+        {
+          "evento": "26",
+          "data_hora": "15/06/2026 03:23:47",
+          "descricao": "Disponibilizado no DJ Eletrônico - no dia 15/06/2026 - Refer. ao Evento: 25",
+          "usuario": "secde"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40122844720258260114&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=70785d4580f56ef7de036da56ea215b795f240dd1048a324cab2310f3ee1e33c&hash=fc0c2701d5ddcc03eb0f81e4c8a4e738",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.8573,
+      "numero_processo": "4012284-47.2025.8.26.0114",
+      "linha_excel": 9,
+      "valor_original_excel": "4012284-47.2025.8.26.0114",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:30:23-03:00",
+      "duracao_total_segundos": 5.5273,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "container_movimentacao",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": null,
+          "data_hora": "27/03/2026",
+          "descricao": "Arquivado Definitivamente",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "27/03/2026",
+          "descricao": "Certidão de Cartório Expedida Certidão de Cartório - CUSTAS - Certidão de Pagamento de Custas e Arquivamento - Cível - 61615",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "04/02/2026",
+          "descricao": "Baixa Definitiva",
+          "usuario": null
+        }
+      ],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=360000YCH0000&processo.foro=114&processo.numero=4015806-05.2013.8.26.0114",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.6508,
+      "numero_processo": "4015806-05.2013.8.26.0114",
+      "linha_excel": 10,
+      "valor_original_excel": "4015806-05.2013.8.26.0114",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:30:30-03:00",
+      "duracao_total_segundos": 5.3326,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "senha_necessaria",
+      "mensagem": "Página solicitou senha ou chave de acesso ao processo.",
+      "layout_movimentacoes": null,
+      "quantidade_movimentacoes": 0,
+      "movimentacoes": [],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=I20003MVC0000&processo.foro=650&processo.numero=1000160-90.2026.8.26.0650",
+      "tipo_pagina": "senha_necessaria",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.8895,
+      "numero_processo": "1000160-90.2026.8.26.0650",
+      "linha_excel": 11,
+      "valor_original_excel": "1000160-90.2026.8.26.0650",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-19T01:50:00-03:00",
+      "duracao_total_segundos": 5.9628,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "container_movimentacao",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": null,
+          "data_hora": "29/05/2026",
+          "descricao": "Petição Juntada Nº Protocolo: WCAS.26.70219799-3 Tipo da Petição: Petições Diversas Data: 29/05/2026 17:04",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "07/05/2026",
+          "descricao": "Certidão de Publicação Expedida Relação: 1028/2026 Data da Publicação: 08/05/2026",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "06/05/2026",
+          "descricao": "Remetido ao DJE Relação: 1028/2026 Teor do ato: Vistos. Defiro a solicitação de cópias das declarações de imposto de renda do(a) executado(a), perante o sistema informatizado Infojud.As informações econômico-financeiras serão juntadas aos autos com o tipo específico de documento digital sigiloso (\"73 - declaração de imposto de renda\"), nos termos do art. 1.263, § 1º, das NSCGJ. Providencie o cartório o necessário, on line, dando ciência, devendo o exequente requerer o que de direito, no prazo de 15 (quinze) dias. No silêncio, aguarde-se provocação no arquivo (código 61614). Em razão da previsão de migração de todo o acervo desta unidade para o sistema EPROC, a partir de 06/04/2026; e, ainda, visando a manutenção regular das intimações, sem qualquer prejuízo às partes, solicita-se aos advogados que providenciem seu cadastro imediato no referido sistema, nos termos das orientações disponibilizadas no site: https://www.tjsp.jus.br/eproc > Manuais e Tutorias Público Externo > Advogados: https://www.tjsp.jus.br/download/EPROC/ManuaisPublicoExterno/1.1-EPROC_ADVOGADO-Primeiros_passos_no_sistema_eproc_04.04.25.pdf O cronograma dessa implantação, por competência e Região Administrativa Judiciária, pode ser acessado no link: https://www.tjsp.jus.br/eproc/CronogramaImplantacao Após migrado, o processo deixa de estar acessível no SAJ, onde será lançada a movimentação 89966 - Remetidos os autos em razão de migração para outro sistema, intimando-se as partes e advogados sobre a troca e orientando para o credenciamento no eproc. Para saber em qual sistema seu processo tramita, acesse a Consulta Processual Unificada, em: https://www.tjsp.jus.br/ Intimem-se. Advogados(s): Antonio Carlos de Freitas Junior (OAB 313493/SP), Thiago Terin Luz (OAB 326867/SP), Julia Sbruzzi de Aguiar Carvalho de Almeida (OAB 448581/SP), Rafael Alonso Rodriguez (OAB 522081/SP)",
+          "usuario": null
+        }
+      ],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=360004Z2A0000&processo.foro=114&processo.numero=1005784-65.2015.8.26.0114",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.7703,
+      "numero_processo": "1005784-65.2015.8.26.0114",
+      "linha_excel": 12,
+      "valor_original_excel": "1005784-65.2015.8.26.0114",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:30:45-03:00",
+      "duracao_total_segundos": 6.0363,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "container_movimentacao",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": null,
+          "data_hora": "06/07/2026",
+          "descricao": "Conclusos para Despacho",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "06/07/2026",
+          "descricao": "Conclusos para Despacho",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "06/07/2026",
+          "descricao": "Certidão de Cartório Expedida Certidão - Genérica",
+          "usuario": null
+        }
+      ],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=1Z000MYFN0000&processo.foro=71&processo.numero=1022178-33.2025.8.26.0071",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.8867,
+      "numero_processo": "1022178-33.2025.8.26.0071",
+      "linha_excel": 13,
+      "valor_original_excel": "1022178-33.2025.8.26.0071",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:30:52-03:00",
+      "duracao_total_segundos": 5.3785,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "timeout",
+      "mensagem": "Nenhuma mudança útil ocorreu dentro do watchdog de 10s.",
+      "layout_movimentacoes": null,
+      "quantidade_movimentacoes": 0,
+      "movimentacoes": [],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_unificada_publica/consultar",
+      "tipo_pagina": "desconhecida",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 10.7673,
+      "numero_processo": "2103814-86.2026.8.26.0000",
+      "linha_excel": 14,
+      "valor_original_excel": "2103814-86.2026.8.26.0000",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 2,
+      "consultado_em": "2026-07-19T01:50:34-03:00",
+      "duracao_total_segundos": 15.8521,
+      "erros_tentativas_anteriores": [
+        {
+          "tentativa": 1,
+          "tipo": "StatusTransitorio",
+          "status": "timeout",
+          "mensagem": "Nenhuma mudança útil ocorreu dentro do watchdog de 10s.",
+          "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_unificada_publica/consultar",
+          "ocorrido_em": "2026-07-19T01:50:16-03:00"
+        }
+      ]
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "24",
+          "data_hora": "15/06/2026 11:19:41",
+          "descricao": "PETIÇÃO - Refer. aos Eventos: 18 e 17",
+          "usuario": "SP515632"
+        },
+        {
+          "evento": "23",
+          "data_hora": "15/06/2026 09:45:51",
+          "descricao": "Publicado no DJ Eletrônico - no dia 15/06/2026 - Refer. aos Eventos: 17, 18",
+          "usuario": "secde"
+        },
+        {
+          "evento": "22",
+          "data_hora": "12/06/2026 08:18:37",
+          "descricao": "Juntada - Registro de pagamento - Guia 452784459, Subguia 453957633 - Boleto pago (1/1) Baixado - R$ 11.163,07",
+          "usuario": "SECJE"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40021337820268260084&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=bd887425e2017a046224633d85e5ec14247682fb328fe2370522eadfe8ad35dc&hash=8ccb8327a1386d0033e1dba9c337c2ab",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 1.611,
+      "numero_processo": "4002133-78.2026.8.26.0084",
+      "linha_excel": 15,
+      "valor_original_excel": "4002133-78.2026.8.26.0084",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:31:37-03:00",
+      "duracao_total_segundos": 6.311,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "container_movimentacao",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": null,
+          "data_hora": "06/04/2026",
+          "descricao": "Conclusos para Decisão",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "01/03/2026",
+          "descricao": "Documento Juntado",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "01/03/2026",
+          "descricao": "Pedido de Expedição de Mandado de Levantamento Juntado Nº Protocolo: WSRP.26.70077001-7 Tipo da Petição: Pedido de Expedição de Mandado de Levantamento Data: 01/03/2026 18:24",
+          "usuario": null
+        }
+      ],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=G0000XSG00000&processo.foro=576&processo.numero=0000474-81.2026.8.26.0576",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.7334,
+      "numero_processo": "0000474-81.2026.8.26.0576",
+      "linha_excel": 16,
+      "valor_original_excel": "0000474-81.2026.8.26.0576",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:31:44-03:00",
+      "duracao_total_segundos": 5.7598,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "container_movimentacao",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": null,
+          "data_hora": "24/03/2026",
+          "descricao": "Certidão de Publicação Expedida Relação: 0772/2026 Data da Publicação: 25/03/2026",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "23/03/2026",
+          "descricao": "Remetido ao DJE Relação: 0772/2026 Teor do ato: Dê-se vista ao impugnante sobre petição de fls. 256/263 para manifestação, querendo. Advogados(s): Celso de Faria Monteiro (OAB 138436/SP), Joao Pedro Tozzi Pavageau (OAB 515632/SP)",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "23/03/2026",
+          "descricao": "Ato Ordinatório - Intimação - DJE Dê-se vista ao impugnante sobre petição de fls. 256/263 para manifestação, querendo.",
+          "usuario": null
+        }
+      ],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=0J000BQ5F0000&processo.foro=19&processo.numero=0007006-30.2025.8.26.0019",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.6761,
+      "numero_processo": "0007006-30.2025.8.26.0019",
+      "linha_excel": 17,
+      "valor_original_excel": "0007006-30.2025.8.26.0019",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:31:52-03:00",
+      "duracao_total_segundos": 5.368,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "container_movimentacao",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": null,
+          "data_hora": "26/03/2026",
+          "descricao": "Arquivado Definitivamente",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "26/03/2026",
+          "descricao": "Certidão de Cartório Expedida Certifico e dou fé que, após compulsar os presentes autos, verifiquei constar às fls. 83/84 o(s) comprovante(s) do pagamento integral das CUSTAS devidas e procedi ao seu arquivamento definitiv",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "16/12/2025",
+          "descricao": "Certidão de Publicação Expedida Relação: 1979/2025 Data da Publicação: 18/12/2025",
+          "usuario": null
+        }
+      ],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=I20003ELW0000&processo.foro=650&processo.numero=1000223-52.2025.8.26.0650",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.5583,
+      "numero_processo": "1000223-52.2025.8.26.0650",
+      "linha_excel": 18,
+      "valor_original_excel": "1000223-52.2025.8.26.0650",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:31:58-03:00",
+      "duracao_total_segundos": 5.0404,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "container_movimentacao",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": null,
+          "data_hora": "12/01/2026",
+          "descricao": "Arquivado Definitivamente",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "12/01/2026",
+          "descricao": "Certidão de Cartório Expedida Certidão de Cartório - CUSTAS - Certidão de Pagamento de Custas e Arquivamento - Cível - 61615",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "12/01/2026",
+          "descricao": "Certidão de Cartório Expedida Certidão - Genérica",
+          "usuario": null
+        }
+      ],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=2100057QL0000&processo.foro=73&processo.numero=1005628-88.2024.8.26.0073",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.8237,
+      "numero_processo": "1005628-88.2024.8.26.0073",
+      "linha_excel": 19,
+      "valor_original_excel": "1005628-88.2024.8.26.0073",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:32:05-03:00",
+      "duracao_total_segundos": 5.7617,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "container_movimentacao",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": null,
+          "data_hora": "01/04/2026",
+          "descricao": "Arquivado Definitivamente",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "01/04/2026",
+          "descricao": "Certidão de Cartório Expedida Certifico e dou fé que, após compulsar os presentes autos, verifiquei constar às fls. 67 o(s) comprovante(s) do pagamento integral das CUSTAS devidas e procedi ao seu arquivamento definitivo",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "07/02/2026",
+          "descricao": "Suspensão do Prazo Prazo referente ao usuário foi alterado para 10/02/2026 devido à alteração da tabela de feriados",
+          "usuario": null
+        }
+      ],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=I20003DLE0000&processo.foro=650&processo.numero=1006289-82.2024.8.26.0650",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.5771,
+      "numero_processo": "1006289-82.2024.8.26.0650",
+      "linha_excel": 20,
+      "valor_original_excel": "1006289-82.2024.8.26.0650",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:32:12-03:00",
+      "duracao_total_segundos": 5.14,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "container_movimentacao",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": null,
+          "data_hora": "06/04/2026",
+          "descricao": "Arquivado Provisoriamente",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "06/04/2026",
+          "descricao": "Certidão de Cartório Expedida Certidão de Cartório - CUSTAS - Certidão de Pagamento de Custas e Arquivamento - Cível- 61614",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "28/01/2026",
+          "descricao": "Trânsito em Julgado às partes - Proc. em Andamento Certidão - Trânsito em Julgado",
+          "usuario": null
+        }
+      ],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=360016MQK0000&processo.foro=114&processo.numero=1008335-66.2025.8.26.0114",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.6891,
+      "numero_processo": "1008335-66.2025.8.26.0114",
+      "linha_excel": 21,
+      "valor_original_excel": "1008335-66.2025.8.26.0114",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:32:18-03:00",
+      "duracao_total_segundos": 4.9415,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "container_movimentacao",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": null,
+          "data_hora": "24/03/2024",
+          "descricao": "Apensado ao processo Apenso o processo 0001321-33.2024.8.26.0292 - Classe: Cumprimento de sentença - Assunto principal: Responsabilidade do Fornecedor",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "24/03/2024",
+          "descricao": "Execução/Cumprimento de Sentença Iniciada (o) 0001321-33.2024.8.26.0292 - Cumprimento de sentença",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "20/03/2024",
+          "descricao": "Arquivado Definitivamente",
+          "usuario": null
+        }
+      ],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=840009GGN0000&processo.foro=292&processo.numero=1011200-81.2023.8.26.0292",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.6551,
+      "numero_processo": "1011200-81.2023.8.26.0292",
+      "linha_excel": 22,
+      "valor_original_excel": "1011200-81.2023.8.26.0292",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:32:25-03:00",
+      "duracao_total_segundos": 5.8392,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "container_movimentacao",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": null,
+          "data_hora": "27/02/2025",
+          "descricao": "Mudança de Magistrado \"Juiz(a) EDUARDO BIGOLIN para o Titular vaga 1 (10ª Vara Cível)\". Motivo: TITULAR.",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "06/02/2025",
+          "descricao": "Arquivado Definitivamente",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "06/02/2025",
+          "descricao": "Certidão de Cartório Expedida Certidão de Cartório - CUSTAS - Certidão de Pagamento de Custas e Arquivamento - Cível - 61615",
+          "usuario": null
+        }
+      ],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=360014QJG0000&processo.foro=114&processo.numero=1022816-68.2024.8.26.0114",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.6859,
+      "numero_processo": "1022816-68.2024.8.26.0114",
+      "linha_excel": 23,
+      "valor_original_excel": "1022816-68.2024.8.26.0114",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:32:32-03:00",
+      "duracao_total_segundos": 6.0131,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "container_movimentacao",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": null,
+          "data_hora": "14/01/2025",
+          "descricao": "Arquivado Definitivamente",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "14/01/2025",
+          "descricao": "Certidão de Cartório Expedida Certidão de Cartório - CUSTAS - Certidão de Pagamento de Custas e Arquivamento - Cível - 61615",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "14/01/2025",
+          "descricao": "Arquivado Definitivamente",
+          "usuario": null
+        }
+      ],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=360012LA90000&processo.foro=114&processo.numero=1028155-42.2023.8.26.0114",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.8307,
+      "numero_processo": "1028155-42.2023.8.26.0114",
+      "linha_excel": 24,
+      "valor_original_excel": "1028155-42.2023.8.26.0114",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:32:39-03:00",
+      "duracao_total_segundos": 5.6434,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "container_movimentacao",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": null,
+          "data_hora": "17/01/2025",
+          "descricao": "Arquivado Definitivamente",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "17/01/2025",
+          "descricao": "Certidão de Cartório Expedida Certidão de Cartório - CUSTAS - Certidão de Pagamento de Custas e Arquivamento - Cível - 61615",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "16/12/2024",
+          "descricao": "Certidão de Cartório Expedida Certifico e dou fé que efetuei o cadastro do Cumprimento de Sentença, que se encontra apensado/dependente a estes autos. Nada Mais.",
+          "usuario": null
+        }
+      ],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=360013I1O0000&processo.foro=114&processo.numero=1050869-93.2023.8.26.0114",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.8838,
+      "numero_processo": "1050869-93.2023.8.26.0114",
+      "linha_excel": 25,
+      "valor_original_excel": "1050869-93.2023.8.26.0114",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:32:45-03:00",
+      "duracao_total_segundos": 5.0661,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "61",
+          "data_hora": "07/05/2026 15:45:59",
+          "descricao": "Remetidos os Autos - Remessa Externa - CAMPINA01A04CIV -> TJSP",
+          "usuario": "M356816"
+        },
+        {
+          "evento": "60",
+          "data_hora": "07/05/2026 15:44:11",
+          "descricao": "Expedida/certificada a comunicação eletrônica - Parte: FACEBOOK SERVICOS ONLINE DO BRASIL LTDA.. Justiça gratuita: Não requerida.",
+          "usuario": "M356816"
+        },
+        {
+          "evento": "59",
+          "data_hora": "07/05/2026 15:44:10",
+          "descricao": "Expedida/certificada a comunicação eletrônica - Parte: LETICIA SANTANA RODRIGUES. Justiça gratuita: Não requerida.",
+          "usuario": "M356816"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=10532625420248260114&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=81a723e5dfb65dd39d4a07c19ef16c61094034d8fbf0727d40a4e3e771d8a559&hash=c318f7f158dc888e075c30181cacb9e8",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 1.0285,
+      "numero_processo": "1053262-54.2024.8.26.0114",
+      "linha_excel": 26,
+      "valor_original_excel": "1053262-54.2024.8.26.0114",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:32:53-03:00",
+      "duracao_total_segundos": 6.2747,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "47",
+          "data_hora": "09/07/2026 03:54:42",
+          "descricao": "Decorrido prazo - Refer. aos Eventos: 43 e 44",
+          "usuario": "SECFP"
+        },
+        {
+          "evento": "46",
+          "data_hora": "07/07/2026 08:43:41",
+          "descricao": "Publicado no DJ Eletrônico - no dia 07/07/2026 - Refer. aos Eventos: 43, 44",
+          "usuario": "secde"
+        },
+        {
+          "evento": "45",
+          "data_hora": "06/07/2026 04:19:31",
+          "descricao": "Disponibilizado no DJ Eletrônico - no dia 06/07/2026 - Refer. aos Eventos: 43, 44",
+          "usuario": "secde"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40001054620268260082&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=c2b2540380dbb2a9698dcfa4fd663be92575844c815428d57289a79dd2678b1c&hash=946f60e516bdaf50af5a87d62c004c02",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.7617,
+      "numero_processo": "4000105-46.2026.8.26.0082",
+      "linha_excel": 27,
+      "valor_original_excel": "4000105-46.2026.8.26.0082",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:33:00-03:00",
+      "duracao_total_segundos": 6.0014,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "49",
+          "data_hora": "13/07/2026 11:29:11",
+          "descricao": "Conclusos para despacho",
+          "usuario": "m819551"
+        },
+        {
+          "evento": "48",
+          "data_hora": "12/07/2026 19:50:09",
+          "descricao": "PETIÇÃO",
+          "usuario": "SP515632"
+        },
+        {
+          "evento": "47",
+          "data_hora": "04/07/2026 03:35:13",
+          "descricao": "Decorrido prazo - Refer. aos Eventos: 43 e 44",
+          "usuario": "SECFP"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40004108720268260160&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=56b01bc1ce69851a7c16fedd54a9cc70a8093b11fbf67fecce9fc511d8805a46&hash=edd19c6c1079322f9746dcc3cae67837",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.8172,
+      "numero_processo": "4000410-87.2026.8.26.0160",
+      "linha_excel": 28,
+      "valor_original_excel": "4000410-87.2026.8.26.0160",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:33:06-03:00",
+      "duracao_total_segundos": 5.296,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "38",
+          "data_hora": "10/07/2026 09:02:30",
+          "descricao": "PETIÇÃO - Refer. ao Evento: 34",
+          "usuario": "SP515632"
+        },
+        {
+          "evento": "37",
+          "data_hora": "01/07/2026 05:29:55",
+          "descricao": "Publicado no DJ Eletrônico - no dia 01/07/2026 - Refer. aos Eventos: 33, 34",
+          "usuario": "secde"
+        },
+        {
+          "evento": "36",
+          "data_hora": "30/06/2026 02:19:27",
+          "descricao": "Disponibilizado no DJ Eletrônico - no dia 30/06/2026 - Refer. aos Eventos: 33, 34",
+          "usuario": "secde"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40007930520268260180&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=35ce9a8d43d5336fcd5c444532ff933310d976899212aad3d6a37749b5618a91&hash=ee9f27010e455090ccd57db5b220545b",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.7934,
+      "numero_processo": "4000793-05.2026.8.26.0180",
+      "linha_excel": 29,
+      "valor_original_excel": "4000793-05.2026.8.26.0180",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:33:13-03:00",
+      "duracao_total_segundos": 5.6088,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "33",
+          "data_hora": "03/07/2026 03:09:37",
+          "descricao": "Decorrido prazo - Refer. ao Evento: 27",
+          "usuario": "SECFP"
+        },
+        {
+          "evento": "32",
+          "data_hora": "24/06/2026 10:26:04",
+          "descricao": "Conclusos para julgamento",
+          "usuario": "M377661"
+        },
+        {
+          "evento": "31",
+          "data_hora": "22/06/2026 16:23:08",
+          "descricao": "PETIÇÃO - Refer. ao Evento: 28",
+          "usuario": "SP515632"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40009727320258260082&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=0e94667202979a15e5cddb5ee71b500b337c47b85ac02a8c5b5d3fc743b9ea4c&hash=194a095f9a77de55f2f4bbc178ffb422",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.9335,
+      "numero_processo": "4000972-73.2025.8.26.0082",
+      "linha_excel": 30,
+      "valor_original_excel": "4000972-73.2025.8.26.0082",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:33:21-03:00",
+      "duracao_total_segundos": 5.9101,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "60",
+          "data_hora": "28/04/2026 14:21:57",
+          "descricao": "Baixa Definitiva",
+          "usuario": "M378796"
+        },
+        {
+          "evento": "59",
+          "data_hora": "18/12/2025 14:22:45",
+          "descricao": "Juntada de certidão - traslado de peças para o processo - 4019367-17.2025.8.26.0114/SP - ref. ao(s) evento(s): 58",
+          "usuario": "M355070"
+        },
+        {
+          "evento": "58",
+          "data_hora": "18/12/2025 14:15:52",
+          "descricao": "Juntada de certidão",
+          "usuario": "M355070"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40086487320258260114&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=7f47a2cf9e3357c8c90a85c2cc4982d4de73f0891e9b9134b9c2cf41a16553fa&hash=2ad20f0d2b18d493707bb065e5cb988c",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.8514,
+      "numero_processo": "4008648-73.2025.8.26.0114",
+      "linha_excel": 31,
+      "valor_original_excel": "4008648-73.2025.8.26.0114",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:33:28-03:00",
+      "duracao_total_segundos": 5.7538,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "13",
+          "data_hora": "15/07/2026 05:32:45",
+          "descricao": "Publicado no DJ Eletrônico - no dia 15/07/2026 - Refer. ao Evento: 5",
+          "usuario": "secde"
+        },
+        {
+          "evento": "12",
+          "data_hora": "14/07/2026 19:01:34",
+          "descricao": "Conclusos para decisão",
+          "usuario": "secautoloc"
+        },
+        {
+          "evento": "11",
+          "data_hora": "14/07/2026 14:45:41",
+          "descricao": "GUIAS DE RECOLHIMENTO / DEPÓSITO / CUSTAS - Refer. ao Evento: 5",
+          "usuario": "SP515632"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40145329020268260068&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=e91adbb051e02cc4d0db0f535c523d4d0aaab1f9bd694d088725cd8c8cb2bd5e&hash=1f5e319e1099e1536cbae4375073f89d",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.7988,
+      "numero_processo": "4014532-90.2026.8.26.0068",
+      "linha_excel": 32,
+      "valor_original_excel": "4014532-90.2026.8.26.0068",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:33:35-03:00",
+      "duracao_total_segundos": 5.1051,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "110",
+          "data_hora": "16/07/2026 04:28:56",
+          "descricao": "Decorrido prazo - Refer. aos Eventos: 103, 104, 105, 106 e 107",
+          "usuario": "SECFP"
+        },
+        {
+          "evento": "109",
+          "data_hora": "14/07/2026 06:45:20",
+          "descricao": "Publicado no DJ Eletrônico - no dia 14/07/2026 - Refer. aos Eventos: 103, 104, 105, 106, 107",
+          "usuario": "secde"
+        },
+        {
+          "evento": "108",
+          "data_hora": "13/07/2026 03:07:42",
+          "descricao": "Disponibilizado no DJ Eletrônico - no dia 13/07/2026 - Refer. aos Eventos: 103, 104, 105, 106, 107",
+          "usuario": "secde"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=00011904920258260510&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=7278c1da8d9a488e7bb8eb120b418ef15e7b236f945e473dbf43d7e0fb453cac&hash=7f0d1e99a6e02bc50a9f0274e9648d10",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.9913,
+      "numero_processo": "0001190-49.2025.8.26.0510",
+      "linha_excel": 33,
+      "valor_original_excel": "0001190-49.2025.8.26.0510",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:33:42-03:00",
+      "duracao_total_segundos": 5.7275,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "container_movimentacao",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": null,
+          "data_hora": "15/07/2026",
+          "descricao": "Petição Juntada Nº Protocolo: WJMJ.26.40942166-4 Tipo da Petição: Petições Diversas Data: 15/07/2026 11:13",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "13/07/2026",
+          "descricao": "Certidão de Publicação Expedida Relação: 1548/2026 Data da Publicação: 14/07/2026",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "08/07/2026",
+          "descricao": "Remetido ao DJE Relação: 1548/2026 Teor do ato: Manifeste-se o autor em termos de prosseguimento, no prazo de 15 dias. No silêncio os autos serão arquivados. Advogados(s): Mauricio Sergio Christino (OAB 77192/SP), Ramon Quessada Ferreira (OAB 305079/SP), Daiane Vieira do Nascimento (OAB 388304/SP)",
+          "usuario": null
+        }
+      ],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=2S001NV8Z0000&processo.foro=100&processo.numero=0006970-07.2023.8.26.0100",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.6466,
+      "numero_processo": "0006970-07.2023.8.26.0100",
+      "linha_excel": 34,
+      "valor_original_excel": "0006970-07.2023.8.26.0100",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:33:48-03:00",
+      "duracao_total_segundos": 5.523,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "container_movimentacao",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": null,
+          "data_hora": "14/07/2026",
+          "descricao": "Manifestação Sobre a Impugnação Juntada Nº Protocolo: WCAS.26.70278871-1 Tipo da Petição: Manifestação sobre a Impugnação Data: 13/07/2026 13:13",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "30/06/2026",
+          "descricao": "Impugnação ao Cumprimento de Sentença Juntada Nº Protocolo: WCAS.26.70261236-2 Tipo da Petição: Impugnação ao Cumprimento da Sentença Data: 29/06/2026 17:22",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "03/06/2026",
+          "descricao": "Certidão de Publicação Expedida Relação: 0877/2026 Data da Publicação: 08/06/2026",
+          "usuario": null
+        }
+      ],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=3600197XQ0000&processo.foro=114&processo.numero=0007415-75.2026.8.26.0114",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.5629,
+      "numero_processo": "0007415-75.2026.8.26.0114",
+      "linha_excel": 35,
+      "valor_original_excel": "0007415-75.2026.8.26.0114",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:33:54-03:00",
+      "duracao_total_segundos": 4.9558,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "container_movimentacao",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": null,
+          "data_hora": "13/07/2026",
+          "descricao": "Petição Juntada Nº Protocolo: WCAS.26.70279256-5 Tipo da Petição: Petição Intermediária Data: 13/07/2026 15:26",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "12/07/2026",
+          "descricao": "Exceção de Pré-Executividade Juntada Nº Protocolo: WCAS.26.70278180-6 Tipo da Petição: Exceção de Pré-Executividade Data: 12/07/2026 18:43",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "03/07/2026",
+          "descricao": "Conclusos para Despacho",
+          "usuario": null
+        }
+      ],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=360012AOA0000&processo.foro=114&processo.numero=0008590-12.2023.8.26.0114",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.7106,
+      "numero_processo": "0008590-12.2023.8.26.0114",
+      "linha_excel": 36,
+      "valor_original_excel": "0008590-12.2023.8.26.0114",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:34:01-03:00",
+      "duracao_total_segundos": 6.3451,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "container_movimentacao",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": null,
+          "data_hora": "15/05/2026",
+          "descricao": "Conclusos para Despacho",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "07/05/2026",
+          "descricao": "Certidão de Publicação Expedida Relação: 1069/2026 Data da Publicação: 08/05/2026",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "06/05/2026",
+          "descricao": "Remetido ao DJE Relação: 1069/2026 Teor do ato: Fls. 275/288 - Ciência à exequente das pesquisas realizadas, devendo manifestar-se, no prazo de 15 dias, em termos de prosseguimento. Advogados(s): Edmundo Vasconcelos Filho (OAB 114886/SP), Valéria Lemos Nunes Vasconcelos (OAB 160239/SP), Guilherme Pecini Gamoeda (OAB 332862/SP), Joao Pedro Tozzi Pavageau (OAB 515632/SP)",
+          "usuario": null
+        }
+      ],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=E6000CQAD0000&processo.foro=510&processo.numero=1001831-20.2025.8.26.0510",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.6758,
+      "numero_processo": "1001831-20.2025.8.26.0510",
+      "linha_excel": 37,
+      "valor_original_excel": "1001831-20.2025.8.26.0510",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:34:08-03:00",
+      "duracao_total_segundos": 5.7959,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "senha_necessaria",
+      "mensagem": "Página solicitou senha ou chave de acesso ao processo.",
+      "layout_movimentacoes": null,
+      "quantidade_movimentacoes": 0,
+      "movimentacoes": [],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=6W000AQH40000&processo.foro=248&processo.numero=1002264-97.2026.8.26.0248",
+      "tipo_pagina": "senha_necessaria",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.9343,
+      "numero_processo": "1002264-97.2026.8.26.0248",
+      "linha_excel": 38,
+      "valor_original_excel": "1002264-97.2026.8.26.0248",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-19T01:50:41-03:00",
+      "duracao_total_segundos": 5.5416,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "container_movimentacao",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": null,
+          "data_hora": "11/05/2026",
+          "descricao": "Conclusos para Despacho",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "05/05/2026",
+          "descricao": "Petição Juntada Nº Protocolo: WSBT.26.70025938-0 Tipo da Petição: Pedido de Assistência Judiciária Gratuita Data: 05/05/2026 12:06",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "30/04/2026",
+          "descricao": "Petição Juntada Nº Protocolo: WSBT.26.70025253-9 Tipo da Petição: Petições Diversas Data: 30/04/2026 13:38",
+          "usuario": null
+        }
+      ],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=ET0004NEY0000&processo.foro=533&processo.numero=1002776-69.2024.8.26.0533",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.6509,
+      "numero_processo": "1002776-69.2024.8.26.0533",
+      "linha_excel": 39,
+      "valor_original_excel": "1002776-69.2024.8.26.0533",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:34:23-03:00",
+      "duracao_total_segundos": 5.8416,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "container_movimentacao",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": null,
+          "data_hora": "08/07/2026",
+          "descricao": "Petição Juntada Nº Protocolo: WBTU.26.70061717-0 Tipo da Petição: Petição Intermediária Data: 08/07/2026 20:57",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "24/06/2026",
+          "descricao": "Conclusos para Despacho",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "24/06/2026",
+          "descricao": "Agravo de Instrumento - Acórdão e Demais Peças Juntados - Com Trânsito em Julgado - Agravo Destruído",
+          "usuario": null
+        }
+      ],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=270005WLA0000&processo.foro=79&processo.numero=1004178-97.2021.8.26.0079",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.712,
+      "numero_processo": "1004178-97.2021.8.26.0079",
+      "linha_excel": 40,
+      "valor_original_excel": "1004178-97.2021.8.26.0079",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:34:30-03:00",
+      "duracao_total_segundos": 6.0571,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "47",
+          "data_hora": "08/07/2026 18:21:27",
+          "descricao": "PETIÇÃO",
+          "usuario": "SP154694"
+        },
+        {
+          "evento": "46",
+          "data_hora": "08/07/2026 11:07:46",
+          "descricao": "Expedida/certificada a comunicação eletrônica - Parte: PARAMOUNT INDUSTRIA E COMERCIO DE PLASTICOS LTDA. Justiça gratuita: Não requerida.",
+          "usuario": "M382850"
+        },
+        {
+          "evento": "45",
+          "data_hora": "07/07/2026 22:54:23",
+          "descricao": "Juntada de certidão - Extrato com dados do processo migrado do SAJ para o EPROC.",
+          "usuario": "MIG"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=10048730820258260533&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=6f03edf052702027c6ef7e50ffea373bf2648b10312d5c7e1163b70b8a903aec&hash=5650b7f4f6e40514f2bcf914c941e611",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.7973,
+      "numero_processo": "1004873-08.2025.8.26.0533",
+      "linha_excel": 41,
+      "valor_original_excel": "1004873-08.2025.8.26.0533",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:34:36-03:00",
+      "duracao_total_segundos": 5.3078,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "81",
+          "data_hora": "15/07/2026 14:13:06",
+          "descricao": "Conclusos para decisão",
+          "usuario": "M376997"
+        },
+        {
+          "evento": "80",
+          "data_hora": "13/07/2026 17:41:21",
+          "descricao": "PETIÇÃO - Refer. ao Evento: 75",
+          "usuario": "SP134719"
+        },
+        {
+          "evento": "79",
+          "data_hora": "25/06/2026 02:02:13",
+          "descricao": "Decorrido prazo - Refer. ao Evento: 70",
+          "usuario": "SECFP"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=10064393620228260229&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=9f929af41e052099ca347589e25ce83cb2a6ba89622c5e4f6153d35bcdc92a23&hash=b4093ea91d9674fbb16b27c3cd680d69",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.9632,
+      "numero_processo": "1006439-36.2022.8.26.0229",
+      "linha_excel": 42,
+      "valor_original_excel": "1006439-36.2022.8.26.0229",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:34:43-03:00",
+      "duracao_total_segundos": 5.5853,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "container_movimentacao",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": null,
+          "data_hora": "07/07/2026",
+          "descricao": "Certidão de Publicação Expedida Relação: 0736/2026 Data da Publicação: 08/07/2026",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "06/07/2026",
+          "descricao": "Remetido ao DJE Relação: 0736/2026 Teor do ato: Vistos. Manifeste-se o Embargante em réplica, no prazo de 15 dias. Decorrido aludido prazo, com ou sem apresentação de réplica, intimem-se as partes para que, em 15 dias, indiquem as provas que pretendem produzir, justificando a necessidade e pertinência delas, sob pena de preclusão/indeferimento. Ato contínuo, com ou sem manifestação das partes, tornem conclusos para decisão ou sentença. Int. Advogados(s): Alexandre Leardini (OAB 116937/SP)",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "06/07/2026",
+          "descricao": "Proferido Despacho de Mero Expediente Vistos. Manifeste-se o Embargante em réplica, no prazo de 15 dias. Decorrido aludido prazo, com ou sem apresentação de réplica, intimem-se as partes para que, em 15 dias, indiquem as provas que pretendem produzir, justificando a necessidade e pertinência delas, sob pena de preclusão/indeferimento. Ato contínuo, com ou sem manifestação das partes, tornem conclusos para decisão ou sentença. Int.",
+          "usuario": null
+        }
+      ],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=3600196FJ0000&processo.foro=114&processo.numero=1006529-59.2026.8.26.0114",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.6247,
+      "numero_processo": "1006529-59.2026.8.26.0114",
+      "linha_excel": 43,
+      "valor_original_excel": "1006529-59.2026.8.26.0114",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:34:50-03:00",
+      "duracao_total_segundos": 5.3159,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "container_movimentacao",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": null,
+          "data_hora": "06/07/2026",
+          "descricao": "Petição Juntada Nº Protocolo: WTBT.26.70104292-9 Tipo da Petição: Petições Diversas Data: 06/07/2026 11:36",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "24/06/2026",
+          "descricao": "Petição Juntada Nº Protocolo: WTBT.26.70098456-4 Tipo da Petição: Petições Diversas Data: 24/06/2026 15:49",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "15/06/2026",
+          "descricao": "Conclusos para Despacho",
+          "usuario": null
+        }
+      ],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=HD0009ZGT0000&processo.foro=625&processo.numero=1009693-27.2021.8.26.0625",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.6882,
+      "numero_processo": "1009693-27.2021.8.26.0625",
+      "linha_excel": 44,
+      "valor_original_excel": "1009693-27.2021.8.26.0625",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:34:56-03:00",
+      "duracao_total_segundos": 5.5326,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "container_movimentacao",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": null,
+          "data_hora": "16/07/2026",
+          "descricao": "Exceção de Pré-Executividade Juntada Nº Protocolo: WLRA.26.70083207-1 Tipo da Petição: Exceção de Pré-Executividade Data: 16/07/2026 14:25",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "06/07/2026",
+          "descricao": "Certidão de Publicação Expedida Relação: 1235/2026 Data da Publicação: 07/07/2026",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "04/07/2026",
+          "descricao": "Remetido ao DJE Relação: 1235/2026 Teor do ato: Ciência acerca do protocolo de averbação de penhora, junto ao sistema ARISP/ONR, cabendo à parte exequente o acompanhamento, no e-mail informado nos autos e no site www.penhoraonline.org.br, com relação ao boleto bancário para pagamento dos emolumentos e/ou eventuais exigências. Advogados(s): Alexandre Leardini (OAB 116937/SP), Igor Goes Lobato (OAB 307482/SP), Humberto Rossetti Portela (OAB 355464/SP), Claudio Roberto Lazari (OAB 371702/SP)",
+          "usuario": null
+        }
+      ],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=8W000F0FY0000&processo.foro=320&processo.numero=1010390-85.2024.8.26.0320",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.7472,
+      "numero_processo": "1010390-85.2024.8.26.0320",
+      "linha_excel": 45,
+      "valor_original_excel": "1010390-85.2024.8.26.0320",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:35:03-03:00",
+      "duracao_total_segundos": 5.3258,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "387",
+          "data_hora": "02/06/2026 13:05:21",
+          "descricao": "Conclusos para decisão",
+          "usuario": "m371334"
+        },
+        {
+          "evento": "386",
+          "data_hora": "27/05/2026 09:33:39",
+          "descricao": "PETIÇÃO",
+          "usuario": "SP515632"
+        },
+        {
+          "evento": "385",
+          "data_hora": "01/04/2026 01:05:33",
+          "descricao": "Decorrido prazo - Refer. aos Eventos: 381 e 382",
+          "usuario": "SECFP"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=10180993120198260003&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=cb45caed70c215d6e05bf80eae46e19786dd9f10af9b66b63d5824c2c499dbac&hash=8554e3f3eff1ee3c559af204429090f5",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.8717,
+      "numero_processo": "1018099-31.2019.8.26.0003",
+      "linha_excel": 46,
+      "valor_original_excel": "1018099-31.2019.8.26.0003",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:35:10-03:00",
+      "duracao_total_segundos": 5.1689,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "container_movimentacao",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": null,
+          "data_hora": "18/05/2026",
+          "descricao": "Conclusos para Despacho",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "15/05/2026",
+          "descricao": "Impugnação à Exceção de Pré-Executividade Juntada Nº Protocolo: WCAS.26.70197232-2 Tipo da Petição: Impugnação à Exceção de Pré-Executividade Data: 14/05/2026 19:35",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "06/05/2026",
+          "descricao": "Certidão de Publicação Expedida Relação: 0806/2026 Data da Publicação: 07/05/2026",
+          "usuario": null
+        }
+      ],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=36000Y2OE0000&processo.foro=114&processo.numero=1023334-29.2022.8.26.0114",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.6268,
+      "numero_processo": "1023334-29.2022.8.26.0114",
+      "linha_excel": 47,
+      "valor_original_excel": "1023334-29.2022.8.26.0114",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:35:17-03:00",
+      "duracao_total_segundos": 5.4305,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "container_movimentacao",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": null,
+          "data_hora": "15/07/2026",
+          "descricao": "Contrarrazões Juntada Nº Protocolo: WSBO.26.70174990-9 Tipo da Petição: Contrarrazões de Apelação Data: 15/07/2026 17:24",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "03/07/2026",
+          "descricao": "Mensagem Eletrônica (e-mail) Juntada",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "26/06/2026",
+          "descricao": "Certidão de Publicação Expedida Relação: 1097/2026 Data da Publicação: 29/06/2026",
+          "usuario": null
+        }
+      ],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=FO000JKX60000&processo.foro=564&processo.numero=1026996-09.2022.8.26.0564",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.8892,
+      "numero_processo": "1026996-09.2022.8.26.0564",
+      "linha_excel": 48,
+      "valor_original_excel": "1026996-09.2022.8.26.0564",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:35:24-03:00",
+      "duracao_total_segundos": 5.665,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "container_movimentacao",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": null,
+          "data_hora": "19/06/2026",
+          "descricao": "Mandado Devolvido Cumprido Positivo\nCERTIDÃO - MANDADO CUMPRIDO POSITIVO CERTIFICO eu, Oficial de Justiça, que em cumprimento ao mandado nº 114.2026/031328-9 dirigi-me por diversas vezes, em dias e horários diferentes, ao endereço nele indicado, Rua Marcos Roberto Corte, 845 - Residencial Miravista - Mirassol/SP, no entanto, nas referidas diligencias, encontrei o imóvel fechado e não obtive êxito em ser atendida. Certifico mais que no dia 20 de maio, por volta das 16:10 hs, dirigi-me novamente ao endereço supracitado, e aí sendo, citei e adverti Livia de Souza Pereira, por todo o teor e fins contidos no mandado, que lhe li, aceitou a contrafé que lhe ofereci, de tudo ciente ficou e exarou sua assinatura. O referido é verdade e dou fé. Mirassol, 21 de maio de 2026. Número de Cotas: 01 diligencia - 03 UFESPs - R$ 115,26 - guia 257327.",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "19/06/2026",
+          "descricao": "Mandado Juntado",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "01/04/2026",
+          "descricao": "Mandado Expedido\nMandado nº: 114.2026/031328-9 Situação: Cumprido - Ato positivo em 21/05/2026 Local: Oficial de justiça - Ana Helena Giroldo Lavia",
+          "usuario": null
+        }
+      ],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=360015F1L0000&processo.foro=114&processo.numero=1039995-15.2024.8.26.0114",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.9835,
+      "numero_processo": "1039995-15.2024.8.26.0114",
+      "linha_excel": 49,
+      "valor_original_excel": "1039995-15.2024.8.26.0114",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-17T00:04:58-03:00",
+      "duracao_total_segundos": 5.7926,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "container_movimentacao",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": null,
+          "data_hora": "30/06/2026",
+          "descricao": "Suspensão do Prazo Prazo referente à movimentação foi alterado para 10/12/2026 devido à alteração da tabela de feriados",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "21/05/2026",
+          "descricao": "Certidão de Publicação Expedida Relação: 0794/2026 Data da Publicação: 22/05/2026",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "20/05/2026",
+          "descricao": "Remetido ao DJE Relação: 0794/2026 Teor do ato: Vistos, 1- Ciência às partes do desarquivamento dos autos. 2- O prosseguimento da execução é medida que se impõe. Expeça-se carta de citação ao endereço indicado às fls. 277, tendo em vista o recolhimento das custas às fls. 239/240. Advogados(s): Antonio Carlos de Freitas Junior (OAB 313493/SP), Julia Sbruzzi de Aguiar Carvalho de Almeida (OAB 448581/SP), Joao Pedro Tozzi Pavageau (OAB 515632/SP), Rafael Alonso Rodriguez (OAB 522081/SP)",
+          "usuario": null
+        }
+      ],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=360013CTF0000&processo.foro=114&processo.numero=1046939-67.2023.8.26.0114",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.7109,
+      "numero_processo": "1046939-67.2023.8.26.0114",
+      "linha_excel": 50,
+      "valor_original_excel": "1046939-67.2023.8.26.0114",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:36:38-03:00",
+      "duracao_total_segundos": 6.0455,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "container_movimentacao",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": null,
+          "data_hora": "24/06/2026",
+          "descricao": "Certidão de Cartório Expedida Certifico e dou fé que foram interpostos Embargos à Execução sob nº 1006529-59.2026.8.26.0114 , os quais foram recebidos com efeito suspensivo. Era o que cumpria informar. Nada Mais.",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "01/06/2026",
+          "descricao": "Certidão de Não Consulta ao Teor da Informação - Contagem de Prazo do Ato - Expedida Certidão de Não Leitura - INTIMAÇÃO - Contagem de Prazo do Ato",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "22/05/2026",
+          "descricao": "Certidão de Publicação Expedida Relação: 0569/2026 Data da Publicação: 25/05/2026",
+          "usuario": null
+        }
+      ],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=3600180090000&processo.foro=114&processo.numero=1516588-83.2025.8.26.0114",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.5792,
+      "numero_processo": "1516588-83.2025.8.26.0114",
+      "linha_excel": 51,
+      "valor_original_excel": "1516588-83.2025.8.26.0114",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:36:45-03:00",
+      "duracao_total_segundos": 5.5323,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "timeout",
+      "mensagem": "Nenhuma mudança útil ocorreu dentro do watchdog de 10s.",
+      "layout_movimentacoes": null,
+      "quantidade_movimentacoes": 0,
+      "movimentacoes": [],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_unificada_publica/consultar",
+      "tipo_pagina": "desconhecida",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 10.8523,
+      "numero_processo": "2022428-34.2026.8.26.0000",
+      "linha_excel": 52,
+      "valor_original_excel": "2022428-34.2026.8.26.0000",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 2,
+      "consultado_em": "2026-07-19T01:51:16-03:00",
+      "duracao_total_segundos": 15.6578,
+      "erros_tentativas_anteriores": [
+        {
+          "tentativa": 1,
+          "tipo": "StatusTransitorio",
+          "status": "timeout",
+          "mensagem": "Nenhuma mudança útil ocorreu dentro do watchdog de 10s.",
+          "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_unificada_publica/consultar",
+          "ocorrido_em": "2026-07-19T01:50:58-03:00"
+        }
+      ]
+    },
+    {
+      "status": "timeout",
+      "mensagem": "Nenhuma mudança útil ocorreu dentro do watchdog de 10s.",
+      "layout_movimentacoes": null,
+      "quantidade_movimentacoes": 0,
+      "movimentacoes": [],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_unificada_publica/consultar",
+      "tipo_pagina": "desconhecida",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 10.7644,
+      "numero_processo": "2091755-66.2026.8.26.0000",
+      "linha_excel": 53,
+      "valor_original_excel": "2091755-66.2026.8.26.0000",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 2,
+      "consultado_em": "2026-07-19T01:51:51-03:00",
+      "duracao_total_segundos": 15.175,
+      "erros_tentativas_anteriores": [
+        {
+          "tentativa": 1,
+          "tipo": "StatusTransitorio",
+          "status": "timeout",
+          "mensagem": "Nenhuma mudança útil ocorreu dentro do watchdog de 10s.",
+          "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_unificada_publica/consultar",
+          "ocorrido_em": "2026-07-19T01:51:33-03:00"
+        }
+      ]
+    },
+    {
+      "status": "timeout",
+      "mensagem": "Nenhuma mudança útil ocorreu dentro do watchdog de 10s.",
+      "layout_movimentacoes": null,
+      "quantidade_movimentacoes": 0,
+      "movimentacoes": [],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_unificada_publica/consultar",
+      "tipo_pagina": "desconhecida",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 10.78,
+      "numero_processo": "2158665-75.2026.8.26.0000",
+      "linha_excel": 54,
+      "valor_original_excel": "2158665-75.2026.8.26.0000",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 2,
+      "consultado_em": "2026-07-19T01:52:27-03:00",
+      "duracao_total_segundos": 15.4788,
+      "erros_tentativas_anteriores": [
+        {
+          "tentativa": 1,
+          "tipo": "StatusTransitorio",
+          "status": "timeout",
+          "mensagem": "Nenhuma mudança útil ocorreu dentro do watchdog de 10s.",
+          "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_unificada_publica/consultar",
+          "ocorrido_em": "2026-07-19T01:52:08-03:00"
+        }
+      ]
+    },
+    {
+      "status": "timeout",
+      "mensagem": "Nenhuma mudança útil ocorreu dentro do watchdog de 10s.",
+      "layout_movimentacoes": null,
+      "quantidade_movimentacoes": 0,
+      "movimentacoes": [],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_unificada_publica/consultar",
+      "tipo_pagina": "desconhecida",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 10.0867,
+      "numero_processo": "2170079-70.2026.8.26.0000",
+      "linha_excel": 55,
+      "valor_original_excel": "2170079-70.2026.8.26.0000",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 2,
+      "consultado_em": "2026-07-19T01:52:59-03:00",
+      "duracao_total_segundos": 14.8275,
+      "erros_tentativas_anteriores": [
+        {
+          "tentativa": 1,
+          "tipo": "StatusTransitorio",
+          "status": "timeout",
+          "mensagem": "Nenhuma mudança útil ocorreu dentro do watchdog de 10s.",
+          "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_unificada_publica/consultar",
+          "ocorrido_em": "2026-07-19T01:52:43-03:00"
+        }
+      ]
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "14",
+          "data_hora": "13/04/2026 11:03:07",
+          "descricao": "Juntada de Carta pelo Correio - Comprovante de entrega - Refer. ao Evento: 13",
+          "usuario": "CORREIOS"
+        },
+        {
+          "evento": "13",
+          "data_hora": "13/02/2026 11:15:46",
+          "descricao": "Expedição de Carta pelo Correio - 1 carta",
+          "usuario": "M318882"
+        },
+        {
+          "evento": "12",
+          "data_hora": "11/02/2026 16:54:42",
+          "descricao": "Determinada a citação - Complementar ao evento nº 11",
+          "usuario": "J14438"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40002295920268260363&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=908d3beeafc558f8b6ce604d63eff5731e902aea86060b209d9647b4c1ae90ec&hash=8d41841b2c8c14959f8f635787490e46",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.7898,
+      "numero_processo": "4000229-59.2026.8.26.0363",
+      "linha_excel": 56,
+      "valor_original_excel": "4000229-59.2026.8.26.0363",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:39:51-03:00",
+      "duracao_total_segundos": 5.5921,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "27",
+          "data_hora": "16/07/2026 15:16:28",
+          "descricao": "Transitado em Julgado",
+          "usuario": "M815580"
+        },
+        {
+          "evento": "26",
+          "data_hora": "01/07/2026 02:44:10",
+          "descricao": "Decorrido prazo - Refer. ao Evento: 21",
+          "usuario": "SECFP"
+        },
+        {
+          "evento": "25",
+          "data_hora": "30/06/2026 02:40:40",
+          "descricao": "Decorrido prazo - Refer. ao Evento: 20",
+          "usuario": "SECFP"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40003680620268260106&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=8daf56ef62bfd80bfca19ee4d72c7bdb75ece6371d4a786ff753b019c0f6c3a2&hash=be18da34887aa8824d3a308e6913475c",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.864,
+      "numero_processo": "4000368-06.2026.8.26.0106",
+      "linha_excel": 57,
+      "valor_original_excel": "4000368-06.2026.8.26.0106",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:39:57-03:00",
+      "duracao_total_segundos": 5.2419,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "33",
+          "data_hora": "30/06/2026 19:08:09",
+          "descricao": "Comunicação eletrônica recebida - decisão proferida em Agravo de Instrumento Número: 40738761220268260000/TJSP",
+          "usuario": "D11584"
+        },
+        {
+          "evento": "32",
+          "data_hora": "30/06/2026 01:23:08",
+          "descricao": "Decorrido prazo - Refer. ao Evento: 24",
+          "usuario": "SECFP"
+        },
+        {
+          "evento": "31",
+          "data_hora": "24/06/2026 02:01:12",
+          "descricao": "Decorrido prazo - Refer. aos Eventos: 23 e 25",
+          "usuario": "SECFP"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40004822920268260272&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=e1b1763aab133d1f703013d2021e138d80bbcf2d2381feb85d025f63bcaf3d3f&hash=76ec2803017f6ede0599ce067ed76135",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 1.0148,
+      "numero_processo": "4000482-29.2026.8.26.0272",
+      "linha_excel": 58,
+      "valor_original_excel": "4000482-29.2026.8.26.0272",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:40:04-03:00",
+      "duracao_total_segundos": 5.2396,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "52",
+          "data_hora": "15/06/2026 10:47:01",
+          "descricao": "Conclusos para julgamento",
+          "usuario": "M376054"
+        },
+        {
+          "evento": "51",
+          "data_hora": "13/05/2026 11:10:44",
+          "descricao": "PETIÇÃO - Refer. ao Evento: 37",
+          "usuario": "SP309103"
+        },
+        {
+          "evento": "50",
+          "data_hora": "30/04/2026 16:15:47",
+          "descricao": "PETIÇÃO - Refer. ao Evento: 39",
+          "usuario": "SP515632"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40008242920268260114&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=153c1d29713a17b47795e32025aef1d68a41b6282c3492ee373a79bfe9b121ad&hash=41c63698885d344868626cf54a482a03",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.8153,
+      "numero_processo": "4000824-29.2026.8.26.0114",
+      "linha_excel": 59,
+      "valor_original_excel": "4000824-29.2026.8.26.0114",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:40:11-03:00",
+      "duracao_total_segundos": 5.7928,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "32",
+          "data_hora": "15/07/2026 16:05:18",
+          "descricao": "EMBARGOS DE DECLARAÇÃO - Refer. aos Eventos: 27 e 29",
+          "usuario": "SP318172"
+        },
+        {
+          "evento": "31",
+          "data_hora": "07/07/2026 05:06:00",
+          "descricao": "Publicado no DJ Eletrônico - no dia 07/07/2026 - Refer. aos Eventos: 27, 28, 29",
+          "usuario": "secde"
+        },
+        {
+          "evento": "30",
+          "data_hora": "06/07/2026 02:04:05",
+          "descricao": "Disponibilizado no DJ Eletrônico - no dia 06/07/2026 - Refer. aos Eventos: 27, 28, 29",
+          "usuario": "secde"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40008997920268260272&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=caa2868324d5fbee810dafb5d4cbd86e82601e90874a8e9bca241cf22559b49d&hash=f74f0bce6fda75692abf6a71b18a5e4a",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.8557,
+      "numero_processo": "4000899-79.2026.8.26.0272",
+      "linha_excel": 60,
+      "valor_original_excel": "4000899-79.2026.8.26.0272",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:40:17-03:00",
+      "duracao_total_segundos": 5.1009,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "19",
+          "data_hora": "18/06/2026 17:47:50",
+          "descricao": "PROCURAÇÃO - CONDOMINIO RECANTO DOS PASSAROS / JULIA ESTEFANI VALENTIM CANDIDO (SP318172 - RODOLPHO LUIZ DE RANGEL MOREIRA RAMOS)",
+          "usuario": "SP318172"
+        },
+        {
+          "evento": "18",
+          "data_hora": "27/04/2026 03:57:51",
+          "descricao": "Publicado no DJ Eletrônico - no dia 27/04/2026 - Refer. ao Evento: 12",
+          "usuario": "secde"
+        },
+        {
+          "evento": "17",
+          "data_hora": "24/04/2026 02:53:49",
+          "descricao": "Disponibilizado no DJ Eletrônico - no dia 24/04/2026 - Refer. ao Evento: 12",
+          "usuario": "secde"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40009136320268260272&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=aa557653c3f40b9c14e9eed93e8d508cda4a2aa9690eb3eab44b10a1983517c7&hash=33ab6ff1277d6367e208be3ea4a4e0d2",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.7538,
+      "numero_processo": "4000913-63.2026.8.26.0272",
+      "linha_excel": 61,
+      "valor_original_excel": "4000913-63.2026.8.26.0272",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:40:24-03:00",
+      "duracao_total_segundos": 5.4318,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "5",
+          "data_hora": "08/06/2026 16:43:14",
+          "descricao": "PROCURAÇÃO - CONDOMINIO RECANTO DOS PASSAROS (SP318172 - RODOLPHO LUIZ DE RANGEL MOREIRA RAMOS)",
+          "usuario": "SP318172"
+        },
+        {
+          "evento": "4",
+          "data_hora": "30/04/2026 04:41:02",
+          "descricao": "Conclusos para decisão",
+          "usuario": "secautoloc"
+        },
+        {
+          "evento": "3",
+          "data_hora": "29/04/2026 16:04:47",
+          "descricao": "SUBSTABELECIMENTO COM RESERVA - (SP515632 - JOÃO PEDRO TOZZI PAVAGEAU para SP116937 - ALEXANDRE LEARDINI)",
+          "usuario": "SP515632"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40010045620268260272&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=f5f902443b48727361117b294bc8331d7a192e6b34fe792d902ceae3284a0b3c&hash=ceb18842544fcf6f7cccae6a635a2821",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.738,
+      "numero_processo": "4001004-56.2026.8.26.0272",
+      "linha_excel": 62,
+      "valor_original_excel": "4001004-56.2026.8.26.0272",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:40:31-03:00",
+      "duracao_total_segundos": 5.4439,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "27",
+          "data_hora": "30/04/2026 13:53:54",
+          "descricao": "Conclusos para decisão",
+          "usuario": "M375100"
+        },
+        {
+          "evento": "26",
+          "data_hora": "29/04/2026 14:10:08",
+          "descricao": "Redistribuído por sorteio em razão de incompetência - (AMERICA01CIV01 para ESPEC01EMPRCA41001)",
+          "usuario": "M818386"
+        },
+        {
+          "evento": "25",
+          "data_hora": "17/04/2026 01:18:07",
+          "descricao": "Decorrido prazo - Refer. ao Evento: 22",
+          "usuario": "SECFP"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40013161520268260019&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=ec5ab0f0d12adf14ab670b93c5828eb91abef498f66bdfc167bdc79bbf8fb6b3&hash=2f66e7d9b6f99bff9fc7626f2f9233e4",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.8113,
+      "numero_processo": "4001316-15.2026.8.26.0019",
+      "linha_excel": 63,
+      "valor_original_excel": "4001316-15.2026.8.26.0019",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:40:38-03:00",
+      "duracao_total_segundos": 5.4258,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "24",
+          "data_hora": "16/07/2026 02:24:24",
+          "descricao": "Disponibilizado no DJ Eletrônico - no dia 16/07/2026 - Refer. ao Evento: 22",
+          "usuario": "secde"
+        },
+        {
+          "evento": "23",
+          "data_hora": "15/07/2026 12:00:40",
+          "descricao": "Ato ordinatório praticado - Documento encaminhado à disponibilização no Diário Eletrônico - no dia 16/07/2026 - Refer. ao Evento: 22",
+          "usuario": "SECJE"
+        },
+        {
+          "evento": "22",
+          "data_hora": "15/07/2026 10:48:34",
+          "descricao": "Expedida/certificada a intimação eletrônica Refer. ao Evento 20 (REQUERENTE - PARAMOUNT INDUSTRIA E COMERCIO DE PLASTICOS LTDA) Prazo: 15 dias Status:AGUARD. ABERTURA",
+          "usuario": "M362018"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40013422120268260566&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=1581b83000d17f11e54a65fe48af01d0040f4cd41d6fd5a905b430a2afb1fb0d&hash=7a08539d4ea4c0414cf053744268d660",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.7481,
+      "numero_processo": "4001342-21.2026.8.26.0566",
+      "linha_excel": 64,
+      "valor_original_excel": "4001342-21.2026.8.26.0566",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:40:45-03:00",
+      "duracao_total_segundos": 5.5782,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "16",
+          "data_hora": "08/07/2026 09:21:48",
+          "descricao": "Expedição de Carta pelo Correio - 1 carta",
+          "usuario": "M819367"
+        },
+        {
+          "evento": "15",
+          "data_hora": "08/07/2026 06:44:31",
+          "descricao": "Publicado no DJ Eletrônico - no dia 08/07/2026 - Refer. ao Evento: 13",
+          "usuario": "secde"
+        },
+        {
+          "evento": "14",
+          "data_hora": "07/07/2026 03:05:58",
+          "descricao": "Disponibilizado no DJ Eletrônico - no dia 07/07/2026 - Refer. ao Evento: 13",
+          "usuario": "secde"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40015224620268260272&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=6fd32976acb8a4e901f086afe933219ca1b947f4312c05ea696aedbfd4efe867&hash=207bd3ad4f4f8d2e0decaeaa87b78443",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.821,
+      "numero_processo": "4001522-46.2026.8.26.0272",
+      "linha_excel": 65,
+      "valor_original_excel": "4001522-46.2026.8.26.0272",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:40:52-03:00",
+      "duracao_total_segundos": 5.9069,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "24",
+          "data_hora": "15/06/2026 19:22:53",
+          "descricao": "PROCURAÇÃO - VX PAVARINI DISTRIBUIDORA DE TITULOS E VALORES MOBILIARIOS LTDA (SP333935 - ELZEANE DA ROCHA / SP493117 - GUILHERME CARVALHO CAMARGO PIRES / SP196655 - ELIAS MARQUES DE MEDEIROS NETO)",
+          "usuario": "SP493117"
+        },
+        {
+          "evento": "23",
+          "data_hora": "15/06/2026 11:08:28",
+          "descricao": "PROCURAÇÃO - CASA DE PEDRA SECURITIZADORA DE CREDITO S.A. (BA042650 - ADEMAR PAZZE JÚNIOR)",
+          "usuario": "BA042650"
+        },
+        {
+          "evento": "22",
+          "data_hora": "15/06/2026 09:38:26",
+          "descricao": "Juntada de Carta pelo Correio - Comprovante de entrega - Refer. ao Evento: 17",
+          "usuario": "CORREIOS"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40016024020268260650&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=c75308e7def2cae725a5d6bf99985d3528609342e0232fcd2e33898eb865f9cb&hash=bee6f08d96475deeaa7685e557a59a2f",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.8749,
+      "numero_processo": "4001602-40.2026.8.26.0650",
+      "linha_excel": 66,
+      "valor_original_excel": "4001602-40.2026.8.26.0650",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:40:59-03:00",
+      "duracao_total_segundos": 5.4741,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "31",
+          "data_hora": "27/05/2026 09:21:03",
+          "descricao": "Decorrido prazo - Refer. ao Evento: 22",
+          "usuario": "SECFP"
+        },
+        {
+          "evento": "30",
+          "data_hora": "22/05/2026 01:48:47",
+          "descricao": "Decorrido prazo - Refer. aos Eventos: 21 e 23",
+          "usuario": "SECFP"
+        },
+        {
+          "evento": "29",
+          "data_hora": "21/05/2026 18:03:25",
+          "descricao": "PETIÇÃO",
+          "usuario": "SP522081"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40018307120268260114&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=9bea74c57640586f7297282a4a231a5bd9ada69a93431c85e2feb2efe0f73bdb&hash=78590626300bb3837bbc89b27fbb1fd9",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.8556,
+      "numero_processo": "4001830-71.2026.8.26.0114",
+      "linha_excel": 67,
+      "valor_original_excel": "4001830-71.2026.8.26.0114",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:41:05-03:00",
+      "duracao_total_segundos": 5.1023,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "35",
+          "data_hora": "14/07/2026 06:01:24",
+          "descricao": "Publicado no DJ Eletrônico - no dia 14/07/2026 - Refer. aos Eventos: 29, 30, 31, 32, 33",
+          "usuario": "secde"
+        },
+        {
+          "evento": "34",
+          "data_hora": "13/07/2026 02:39:35",
+          "descricao": "Disponibilizado no DJ Eletrônico - no dia 13/07/2026 - Refer. aos Eventos: 29, 30, 31, 32, 33",
+          "usuario": "secde"
+        },
+        {
+          "evento": "33",
+          "data_hora": "08/07/2026 10:03:40",
+          "descricao": "Expedida/certificada a intimação eletrônica Refer. ao Evento 28 (EMBARGADO - VAHRCAV PARTICIPACOES LTDA) Prazo: 15 dias Status:ABERTO Data inicial da contagem do prazo: 15/07/2026 00:00:00 Data final: 04/08/2026 23:59:59",
+          "usuario": "M364952"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40030221520268260510&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=e2c643749e1b48531f0d4d2da1747fb35c27ada5541ebf506f478a8e224767c6&hash=cf72b25e694660c7b54718b854c99b6c",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.8736,
+      "numero_processo": "4003022-15.2026.8.26.0510",
+      "linha_excel": 68,
+      "valor_original_excel": "4003022-15.2026.8.26.0510",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:41:11-03:00",
+      "duracao_total_segundos": 5.5324,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "29",
+          "data_hora": "01/07/2026 14:28:07",
+          "descricao": "PETIÇÃO",
+          "usuario": "SP515632"
+        },
+        {
+          "evento": "28",
+          "data_hora": "30/06/2026 11:57:06",
+          "descricao": "Conclusos para julgamento",
+          "usuario": "M379422"
+        },
+        {
+          "evento": "27",
+          "data_hora": "30/06/2026 02:09:21",
+          "descricao": "Decorrido prazo - Refer. ao Evento: 23",
+          "usuario": "SECFP"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40032534220268260704&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=befdbcf974ed513dcc02c8f0be1ccf36fa56787e4d9cccc543aaa3e514f24705&hash=1219c373057a50520d941f7a841f047e",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.851,
+      "numero_processo": "4003253-42.2026.8.26.0704",
+      "linha_excel": 69,
+      "valor_original_excel": "4003253-42.2026.8.26.0704",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:41:18-03:00",
+      "duracao_total_segundos": 5.1007,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "51",
+          "data_hora": "29/06/2026 11:01:23",
+          "descricao": "Conclusos para decisão",
+          "usuario": "secautoloc"
+        },
+        {
+          "evento": "50",
+          "data_hora": "29/06/2026 11:01:23",
+          "descricao": "PETIÇÃO - Refer. ao Evento: 42",
+          "usuario": "SP451149"
+        },
+        {
+          "evento": "49",
+          "data_hora": "17/06/2026 09:02:01",
+          "descricao": "PETIÇÃO - Refer. aos Eventos: 41, 43, 45, 44 e 46",
+          "usuario": "SP515632"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40044159620268260114&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=43328ba49186ef34b1f6c0f252aba45bc4eb3105645ddaa679400db9a59e1fa8&hash=00d911cbf0f27672736e756648f02c89",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.8921,
+      "numero_processo": "4004415-96.2026.8.26.0114",
+      "linha_excel": 70,
+      "valor_original_excel": "4004415-96.2026.8.26.0114",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:41:24-03:00",
+      "duracao_total_segundos": 5.4594,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "44",
+          "data_hora": "07/07/2026 09:16:02",
+          "descricao": "Publicado no DJ Eletrônico - no dia 07/07/2026 - Refer. aos Eventos: 41, 42",
+          "usuario": "secde"
+        },
+        {
+          "evento": "43",
+          "data_hora": "06/07/2026 04:39:33",
+          "descricao": "Disponibilizado no DJ Eletrônico - no dia 06/07/2026 - Refer. aos Eventos: 41, 42",
+          "usuario": "secde"
+        },
+        {
+          "evento": "42",
+          "data_hora": "05/07/2026 18:25:26",
+          "descricao": "Expedida/certificada a intimação eletrônica Refer. ao Evento 40 (RÉU - YELUM SEGUROS S.A) Prazo: 5 dias Status:ABERTO Data inicial da contagem do prazo: 08/07/2026 00:00:00 Data final: 16/07/2026 23:59:59",
+          "usuario": "secautoloc"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40075830920268260114&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=61abfd856182a53a94c4e4c19799e20dbfa74ce50c4f5fa3df4c0e681d979502&hash=e497c633a60145b06acd6c6228ccfc47",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 1.0107,
+      "numero_processo": "4007583-09.2026.8.26.0114",
+      "linha_excel": 71,
+      "valor_original_excel": "4007583-09.2026.8.26.0114",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:41:32-03:00",
+      "duracao_total_segundos": 5.5349,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "14",
+          "data_hora": "16/07/2026 04:22:54",
+          "descricao": "Decorrido prazo - Refer. ao Evento: 11",
+          "usuario": "SECFP"
+        },
+        {
+          "evento": "13",
+          "data_hora": "14/07/2026 05:37:09",
+          "descricao": "Publicado no DJ Eletrônico - no dia 14/07/2026 - Refer. ao Evento: 11",
+          "usuario": "secde"
+        },
+        {
+          "evento": "12",
+          "data_hora": "13/07/2026 02:24:02",
+          "descricao": "Disponibilizado no DJ Eletrônico - no dia 13/07/2026 - Refer. ao Evento: 11",
+          "usuario": "secde"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40102163120268260554&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=76985ea4f1657e79074b7c1dcb1abec54f39e42f35ecfe497b3f48f857ce4681&hash=68c8487d23560f575166e6628bbc6ad1",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.8688,
+      "numero_processo": "4010216-31.2026.8.26.0554",
+      "linha_excel": 72,
+      "valor_original_excel": "4010216-31.2026.8.26.0554",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:41:38-03:00",
+      "duracao_total_segundos": 5.194,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "22",
+          "data_hora": "15/07/2026 10:15:08",
+          "descricao": "Expedição de Carta pelo Correio - 1 carta",
+          "usuario": "M374470"
+        },
+        {
+          "evento": "21",
+          "data_hora": "03/06/2026 01:40:29",
+          "descricao": "Decorrido prazo - Refer. ao Evento: 16",
+          "usuario": "SECFP"
+        },
+        {
+          "evento": "20",
+          "data_hora": "12/05/2026 04:26:30",
+          "descricao": "Publicado no DJ Eletrônico - no dia 12/05/2026 - Refer. ao Evento: 16",
+          "usuario": "secde"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40102206820268260554&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=627f1a8bf368784e23c025a3fb5b7ff2cb01371c0c4111b692616926734578d8&hash=5c452ec5cac5ccae0f307a9d68e6618d",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.9258,
+      "numero_processo": "4010220-68.2026.8.26.0554",
+      "linha_excel": 73,
+      "valor_original_excel": "4010220-68.2026.8.26.0554",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:41:44-03:00",
+      "duracao_total_segundos": 5.2979,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "90",
+          "data_hora": "19/06/2026 18:29:10",
+          "descricao": "Transitado em Julgado",
+          "usuario": "secautoloc"
+        },
+        {
+          "evento": "89",
+          "data_hora": "19/06/2026 02:56:20",
+          "descricao": "Decorrido prazo - Refer. aos Eventos: 83 e 84",
+          "usuario": "SECFP"
+        },
+        {
+          "evento": "88",
+          "data_hora": "16/06/2026 16:51:49",
+          "descricao": "Link para pagamento - Guia: 408870432, subguia: 409063051",
+          "usuario": "SP116937"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40119337420258260114&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=e5e02a07abc67b19494475ced1969b66ff5d69eef72382cc4e231c0a73ef611c&hash=031f0e904f0f92006526ec5dbbfe003e",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.7714,
+      "numero_processo": "4011933-74.2025.8.26.0114",
+      "linha_excel": 74,
+      "valor_original_excel": "4011933-74.2025.8.26.0114",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:41:51-03:00",
+      "duracao_total_segundos": 5.7498,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "206",
+          "data_hora": "13/07/2026 06:47:52",
+          "descricao": "Publicado no DJ Eletrônico - no dia 13/07/2026 - Refer. aos Eventos: 200, 201, 202",
+          "usuario": "secde"
+        },
+        {
+          "evento": "205",
+          "data_hora": "10/07/2026 08:29:54",
+          "descricao": "IMPUGNAÇÃO AOS EMBARGOS - Refer. aos Eventos: 193 e 201",
+          "usuario": "SP515632"
+        },
+        {
+          "evento": "204",
+          "data_hora": "10/07/2026 08:29:54",
+          "descricao": "Confirmada a intimação eletrônica - Refer. ao Evento: 201",
+          "usuario": "SP515632"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40125494920258260114&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=064113bc682b7b135f8e09dba36edb1c5001b63e6a7ad57b3d97b720b9a877ae&hash=dd99dab8f3f649ccf14c7dfe0814e866",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.9832,
+      "numero_processo": "4012549-49.2025.8.26.0114",
+      "linha_excel": 75,
+      "valor_original_excel": "4012549-49.2025.8.26.0114",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:41:58-03:00",
+      "duracao_total_segundos": 5.816,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "10",
+          "data_hora": "16/07/2026 07:16:57",
+          "descricao": "Publicado no DJ Eletrônico - no dia 16/07/2026 - Refer. ao Evento: 7",
+          "usuario": "secde"
+        },
+        {
+          "evento": "9",
+          "data_hora": "15/07/2026 03:30:48",
+          "descricao": "Disponibilizado no DJ Eletrônico - no dia 15/07/2026 - Refer. ao Evento: 7",
+          "usuario": "secde"
+        },
+        {
+          "evento": "8",
+          "data_hora": "14/07/2026 19:42:04",
+          "descricao": "Juntada - Registro de pagamento - Guia 465449068, Subguia 465653004 - Boleto pago (1/1) Baixado - R$ 227,85",
+          "usuario": "SECJE"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40128993020268260008&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=e4dff07317c588e41813aa5d874c624a0d9af6b00ff0f414929e44426ddc5cda&hash=abf324f6c604a5a52223fc6c4a56eb7b",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.8997,
+      "numero_processo": "4012899-30.2026.8.26.0008",
+      "linha_excel": 76,
+      "valor_original_excel": "4012899-30.2026.8.26.0008",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:42:05-03:00",
+      "duracao_total_segundos": 5.4194,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "24",
+          "data_hora": "16/07/2026 03:21:42",
+          "descricao": "Disponibilizado no DJ Eletrônico - no dia 16/07/2026 - Refer. ao Evento: 23",
+          "usuario": "secde"
+        },
+        {
+          "evento": "23",
+          "data_hora": "15/07/2026 15:29:38",
+          "descricao": "Expedida/certificada a intimação eletrônica Refer. ao Evento 22 (AUTOR - LUIZ CLAUDIO NOBREGA DE SOUZA) Prazo: 15 dias Status:AGUARD. ABERTURA",
+          "usuario": "M378796"
+        },
+        {
+          "evento": "22",
+          "data_hora": "15/07/2026 15:29:37",
+          "descricao": "Ato ordinatório praticado",
+          "usuario": "M378796"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40136993120268260114&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=046a572806383de26af763cf2ee22f5607172446c292d12f91f8082b301e2f9c&hash=7447ef7eae2c94ee4cef926344bfaeec",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.7771,
+      "numero_processo": "4013699-31.2026.8.26.0114",
+      "linha_excel": 77,
+      "valor_original_excel": "4013699-31.2026.8.26.0114",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:42:12-03:00",
+      "duracao_total_segundos": 5.305,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "36",
+          "data_hora": "09/06/2026 10:03:24",
+          "descricao": "Pedido de Citação - Refer. aos Eventos: 32 e 33",
+          "usuario": "SP515632"
+        },
+        {
+          "evento": "35",
+          "data_hora": "20/05/2026 06:02:02",
+          "descricao": "Publicado no DJ Eletrônico - no dia 20/05/2026 - Refer. aos Eventos: 32, 33",
+          "usuario": "secde"
+        },
+        {
+          "evento": "34",
+          "data_hora": "19/05/2026 02:00:55",
+          "descricao": "Disponibilizado no DJ Eletrônico - no dia 19/05/2026 - Refer. aos Eventos: 32, 33",
+          "usuario": "secde"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40141063720268260114&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=fe8fda284d0ce6391476800a25bb445f4e421933155e93570da455d36112a7a3&hash=beccaa0a5457af8e61f017e4060b1069",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.9874,
+      "numero_processo": "4014106-37.2026.8.26.0114",
+      "linha_excel": 78,
+      "valor_original_excel": "4014106-37.2026.8.26.0114",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:42:18-03:00",
+      "duracao_total_segundos": 5.4712,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "67",
+          "data_hora": "15/05/2026 01:55:24",
+          "descricao": "Decorrido prazo - Refer. aos Eventos: 48, 49, 62 e 63",
+          "usuario": "SECFP"
+        },
+        {
+          "evento": "66",
+          "data_hora": "13/05/2026 05:23:03",
+          "descricao": "Publicado no DJ Eletrônico - no dia 13/05/2026 - Refer. aos Eventos: 62, 63",
+          "usuario": "secde"
+        },
+        {
+          "evento": "65",
+          "data_hora": "12/05/2026 04:44:57",
+          "descricao": "Disponibilizado no DJ Eletrônico - no dia 12/05/2026 - Refer. aos Eventos: 62, 63",
+          "usuario": "secde"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40143422320258260114&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=685a8953fdc201c7375b0399f4988e346c9b28b59583736f9d15f285e1bd5aaa&hash=ca105e5b380f4285e8f4aa50f187cca6",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.864,
+      "numero_processo": "4014342-23.2025.8.26.0114",
+      "linha_excel": 79,
+      "valor_original_excel": "4014342-23.2025.8.26.0114",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:42:25-03:00",
+      "duracao_total_segundos": 5.6288,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "40",
+          "data_hora": "21/03/2026 02:59:34",
+          "descricao": "Conclusos para decisão",
+          "usuario": "secautoloc"
+        },
+        {
+          "evento": "39",
+          "data_hora": "21/03/2026 01:37:26",
+          "descricao": "Decorrido prazo - Refer. aos Eventos: 31, 33 e 34",
+          "usuario": "SECFP"
+        },
+        {
+          "evento": "38",
+          "data_hora": "19/03/2026 19:08:47",
+          "descricao": "PETIÇÃO",
+          "usuario": "SP263539"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40155703320258260114&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=a474ab4e7dfc4e31952385d48e9e82ce32dfe62ad92dbf7a72f4feb96f95ff3e&hash=589e30afe0b1e61df158045d5a856d76",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.9326,
+      "numero_processo": "4015570-33.2025.8.26.0114",
+      "linha_excel": 80,
+      "valor_original_excel": "4015570-33.2025.8.26.0114",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:42:33-03:00",
+      "duracao_total_segundos": 5.9166,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "34",
+          "data_hora": "07/07/2026 08:27:45",
+          "descricao": "Publicado no DJ Eletrônico - no dia 07/07/2026 - Refer. aos Eventos: 31, 32",
+          "usuario": "secde"
+        },
+        {
+          "evento": "33",
+          "data_hora": "06/07/2026 04:08:55",
+          "descricao": "Disponibilizado no DJ Eletrônico - no dia 06/07/2026 - Refer. aos Eventos: 31, 32",
+          "usuario": "secde"
+        },
+        {
+          "evento": "32",
+          "data_hora": "03/07/2026 17:46:22",
+          "descricao": "Expedida/certificada a intimação eletrônica Refer. ao Evento 30 (RÉU - CONSORCIO SHOPPING PARQUE DOM PEDRO) Prazo: 15 dias Status:ABERTO Data inicial da contagem do prazo: 08/07/2026 00:00:00 Data final: 30/07/2026 23:59:59",
+          "usuario": "secautoloc"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40164672720268260114&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=4281f466873bf80df5eb27d57d54d2aa12122afb1742a3795662cb6de68f964c&hash=2faef03e58ac996aab960c2205a4c60c",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.8653,
+      "numero_processo": "4016467-27.2026.8.26.0114",
+      "linha_excel": 81,
+      "valor_original_excel": "4016467-27.2026.8.26.0114",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:42:40-03:00",
+      "duracao_total_segundos": 5.6173,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "67",
+          "data_hora": "16/07/2026 03:23:43",
+          "descricao": "Disponibilizado no DJ Eletrônico - no dia 16/07/2026 - Refer. ao Evento: 66",
+          "usuario": "secde"
+        },
+        {
+          "evento": "66",
+          "data_hora": "15/07/2026 15:38:15",
+          "descricao": "Expedida/certificada a intimação eletrônica Refer. ao Evento 65 (AUTOR - CHIQUINHO COMERCIO DE SORVETES DOM PEDRO LTDA) Prazo: 15 dias Status:AGUARD. ABERTURA",
+          "usuario": "J14168"
+        },
+        {
+          "evento": "65",
+          "data_hora": "15/07/2026 15:38:14",
+          "descricao": "Determinada a intimação",
+          "usuario": "J14168"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40175233220258260114&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=afb3443faf6d049cdcc90d21e63cf7d3b6e84714b6d38541f0666e2b21378286&hash=de459d6d7ac8154c88638659b2516ad2",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 1.0214,
+      "numero_processo": "4017523-32.2025.8.26.0114",
+      "linha_excel": 82,
+      "valor_original_excel": "4017523-32.2025.8.26.0114",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:42:47-03:00",
+      "duracao_total_segundos": 5.4925,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "37",
+          "data_hora": "25/06/2026 08:00:03",
+          "descricao": "Publicado no DJ Eletrônico - no dia 25/06/2026 - Refer. aos Eventos: 34, 35",
+          "usuario": "secde"
+        },
+        {
+          "evento": "36",
+          "data_hora": "24/06/2026 03:51:03",
+          "descricao": "Disponibilizado no DJ Eletrônico - no dia 24/06/2026 - Refer. aos Eventos: 34, 35",
+          "usuario": "secde"
+        },
+        {
+          "evento": "35",
+          "data_hora": "23/06/2026 15:24:50",
+          "descricao": "Expedida/certificada a intimação eletrônica - Sentença Refer. ao Evento 33 (RÉU - SAMEDIL - SERVICOS DE ATENDIMENTO MEDICO S/A) Prazo: 15 dias Status:ABERTO Data inicial da contagem do prazo: 26/06/2026 00:00:00 Data final: 20/07/2026 23:59:59",
+          "usuario": "J13171"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40196945920258260114&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=7494fcb1979255e39f27b4815f1d6449b38dcf1f635bc35e85750a212004c8b7&hash=eb3148e298ba179d7f8b912f79c79271",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.7294,
+      "numero_processo": "4019694-59.2025.8.26.0114",
+      "linha_excel": 83,
+      "valor_original_excel": "4019694-59.2025.8.26.0114",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:42:54-03:00",
+      "duracao_total_segundos": 5.6161,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "39",
+          "data_hora": "04/07/2026 02:08:53",
+          "descricao": "Decorrido prazo - Refer. aos Eventos: 35 e 36",
+          "usuario": "SECFP"
+        },
+        {
+          "evento": "38",
+          "data_hora": "12/06/2026 10:56:57",
+          "descricao": "Publicado no DJ Eletrônico - no dia 12/06/2026 - Refer. aos Eventos: 35, 36",
+          "usuario": "secde"
+        },
+        {
+          "evento": "37",
+          "data_hora": "11/06/2026 03:25:35",
+          "descricao": "Disponibilizado no DJ Eletrônico - no dia 11/06/2026 - Refer. aos Eventos: 35, 36",
+          "usuario": "secde"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40212276120268260100&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=700a90e6fcccd6c099e800104159591d7b21a2829923aaf9d8e04160f2e4796c&hash=fab698279e0f9249cc5754382f52308e",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.8606,
+      "numero_processo": "4021227-61.2026.8.26.0100",
+      "linha_excel": 84,
+      "valor_original_excel": "4021227-61.2026.8.26.0100",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:43:00-03:00",
+      "duracao_total_segundos": 5.7166,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "container_movimentacao",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": null,
+          "data_hora": "09/05/2025",
+          "descricao": "Expedição de documento @ Certidão - Expedição de MLE",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "08/05/2025",
+          "descricao": "Arquivado Definitivamente",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "08/05/2025",
+          "descricao": "Certidão de Cartório Expedida Certidão de Cartório - CUSTAS - Certidão de Pagamento de Custas e Arquivamento - Cível - 61615",
+          "usuario": null
+        }
+      ],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=EP0004XA40000&processo.foro=529&processo.numero=0001217-14.2021.8.26.0529",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.6424,
+      "numero_processo": "0001217-14.2021.8.26.0529",
+      "linha_excel": 85,
+      "valor_original_excel": "0001217-14.2021.8.26.0529",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:43:07-03:00",
+      "duracao_total_segundos": 5.8442,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "senha_necessaria",
+      "mensagem": "Página solicitou senha ou chave de acesso ao processo.",
+      "layout_movimentacoes": null,
+      "quantidade_movimentacoes": 0,
+      "movimentacoes": [],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=1W00151VZ0000&processo.foro=68&conversationId=&cbPesquisa=NUMPROC&numeroDigitoAnoUnificado=0001810-44.2016&foroNumeroUnificado=0068&dadosConsulta.valorConsultaNuUnificado=0001810-44.2016.8.26.0068&dadosConsulta.valorConsulta=&dadosConsulta.tipoNuProcesso=UNIFICADO&paginaConsulta=1",
+      "tipo_pagina": "senha_necessaria",
+      "pagina_intermediaria_detectada": true,
+      "tempo_resultado_segundos": 1.8373,
+      "numero_processo": "0001810-44.2016.8.26.0068",
+      "linha_excel": 86,
+      "valor_original_excel": "0001810-44.2016.8.26.0068",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 2,
+      "consultado_em": "2026-07-19T01:53:25-03:00",
+      "duracao_total_segundos": 6.8773,
+      "erros_tentativas_anteriores": [
+        {
+          "tentativa": 1,
+          "tipo": "StatusTransitorio",
+          "status": "timeout",
+          "mensagem": "Nenhuma mudança útil ocorreu dentro do watchdog de 10s.",
+          "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_unificada_publica/consultar",
+          "ocorrido_em": "2026-07-19T01:53:16-03:00"
+        }
+      ]
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "container_movimentacao",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": null,
+          "data_hora": "24/08/2017",
+          "descricao": "Trânsito em Julgado às partes - Com Baixa - Sentenças do art. 485, I, IV, VI e IX do CPC - Sem Citação",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "24/08/2017",
+          "descricao": "Certidão de Trânsito em Julgado com Baixa Expedida-Art. 485, I, IV, VI e IX do CPC. Certidão - Trânsito em Julgado com Baixa - Sem Resolução do Mérito - Art. 485, I, IV, VI e IX do CPC - Processo Digital",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "11/04/2017",
+          "descricao": "Certidão de Publicação Expedida Relação :0070/2017 Data da Disponibilização: 11/04/2017 Data da Publicação: 12/04/2017 Número do Diário: 2326 Página: 2356/2372",
+          "usuario": null
+        }
+      ],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=GA0000M960000&processo.foro=586&processo.numero=0002029-55.2016.8.26.0586",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.7047,
+      "numero_processo": "0002029-55.2016.8.26.0586",
+      "linha_excel": 87,
+      "valor_original_excel": "0002029-55.2016.8.26.0586",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:43:23-03:00",
+      "duracao_total_segundos": 5.9552,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "senha_necessaria",
+      "mensagem": "Página solicitou senha ou chave de acesso ao processo.",
+      "layout_movimentacoes": null,
+      "quantidade_movimentacoes": 0,
+      "movimentacoes": [],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=EP00044KB0000&processo.foro=529&conversationId=&cbPesquisa=NUMPROC&numeroDigitoAnoUnificado=0004330-44.2019&foroNumeroUnificado=0529&dadosConsulta.valorConsultaNuUnificado=0004330-44.2019.8.26.0529&dadosConsulta.valorConsulta=&dadosConsulta.tipoNuProcesso=UNIFICADO&paginaConsulta=1",
+      "tipo_pagina": "senha_necessaria",
+      "pagina_intermediaria_detectada": true,
+      "tempo_resultado_segundos": 1.7666,
+      "numero_processo": "0004330-44.2019.8.26.0529",
+      "linha_excel": 88,
+      "valor_original_excel": "0004330-44.2019.8.26.0529",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-19T01:53:32-03:00",
+      "duracao_total_segundos": 6.416,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "container_movimentacao",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": null,
+          "data_hora": "13/07/2026",
+          "descricao": "Certidão de Publicação Expedida Relação: 1643/2026 Data da Publicação: 14/07/2026",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "08/07/2026",
+          "descricao": "Remetido ao DJE Relação: 1643/2026 Teor do ato: Vistos. É desnecessária a intimação da parte contrária para se manifestar nos termos do artigo 1.023, § 2º, do Código de Processo Civil, porque não haverá modificação da decisão embargada. Os embargos de declaração devem ser conhecidos porque são tempestivos, mas não merecem acolhimento, porque não há, na decisão impugnada, obscuridade a esclarecer, contradição a eliminar nem omissão a ser suprida, tampouco erro material a ser corrigido, nos termos do que dispõe o artigo 1.022, I a III, do Código de Processo Civil. Com efeito, e como já anotado, não se vislumbram elementos para amparar a alegada imprescindibilidade da prova testemunhal no caso em exame, porque a solução do mérito pode dar-se somente a partir da prova documental já produzida. Diante disso, e tendo em vista que os embargos de declaração não têm efeitos infringentes, o inconformismo da parte embargante, caso persista, deverá ser deduzido por meio da via recursal adequada. Rejeito, portanto, os embargos de declaração. Int. Campinas, 08 de julho de 2026. Advogados(s): Plinio Amaro Martins Palmeira (OAB 135316/SP), Ivanete Aparecida dos Santos da Silva (OAB 150973/SP), Melissa de Paula Orsini (OAB 494549/SP)",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "08/07/2026",
+          "descricao": "Embargos de Declaração Não Acolhidos Vistos. É desnecessária a intimação da parte contrária para se manifestar nos termos do artigo 1.023, § 2º, do Código de Processo Civil, porque não haverá modificação da decisão embargada. Os embargos de declaração devem ser conhecidos porque são tempestivos, mas não merecem acolhimento, porque não há, na decisão impugnada, obscuridade a esclarecer, contradição a eliminar nem omissão a ser suprida, tampouco erro material a ser corrigido, nos termos do que dispõe o artigo 1.022, I a III, do Código de Processo Civil. Com efeito, e como já anotado, não se vislumbram elementos para amparar a alegada imprescindibilidade da prova testemunhal no caso em exame, porque a solução do mérito pode dar-se somente a partir da prova documental já produzida. Diante disso, e tendo em vista que os embargos de declaração não têm efeitos infringentes, o inconformismo da parte embargante, caso persista, deverá ser deduzido por meio da via recursal adequada. Rejeito, portanto, os embargos de declaração. Int. Campinas, 08 de julho de 2026.",
+          "usuario": null
+        }
+      ],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=2CZ0C06K70000&processo.foro=84&processo.numero=0008503-35.2012.8.26.0084",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.7769,
+      "numero_processo": "0008503-35.2012.8.26.0084",
+      "linha_excel": 89,
+      "valor_original_excel": "0008503-35.2012.8.26.0084",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:43:38-03:00",
+      "duracao_total_segundos": 5.9008,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "container_movimentacao",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": null,
+          "data_hora": "25/07/2019",
+          "descricao": "Petição Juntada\nJuntada a petição diversa - Tipo: Petição Intermediária em Ação de Exigir Contas - Número: 80024 - Complemento: Prot 100 FCAS.19.00081917-0 120719",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "24/04/2018",
+          "descricao": "Petição Juntada\nJuntada a petição diversa - Tipo: Petição Intermediária em Ação de Exigir Contas - Número: 80019 - Protocolo: FCIV16000025480 - Complemento: Regularizado para fins de sistema.",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "06/09/2017",
+          "descricao": "Baixa Definitiva",
+          "usuario": null
+        }
+      ],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=GAZ0C06KV0000&processo.foro=586&processo.numero=0008527-12.2012.8.26.0586",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 1.7718,
+      "numero_processo": "0008527-12.2012.8.26.0586",
+      "linha_excel": 90,
+      "valor_original_excel": "0008527-12.2012.8.26.0586",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-17T00:05:05-03:00",
+      "duracao_total_segundos": 6.2413,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "numero_processo": "0008527-12.2012.8.26.0586/01",
+      "linha_excel": 91,
+      "valor_original_excel": "0008527-12.2012.8.26.0586/01",
+      "portal": "TJSP - Consulta pública",
+      "status": "numero_invalido",
+      "mensagem": "O número não possui 20 dígitos. Confirme se a célula do Excel está armazenada como texto.",
+      "tentativa_utilizada": 0,
+      "consultado_em": "2026-07-16T22:44:46-03:00",
+      "quantidade_movimentacoes": 0,
+      "movimentacoes": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "container_movimentacao",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": null,
+          "data_hora": "03/07/2026",
+          "descricao": "Arquivado Definitivamente",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "03/07/2026",
+          "descricao": "Certidão de Cartório Expedida Certidão de Cartório - CUSTAS - Certidão de Pagamento de Custas e Arquivamento - Cível - 61615",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "30/04/2026",
+          "descricao": "Certidão de Publicação Expedida Relação: 0724/2026 Data da Publicação: 29/04/2026",
+          "usuario": null
+        }
+      ],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=EP0005HO90000&processo.foro=529&processo.numero=1001262-64.2022.8.26.0529",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.6362,
+      "numero_processo": "1001262-64.2022.8.26.0529",
+      "linha_excel": 92,
+      "valor_original_excel": "1001262-64.2022.8.26.0529",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:44:53-03:00",
+      "duracao_total_segundos": 5.5023,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "container_movimentacao",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": null,
+          "data_hora": "09/06/2020",
+          "descricao": "Ato Ordinatório - Intimação - DJE CIÊNCIA e eventual MANIFESTAÇÃO, no prazo legal, acerca do ofício juntado à fls. 811/822.",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "09/06/2020",
+          "descricao": "Agravo de Instrumento - Acórdão e Demais Peças Juntados - Com Trânsito em Julgado - Agravo Destruído",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "09/06/2020",
+          "descricao": "Agravo de Instrumento - Acórdão e Demais Peças Juntados - Com Trânsito em Julgado - Agravo Destruído",
+          "usuario": null
+        }
+      ],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=2S0007SEQ0000&processo.foro=100&processo.numero=1006618-81.2013.8.26.0100",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.6355,
+      "numero_processo": "1006618-81.2013.8.26.0100",
+      "linha_excel": 93,
+      "valor_original_excel": "1006618-81.2013.8.26.0100",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:44:59-03:00",
+      "duracao_total_segundos": 4.8731,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "container_movimentacao",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": null,
+          "data_hora": "24/03/2023",
+          "descricao": "Certidão Automática - Resultado da Inscrição em Dívida Ativa - Taxa Judiciária Parte: Pelcom Indústria e Comércio Eireli. Nº da CDA: 1351899710",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "21/03/2023",
+          "descricao": "Certidão de Inscrição da Dívida Ativa - Taxa Judiciária - Expedida (Comunicação Eletrônica – PGE) Certidão - Inscrição da Dívida Ativa- Taxa Judiciária - Comunicação Eletrônica PGE",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "17/03/2023",
+          "descricao": "Arquivado Definitivamente",
+          "usuario": null
+        }
+      ],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=36000T46Z0000&processo.foro=114&processo.numero=1021096-71.2021.8.26.0114",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.6452,
+      "numero_processo": "1021096-71.2021.8.26.0114",
+      "linha_excel": 94,
+      "valor_original_excel": "1021096-71.2021.8.26.0114",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:45:06-03:00",
+      "duracao_total_segundos": 4.8296,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "container_movimentacao",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": null,
+          "data_hora": "26/06/2020",
+          "descricao": "Arquivado Provisoriamente",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "23/06/2020",
+          "descricao": "Certidão de Publicação Expedida Relação :0221/2020 Data da Disponibilização: 23/06/2020 Data da Publicação: 24/06/2020 Número do Diário: 3068 Página: 410/418",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "19/06/2020",
+          "descricao": "Remetido ao DJE Relação: 0221/2020 Teor do ato: Vistos. Homologo o acordo celebrado entre as partes às fls. 434/438, para que produza jurídicos e legais efeitos. Diante de todo o exposto, defiro a suspensão do processo, nos termos do artigo 922 do Código de Processo Civil. Aguarde-se manifestação do exequente acerca do cumprimento do acordo para fins de extinção do processo. Intime-se. Advogados(s): Ascenir Jordao (OAB 104150/SP), Marcelo Augusto de Mello Gonçalves (OAB 154493/SP), Filippo Blancato (OAB 139251/SP)",
+          "usuario": null
+        }
+      ],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=2S000DUH60000&processo.foro=100&processo.numero=1079327-80.2014.8.26.0100",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.7075,
+      "numero_processo": "1079327-80.2014.8.26.0100",
+      "linha_excel": 95,
+      "valor_original_excel": "1079327-80.2014.8.26.0100",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:45:12-03:00",
+      "duracao_total_segundos": 5.5182,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "container_movimentacao",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": null,
+          "data_hora": "23/05/2025",
+          "descricao": "Arquivado Definitivamente Movimentação lançada de forma automática, nos termos do Comunicado Conjunto nº 385/2025.",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "04/04/2025",
+          "descricao": "Expedição de documento @ Certidão - Expedição de MLE",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "27/03/2025",
+          "descricao": "Documento Juntado",
+          "usuario": null
+        }
+      ],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=2S0016TK80000&processo.foro=529&processo.numero=1128521-73.2019.8.26.0100",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.8334,
+      "numero_processo": "1128521-73.2019.8.26.0100",
+      "linha_excel": 96,
+      "valor_original_excel": "1128521-73.2019.8.26.0100",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:45:19-03:00",
+      "duracao_total_segundos": 5.2685,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "35",
+          "data_hora": "21/05/2026 06:28:30",
+          "descricao": "Publicado no DJ Eletrônico - no dia 21/05/2026 - Refer. ao Evento: 31",
+          "usuario": "secde"
+        },
+        {
+          "evento": "34",
+          "data_hora": "20/05/2026 17:30:20",
+          "descricao": "Pedido de citação em novo endereço - Refer. ao Evento: 31",
+          "usuario": "SP515632"
+        },
+        {
+          "evento": "33",
+          "data_hora": "20/05/2026 17:30:20",
+          "descricao": "Confirmada a intimação eletrônica - Refer. ao Evento: 31",
+          "usuario": "SP515632"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40027939520268260529&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=993bf21e983db7ad220719d1d8c862062fd725951125e615ee742bf759859855&hash=47c43ae7fe4e72b3327389135bcdc621",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.8338,
+      "numero_processo": "4002793-95.2026.8.26.0529",
+      "linha_excel": 97,
+      "valor_original_excel": "4002793-95.2026.8.26.0529",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:45:25-03:00",
+      "duracao_total_segundos": 5.8905,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "container_movimentacao",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": null,
+          "data_hora": "31/03/2026",
+          "descricao": "Arquivado Definitivamente",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "31/03/2026",
+          "descricao": "Certidão de Cartório Expedida Certidão de Cartório - CUSTAS - Certidão de Pagamento de Custas e Arquivamento - Cível - 61615",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "11/03/2026",
+          "descricao": "Mandado Juntado",
+          "usuario": null
+        }
+      ],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=FO000BO2L0000&processo.foro=564&processo.numero=0016966-34.2019.8.26.0564",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.7996,
+      "numero_processo": "0016966-34.2019.8.26.0564",
+      "linha_excel": 98,
+      "valor_original_excel": "0016966-34.2019.8.26.0564",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:45:33-03:00",
+      "duracao_total_segundos": 5.6941,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "container_movimentacao",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": null,
+          "data_hora": "23/03/2026",
+          "descricao": "Arquivado Definitivamente",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "23/03/2026",
+          "descricao": "Certidão de Cartório Expedida Certidão de Cartório - CUSTAS - Certidão de Pagamento de Custas e Arquivamento - Cível - 61615",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "23/03/2026",
+          "descricao": "Trânsito em Julgado às partes - com Baixa",
+          "usuario": null
+        }
+      ],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=360016CZN0000&processo.foro=84&processo.numero=1001614-98.2025.8.26.0114",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.6043,
+      "numero_processo": "1001614-98.2025.8.26.0114",
+      "linha_excel": 99,
+      "valor_original_excel": "1001614-98.2025.8.26.0114",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:45:39-03:00",
+      "duracao_total_segundos": 5.3948,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "container_movimentacao",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": null,
+          "data_hora": "05/05/2025",
+          "descricao": "Arquivado Definitivamente",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "30/04/2025",
+          "descricao": "Trânsito em Julgado às partes - Proc. em Andamento Certidão - Trânsito em Julgado OS 01.2025",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "04/02/2025",
+          "descricao": "Certidão de Publicação Expedida Relação: 0079/2025 Data da Publicação: 05/02/2025 Número do Diário: 4137",
+          "usuario": null
+        }
+      ],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=360013XH70000&processo.foro=114&processo.numero=1002228-40.2024.8.26.0114",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.5448,
+      "numero_processo": "1002228-40.2024.8.26.0114",
+      "linha_excel": 100,
+      "valor_original_excel": "1002228-40.2024.8.26.0114",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:45:45-03:00",
+      "duracao_total_segundos": 5.0707,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "container_movimentacao",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": null,
+          "data_hora": "09/06/2026",
+          "descricao": "Certidão de Publicação Expedida Relação: 1236/2026 Data da Publicação: 10/06/2026",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "08/06/2026",
+          "descricao": "Remetido ao DJE Relação: 1236/2026 Teor do ato: Vistos. Prossiga-se nos autos do incidente de requisitório em apenso e aguarde-se o pagamento. Oportunamente, quando em termos, tornem os autos conclusos para a extinção da execução. Int. Advogados(s): Daniel Marinho Mendes (OAB 286959/SP), Sérgio Rodrigo Costa (OAB 287252/SP), Eviane de Oliveira Silva (OAB 414369/SP), Joao Pedro Tozzi Pavageau (OAB 515632/SP), Williams da Silva (OAB 513604/SP)",
+          "usuario": null
+        },
+        {
+          "evento": null,
+          "data_hora": "08/06/2026",
+          "descricao": "Certidão de Remessa da Intimação Para o Portal Eletrônico Expedida Certidão - Remessa da Intimação para o Portal Eletrônico",
+          "usuario": null
+        }
+      ],
+      "url_resultado": "https://esaj.tjsp.jus.br/cpopg/show.do?processo.codigo=GS0006VQ90000&processo.foro=604&processo.numero=1002741-56.2025.8.26.0604",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.5851,
+      "numero_processo": "1002741-56.2025.8.26.0604",
+      "linha_excel": 101,
+      "valor_original_excel": "1002741-56.2025.8.26.0604",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:45:51-03:00",
+      "duracao_total_segundos": 5.0229,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "20",
+          "data_hora": "07/07/2026 15:53:26",
+          "descricao": "RÉPLICA",
+          "usuario": "SP515632"
+        },
+        {
+          "evento": "19",
+          "data_hora": "08/06/2026 15:12:45",
+          "descricao": "PETIÇÃO",
+          "usuario": "SP515632"
+        },
+        {
+          "evento": "18",
+          "data_hora": "11/03/2026 01:35:56",
+          "descricao": "Decorrido prazo - Refer. aos Eventos: 8, 9, 10 e 11",
+          "usuario": "SECFP"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40026681420268260114&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=3ce62f63044d82b4e541fc73fdae0078c903d2efae092af30a06a6a8e4c4be23&hash=3b7313b1560e3edf1b28a2b68c5e3151",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.7996,
+      "numero_processo": "4002668-14.2026.8.26.0114",
+      "linha_excel": 102,
+      "valor_original_excel": "4002668-14.2026.8.26.0114",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:45:58-03:00",
+      "duracao_total_segundos": 5.8834,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "66",
+          "data_hora": "15/06/2026 12:25:24",
+          "descricao": "Baixa Definitiva",
+          "usuario": "M818386"
+        },
+        {
+          "evento": "65",
+          "data_hora": "15/06/2026 12:24:57",
+          "descricao": "Custas Satisfeitas - Parte: LUIZ ANTONIO RODRIGUES DA SILVA",
+          "usuario": "M818386"
+        },
+        {
+          "evento": "64",
+          "data_hora": "15/06/2026 12:24:57",
+          "descricao": "Custas Satisfeitas - Parte: EDENISE SARAIVA RODRIGUES DA SILVA",
+          "usuario": "M818386"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40028468820258260019&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=84f152e0e5c7349b3ab4baac5e88a866faf89a1c6619bf568c9170ea46783ad7&hash=d1cbff83522e67fe363607e7c0e4e6a6",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.8512,
+      "numero_processo": "4002846-88.2025.8.26.0019",
+      "linha_excel": 103,
+      "valor_original_excel": "4002846-88.2025.8.26.0019",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:46:06-03:00",
+      "duracao_total_segundos": 5.8592,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "36",
+          "data_hora": "14/07/2026 15:14:45",
+          "descricao": "PETIÇÃO - Refer. aos Eventos: 32 e 33",
+          "usuario": "SP531770"
+        },
+        {
+          "evento": "35",
+          "data_hora": "29/06/2026 07:56:47",
+          "descricao": "Publicado no DJ Eletrônico - no dia 29/06/2026 - Refer. aos Eventos: 31, 32, 33",
+          "usuario": "secde"
+        },
+        {
+          "evento": "34",
+          "data_hora": "26/06/2026 03:56:08",
+          "descricao": "Disponibilizado no DJ Eletrônico - no dia 26/06/2026 - Refer. aos Eventos: 31, 32, 33",
+          "usuario": "secde"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40033583720268260019&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=876c3a7ff3c12e817736d8a35149beb8eec6ca95820873582312a09525e57654&hash=c3fdb512c203a5bba8cb0824fc5ae407",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 1.3988,
+      "numero_processo": "4003358-37.2026.8.26.0019",
+      "linha_excel": 104,
+      "valor_original_excel": "4003358-37.2026.8.26.0019",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:46:13-03:00",
+      "duracao_total_segundos": 6.488,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "26",
+          "data_hora": "23/06/2026 15:20:01",
+          "descricao": "Conclusos para decisão",
+          "usuario": "M817911"
+        },
+        {
+          "evento": "25",
+          "data_hora": "29/05/2026 10:15:09",
+          "descricao": "Manifestação sobre a impugnação - Refer. ao Evento: 20",
+          "usuario": "SP515632"
+        },
+        {
+          "evento": "24",
+          "data_hora": "27/05/2026 09:48:39",
+          "descricao": "Decorrido prazo - Refer. ao Evento: 6",
+          "usuario": "SECFP"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40041249020268260019&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=17490daad651b2a14f8cfe82fc3944569beb1498a08fc62ae468954b4669118a&hash=bc0e179e376a4aa22c5b162e7bac85ce",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.9151,
+      "numero_processo": "4004124-90.2026.8.26.0019",
+      "linha_excel": 105,
+      "valor_original_excel": "4004124-90.2026.8.26.0019",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:46:20-03:00",
+      "duracao_total_segundos": 6.113,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "20",
+          "data_hora": "10/07/2026 08:35:06",
+          "descricao": "PETIÇÃO",
+          "usuario": "SP515632"
+        },
+        {
+          "evento": "19",
+          "data_hora": "25/06/2026 01:35:38",
+          "descricao": "Decorrido prazo - Refer. ao Evento: 12",
+          "usuario": "SECFP"
+        },
+        {
+          "evento": "18",
+          "data_hora": "24/06/2026 11:01:53",
+          "descricao": "Juntada de Carta pelo Correio - Comprovante de entrega - Refer. ao Evento: 17 (EXECUTADO - JONATHAN MIGUEL FARIA GUEDES) Prazo: 15 dias Status:ABERTO Data inicial da contagem do prazo: 25/06/2026 00:00:00 Data final: 17/07/2026 23:59:59",
+          "usuario": "CORREIOS"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40167219720268260114&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=a57f14054c04d5d0c9afa0b856fed0c59be35fb349390b513b569d795045e065&hash=c1a0eb6771a95768b5d132da3c68922b",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.7954,
+      "numero_processo": "4016721-97.2026.8.26.0114",
+      "linha_excel": 106,
+      "valor_original_excel": "4016721-97.2026.8.26.0114",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:46:26-03:00",
+      "duracao_total_segundos": 5.0493,
+      "erros_tentativas_anteriores": []
+    },
+    {
+      "status": "sucesso",
+      "mensagem": null,
+      "layout_movimentacoes": "eproc_eventos",
+      "quantidade_movimentacoes": 3,
+      "movimentacoes": [
+        {
+          "evento": "82",
+          "data_hora": "22/06/2026 08:56:02",
+          "descricao": "Recebido o mandado para cumprimento pelo oficial de justiça - Refer. ao Evento: 81",
+          "usuario": "M355161"
+        },
+        {
+          "evento": "81",
+          "data_hora": "22/06/2026 08:56:02",
+          "descricao": "Expedição de mandado - CAMCEMAN",
+          "usuario": "M355161"
+        },
+        {
+          "evento": "80",
+          "data_hora": "22/06/2026 08:56:01",
+          "descricao": "Recebido o mandado para cumprimento pelo oficial de justiça - Refer. ao Evento: 79",
+          "usuario": "M355161"
+        }
+      ],
+      "url_resultado": "https://eproc-consulta.tjsp.jus.br/consulta_1g/externo_controlador.php?acao=tjsp@consulta_publica_eproc/exibir_processo&acao_origem=tjsp@consulta_unificada_publica/consultar&acao_retorno=tjsp@consulta_unificada_publica/consultar&num_processo=40197136520258260114&num_chave=&num_chave_documento=&k1=61178416796609819233&k2=771230778800000009990000000006&HashConsultaPublica=ea27f15566005ee8e958ab88f46671c4ae8e17893d2db127b9ff037cf51e70c7&hash=6f30fb89f6bdef8f6b74d56366ed05b6",
+      "tipo_pagina": "resultado",
+      "pagina_intermediaria_detectada": false,
+      "tempo_resultado_segundos": 0.8568,
+      "numero_processo": "4019713-65.2025.8.26.0114",
+      "linha_excel": 107,
+      "valor_original_excel": "4019713-65.2025.8.26.0114",
+      "portal": "TJSP - Consulta pública",
+      "tentativa_utilizada": 1,
+      "consultado_em": "2026-07-16T22:46:33-03:00",
+      "duracao_total_segundos": 5.2264,
+      "erros_tentativas_anteriores": []
+    }
+  ]
+}

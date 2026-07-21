@@ -1,0 +1,53 @@
+[project]
+name = "pavageau-sistema-integrado-backend"
+version = "0.1.0"
+description = "Backend, database migrations, and radar worker for Sistema Integrado Pavageau."
+requires-python = ">=3.12"
+dependencies = [
+  "beautifulsoup4==4.14.3",
+  "fastapi==0.125.0",
+  "httpx==0.28.1",
+  "openpyxl==3.1.5",
+  "psycopg[binary]==3.3.2",
+  "pydantic==2.13.3",
+  "pytest==9.0.2",
+  "uvicorn==0.38.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-ra"
+markers = [
+  "scraper: canonical TJSP scraper characterization and adapter tests",
+  "config: local configuration, environment, and tooling tests",
+  "arch: import graph and ownership boundary tests",
+  "schema: database schema, migration, and constraint tests",
+  "calc: materialized calculation engine tests",
+  "api: FastAPI contract and domain API tests",
+  "radar: radar orchestration and tribunal registry tests",
+  "security: auth, RLS, redaction, vault, and permission tests",
+  "e2e: end-to-end local workflow evidence tests",
+  "loader: spreadsheet loader tests",
+  "browser: browser-dependent scraper behavior tests",
+  "docs: documentation and final-report tests",
+]
+
+[tool.ruff]
+line-length = 160
+target-version = "py312"
+exclude = [
+  "plans/active/pavageau-sistema-integrado-backend/vendor",
+  "radar/scrapers/vendor",
+]
+
+[tool.ruff.lint]
+select = ["E9", "F63", "F7", "F82"]
+
+[tool.mypy]
+python_version = "3.12"
+ignore_missing_imports = true
+follow_imports = "silent"
+warn_unused_ignores = false
+allow_untyped_defs = true
+check_untyped_defs = false

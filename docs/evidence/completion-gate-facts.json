@@ -1,0 +1,10 @@
+{
+  "has_database": true,
+  "has_auth": true,
+  "has_ui": false,
+  "has_ai": false,
+  "has_integration": true,
+  "has_observability": true,
+  "lint_configured": true,
+  "types_applicable": true
+}

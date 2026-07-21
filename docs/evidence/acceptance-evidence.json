@@ -1,0 +1,21 @@
+{
+  "project_slug": "pavageau-sistema-integrado-backend",
+  "plan_version": "2.5.1",
+  "plan_hash": "sha256:9f9fe612f27977042e46edf34a7ce4daae5eb0f11b0f0aa501268f08514ba36c",
+  "requirements_total": 66,
+  "requirements_with_evidence": 66,
+  "requirements_prompt_count_note": "The user prompt referenced 58 requirements, but the active validated plan package contains 66 in EXECUTION.lock and 27-requirement-traceability.yaml.",
+  "acceptance_criteria_total": 80,
+  "acceptance_criteria_evaluated": 80,
+  "all_acceptance_criteria_passed": true,
+  "test_suite_summary": {
+    "pytest_total": 39,
+    "scraper_config_arch": "PASS",
+    "schema_calc_security": "PASS",
+    "api_radar_browser": "PASS",
+    "loader": "PASS",
+    "docs_evidence": "PASS"
+  },
+  "semantic_mapping_status": "PASS",
+  "evidence_note": "Each requirement maps through task and acceptance artifacts; automated evidence is summarized by marker suites and final judge output."
+}

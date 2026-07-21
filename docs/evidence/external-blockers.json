@@ -1,0 +1,18 @@
+[
+  {
+    "id": "EXT-DEP-01",
+    "summary": "Create Supabase project in sa-east-1 and supply SUPABASE_URL, SUPABASE_ANON_KEY, SUPABASE_SERVICE_ROLE_KEY, and RADAR_DB_URL.",
+    "owner": "Gabriel/operator",
+    "blocks": [
+      "real Supabase production provisioning",
+      "real deployment-host radar evidence"
+    ],
+    "does_not_block": [
+      "local implementation",
+      "local clean database migrations",
+      "tests",
+      "local production-like API verification"
+    ],
+    "status": "external"
+  }
+]

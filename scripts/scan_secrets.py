@@ -18,6 +18,7 @@ import fnmatch
 import json
 import os
 import re
+import subprocess
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -92,13 +93,29 @@ def scan_text(path: str) -> list[str]:
     return findings
 
 
+def default_repo_files() -> list[str] | None:
+    try:
+        cp = subprocess.run(
+            ["git", "-C", ROOT, "ls-files", "-z"],
+            check=True,
+            capture_output=True,
+        )
+    except (OSError, subprocess.CalledProcessError):
+        return None
+    files = [item.decode("utf-8", errors="ignore") for item in cp.stdout.split(b"\0") if item]
+    return [os.path.join(ROOT, rel) for rel in files]
+
+
 def cli(paths: list[str]) -> int:
     globs, negations = load_protected_globs()
     targets = paths or [ROOT]
     findings: list[tuple[str, str]] = []
+    default_files = default_repo_files() if not paths else None
     for target in targets:
         target = target if os.path.isabs(target) else os.path.join(ROOT, target)
-        if os.path.isfile(target):
+        if default_files is not None:
+            files = default_files
+        elif os.path.isfile(target):
             files = [target]
         else:
             files = []
