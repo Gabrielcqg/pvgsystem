@@ -61,7 +61,7 @@ def require_caller(authorization: str | None = Header(default=None)) -> Caller:
         raise HTTPException(status_code=401, detail={"erro": "sessao ausente", "detalhe": None, "codigo": "unauthorized"})
     settings = get_settings()
     try:
-        claims = parse_jwt_claims(token, jwt_secret=settings.supabase_jwt_secret)
+        claims = parse_jwt_claims(token, jwt_secret=settings.supabase_jwt_secret, supabase_url=settings.supabase_url)
     except JwtValidationError as exc:
         raise HTTPException(status_code=401, detail={"erro": "sessao invalida", "detalhe": None, "codigo": "unauthorized"}) from exc
     user_id = claims.get("sub")

@@ -1,15 +1,17 @@
 from __future__ import annotations
 
-import os
-import uuid
 import base64
 import hashlib
 import hmac
 import json
+import os
 import time
+import uuid
 from datetime import date
 
+import jwt as pyjwt
 import pytest
+from cryptography.hazmat.primitives.asymmetric import ec
 from fastapi.testclient import TestClient
 
 
@@ -31,6 +33,37 @@ def _signed_hs256_token(secret: str, *, sub: str | None = None, email: str = TES
     })
     signature = base64.urlsafe_b64encode(hmac.new(secret.encode(), f"{header}.{payload}".encode(), hashlib.sha256).digest()).rstrip(b"=").decode()
     return f"{header}.{payload}.{signature}"
+
+
+def _base64url_uint(value: int) -> str:
+    return pyjwt.utils.base64url_encode(value.to_bytes(32, "big")).decode("ascii")
+
+
+def _es256_token_and_jwk(*, issuer: str, kid: str = "test-es256-key") -> tuple[str, dict[str, object]]:
+    private_key = ec.generate_private_key(ec.SECP256R1())
+    public_numbers = private_key.public_key().public_numbers()
+    token = pyjwt.encode(
+        {
+            "sub": TEST_USER_ID,
+            "email": TEST_USER_EMAIL,
+            "role": "authenticated",
+            "iss": issuer,
+            "exp": int(time.time()) + 3600,
+        },
+        private_key,
+        algorithm="ES256",
+        headers={"kid": kid, "typ": "JWT"},
+    )
+    jwk: dict[str, object] = {
+        "kty": "EC",
+        "kid": kid,
+        "alg": "ES256",
+        "crv": "P-256",
+        "x": _base64url_uint(public_numbers.x),
+        "y": _base64url_uint(public_numbers.y),
+        "key_ops": ["verify"],
+    }
+    return token, jwk
 
 
 AUTH = {"Authorization": f"Bearer {_signed_hs256_token('local-test-secret')}"}
@@ -92,6 +125,23 @@ def test_api_rejects_invalid_jwt_when_supabase_secret_is_configured(api_client, 
 def test_api_accepts_signed_supabase_jwt_when_secret_is_configured(api_client, monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setenv("SUPABASE_JWT_SECRET", "test-secret")
     token = _signed_hs256_token("test-secret")
+    response = api_client.get("/parceiros", headers={"Authorization": f"Bearer {token}"})
+    assert response.status_code == 200, response.text
+
+
+@pytest.mark.api
+@pytest.mark.security
+def test_api_accepts_es256_supabase_jwt_from_jwks(api_client, monkeypatch: pytest.MonkeyPatch) -> None:
+    supabase_url = "https://project-ref.supabase.co"
+    issuer = f"{supabase_url}/auth/v1"
+    token, jwk = _es256_token_and_jwk(issuer=issuer)
+    from app.db import session as session_module
+
+    session_module._JWKS_CACHE.clear()
+    monkeypatch.setenv("SUPABASE_JWT_SECRET", "legacy-secret-present")
+    monkeypatch.setenv("SUPABASE_URL", supabase_url)
+    monkeypatch.setattr(session_module, "_load_jwks", lambda _supabase_url: {"keys": [jwk]})
+
     response = api_client.get("/parceiros", headers={"Authorization": f"Bearer {token}"})
     assert response.status_code == 200, response.text
 

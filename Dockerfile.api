@@ -4,6 +4,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1
 
 WORKDIR /app
+ARG SUPABASE_URL=""
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends gcc libpq-dev \
@@ -13,8 +14,14 @@ COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY app ./app
-COPY migrations ./migrations
+COPY supabase ./supabase
 COPY radar ./radar
+
+RUN if [ -n "$SUPABASE_URL" ]; then \
+      python -c "import json, os, urllib.request; url=os.environ['SUPABASE_URL'].rstrip('/') + '/auth/v1/.well-known/jwks.json'; data=json.loads(urllib.request.urlopen(url, timeout=20).read().decode('utf-8')); open('/app/supabase-jwks.json','w',encoding='utf-8').write(json.dumps(data))"; \
+    fi
+
+ENV SUPABASE_JWKS_FILE=/app/supabase-jwks.json
 
 EXPOSE 8000
 
