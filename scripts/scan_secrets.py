@@ -50,6 +50,11 @@ SECRET_VAR_RE = re.compile(
 SKIP_DIRS = {".git", "node_modules", "__pycache__", ".venv", "venv", "dist", "build"}
 TEXT_EXT = {".py", ".js", ".ts", ".tsx", ".jsx", ".json", ".yaml", ".yml", ".md",
             ".txt", ".toml", ".ini", ".cfg", ".sh", ".env", ".sql", ".html", ".css"}
+ALLOWED_COMMITTED_ENV_FILES = {
+    ".env.example",
+    ".env.development",
+    ".env.production.example",
+}
 
 
 def load_protected_globs() -> tuple[list[str], list[str]]:
@@ -93,6 +98,18 @@ def scan_text(path: str) -> list[str]:
     return findings
 
 
+def is_allowed_committed_env_template(path: str) -> bool:
+    base = os.path.basename(path)
+    if base not in ALLOWED_COMMITTED_ENV_FILES:
+        return False
+    rel = os.path.relpath(path, ROOT)
+    return (
+        rel == ".env.example"
+        or rel == os.path.join("backend", ".env.example")
+        or rel.startswith(os.path.join("frontend", ".env"))
+    )
+
+
 def default_repo_files() -> list[str] | None:
     try:
         cp = subprocess.run(
@@ -126,6 +143,8 @@ def cli(paths: list[str]) -> int:
         for f in files:
             rel = os.path.relpath(f, ROOT)
             if is_protected(f, globs, negations):
+                if is_allowed_committed_env_template(f) and not scan_text(f):
+                    continue
                 # protected files should not be committed at all
                 if os.path.basename(f) not in ("protected-paths.txt",):
                     findings.append((rel, "protected-path-present"))

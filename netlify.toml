@@ -1,0 +1,18 @@
+[build]
+  base = "frontend"
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  VITE_API_URL = "/api"
+
+[[redirects]]
+  from = "/api/*"
+  to = "http://164.152.35.255/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
