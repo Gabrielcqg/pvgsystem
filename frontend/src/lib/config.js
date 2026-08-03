@@ -4,11 +4,13 @@ const rawSupabaseKey =
   import.meta.env.VITE_SUPABASE_ANON_KEY ||
   "";
 const rawApiUrl = import.meta.env.VITE_API_URL || "";
+const prodSupabaseRef = "rforddrnuwtaefxojfte";
+const devSupabaseRef = "ddhdwgcjpqgvybmqbjmv";
 
 export const frontendConfig = {
   supabaseUrl: rawSupabaseUrl.trim(),
   supabaseKey: rawSupabaseKey.trim(),
-  apiUrl: (rawApiUrl.trim() || "http://localhost:8000").replace(/\/+$/, ""),
+  apiUrl: rawApiUrl.trim().replace(/\/+$/, ""),
 };
 
 export function missingFrontendEnv() {
@@ -16,6 +18,15 @@ export function missingFrontendEnv() {
   if (!frontendConfig.supabaseUrl) missing.push("VITE_SUPABASE_URL");
   if (!frontendConfig.supabaseKey) missing.push("VITE_SUPABASE_ANON_KEY");
   if (!frontendConfig.apiUrl) missing.push("VITE_API_URL");
+  if (import.meta.env.DEV && frontendConfig.supabaseUrl.includes(prodSupabaseRef)) {
+    missing.push("VITE_SUPABASE_URL aponta para PROD, mas o frontend esta em desenvolvimento.");
+  }
+  if (import.meta.env.PROD && frontendConfig.supabaseUrl.includes(devSupabaseRef)) {
+    missing.push("VITE_SUPABASE_URL aponta para DEV, mas o frontend foi buildado para producao.");
+  }
+  if (import.meta.env.PROD && /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?/.test(frontendConfig.apiUrl)) {
+    missing.push("VITE_API_URL aponta para localhost em build de producao.");
+  }
   return missing;
 }
 

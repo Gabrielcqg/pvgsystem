@@ -32,6 +32,7 @@ DEFAULT_SHEET = "Processos dos 3 Tribunais"
 PROCESS_NUMBER_RE = re.compile(r"^\d{7}-\d{2}\.\d{4}\.\d\.\d{2}\.\d{4}(/[0-9]+)?$")
 SUPPORTED_RADAR_TRIBUNAIS = {"TJSP"}
 TRIBUNAIS_PERMITIDOS = {"TJSP", "TJCE", "TJBA"}
+PROD_SUPABASE_PROJECT_REF = "rforddrnuwtaefxojfte"
 
 HEADER_MAP = {
     "AREA PASTA": "area_pasta",
@@ -255,6 +256,14 @@ def env_dsn() -> str:
     return make_conninfo(dsn, connect_timeout="12")
 
 
+def assert_operational_cleanup_allowed(dsn: str) -> None:
+    app_env = (os.getenv("APP_ENV") or "").strip().lower()
+    if app_env == "production" or PROD_SUPABASE_PROJECT_REF in dsn:
+        raise RuntimeError(
+            "Cleanup operacional bloqueado em producao. Use DEV/local para limpeza ou remova --cleanup."
+        )
+
+
 def fetch_table_counts(conn: psycopg.Connection, tables: list[str]) -> dict[str, int]:
     counts: dict[str, int] = {}
     with conn.cursor() as cur:
@@ -459,7 +468,10 @@ def main() -> int:
         return 0
 
     batch_id = uuid4()
-    with psycopg.connect(env_dsn(), autocommit=False) as conn:
+    dsn = env_dsn()
+    if args.cleanup:
+        assert_operational_cleanup_allowed(dsn)
+    with psycopg.connect(dsn, autocommit=False) as conn:
         try:
             before_counts = fetch_table_counts(conn, [table.split(".")[-1] for table in OPERATIONAL_TABLES])
             backup_path = backup_operational_data(conn, args.backup_dir)

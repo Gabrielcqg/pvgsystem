@@ -6,6 +6,7 @@ from datetime import date, timedelta
 import pytest
 
 from app.radar.scrapers.base import Movimentacao, ProcessoConsulta, ResultadoConsulta
+import radar_worker.runner as runner
 from radar_worker.runner import rodar_worker
 
 
@@ -43,6 +44,68 @@ class StatusScraper:
         )
 
 
+class CountingScraper(StaticScraper):
+    def __init__(self, movimentos: list[Movimentacao]) -> None:
+        super().__init__(movimentos)
+        self.calls = 0
+
+    def consultar(self, processo: ProcessoConsulta) -> ResultadoConsulta:
+        self.calls += 1
+        return super().consultar(processo)
+
+
+class FakeResponse:
+    def __init__(self, payload: dict, status_code: int = 200) -> None:
+        self._payload = payload
+        self.status_code = status_code
+        self.content = b"{}"
+        self.text = str(payload)
+
+    def json(self) -> dict:
+        return self._payload
+
+
+class FakeRadarApiClient:
+    calls: list[tuple[str, str, str, dict | None]] = []
+
+    def __init__(self, *, base_url: str, headers: dict, timeout: int) -> None:
+        self.base_url = str(base_url).rstrip("/")
+        self.name = "secondary" if "secondary" in self.base_url else "primary"
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *_args):
+        return False
+
+    def request(self, method: str, path: str, **kwargs):
+        payload = kwargs.get("json")
+        self.calls.append((self.name, method, path, payload))
+        processo_id = f"{self.name}-processo"
+        if method == "POST" and path == "/radar/worker/execucoes":
+            return FakeResponse(
+                {
+                    "execucao": {"id": f"{self.name}-execucao", "status": "em_andamento"},
+                    "processos": [
+                        {
+                            "id": processo_id,
+                            "numero": "0000001-00.2026.8.26.0001",
+                            "tribunal": "TJSP",
+                            "chaves_movimentacoes": ["baseline-antiga"],
+                            "exige_senha": False,
+                            "data_ultimo_andamento": None,
+                            "ultima_consulta_inconclusiva": False,
+                        }
+                    ],
+                }
+            )
+        if method == "POST" and path.endswith("/resultados"):
+            return FakeResponse({"id": f"{self.name}-resultado", "processo_id": payload["processo_id"]})
+        if method == "POST" and path.endswith("/finalizar"):
+            return FakeResponse({"id": f"{self.name}-execucao", "status": payload["status"]})
+        return FakeResponse({"detail": "not found"}, status_code=404)
+
+
 def _insert_processo(
     conn,
     numero: str = "0000001-00.2026.8.26.0001",
@@ -74,6 +137,29 @@ def _count_inercia_tasks(conn, processo_id: str) -> int:
     with conn.cursor() as cur:
         cur.execute("SELECT count(*) FROM tarefas WHERE origem = 'radar_inercia' AND processo_id = %s", (processo_id,))
         return int(cur.fetchone()[0])
+
+
+@pytest.mark.radar
+def test_external_worker_api_replicates_to_secondary_without_scraping_twice(monkeypatch: pytest.MonkeyPatch) -> None:
+    FakeRadarApiClient.calls = []
+    scraper = CountingScraper([Movimentacao("15/07/2026 09:00:00", "E2E_TEST nova movimentacao")])
+    monkeypatch.setenv("APP_ENV", "test")
+    monkeypatch.setenv("RADAR_API_URL", "http://primary-api")
+    monkeypatch.setenv("RADAR_SECONDARY_API_URL", "http://secondary-api")
+    monkeypatch.setenv("RADAR_API_ACCESS_TOKEN", "primary-token")
+    monkeypatch.setenv("RADAR_SECONDARY_API_ACCESS_TOKEN", "secondary-token")
+    monkeypatch.setattr(runner.httpx, "Client", FakeRadarApiClient)
+
+    row = rodar_worker(scrapers={"TJSP": scraper}, enviar_email=False)
+
+    assert row["status"] == "concluida"
+    assert scraper.calls == 1
+    result_calls = [call for call in FakeRadarApiClient.calls if call[2].endswith("/resultados")]
+    assert [(name, payload["processo_id"]) for name, _method, _path, payload in result_calls] == [
+        ("primary", "primary-processo"),
+        ("secondary", "secondary-processo"),
+    ]
+    assert any(item["target"] == "secondary" and item["status"] == "replicated" for item in row["replicacao"])
 
 
 @pytest.mark.radar

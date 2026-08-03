@@ -6,6 +6,12 @@ from urllib.parse import urlparse
 
 import psycopg
 
+from app.config import (
+    DEV_SUPABASE_PROJECT_REF,
+    PROD_SUPABASE_PROJECT_REF,
+    EnvironmentConfigError,
+)
+
 
 def _repo_root() -> Path:
     for parent in Path(__file__).resolve().parents:
@@ -80,7 +86,20 @@ def _is_supabase_remote(database_url: str) -> bool:
     return "supabase.co" in host or "supabase.com" in host
 
 
+def _guard_migration_target(database_url: str) -> None:
+    app_env = (os.getenv("APP_ENV") or "").strip().lower()
+    contains_prod = PROD_SUPABASE_PROJECT_REF in database_url
+    contains_dev = DEV_SUPABASE_PROJECT_REF in database_url
+    if contains_prod and app_env != "production":
+        raise EnvironmentConfigError("Migration para PROD exige APP_ENV=production.")
+    if contains_dev and app_env != "development":
+        raise EnvironmentConfigError("Migration para pvgsystem-dev exige APP_ENV=development.")
+    if "supabase" in database_url and not app_env:
+        raise EnvironmentConfigError("Migration remota exige APP_ENV explicito.")
+
+
 def apply_migrations(database_url: str, include_supabase_platform_baseline: bool = False) -> list[str]:
+    _guard_migration_target(database_url)
     applied: list[str] = []
     with psycopg.connect(database_url, autocommit=True) as conn:
         with conn.cursor() as cur:

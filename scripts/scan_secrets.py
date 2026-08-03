@@ -105,6 +105,7 @@ def is_allowed_committed_env_template(path: str) -> bool:
     rel = os.path.relpath(path, ROOT)
     return (
         rel == ".env.example"
+        or rel == ".env.production.example"
         or rel == os.path.join("backend", ".env.example")
         or rel.startswith(os.path.join("frontend", ".env"))
     )

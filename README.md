@@ -27,18 +27,28 @@ migrations Supabase e executor local transportável do Radar Processual.
 Desenvolvimento local:
 
 ```text
-frontend local -> backend local -> Supabase/Postgres
+frontend local -> backend local -> Supabase pvgsystem-dev
 ```
 
 Produção:
 
 ```text
-frontend Netlify -> proxy HTTPS /api -> backend Oracle -> Supabase
+frontend Netlify -> proxy HTTPS /api -> backend Oracle -> Supabase PROD
 ```
 
 No Netlify, o frontend deve usar `VITE_API_URL=/api`. O arquivo `netlify.toml`
 faz proxy de `/api/*` para a API pública da Oracle, evitando chamadas HTTP
 diretas pelo navegador.
+
+Projetos Supabase esperados:
+
+- PROD: `pvgsystem` (`rforddrnuwtaefxojfte`)
+- DEV: `pvgsystem-dev` (`ddhdwgcjpqgvybmqbjmv`)
+
+O backend valida `APP_ENV` na inicialização. Em `development`, ele recusa URLs do
+projeto PROD; em `production`, ele recusa URLs do projeto DEV. Se a variável
+estiver ausente, a aplicação falha de forma explícita em vez de escolher outro
+ambiente automaticamente.
 
 ## Variáveis
 
@@ -60,6 +70,8 @@ Backend:
 ```bash
 python3 -m venv .venv
 .venv/bin/python -m pip install -r backend/requirements.txt
+cp .env.example .env
+# Preencha as credenciais do pvgsystem-dev no .env.
 PYTHONPATH=backend .venv/bin/uvicorn app.api.main:app --reload --host 127.0.0.1 --port 8000
 ```
 
@@ -106,8 +118,19 @@ ou futura migração para servidor apropriado.
 Execução local do worker:
 
 ```bash
-PYTHONPATH=backend HEADLESS=false .venv/bin/python -m radar_worker --sem-email
+PYTHONPATH=backend HEADLESS=false RADAR_API_URL=https://<api-producao> .venv/bin/python -m radar_worker --sem-email
 ```
+
+Para publicar o mesmo resultado também no ambiente DEV sem consultar o tribunal
+duas vezes, configure adicionalmente:
+
+- `RADAR_SECONDARY_API_URL`
+- `RADAR_SECONDARY_API_ACCESS_TOKEN` ou `RADAR_SECONDARY_SUPABASE_URL` +
+  `RADAR_SECONDARY_SUPABASE_ANON_KEY` + `RADAR_SECONDARY_API_EMAIL` +
+  `RADAR_SECONDARY_API_PASSWORD`
+
+Falha no alvo secundário não desfaz a gravação no PROD. O retorno do worker
+inclui o resumo `replicacao` quando um alvo secundário está configurado.
 
 ## Testes
 

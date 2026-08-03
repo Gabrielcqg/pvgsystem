@@ -25,6 +25,8 @@ services:
     env_file:
       - .env
     environment:
+      APP_ENV: development
+      EXPECTED_SUPABASE_PROJECT_REF: ddhdwgcjpqgvybmqbjmv
       AWS_REGION: sa-east-1
       VAULT_PROVIDER: memory
       RADAR_BROWSER_HEADLESS: ${RADAR_BROWSER_HEADLESS_API:-0}
@@ -38,7 +40,7 @@ services:
       context: .
       dockerfile: frontend/Dockerfile
     environment:
-      VITE_SUPABASE_URL: ${VITE_SUPABASE_URL:-}
+      VITE_SUPABASE_URL: ${VITE_SUPABASE_URL:-https://ddhdwgcjpqgvybmqbjmv.supabase.co}
       VITE_SUPABASE_ANON_KEY: ${VITE_SUPABASE_ANON_KEY:-}
       VITE_SUPABASE_PUBLISHABLE_KEY: ${VITE_SUPABASE_PUBLISHABLE_KEY:-}
       VITE_API_URL: http://localhost:8000

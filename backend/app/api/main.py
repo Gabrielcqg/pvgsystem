@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import os
+import logging
 from datetime import date
 from typing import Any, Literal
 
@@ -15,6 +16,7 @@ from app.domain.db_service import PostgresService
 from app.domain.errors import DomainError
 
 
+logger = logging.getLogger("pvg.api")
 _docs_enabled = (os.getenv("ENABLE_API_DOCS") or "1").strip().lower() not in {"0", "false", "no", "off"}
 app = FastAPI(
     title="Sistema Integrado Pavageau API",
@@ -32,6 +34,13 @@ if _cors_origins:
         allow_methods=["*"],
         allow_headers=["*"],
     )
+
+
+@app.on_event("startup")
+def log_runtime_environment() -> None:
+    settings = get_settings()
+    logger.warning("AMBIENTE: %s", settings.normalized_app_env.upper())
+    logger.warning("BANCO: %s", settings.database_label)
 
 
 class ConfirmarParcelaBody(BaseModel):

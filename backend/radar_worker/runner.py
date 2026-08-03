@@ -10,6 +10,7 @@ from __future__ import annotations
 import argparse
 import os
 import sys
+from contextlib import ExitStack
 from dataclasses import dataclass
 from datetime import date, datetime
 from typing import Any
@@ -97,21 +98,86 @@ def _api_url() -> str | None:
     return value.rstrip("/")
 
 
-def _get_api_token(settings: Settings) -> str:
-    configured = os.getenv("RADAR_API_ACCESS_TOKEN")
+@dataclass(frozen=True)
+class ApiTarget:
+    name: str
+    base_url: str
+    token_env: str
+    supabase_url_env: str
+    supabase_key_env: str
+    email_env: str
+    password_env: str
+    use_primary_supabase_fallback: bool = False
+
+
+@dataclass
+class ApiTargetState:
+    target: ApiTarget
+    client: httpx.Client
+    execucao_id: str
+    processos_by_key: dict[str, ProcessoMonitorado]
+    failures: list[dict[str, str]]
+
+
+def _process_key(*, numero: str, tribunal: str) -> str:
+    return f"{tribunal.strip().upper()}|{numero.strip()}"
+
+
+def _api_targets() -> list[ApiTarget]:
+    primary_url = _api_url()
+    if not primary_url:
+        return []
+    targets = [
+        ApiTarget(
+            name="primary",
+            base_url=primary_url,
+            token_env="RADAR_API_ACCESS_TOKEN",
+            supabase_url_env="SUPABASE_URL",
+            supabase_key_env="SUPABASE_ANON_KEY",
+            email_env="RADAR_API_EMAIL",
+            password_env="RADAR_API_PASSWORD",
+            use_primary_supabase_fallback=True,
+        )
+    ]
+    secondary_url = os.getenv("RADAR_SECONDARY_API_URL") or os.getenv("RADAR_DEV_API_URL")
+    if secondary_url and secondary_url.rstrip("/") != primary_url:
+        targets.append(
+            ApiTarget(
+                name="secondary",
+                base_url=secondary_url.rstrip("/"),
+                token_env="RADAR_SECONDARY_API_ACCESS_TOKEN",
+                supabase_url_env="RADAR_SECONDARY_SUPABASE_URL",
+                supabase_key_env="RADAR_SECONDARY_SUPABASE_ANON_KEY",
+                email_env="RADAR_SECONDARY_API_EMAIL",
+                password_env="RADAR_SECONDARY_API_PASSWORD",
+            )
+        )
+    return targets
+
+
+def _get_api_token(settings: Settings, target: ApiTarget) -> str:
+    configured = os.getenv(target.token_env)
     if configured:
         return configured.strip()
-    email = os.getenv("RADAR_API_EMAIL") or os.getenv("SUPABASE_TEST_EMAIL")
-    password = os.getenv("RADAR_API_PASSWORD") or os.getenv("SUPABASE_TEST_PASSWORD")
-    if not settings.supabase_url or not settings.supabase_anon_key or not email or not password:
+    email = os.getenv(target.email_env) or os.getenv("SUPABASE_TEST_EMAIL")
+    password = os.getenv(target.password_env) or os.getenv("SUPABASE_TEST_PASSWORD")
+    supabase_url = os.getenv(target.supabase_url_env)
+    supabase_key = os.getenv(target.supabase_key_env)
+    if target.name == "secondary":
+        supabase_url = supabase_url or os.getenv("SUPABASE_DEV_URL")
+        supabase_key = supabase_key or os.getenv("SUPABASE_DEV_ANON_KEY")
+    if target.use_primary_supabase_fallback:
+        supabase_url = supabase_url or settings.supabase_url
+        supabase_key = supabase_key or settings.supabase_anon_key
+    if not supabase_url or not supabase_key or not email or not password:
         raise RuntimeError(
-            "Configure RADAR_API_URL e, para autenticar, RADAR_API_ACCESS_TOKEN ou "
-            "SUPABASE_URL + SUPABASE_ANON_KEY + RADAR_API_EMAIL/RADAR_API_PASSWORD."
+            f"Configure {target.token_env} ou {target.supabase_url_env}/{target.supabase_key_env} "
+            f"+ {target.email_env}/{target.password_env} para autenticar o Radar API ({target.name})."
         )
     response = httpx.post(
-        f"{settings.supabase_url.rstrip('/')}/auth/v1/token",
+        f"{supabase_url.rstrip('/')}/auth/v1/token",
         params={"grant_type": "password"},
-        headers={"apikey": settings.supabase_anon_key, "Content-Type": "application/json"},
+        headers={"apikey": supabase_key, "Content-Type": "application/json"},
         json={"email": email, "password": password},
         timeout=30,
     )
@@ -198,6 +264,13 @@ def _to_api_processos(rows: list[dict[str, Any]]) -> tuple[list[ProcessoMonitora
     return processos, ApiVault(senhas)
 
 
+def _processos_by_key(processos: list[ProcessoMonitorado]) -> dict[str, ProcessoMonitorado]:
+    return {
+        _process_key(numero=processo.numero, tribunal=processo.tribunal): processo
+        for processo in processos
+    }
+
+
 def _acquire_lock(conn: Any) -> None:
     with conn.cursor() as cur:
         cur.execute("SELECT pg_try_advisory_lock(%s) AS locked", (RADAR_ADVISORY_LOCK,))
@@ -276,21 +349,68 @@ def rodar_worker_api(
     enviar_email: bool = True,
 ) -> dict[str, Any]:
     settings = get_settings()
-    api_url = _api_url()
-    if not api_url:
+    targets = _api_targets()
+    if not targets:
         raise RuntimeError("RADAR_API_URL nao configurada.")
-    token = _get_api_token(settings)
-    headers = {"Authorization": f"Bearer {token}"}
+    primary_target = targets[0]
     execucao = ExecucaoRadarMemoria(origem="agendada" if origem == "manual" else origem, usuario_id=None)
     browser = None
     execucao_id: str | None = None
     final_row: dict[str, Any] | None = None
-    with httpx.Client(base_url=api_url, headers=headers, timeout=60) as client:
-        start = _request_api(client, "POST", "/radar/worker/execucoes", json={"origem": execucao.origem})
+    replication: list[dict[str, Any]] = []
+    secondary_states: list[ApiTargetState] = []
+
+    def _finalizar(client: httpx.Client, target_name: str, target_execucao_id: str, status: str) -> dict[str, Any] | None:
+        try:
+            return _request_api(
+                client,
+                "POST",
+                f"/radar/worker/execucoes/{target_execucao_id}/finalizar",
+                json={"status": status},
+            )
+        except Exception as exc:
+            replication.append({"target": target_name, "status": "finalize_failed", "detail": str(exc)[:240]})
+            return None
+
+    with ExitStack() as stack:
+        primary_token = _get_api_token(settings, primary_target)
+        primary_client = stack.enter_context(
+            httpx.Client(
+                base_url=primary_target.base_url,
+                headers={"Authorization": f"Bearer {primary_token}"},
+                timeout=60,
+            )
+        )
+        start = _request_api(primary_client, "POST", "/radar/worker/execucoes", json={"origem": execucao.origem})
         execucao_row = dict(start["execucao"])
         execucao_id = str(execucao_row["id"])
         processos, vault = _to_api_processos(list(start.get("processos") or []))
         execucao.total_previstos = len(processos)
+
+        for target in targets[1:]:
+            try:
+                token = _get_api_token(settings, target)
+                client = stack.enter_context(
+                    httpx.Client(
+                        base_url=target.base_url,
+                        headers={"Authorization": f"Bearer {token}"},
+                        timeout=60,
+                    )
+                )
+                target_start = _request_api(client, "POST", "/radar/worker/execucoes", json={"origem": execucao.origem})
+                target_processos, _target_vault = _to_api_processos(list(target_start.get("processos") or []))
+                secondary_states.append(
+                    ApiTargetState(
+                        target=target,
+                        client=client,
+                        execucao_id=str(dict(target_start["execucao"])["id"]),
+                        processos_by_key=_processos_by_key(target_processos),
+                        failures=[],
+                    )
+                )
+                replication.append({"target": target.name, "status": "started", "processes": len(target_processos)})
+            except Exception as exc:
+                replication.append({"target": target.name, "status": "start_failed", "detail": str(exc)[:240]})
 
         try:
             if scrapers is None:
@@ -302,30 +422,58 @@ def rodar_worker_api(
                 resultado = consultar_processo_monitorado(processo, vault=vault, scrapers=active_scrapers)
                 registrar_resultado(execucao, resultado)
                 _request_api(
-                    client,
+                    primary_client,
                     "POST",
                     f"/radar/worker/execucoes/{execucao_id}/resultados",
                     json=_resultado_payload(resultado, processo),
                 )
 
+                key = _process_key(numero=processo.numero, tribunal=processo.tribunal)
+                for state in secondary_states:
+                    secondary_processo = state.processos_by_key.get(key)
+                    if secondary_processo is None:
+                        state.failures.append(
+                            {
+                                "processo": processo.numero,
+                                "status": "missing_process",
+                            }
+                        )
+                        continue
+                    try:
+                        _request_api(
+                            state.client,
+                            "POST",
+                            f"/radar/worker/execucoes/{state.execucao_id}/resultados",
+                            json=_resultado_payload(resultado, secondary_processo),
+                        )
+                    except Exception as exc:
+                        state.failures.append(
+                            {
+                                "processo": processo.numero,
+                                "status": "persist_failed",
+                                "detail": str(exc)[:240],
+                            }
+                        )
+
             execucao.status = classificar_execucao(execucao)
-            final_row = _request_api(
-                client,
-                "POST",
-                f"/radar/worker/execucoes/{execucao_id}/finalizar",
-                json={"status": execucao.status},
-            )
+            final_row = _finalizar(primary_client, primary_target.name, execucao_id, execucao.status)
+            if final_row is None:
+                raise RuntimeError("Falha ao finalizar a execucao do Radar no alvo primario.")
+            for state in secondary_states:
+                secondary_status = "falhou_parcialmente" if state.failures else execucao.status
+                _finalizar(state.client, state.target.name, state.execucao_id, secondary_status)
+                replication.append(
+                    {
+                        "target": state.target.name,
+                        "status": "replicated" if not state.failures else "partial",
+                        "failures": state.failures[:20],
+                    }
+                )
         except Exception:
             if execucao_id is not None:
-                try:
-                    _request_api(
-                        client,
-                        "POST",
-                        f"/radar/worker/execucoes/{execucao_id}/finalizar",
-                        json={"status": "interrompida"},
-                    )
-                except Exception:
-                    pass
+                _finalizar(primary_client, primary_target.name, execucao_id, "interrompida")
+            for state in secondary_states:
+                _finalizar(state.client, state.target.name, state.execucao_id, "interrompida")
             raise
         finally:
             if browser is not None:
@@ -336,6 +484,8 @@ def rodar_worker_api(
 
     if final_row is None:
         final_row = execucao_row
+    if replication:
+        final_row["replicacao"] = replication
     if enviar_email:
         try:
             final_row["email"] = enviar_relatorio_radar(
