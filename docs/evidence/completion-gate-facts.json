@@ -1,7 +1,7 @@
 {
   "has_database": true,
   "has_auth": true,
-  "has_ui": false,
+  "has_ui": true,
   "has_ai": false,
   "has_integration": true,
   "has_observability": true,

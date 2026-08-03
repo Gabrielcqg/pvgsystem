@@ -15,6 +15,10 @@ ownership:
     mode: exclusive
     owner_agent: database-migration-builder
     parallelization_group: db
+  - path: frontend/**
+    mode: exclusive
+    owner_agent: frontend-uiux-builder
+    parallelization_group: frontend
   - path: app/domain/**
     mode: exclusive
     owner_agent: backend-api-builder

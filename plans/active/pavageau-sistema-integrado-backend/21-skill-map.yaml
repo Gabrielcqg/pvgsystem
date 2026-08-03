@@ -20,6 +20,9 @@ skills:
   - name: documentation-writer
     classification: core_required
     runtime: [codex]
+  - name: frontend-uiux-builder
+    classification: core_required
+    runtime: [codex]
   - name: security-reviewer
     classification: core_required
     runtime: [codex]

@@ -29,7 +29,7 @@ handoff and is a **prohibition** ("do not search Downloads"), which is the inten
 | Phase | Could Codex need to ask? | Why not |
 |---|---|---|
 | **0 — Preserve** | No | Scraper + fixtures + golden output are **in the package** (`vendor/`, DEC-39). Canonical copy adjudicated during planning; hash recorded. T-004 runs first against a file that already exists. |
-| **1 — Schema** | No | Every table, column, type, constraint, index and enum value is literal SQL. Migration order fixed (`000`→`010`, DEC-29). `000_bootstrap.sql` makes local Postgres sufficient (DEC-30). |
+| **1 — Schema** | No | Every table, column, type, constraint, index and enum value is literal SQL. Schema applied in `supabase/migrations/` (verify, do not rebuild; DEC-50/51). `000_bootstrap.sql` makes local Postgres sufficient (DEC-30). |
 | **2 — Calculation** | No | All 23 formulas defined as-of a reference month (DEC-32). Per-table trigger month resolution tabulated. Historical vs point-in-time split resolves the rollover question (07 §6.1). |
 | **3 — Domain/API** | No | Every endpoint has a method, path, body, status codes and write allowlist. The four transactional links are written out as pseudo-SQL including `NOT NULL` fields. |
 | **4 — Radar** | No | Scraper contract, registry with reserved slots, orchestrator sequence, `CONCLUSIVO` set, `taxa_conclusiva` formula, run-status table incl. the NULL branch, vault provider + env names, `submeter_senha()` seam. |
@@ -91,3 +91,7 @@ deployment dependency rather than an open question.
 | Datacenter IP may raise captcha rates | `GATE-PROD-RUN` / EVID-01 measures it on the chosen host. Default is the validated Mac (DEC-23). |
 | TJSP may change page layouts | TEST-SCRAPER-02/03 fail loudly on drift; `layout_movimentacoes` telemetry surfaces distribution shifts. |
 | 12 TJCE/TJBA processes unmonitored | Deliberate v1 scope (DEC-38); visible and counted every run (FR-45). |
+
+## Reconciliation note (plan_audit 2026-07-21)
+
+Synced to commit `7be04107`. Backend Phases 0-6 are implemented (preserve, not rebuild). Migration source = `supabase/migrations/` only. Backend-completion covers only genuinely-missing endpoints (`runtime/60-repo-reconciliation.md` §4). `codex_questions_required` remains **0** — FINDING-C is a code-read task, not a user question.

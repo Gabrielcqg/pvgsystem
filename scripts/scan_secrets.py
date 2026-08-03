@@ -78,7 +78,7 @@ def is_protected(path: str, globs, negations) -> bool:
 
 
 def scan_text(path: str) -> list[str]:
-    findings = []
+    findings: list[str] = []
     try:
         with open(path, encoding="utf-8", errors="ignore") as fh:
             text = fh.read()

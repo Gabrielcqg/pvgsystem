@@ -1,0 +1,11 @@
+id: "IX-002"
+screen_id: "UI-002"
+user_action: "definir/atualizar senha"
+frontend_validation: "zod no frontend; tipos via OpenAPI"
+request_contract: "tipado via OpenAPI (openapi-typescript)"
+backend_handler: "Supabase Auth updateUser"
+success_response: "2xx; invalidacao das queries TanStack afetadas"
+error_responses: ["token expirado -> explica", "401 -> sessao expirada", "403 -> sem-acesso", "5xx/offline -> erro nao destrutivo"]
+business_rule: ["FR-054"]
+acceptance_criteria: ["Chama o endpoint/Auth real; sem botao morto; sem dado falso", "Erros mapeados pelo cliente central"]
+tests: ["TEST-FE-CLIENT"]

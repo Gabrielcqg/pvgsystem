@@ -1,0 +1,25 @@
+id: "UI-004"
+purpose: "UI-F04 Nao autorizado - autenticado mas fora do app_members"
+route: "/sem-acesso"
+user_role: ["authenticated"]
+user_objective: "autenticado mas fora do app_members"
+primary_action: "IX-004 logout"
+data_source: ["/me"]
+backend_dependency: ["/me"]
+permissions: ["authenticated"]
+states:
+  default: "render normal com dados reais da API"
+  loading: "skeleton no formato do layout final, sem spinner solto"
+  empty: "dados carregados, zero linhas: explica o que criar + acao primaria"
+  partial_data: "secoes com queries independentes carregam em paralelo"
+  error: "erro de API/rede: mensagem + retry, estado local preservado"
+  success: "render apos acao bem-sucedida com invalidacao de cache"
+  permission_denied: "403 -> rota para UI-F04 (sem-acesso), nunca tabela em branco"
+  disabled: "acoes desabilitadas quando sem permissao ou pre-condicao ausente"
+responsive_behavior: "desktop-first; tabelas densas viram cards < md; acoes primarias sempre visiveis; periodo e totais visiveis"
+accessibility: "labels, foco visivel, erros anunciados, navegacao por teclado"
+persistence: "filtros e periodo persistidos por URL+store entre telas"
+requirement_refs: ["FR-055"]
+api_refs: ["/me"]
+acceptance_criteria: ["Renderiza dados reais da API; sem mock no build de producao", "Todos os estados (loading/empty/error/403/session) implementados"]
+tests: ["TEST-FE-F04"]

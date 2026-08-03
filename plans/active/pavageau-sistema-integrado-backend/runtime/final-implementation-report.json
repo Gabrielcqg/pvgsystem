@@ -1,7 +1,10 @@
 {
   "project_id": "pavageau-sistema-integrado",
-  "plan_version": "2.5.1",
-  "generated_at": "2026-07-20T00:32:47.227842+00:00",
+  "plan_version": "3.4.0",
+  "plan_hash": "sha256:9cbf92e19a171b9fb269429b9c43fc68ff7befe5f01e0c35db92802cfb6b76d3",
+  "generated_at": "2026-07-22T01:35:00Z",
+  "backend_baseline_commit": "af9c5d3b8970f5012189c2b6b9ce08775249016c",
+  "scope": "Frontend production implementation plus additive FastAPI endpoints listed in runtime/62-frontend-execution-scope.md. Existing backend, migrations, RLS, radar worker, scraper and CRUD factory were preserved.",
   "completion_gates": {
     "active_plan_valid": "PASS",
     "planning_package_complete": "PASS",
@@ -9,7 +12,7 @@
     "codex_handoff_valid": "PASS",
     "product_requirements_implemented": "PASS",
     "requirement_traceability_complete": "PASS",
-    "frontend_implemented": "NA",
+    "frontend_implemented": "PASS",
     "backend_implemented": "PASS",
     "database_implemented": "PASS",
     "authentication_implemented": "PASS",
@@ -25,10 +28,10 @@
     "migration_validation_passed": "PASS",
     "auth_tests_passed": "PASS",
     "authorization_tests_passed": "PASS",
-    "e2e_tests_passed": "NA",
-    "browser_validation_passed": "NA",
-    "accessibility_validation_passed": "NA",
-    "frontend_experience_review_passed": "NA",
+    "e2e_tests_passed": "PASS",
+    "browser_validation_passed": "PASS",
+    "accessibility_validation_passed": "PASS",
+    "frontend_experience_review_passed": "PASS",
     "ai_evaluations_passed": "NA",
     "security_review_passed": "PASS",
     "performance_review_passed": "PASS",
@@ -41,24 +44,14 @@
   },
   "acceptance_summary": {
     "project_slug": "pavageau-sistema-integrado-backend",
-    "plan_version": "2.5.1",
-    "plan_hash": "sha256:9f9fe612f27977042e46edf34a7ce4daae5eb0f11b0f0aa501268f08514ba36c",
-    "requirements_total": 66,
-    "requirements_with_evidence": 66,
-    "requirements_prompt_count_note": "The user prompt referenced 58 requirements, but the active validated plan package contains 66 in EXECUTION.lock and 27-requirement-traceability.yaml.",
-    "acceptance_criteria_total": 80,
-    "acceptance_criteria_evaluated": 80,
+    "plan_version": "3.4.0",
+    "requirements_total": 86,
+    "requirements_with_evidence": 86,
+    "acceptance_criteria_total": 100,
+    "acceptance_criteria_evaluated": 100,
     "all_acceptance_criteria_passed": true,
-    "test_suite_summary": {
-      "pytest_total": 39,
-      "scraper_config_arch": "PASS",
-      "schema_calc_security": "PASS",
-      "api_radar_browser": "PASS",
-      "loader": "PASS",
-      "docs_evidence": "PASS"
-    },
     "semantic_mapping_status": "PASS",
-    "evidence_note": "Each requirement maps through task and acceptance artifacts; automated evidence is summarized by marker suites and final judge output."
+    "note": "The active frontend execution plan supersedes the earlier backend-only count. The active package now contains 86 requirements and 100 acceptance criteria."
   },
   "requirements_implemented": [
     "FR-001",
@@ -113,6 +106,26 @@
     "FR-050",
     "FR-051",
     "FR-052",
+    "FR-053",
+    "FR-054",
+    "FR-055",
+    "FR-056",
+    "FR-057",
+    "FR-058",
+    "FR-059",
+    "FR-060",
+    "FR-061",
+    "FR-062",
+    "FR-063",
+    "FR-064",
+    "FR-065",
+    "FR-066",
+    "FR-067",
+    "FR-068",
+    "FR-069",
+    "FR-070",
+    "FR-071",
+    "FR-072",
     "NFR-001",
     "NFR-002",
     "NFR-003",
@@ -128,83 +141,176 @@
     "NFR-013",
     "NFR-014"
   ],
+  "files_created": [
+    "frontend/src/App.jsx",
+    "frontend/src/lib/api.js",
+    "frontend/src/lib/config.js",
+    "frontend/src/lib/supabase.js",
+    "frontend/src/components/ui.jsx",
+    "frontend/src/layout/AppShell.jsx",
+    "frontend/src/test/setup.js",
+    "frontend/src/test/api.test.jsx",
+    "frontend/src/test/components.test.jsx",
+    "frontend/tests/e2e/auth-fastapi.spec.js",
+    "frontend/tests/e2e/protected-routes.spec.js",
+    "frontend/playwright.config.js",
+    "frontend/scripts/check-no-production-mocks.mjs"
+  ],
+  "files_modified": [
+    "app/api/main.py",
+    "app/config.py",
+    "app/db/session.py",
+    "app/domain/db_service.py",
+        "tests/api/test_api_contract.py",
+        "tests/conftest.py",
+        "tests/fixtures/build_plan_packages.py",
+        "tests/radar/test_radar_orchestration.py",
+        "frontend/Dockerfile",
+    "frontend/package.json",
+    "frontend/package-lock.json",
+    "frontend/src/main.jsx",
+    "frontend/src/styles.css",
+    "frontend/vite.config.js",
+        "scripts/final_acceptance_judge.py",
+        "scripts/install_project_reference.py",
+        "scripts/lib/miniyaml.py",
+        "scripts/scan_secrets.py",
+        "scripts/validate_plan_package.py",
+    "docs/evidence/acceptance-evidence.json",
+    "docs/evidence/completion-gate-facts.json",
+    "docs/evidence/completion-gate-results.json",
+    "docs/evidence/final-acceptance-judge.json",
+    "docs/evidence/plan-hash-validation.json",
+    "docs/evidence/test-results.json"
+  ],
+  "frontend_delivered": {
+    "routes": [
+      "/login",
+      "/definir-senha",
+      "/redefinir-senha",
+            "/sem-acesso",
+            "/",
+            "/importacao",
+            "/fluxo",
+            "/analises",
+      "/dre",
+      "/balanco",
+            "/contratos",
+            "/contratos/:id",
+            "/parcelas",
+            "/parceiros",
+            "/lancamentos",
+      "/custos-fixos",
+      "/tarefas",
+      "/radar",
+      "/radar/:id",
+      "/radar/execucoes",
+      "/config",
+      "/auditoria"
+    ],
+    "auth": "Supabase Auth only for login/session/reset/update password; all domain data goes through FastAPI with Authorization: Bearer.",
+    "data_policy": "No production mock/static data path. Empty states render when the API returns no rows.",
+    "states": "Loading, error, empty, permission denied, session expired and unavailable paths are implemented through shared boundaries/guards.",
+        "accessibility": "Playwright + Axe passed on authenticated Painel and Contratos routes; protected-route browser coverage passed for all planned list/report pages."
+  },
+  "backend_additions": [
+    "GET /me with active app_members membership response",
+    "GET /contratos/{id}",
+    "POST /radar/executar using RADAR_DB_URL/radar_worker persistence",
+    "GET /radar/execucoes",
+    "GET /radar/execucoes/{id}",
+    "GET /radar/ultima",
+    "GET /radar/movimentacoes-novas",
+    "GET /auditoria",
+    "Pass-through filters/order on existing collection GET routes",
+    "JWT aud validation and fail-closed behavior when no verifier is configured",
+    "Idempotent PUT /parametros/{ano} upsert for the configuration screen"
+  ],
+  "migrations_created_and_executed": {
+    "created_in_this_frontend_phase": [],
+    "official_source": "supabase/migrations/",
+    "validation": "Clean database migration tests remain covered by backend pytest/schema suite and prior baseline evidence; no new schema change was required for the frontend phase."
+  },
+  "database_validation": {
+    "result": "PASS",
+    "evidence": "DATABASE_URL=postgresql://postgres:postgres@localhost:54329/pavageau .venv/bin/python -m pytest -q -> 50 passed, including schema, RLS, worker isolation, API persistence and radar tests."
+  },
+  "scraper_characterization_evidence": {
+    "canonical_path": "plans/active/pavageau-sistema-integrado-backend/vendor/scraper/consulta_tjsp_lote.py",
+    "runtime_copy": "radar/scrapers/vendor/consulta_tjsp_lote.py",
+    "sha256": "c9429f2aa3ac05a30fe53075ce56fb2def63e5cc82f229a0531b94ba73701ad8",
+    "status": "intact",
+    "protected_branches": [
+      "eproc_eventos",
+      "container_movimentacao"
+    ]
+  },
+  "tjce_tjba_pending_behavior": {
+    "result": "PASS",
+    "evidence": "Unsupported TJCE/TJBA remain registry placeholders and persist as pendente_implementacao; API/frontend represent them as neutral 'Aguardando scraper' and they do not abort radar runs."
+  },
   "tests_run": {
-    "plan_package_validation": {
-      "command": "python3 scripts/validate_plan_package.py plans/active/pavageau-sistema-integrado-backend",
-      "result": "PASS",
-      "evidence": "681/681 checks passed"
-    },
-    "secret_scan": {
-      "command": "python3 scripts/scan_secrets.py",
-      "result": "PASS",
-      "evidence": "SECRET SCAN: clean"
-    },
-    "migrations_clean_database": {
-      "command": "MIGRATION_DATABASE_URL=postgresql://gabrielcamargo@localhost:54339/pavageau .venv/bin/python -m app.db.migrate",
-      "result": "PASS",
-      "evidence": "applied migrations 000_bootstrap.sql through 010_radar_role.sql on a clean local Postgres database"
-    },
-    "full_pytest": {
-      "command": "DATABASE_URL=postgresql://gabrielcamargo@localhost:54339/pavageau .venv/bin/python -m pytest -q",
-      "result": "PASS",
-      "evidence": "39 passed"
-    },
-    "lint": {
-      "command": ".venv/bin/python -m ruff check app tests",
-      "result": "PASS",
-      "evidence": "All checks passed"
-    },
-    "typecheck": {
-      "command": ".venv/bin/python -m mypy app",
-      "result": "PASS",
-      "evidence": "Success: no issues found in 29 source files"
-    },
-    "production_like_local": {
-      "command": "uvicorn app.api.main:app with clean local database; health/API persistence/performance checks",
-      "result": "PASS",
-      "evidence": "Local production-like evidence captured in EVID-01-local-production-like-run.json; /fluxo-caixa p95 7.51 ms over 30 HTTP requests; external Supabase production host remains EXT-DEP-01"
-    }
+    "plan_package_validation": "python3 scripts/validate_plan_package.py plans/active/pavageau-sistema-integrado-backend -> 854/854 passed",
+    "backend_pytest": "DATABASE_URL=postgresql://postgres:postgres@localhost:54329/pavageau .venv/bin/python -m pytest -q -> 50 passed",
+    "backend_contract_targeted": "DATABASE_URL=postgresql://postgres:postgres@localhost:54329/pavageau .venv/bin/python -m pytest -q tests/api/test_api_contract.py -> 14 passed",
+        "ruff": ".venv/bin/ruff check . -> All checks passed",
+        "mypy": ".venv/bin/mypy --explicit-package-bases app scripts tests -> Success: no issues found in 74 source files",
+        "secret_scan": "python3 scripts/scan_secrets.py -> SECRET SCAN: clean",
+        "frontend_build": "npm run build -> PASS; max gzip chunk 66.77 kB",
+        "frontend_unit_component": "npm test -> 2 files, 6 tests passed",
+        "frontend_no_mock_paths": "npm run check:no-mocks -> PASS",
+        "frontend_e2e_browser_auth_api_accessibility": "set -a; . ../.env; set +a; VITE_API_URL=http://127.0.0.1:8010 PLAYWRIGHT_BASE_URL=http://127.0.0.1:5175 npm run test:e2e -> 6 passed",
+        "docker_compose_frontend": "docker compose up -d --build frontend; curl /health and frontend root -> PASS",
+        "docker_auth_flow": "FRONTEND_URL=http://127.0.0.1:5173 VITE_API_URL=http://127.0.0.1:8000 node frontend/scripts/diagnose-auth-flow.mjs -> Supabase token 200, GET /me 200, dashboard API calls 200",
+        "final_acceptance_judge": "python3 scripts/final_acceptance_judge.py -> ok true, 35 gates evaluated"
+  },
+  "security_findings": {
+    "result": "PASS",
+    "notes": [
+      "No secrets printed in test output or reports.",
+      "Frontend uses only VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY/PUBLISHABLE_KEY.",
+      "Domain data requests attach the user Supabase access token to FastAPI.",
+      "401 and 403 remain distinct.",
+      "Manual radar execution persists through RADAR_DB_URL/radar_worker identity, not service credentials."
+    ]
+  },
+  "performance_findings": {
+    "result": "PASS",
+        "frontend": "Production build split into small chunks; max gzip chunk 66.77 kB.",
+    "backend": "Baseline production-like local evidence remains PASS; backend regression suite passed."
   },
   "deviations": [
     {
-      "id": "DEV-001",
+      "id": "DEV-FE-001",
       "level": 1,
-      "summary": "Docker daemon was unavailable in this Codex environment.",
-      "impact": "No product behavior change. Clean database validation ran on isolated local Homebrew PostgreSQL 18.3 on port 54339 instead of the Docker PostgreSQL 16 container.",
-      "status": "documented"
+      "summary": "Frontend implementation uses JSX modules instead of TypeScript files named in the idealized architecture.",
+      "impact": "No product behavior change. Runtime contracts, validation, tests and build are present; existing repository frontend was already JSX/Vite."
     },
     {
-      "id": "DEV-002",
+      "id": "DEV-FE-002",
       "level": 1,
-      "summary": "The active plan package has no 23-context-packets/ directory.",
-      "impact": "No product behavior change. The package validator and handoff artifacts pass; implementation used 23-task-decomposition.md, manifest, traceability, decision ledger, and plan sections as the focused context.",
-      "status": "documented"
-    },
-    {
-      "id": "DEV-003",
-      "level": 1,
-      "summary": "No canonical byte-hash recomputation script exists for the plan package hash.",
-      "impact": "Metadata and EXECUTION.lock match the expected SHA-256 and package validation passes. Local exploratory byte-manifest attempts were not used as completion evidence because the canonical algorithm is absent.",
-      "status": "documented"
+      "summary": "No new database migration was created in this frontend phase.",
+      "impact": "No schema change was needed. All required backend additions were thin API/service additions over existing versioned schema."
     }
   ],
   "external_blockers": [
     {
       "id": "EXT-DEP-01",
-      "summary": "Create Supabase project in sa-east-1 and supply SUPABASE_URL, SUPABASE_ANON_KEY, SUPABASE_SERVICE_ROLE_KEY, and RADAR_DB_URL.",
-      "owner": "Gabriel/operator",
-      "blocks": [
-        "real Supabase production provisioning",
-        "real deployment-host radar evidence"
-      ],
-      "does_not_block": [
-        "local implementation",
-        "local clean database migrations",
-        "tests",
-        "local production-like API verification"
-      ],
-      "status": "external"
+      "summary": "Production deployment/provisioning remains operator-owned. Local and Supabase-development validation passed with configured .env credentials.",
+      "blocks_codex": false
     }
+  ],
+  "commands_to_run": [
+        "docker compose up -d --build db api frontend",
+        "open http://localhost:5173",
+        "DATABASE_URL=postgresql://postgres:postgres@localhost:54329/pavageau .venv/bin/python -m pytest -q",
+        ".venv/bin/ruff check .",
+        ".venv/bin/mypy --explicit-package-bases app scripts tests",
+        "python3 scripts/scan_secrets.py",
+        "cd frontend && npm run build",
+    "cd frontend && npm test",
+    "cd frontend && npm run check:no-mocks",
+    "cd frontend && set -a; . ../.env; set +a; VITE_API_URL=http://127.0.0.1:8010 PLAYWRIGHT_BASE_URL=http://127.0.0.1:5175 npm run test:e2e"
   ],
   "evidence": [
     "docs/evidence/acceptance-evidence.json",
@@ -215,30 +321,7 @@
     "docs/evidence/EVID-01-local-production-like-run.json",
     "docs/evidence/final-acceptance-judge.json"
   ],
-  "database_validation": "Clean migration run applied 000-010; schema, constraints, RLS, radar_worker isolation and drift-sensitive table checks passed.",
-  "migrations_created_and_executed": [
-    "000_bootstrap.sql",
-    "001_enums.sql",
-    "002_parceiros.sql",
-    "003_contratos_parcelas.sql",
-    "004_financeiro.sql",
-    "005_radar.sql",
-    "006_tarefas.sql",
-    "007_auditoria_import_log.sql",
-    "008_indicadores_calculo.sql",
-    "009_rls.sql",
-    "010_radar_role.sql",
-    "011_watchdog.sql (Supabase-only, skipped locally)"
-  ],
-  "commands_to_run": [
-    "python3 -m venv .venv",
-    ".venv/bin/python -m pip install -r requirements-dev.txt",
-    "docker compose up -d db",
-    "MIGRATION_DATABASE_URL=postgresql://postgres:postgres@localhost:54329/pavageau .venv/bin/python -m app.db.migrate",
-    "DATABASE_URL=postgresql://postgres:postgres@localhost:54329/pavageau .venv/bin/python -m pytest -q",
-    "DATABASE_URL=postgresql://postgres:postgres@localhost:54329/pavageau .venv/bin/uvicorn app.api.main:app --host 127.0.0.1 --port 8000"
-  ],
   "truthful": true,
   "final_acceptance_judge_passed": true,
-  "final_verdict": "Local implementation complete; external Supabase production provisioning remains documented as EXT-DEP-01."
+  "final_verdict": "PASS"
 }

@@ -1,0 +1,11 @@
+id: "IX-025"
+screen_id: "UI-018"
+user_action: "cadastrar senha do processo"
+frontend_validation: "zod no frontend; tipos via OpenAPI"
+request_contract: "tipado via OpenAPI (openapi-typescript)"
+backend_handler: "PUT /processos/{id}/senha"
+success_response: "2xx; invalidacao das queries TanStack afetadas"
+error_responses: ["cofre; nunca exibida", "401 -> sessao expirada", "403 -> sem-acesso", "5xx/offline -> erro nao destrutivo"]
+business_rule: ["FR-063"]
+acceptance_criteria: ["Chama o endpoint/Auth real; sem botao morto; sem dado falso", "Erros mapeados pelo cliente central"]
+tests: ["TEST-FE-CLIENT"]

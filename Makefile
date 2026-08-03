@@ -7,16 +7,16 @@ MIGRATION_DATABASE_URL ?= $(DATABASE_URL)
 install:
 	python3 -m venv .venv
 	$(PYTHON) -m pip install --upgrade pip
-	$(PYTHON) -m pip install -r requirements.txt
+	$(PYTHON) -m pip install -r backend/requirements.txt
 
 install-dev:
-	$(PYTHON) -m pip install -r requirements-dev.txt
+	$(PYTHON) -m pip install -r backend/requirements-dev.txt
 
 lint:
-	$(PYTHON) -m ruff check app tests
+	$(PYTHON) -m ruff check backend/app backend/radar_worker tests
 
 typecheck:
-	$(PYTHON) -m mypy app
+	$(PYTHON) -m mypy backend/app
 
 test:
 	$(PYTHON) -m pytest -q
@@ -46,7 +46,7 @@ test-loader:
 	DATABASE_URL=$(DATABASE_URL) $(PYTHON) -m pytest -q -m loader
 
 migrate:
-	MIGRATION_DATABASE_URL=$(MIGRATION_DATABASE_URL) $(PYTHON) -m app.db.migrate
+	PYTHONPATH=backend MIGRATION_DATABASE_URL=$(MIGRATION_DATABASE_URL) $(PYTHON) -m app.db.migrate
 
 validate-plan:
 	python3 scripts/validate_plan_package.py plans/active/pavageau-sistema-integrado-backend

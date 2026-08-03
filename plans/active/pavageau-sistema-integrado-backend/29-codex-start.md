@@ -1,4 +1,6 @@
-# 29 — Codex Start
+# 29 — Codex Start (FRONTEND-FOCUSED, v3.3.0)
+
+> Baseline backend = commit `af9c5d3b`, preserved. Scope = frontend (T-FE-01…09) + 7 additive endpoints (`runtime/62 §2`). Do not rebuild/refactor the backend or recreate the existing CRUD.
 
 **Plan version:** v2.5.1 · verify `PLAN_METADATA.yaml.content_hash` == `EXECUTION.lock.active_plan_hash` before starting.
 

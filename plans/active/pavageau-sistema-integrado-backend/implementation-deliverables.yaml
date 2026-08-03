@@ -47,3 +47,9 @@ deliverables:
     purpose: Prove the radar works on the actual deployment host
     expected_runtime_behavior: Recorded run with taxa_conclusiva at or above 0.70 and layout distribution near the 51/43 baseline
     completion_conditions: [production_like_run_verified]
+  - deliverable_id: DEL-009
+    name: Production frontend + end-to-end integration
+    type: frontend
+    purpose: Reproduce the vendored reference and connect every screen/action to the real FastAPI + Supabase Auth
+    expected_runtime_behavior: Every button calls a real endpoint; all states handled; no fake data in the production build
+    completion_conditions: [frontend_implemented, e2e_tests_passed, browser_validation_passed, accessibility_validation_passed, frontend_experience_review_passed]

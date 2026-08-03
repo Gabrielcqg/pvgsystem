@@ -57,10 +57,31 @@ Frontend column reads **contract** because the frontend is consumed, not built (
 | **FR-44** | **Idempotent, auditable spreadsheet loader with vocabulary normalization and orphan reconciliation** | `import_log` | `app.loader` CLI | TEST-LOAD-01…05 (synthetic fixtures) | GATE-LOAD |
 | **FR-45** | **A run with 12 pending processes finishes `concluida`** | `total_pendente_implementacao` | orchestrator | TEST-RADAR-31 | GATE-RADAR |
 | **FR-46** | **Deployment region is validated configuration** (`AWS_REGION`, default `sa-east-1`) | — | `app/config.py` | TEST-CFG-03 | GATE-SCHEMA |
-| **FR-47** | **Local/CI implementation runs with no region or Supabase configuration** | `000_bootstrap.sql` | docker compose | TEST-CFG-04 | GATE-SCHEMA |
+| **FR-47** | **Local/CI implementation runs with no region or Supabase configuration** | applied `supabase/migrations/` | docker compose | TEST-CFG-04 | GATE-SCHEMA |
 | **FR-49** | **The 118 known processes are seeded from a vendored list** (106 TJSP · 7 TJCE · 5 TJBA); the 1 malformed CNJ is reported and skipped | `processos` | `vendor/seed/processos_seed.csv` | TEST-RADAR-32 | GATE-RADAR |
 | **FR-50** | **`import_log` records every loader decision and is insert-only** | `import_log` | `app.loader` | TEST-LOAD-07 | GATE-LOAD |
 | **FR-48** | **The canonical scraper is byte-frozen and both layout branches are golden-tested** | `vendor/` | CI | TEST-SCRAPER-01/02/03 | GATE-SCRAPER-FROZEN |
+
+| **FR-53** | Login por Supabase Auth com token no Bearer de toda chamada | `auth.users` | UI-F01 / Supabase Auth | TEST-FE-F01 | GATE-FE |
+| **FR-54** | Definir senha por convite e redefinir por e-mail | `auth.users` | UI-F02/F03 | TEST-FE-F02 | GATE-FE |
+| **FR-55** | Estado autenticado-mas-nao-autorizado via GET /me + app_members | `app_members` | GET /me · UI-F04 | TEST-FE-F04 | GATE-FE |
+| **FR-56** | Shell, navegacao e seletor de periodo global persistente | `-` | UI-F10 | TEST-FE-F10 | GATE-FE |
+| **FR-57** | Superficies de leitura somente-leitura com periodo e recalculado_em | `ind_painel` | painel/fluxo/dre/balanco/analises | TEST-FE-CALC | GATE-FE |
+| **FR-58** | Contratos: lista, detalhe e CRUD conectados | `contratos` | /contratos* | TEST-FE-F16 | GATE-FE |
+| **FR-59** | Parcelas: confirmar e estornar transacionais na UI | `parcelas` | /parcelas/{id}/confirmar / estornar | TEST-FE-F17 | GATE-FE |
+| **FR-60** | Lancamentos: CRUD + quitacao opcional de parcela | `lancamentos` | /lancamentos* | TEST-FE-F19 | GATE-FE |
+| **FR-61** | Custos fixos: CRUD + lancar por competencia | `custos_fixos` | /custos-fixos* | TEST-FE-F20 | GATE-FE |
+| **FR-62** | Tarefas: CRUD, concluir e criar de movimentacao | `tarefas` | /tarefas* | TEST-FE-F21 | GATE-FE |
+| **FR-63** | Radar: processos CRUD, executar, estados distintos e 'aguardando scraper' | `processos` | /processos* · /radar/executar | TEST-FE-F22 | GATE-FE |
+| **FR-64** | Historico de execucoes e fila de curadoria de movimentacoes | `movimentacoes_novas` | /radar/execucoes · /radar/movimentacoes-novas | TEST-FE-F24 | GATE-FE |
+| **FR-65** | Parametros e configuracoes na UI | `parametros` | /parametros/{ano} · /configuracoes | TEST-FE-F25 | GATE-FE |
+| **FR-66** | Auditoria somente-leitura | `auditoria` | /auditoria | TEST-FE-F26 | GATE-FE |
+| **FR-67** | Backend-completion: endpoints faltantes implementados | `contratos` | /contratos,/lancamentos,/tarefas,/processos,/radar/*,/me | TEST-FE-BE | GATE-FE |
+| **FR-68** | Auth JWKS fail-closed no backend (401 != 403) | `app_members` | backend auth | TEST-FE-JWKS | GATE-SECRETS |
+| **FR-69** | Cliente FastAPI central com mapeamento de erros 401/403/404/409/422/429/5xx | `-` | app/api client | TEST-FE-CLIENT | GATE-FE |
+| **FR-70** | Nenhum dado falso no build de producao (validador em CI) | `-` | scripts/check_no_mocks | TEST-FE-NOMOCK | GATE-FE |
+| **FR-71** | Valor calculado nunca vira campo editavel | `ind_painel` | CalculatedValue | TEST-FE-CALC | GATE-CALC |
+| **FR-72** | Responsividade e acessibilidade das telas | `-` | frontend | TEST-FE-A11Y | GATE-FE |
 
 ## Non-functional requirements
 

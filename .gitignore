@@ -2,6 +2,10 @@
 .env
 .env.*
 !.env.example
+!backend/.env.example
+!frontend/.env.example
+!frontend/.env.development
+!frontend/.env.production.example
 .envrc
 .envrc.*
 .mcp.env
@@ -23,6 +27,9 @@ service-account*.json
 *.mobileprovision
 secrets/
 private/
+skills-lock.json
+.agents/skills/supabase/
+.agents/skills/supabase-postgres-best-practices/
 
 # Activated (non-template) Claude settings may contain machine-local choices
 .claude/settings.json
@@ -41,10 +48,13 @@ venv/
 
 # Node
 node_modules/
+.npm-cache/
 dist/
 build/
 frontend/dist/
 frontend/build/
+frontend/test-results/
+frontend/playwright-report/
 
 # OS / editor
 .DS_Store
@@ -58,7 +68,16 @@ frontend/build/
 logs/
 tmp/
 temp/
+debug_tjsp/
+.drissionpage/
+supabase/.temp/
 *.tmp
 *.bak
 *.orig
 *.pid
+
+# Local validation evidence can include screenshots or exported operational data.
+docs/evidence/*/
+
+# Local Netlify folder
+.netlify

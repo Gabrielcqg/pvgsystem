@@ -1,0 +1,11 @@
+id: "IX-030"
+screen_id: "UI-001"
+user_action: "tratar conflito 409"
+frontend_validation: "zod no frontend; tipos via OpenAPI"
+request_contract: "tipado via OpenAPI (openapi-typescript)"
+backend_handler: "(qualquer mutacao)"
+success_response: "2xx; invalidacao das queries TanStack afetadas"
+error_responses: ["mensagem com o erro do endpoint", "401 -> sessao expirada", "403 -> sem-acesso", "5xx/offline -> erro nao destrutivo"]
+business_rule: ["FR-069"]
+acceptance_criteria: ["Chama o endpoint/Auth real; sem botao morto; sem dado falso", "Erros mapeados pelo cliente central"]
+tests: ["TEST-FE-CLIENT"]

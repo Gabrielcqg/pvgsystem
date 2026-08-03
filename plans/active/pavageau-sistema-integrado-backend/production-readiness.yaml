@@ -14,7 +14,7 @@ layers:
     applicable: true
     planned: true
     implementation_gate: database_implemented
-    evidence: 07-data-architecture-plan.md; migrations 000-010
+    evidence: 07-data-architecture-plan.md; the applied supabase/migrations schema (verified, not rebuilt)
   - layer: backend
     applicable: true
     planned: true
@@ -69,16 +69,17 @@ layers:
     applicable: true
     planned: true
     implementation_gate: migration_validation_passed
-    evidence: Loader runs in one transaction; migrations rebuild from zero
+    evidence: Loader runs in one transaction; supabase/migrations already applied; verified
   - layer: documentation
     applicable: true
     planned: true
     implementation_gate: documentation_complete
     evidence: 28-codex-handoff.md; 29-codex-start.md; vendor/PROVENANCE.md
   - layer: frontend
-    applicable: false
-    planned: false
-    notes: Out of build scope (DEC-14). The existing frontend is the API contract and is vendored at vendor/frontend/ for field-name reconciliation.
+    applicable: true
+    planned: true
+    implementation_gate: frontend_implemented
+    evidence: 51-frontend-plan.md; 52-frontend-contracts.md; frontend/screen-contracts/*.yaml; reproduces the vendored reference, connected to FastAPI (DEC-42..DEC-49)
   - layer: ai_behavior
     applicable: false
     planned: false

@@ -58,8 +58,14 @@ def test_sec_07_radar_worker_permissions_and_isolation(clean_db) -> None:
             (processo_id,),
         )
         cur.execute(
-            "INSERT INTO tarefas (titulo, origem, processo_id, numero_processo) VALUES ('Inercia', 'radar_inercia', %s, '0000000-00.2026.8.26.0001')",
-            (processo_id,),
+            """
+            INSERT INTO tarefas (titulo, origem, processo_id, numero_processo, status, radar_inercia_chave)
+            VALUES ('Inercia', 'radar_inercia', %s, '0000000-00.2026.8.26.0001', 'backlog', %s)
+            """,
+            (
+                processo_id,
+                f"radar_inercia:{processo_id}:2026-07-01:30",
+            ),
         )
         cur.execute("INSERT INTO auditoria (entidade, acao) VALUES ('radar', 'executar')")
 

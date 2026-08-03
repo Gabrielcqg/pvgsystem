@@ -101,7 +101,7 @@ def main() -> int:
             "evidence": "SECRET SCAN: clean",
         },
         "migrations_clean_database": {
-            "command": "MIGRATION_DATABASE_URL=postgresql://gabrielcamargo@localhost:54339/pavageau .venv/bin/python -m app.db.migrate",
+            "command": "PYTHONPATH=backend MIGRATION_DATABASE_URL=postgresql://gabrielcamargo@localhost:54339/pavageau .venv/bin/python -m app.db.migrate",
             "result": "PASS",
             "evidence": "applied migrations 000_bootstrap.sql through 010_radar_role.sql on a clean local Postgres database",
         },
@@ -111,12 +111,12 @@ def main() -> int:
             "evidence": "39 passed",
         },
         "lint": {
-            "command": ".venv/bin/python -m ruff check app tests",
+            "command": ".venv/bin/python -m ruff check backend/app tests",
             "result": "PASS",
             "evidence": "All checks passed",
         },
         "typecheck": {
-            "command": ".venv/bin/python -m mypy app",
+            "command": ".venv/bin/python -m mypy backend/app",
             "result": "PASS",
             "evidence": "Success: no issues found in 29 source files",
         },
@@ -198,7 +198,7 @@ def main() -> int:
     }
     scraper = {
         "canonical_path": "plans/active/pavageau-sistema-integrado-backend/vendor/scraper/consulta_tjsp_lote.py",
-        "runtime_path": "radar/scrapers/vendor/consulta_tjsp_lote.py",
+        "runtime_path": "backend/radar/scrapers/vendor/consulta_tjsp_lote.py",
         "sha256": "c9429f2aa3ac05a30fe53075ce56fb2def63e5cc82f229a0531b94ba73701ad8",
         "protected_branches": ["eproc_eventos", "container_movimentacao"],
         "characterization": "TEST-SCRAPER-01/02/03 passed against golden fixtures",
@@ -269,11 +269,11 @@ def main() -> int:
         ],
         "commands_to_run": [
             "python3 -m venv .venv",
-            ".venv/bin/python -m pip install -r requirements-dev.txt",
+            ".venv/bin/python -m pip install -r backend/requirements-dev.txt",
             "docker compose up -d db",
-            "MIGRATION_DATABASE_URL=postgresql://postgres:postgres@localhost:54329/pavageau .venv/bin/python -m app.db.migrate",
+            "PYTHONPATH=backend MIGRATION_DATABASE_URL=postgresql://postgres:postgres@localhost:54329/pavageau .venv/bin/python -m app.db.migrate",
             "DATABASE_URL=postgresql://postgres:postgres@localhost:54329/pavageau .venv/bin/python -m pytest -q",
-            "DATABASE_URL=postgresql://postgres:postgres@localhost:54329/pavageau .venv/bin/uvicorn app.api.main:app --host 127.0.0.1 --port 8000",
+            "PYTHONPATH=backend DATABASE_URL=postgresql://postgres:postgres@localhost:54329/pavageau .venv/bin/uvicorn app.api.main:app --host 127.0.0.1 --port 8000",
         ],
         "truthful": True,
         "final_acceptance_judge_passed": ok,

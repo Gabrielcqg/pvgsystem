@@ -1,0 +1,11 @@
+id: "IX-029"
+screen_id: "UI-011"
+user_action: "filtros e paginacao"
+frontend_validation: "zod no frontend; tipos via OpenAPI"
+request_contract: "tipado via OpenAPI (openapi-typescript)"
+backend_handler: "(resource GET com filtros)"
+success_response: "2xx; invalidacao das queries TanStack afetadas"
+error_responses: ["estado de filtro em URL", "401 -> sessao expirada", "403 -> sem-acesso", "5xx/offline -> erro nao destrutivo"]
+business_rule: ["FR-058"]
+acceptance_criteria: ["Chama o endpoint/Auth real; sem botao morto; sem dado falso", "Erros mapeados pelo cliente central"]
+tests: ["TEST-FE-CLIENT"]

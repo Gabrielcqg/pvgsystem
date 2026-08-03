@@ -2,7 +2,7 @@
   "plan_package_validation": {
     "command": "python3 scripts/validate_plan_package.py plans/active/pavageau-sistema-integrado-backend",
     "result": "PASS",
-    "evidence": "681/681 checks passed"
+    "evidence": "854/854 checks passed"
   },
   "secret_scan": {
     "command": "python3 scripts/scan_secrets.py",
@@ -15,9 +15,34 @@
     "evidence": "applied migrations 000_bootstrap.sql through 010_radar_role.sql on a clean local Postgres database"
   },
   "full_pytest": {
-    "command": "DATABASE_URL=postgresql://gabrielcamargo@localhost:54339/pavageau .venv/bin/python -m pytest -q",
+    "command": "DATABASE_URL=postgresql://postgres:postgres@localhost:54329/pavageau .venv/bin/python -m pytest -q",
     "result": "PASS",
-    "evidence": "39 passed"
+    "evidence": "50 passed"
+  },
+  "frontend_build": {
+    "command": "npm run build (frontend/)",
+    "result": "PASS",
+    "evidence": "Vite production build passed; split chunks max gzip 66.77 kB"
+  },
+  "frontend_unit_component": {
+    "command": "npm test (frontend/)",
+    "result": "PASS",
+    "evidence": "2 test files, 5 tests passed"
+  },
+  "frontend_no_mock_paths": {
+    "command": "npm run check:no-mocks (frontend/)",
+    "result": "PASS",
+    "evidence": "No production test/static-data markers found"
+  },
+  "frontend_real_auth_e2e": {
+    "command": "set -a; . ../.env; set +a; VITE_API_URL=http://127.0.0.1:8010 PLAYWRIGHT_BASE_URL=http://127.0.0.1:5175 npm run test:e2e",
+    "result": "PASS",
+    "evidence": "1 Playwright test passed: Supabase Auth login, FastAPI protected dashboard, contratos navigation, Axe accessibility checks"
+  },
+  "docker_frontend": {
+    "command": "docker compose build frontend && docker compose up -d db api frontend && curl -fsS http://127.0.0.1:8000/health && curl -fsSI http://127.0.0.1:5173",
+    "result": "PASS",
+    "evidence": "frontend image built; db/api/frontend running; API health returned ok; frontend returned HTTP 200"
   },
   "lint": {
     "command": ".venv/bin/python -m ruff check app tests",

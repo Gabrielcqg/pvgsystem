@@ -1,5 +1,11 @@
 # 23 — Task Decomposition
 
+> **plan_audit 2026-07-21 (commit 7be04107): Phases 0–6 are ALREADY IMPLEMENTED and applied to Supabase.**
+> Codex **verifies they are present and does not rebuild them**; the migration source is
+> `supabase/migrations/` (timestamped), the legacy `migrations/000-011` dir is removed, and no applied
+> migration may be duplicated. **Only Phase 7 (backend-completion of genuinely-missing endpoints + JWKS
+> rework + frontend) is new build work.** See `runtime/60-repo-reconciliation.md`.
+
 Vertical slices where possible, so value becomes provable early. Foundation work stays horizontal.
 
 ---
@@ -27,17 +33,17 @@ the dependency graph and not merely by document order.
 
 | ID | Task | Deliverable |
 |---|---|---|
-| **T-009** | **Bootstrap: `pgcrypto`; local-only stub `auth` schema + `auth.users` + `authenticated` role, all `IF NOT EXISTS`** (DEC-30) | `000_bootstrap.sql` |
-| T-010 | Enums (incl. `tribunal_sigla`) + `parceiros` seeded | `001_enums.sql`, `002_parceiros.sql` |
-| T-011 | `contratos`, `parcelas` + constraints + `revisar` columns + `set_atualizado_em()` trigger | `003_contratos.sql` |
-| T-012 | `lancamentos`, `custos_fixos`, `parametros`, `configuracoes` + `ux_lanc_origem` | `004_financeiro.sql` |
-| **T-013** | **Radar tables** (`processos`, `execucoes_radar`, `resultados_consulta`, `movimentacoes_novas`) | `005_radar.sql` |
-| **T-014** | **`tarefas`** + both idempotency indexes — **after radar** (DEC-29: it FKs `movimentacoes_novas` and `processos`) | `006_tarefas.sql` |
-| T-015 | `auditoria` **+ `import_log`** + insert-only triggers + redaction | `007_auditoria.sql` |
-| T-016 | All six `ind_*` tables with full columns + `REVOKE` writes | `008_indicadores.sql` |
-| T-017 | RLS enabled + policies for **every** table incl. `import_log` (insert-only) | `009_rls.sql` |
-| **T-019** | **`CREATE ROLE radar_worker` + scoped GRANTs + policies `TO radar_worker`** (09 §3.1) — without it the worker is denied by RLS and the orchestrator cannot run at all | `010_radar_role.sql` |
-| T-018 | Verify: rebuild from zero **on both local Postgres and Supabase**, run TEST-RLS-01/02 | **GATE-SCHEMA**, **GATE-RLS** |
+| **T-009** | **Bootstrap: `pgcrypto`; local-only stub `auth` schema + `auth.users` + `authenticated` role, all `IF NOT EXISTS`** (DEC-30)  | (applied in `supabase/migrations/` — VERIFY present, do not rebuild) |
+| T-010 | Enums (incl. `tribunal_sigla`) + `parceiros` seeded | (applied in `supabase/migrations/`), (applied in `supabase/migrations/`) |
+| T-011 | `contratos`, `parcelas` + constraints + `revisar` columns + `set_atualizado_em()` trigger  | (applied in `supabase/migrations/` — VERIFY present, do not rebuild) |
+| T-012 | `lancamentos`, `custos_fixos`, `parametros`, `configuracoes` + `ux_lanc_origem`  | (applied in `supabase/migrations/` — VERIFY present, do not rebuild) |
+| **T-013** | **Radar tables** (`processos`, `execucoes_radar`, `resultados_consulta`, `movimentacoes_novas`)  | (applied in `supabase/migrations/` — VERIFY present, do not rebuild) |
+| **T-014** | **`tarefas`** + both idempotency indexes — **after radar** (DEC-29: it FKs `movimentacoes_novas` and `processos`)  | (applied in `supabase/migrations/` — VERIFY present, do not rebuild) |
+| T-015 | `auditoria` **+ `import_log`** + insert-only triggers + redaction  | (applied in `supabase/migrations/` — VERIFY present, do not rebuild) |
+| T-016 | All six `ind_*` tables with full columns + `REVOKE` writes  | (applied in `supabase/migrations/` — VERIFY present, do not rebuild) |
+| T-017 | RLS enabled + policies for **every** table incl. `import_log` (insert-only)  | (applied in `supabase/migrations/` — VERIFY present, do not rebuild) |
+| **T-019** | **`CREATE ROLE radar_worker` + scoped GRANTs + policies `TO radar_worker`** (09 §3.1) — without it the worker is denied by RLS and the orchestrator cannot run at all  | (applied in `supabase/migrations/` — VERIFY present, do not rebuild) |
+| T-018 | **Verify** the applied `supabase/migrations/` schema + RLS are present (already applied — do NOT rebuild); run TEST-RLS-01/02 | **GATE-SCHEMA**, **GATE-RLS** |
 
 > **T-013 before T-014 is not cosmetic.** `tarefas.movimentacao_id` and `tarefas.processo_id`
 > reference radar tables. The reverse order aborts the first clean rebuild with
@@ -134,3 +140,22 @@ Phases 3 and 4 are parallelizable after Phase 2: disjoint file ownership
 **Blocking: none.** Every phase, including 6, completes on the local stack. `AWS_REGION` is validated
 configuration with a default (DEC-35) and is unread locally. EXT-DEP-01 gates only the production
 *apply* and `GATE-PROD-RUN`.
+
+## Phase 7 — Frontend & integration (vertical slices; tests per slice)
+
+| ID | Task | Test |
+|---|---|---|
+| T-BE-1 | **ADDITIVE endpoints only** (runtime/62 §2 — CRUD already exists via `_collection_routes`; do NOT recreate): `GET /me`, `POST /radar/executar`, `GET /radar/execucoes\|/{id}\|/ultima\|/movimentacoes-novas`, `GET /auditoria`, `GET /contratos/{id}`; thin wrappers over existing services (FR-67) | TEST-FE-BE |
+| T-BE-2 | **DONE (commit af9c5d3)** — ES256/JWKS + HS256 compat implemented in `app/db/session.py`; VERIFY present, do not rebuild (FR-68) | TEST-FE-JWKS |
+| T-FE-01 | FS-1 Fundacao + Auth (**reproduzir pavageau_v2.jsx fielmente, runtime/63; preservar lib/api.js, lib/supabase.js e as telas de login/reset aprovadas; substituir o App.jsx gigante por componentes por view**): Vite/React/TS, design system+tokens, Supabase Auth (login/set-password/reset), **JWKS backend rework fail-closed**, `GET /me`, guards, api client, not-authorized (FR-53,54,55,56,68,69) | TEST-FE-F01 |
+| T-FE-02 | FS-2 Painel: `/painel` + CalculatedValue read-only, dashboard real (FR-57,71) | TEST-FE-CALC |
+| T-FE-03 | FS-3 Contratos & Parcelas: `/parceiros`,`/contratos` CRUD + detalhe, confirmar/estornar (FR-58,59,67) | TEST-FE-F16 |
+| T-FE-04 | FS-4 Lancamentos & Fluxo: `/lancamentos` CRUD + quitacao, `/custos-fixos` CRUD + lancar, fluxo read (FR-60,61,67) | TEST-FE-F19 |
+| T-FE-05 | FS-5 Analises & Indicadores: `/analises/mes`,`/dre`,`/balanco` read-only com freshness (FR-57) | TEST-FE-CALC |
+| T-FE-06 | FS-6 Tarefas: `/tarefas` CRUD + concluir + criar de movimentacao (FR-62,67) | TEST-FE-F21 |
+| T-FE-07 | FS-7 Radar & Processos: `/processos` CRUD, `/radar/*`, estados distintos, aguardando scraper, senha (FR-63,64,67) | TEST-FE-F22 |
+| T-FE-08 | FS-8 Config & Auditoria: `/parametros`,`/configuracoes`, auditoria read-only (FR-65,66,67) | TEST-FE-F25 |
+| T-FE-09 | FS-9 Integracao final + E2E + validacao visual + **no-mock validator** + sem regressao no backend (FR-70,72) | TEST-FE-NOMOCK |
+
+Cada fatia: backend necessario + endpoint + banco + frontend + teste + evidencia. Dependencias: FS-1
+antes de tudo; FS-2..8 dependem de FS-1; FS-9 depende de todas.

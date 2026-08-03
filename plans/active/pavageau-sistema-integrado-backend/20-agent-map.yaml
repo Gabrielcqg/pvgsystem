@@ -26,3 +26,6 @@ agents:
   - id: documentation-writer
     responsibility: README, run report, evidence index
     output_contract: documentation_complete satisfied
+  - id: frontend-uiux-builder
+    responsibility: Production frontend from the vendored reference, connected to FastAPI; all states; no fake data
+    output_contract: All screens/routes/contracts implemented against real endpoints; GATE-FE

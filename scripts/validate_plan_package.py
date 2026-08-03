@@ -169,7 +169,7 @@ def validate(plan_dir: str, quiet: bool = False) -> int:
 
     # Gate-state separation: implementation gates must NOT be PASS in a planned package.
     impl_gates = gates_mod.implementation_gates()
-    gate_states = {}
+    gate_states: dict[str, object] = {}
     gate_states.update((meta.get("gates") or {}))
     if lock:
         gate_states.update((lock.get("gate_status") or {}))

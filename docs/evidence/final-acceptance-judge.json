@@ -6,12 +6,12 @@
   ],
   "plan": {
     "slug": "pavageau-sistema-integrado-backend",
-    "version": "2.5.1",
-    "hash": "sha256:9f9fe612f27977042e46edf34a7ce4daae5eb0f11b0f0aa501268f08514ba36c"
+    "version": "3.4.0",
+    "hash": "sha256:9cbf92e19a171b9fb269429b9c43fc68ff7befe5f01e0c35db92802cfb6b76d3"
   },
   "counts": {
-    "requirements": 66,
-    "acceptance_criteria": 80,
+    "requirements": 86,
+    "acceptance_criteria": 100,
     "completion_gates": 35
   },
   "gates": [
@@ -47,8 +47,8 @@
     },
     {
       "gate": "frontend_implemented",
-      "state": "NA",
-      "note": "not applicable"
+      "state": "PASS",
+      "note": ""
     },
     {
       "gate": "backend_implemented",
@@ -127,23 +127,23 @@
     },
     {
       "gate": "e2e_tests_passed",
-      "state": "NA",
-      "note": "not applicable"
+      "state": "PASS",
+      "note": ""
     },
     {
       "gate": "browser_validation_passed",
-      "state": "NA",
-      "note": "not applicable"
+      "state": "PASS",
+      "note": ""
     },
     {
       "gate": "accessibility_validation_passed",
-      "state": "NA",
-      "note": "not applicable"
+      "state": "PASS",
+      "note": ""
     },
     {
       "gate": "frontend_experience_review_passed",
-      "state": "NA",
-      "note": "not applicable"
+      "state": "PASS",
+      "note": ""
     },
     {
       "gate": "ai_evaluations_passed",

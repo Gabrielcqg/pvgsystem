@@ -95,7 +95,9 @@ def _parse_scalar(tok: str) -> Any:
 
 
 def _split_flow(body: str) -> list[str]:
-    parts, depth, cur, in_s, in_d = [], 0, [], False, False
+    parts: list[str] = []
+    cur: list[str] = []
+    depth, in_s, in_d = 0, False, False
     for c in body:
         if c == "'" and not in_d:
             in_s = not in_s

@@ -2,8 +2,8 @@ execution_mode: autonomous
 plan_status: implementation_ready
 human_approval_per_task: false
 continue_until_completion: true
-active_plan_version: "2.5.1"
-active_plan_hash: "sha256:9f9fe612f27977042e46edf34a7ce4daae5eb0f11b0f0aa501268f08514ba36c"
+active_plan_version: "3.4.0"
+active_plan_hash: "sha256:9cbf92e19a171b9fb269429b9c43fc68ff7befe5f01e0c35db92802cfb6b76d3"
 created_at: "2026-07-19"
 autonomy_profile: development_full_autonomy
 
@@ -35,22 +35,57 @@ required_completion_gates:
   - documentation_complete
   - deviation_report_complete
   - external_blockers_documented
+  - frontend_implemented
+  - e2e_tests_passed
+  - browser_validation_passed
+  - accessibility_validation_passed
+  - frontend_experience_review_passed
   - final_acceptance_judge_passed
 
 plan_facts:
   has_database: true
   has_auth: true
-  has_ui: false
+  has_ui: true
   has_ai: false
   lint_configured: true
   types_applicable: true
+
+reconciliation:
+  synced_to_commit: af9c5d3b8970f5012189c2b6b9ce08775249016c
+  audited_at: "2026-07-21b"
+  backend_status: implemented_preserve
+  migration_source: supabase/migrations
+  legacy_migrations_dir: removed
+  scraper_hash_intact: true
+  backend_completion_only_missing_endpoints: true
+  jwks_es256_auth: implemented_verify
+  execution_focus: frontend
+  visual_authority: vendor/frontend/pavageau_v2.jsx (MUST_FOLLOW, runtime/63)
+  visual_replacement: replace frontend/src presentation; preserve lib integrations + login screens
+  backend_baseline_commit: af9c5d3b8970f5012189c2b6b9ce08775249016c
+  backend_completion_endpoints: [GET /me, POST /radar/executar, GET /radar/execucoes, GET /radar/execucoes/{id}, GET /radar/ultima, GET /radar/movimentacoes-novas, GET /auditoria, GET /contratos/{id}]
+  crud_already_exists_do_not_recreate: [parceiros, contratos, lancamentos, custos-fixos, tarefas, processos]
+  auth_hardening_items: [aud_check, fail_closed_config]
+  codex_questions_required: 0
+
+frontend_closure:
+  unresolved_material_decisions: 0
+  codex_questions_required: 0
+  frontend_surfaces_without_contract: 0
+  interactions_without_endpoint_or_local_contract: 0
+  backend_endpoints_without_consumer_when_required: 0
+  production_mock_paths: 0
+  screens: 21
+  interaction_contracts: 30
+  requirements_total: 86
+  requirements_with_verification: 86
 
 closure_pass:
   unresolved_material_decisions: 0
   codex_questions_required: 0
   external_files_required_at_implementation_start: 0
-  requirements_total: 66
-  requirements_with_verification: 66
+  requirements_total: 86
+  requirements_with_verification: 86
   requirements_without_verification: 0
 
 canonical_scraper:

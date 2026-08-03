@@ -5,6 +5,7 @@ import os
 import sys
 import types
 from pathlib import Path
+from urllib.parse import urlparse
 
 import pytest
 
@@ -20,8 +21,12 @@ def _install_drissionpage_stub() -> None:
         return
 
     module = types.ModuleType("DrissionPage")
+    errors_module = types.ModuleType("DrissionPage.errors")
 
     class ChromiumOptions:
+        def __init__(self, *_args, **_kwargs) -> None:
+            pass
+
         def __getattr__(self, _name):
             def _noop(*_args, **_kwargs):
                 return self
@@ -31,9 +36,14 @@ def _install_drissionpage_stub() -> None:
     class ChromiumPage:
         pass
 
-    module.ChromiumOptions = ChromiumOptions
-    module.ChromiumPage = ChromiumPage
+    class BrowserConnectError(Exception):
+        pass
+
+    module.ChromiumOptions = ChromiumOptions  # type: ignore[attr-defined]
+    module.ChromiumPage = ChromiumPage  # type: ignore[attr-defined]
+    errors_module.BrowserConnectError = BrowserConnectError  # type: ignore[attr-defined]
     sys.modules["DrissionPage"] = module
+    sys.modules["DrissionPage.errors"] = errors_module
 
 
 def load_canonical_scraper():
@@ -67,10 +77,14 @@ def db_conn(database_url: str):
 
 
 @pytest.fixture()
-def clean_db(db_conn):
+def clean_db(database_url: str, db_conn):
+    host = urlparse(database_url).hostname or ""
+    if ("supabase.com" in host or "supabase.co" in host) and os.getenv("ALLOW_REMOTE_CLEAN_DB") != "1":
+        pytest.skip("clean_db is destructive and requires a local database or ALLOW_REMOTE_CLEAN_DB=1 for remote Supabase")
     tables = [
         "auditoria",
         "import_log",
+        "tarefa_movimentacoes",
         "tarefas",
         "movimentacoes_novas",
         "resultados_consulta",

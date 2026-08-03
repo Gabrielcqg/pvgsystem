@@ -1,0 +1,3 @@
+# Deps extras para rodar o worker do radar (navegador real).
+# Instale junto com requirements.txt na máquina que roda o worker.
+DrissionPage>=4.0

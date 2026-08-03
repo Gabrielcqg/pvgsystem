@@ -1,104 +1,151 @@
-# Autonomous System Building OS
+# Sistema Integrado Pavageau
 
-A permanent, reusable, runtime-neutral **operating system for planning and
-implementing software systems**. It separates two runtimes:
+Monorepo do Sistema Integrado Pavageau, com frontend React/Vite, backend FastAPI,
+migrations Supabase e executor local transportável do Radar Processual.
 
-- **Claude — Planning runtime.** Discovery, adversarial `grill` review, requirement
-  extraction, architecture, decomposition, and Codex preparation. Entrypoint: `/plan_max`.
-- **Codex — Implementation runtime.** Implementation, testing, repair, validation,
-  documentation, and delivery. Entrypoint: *"Implement the active system plan using the implement-max skill."*
+## Estrutura
 
-> This repository is the **factory**, not a product built by it. Do not implement
-> a product here; use it to plan and hand off products.
+```text
+.
+├── frontend/              # React/Vite, testes Vitest/Playwright e build Netlify
+├── backend/               # FastAPI, domínio, loader, Radar API e worker local
+│   ├── app/               # aplicação FastAPI e regras de negócio
+│   ├── radar/             # scraper TJSP versionado/protegido
+│   ├── radar_worker/      # executor local do Radar
+│   └── requirements*.txt
+├── supabase/              # config.toml e migrations oficiais
+├── scripts/               # validações, importações e automações operacionais
+├── docs/                  # documentação e evidências
+├── tests/                 # testes backend, banco, scraper e contratos
+├── docker-compose.yml     # stack local
+├── netlify.toml           # deploy do frontend no Netlify
+└── .env.example           # nomes de variáveis, sem segredos reais
+```
 
-## The workflow
-1. Open Claude Code in this repository.
-2. Run `/plan_max <system idea or plan>`.
-3. Answer only the grouped **material product** questions, if any.
-4. Let Claude complete and validate the planning package under `plans/active/<slug>/`.
-5. Open Codex in the same repository.
-6. Start implementation: *"Implement the active system plan using the implement-max skill."*
-7. Codex continues until all **completion gates** pass.
-8. Review the final implementation report.
+## Ambientes
 
-## One source of truth
-The canonical OS lives in [`system-building-os/`](system-building-os/). The
-runtime folders `.claude/`, `.codex/`, and `.agents/` are **generated adapters**.
-Edit the canonical registries/policies, then regenerate:
+Desenvolvimento local:
+
+```text
+frontend local -> backend local -> Supabase/Postgres
+```
+
+Produção:
+
+```text
+frontend Netlify -> proxy HTTPS /api -> backend Oracle -> Supabase
+```
+
+No Netlify, o frontend deve usar `VITE_API_URL=/api`. O arquivo `netlify.toml`
+faz proxy de `/api/*` para a API pública da Oracle, evitando chamadas HTTP
+diretas pelo navegador.
+
+## Variáveis
+
+Arquivos seguros para versionar:
+
+- `.env.example`
+- `backend/.env.example`
+- `frontend/.env.example`
+- `frontend/.env.development`
+- `frontend/.env.production.example`
+
+Arquivos reais como `.env`, `.env.local`, `.env.production` e tokens nunca devem
+ser enviados ao Git.
+
+## Rodar Localmente
+
+Backend:
 
 ```bash
-python3 scripts/sync_runtime_adapters.py     # regenerate canonical + adapters + validate
-python3 tests/run_all.py                      # run the factory test suite
+python3 -m venv .venv
+.venv/bin/python -m pip install -r backend/requirements.txt
+PYTHONPATH=backend .venv/bin/uvicorn app.api.main:app --reload --host 127.0.0.1 --port 8000
 ```
 
-## Layout
-```
-system-building-os/     canonical source of truth (policies, lifecycle, contracts,
-                        schemas, agents, skills, capabilities, templates, registries,
-                        evaluators, runtime, documentation)
-.claude/                Claude adapters: commands, agents, skills, hooks, settings template
-.codex/  .agents/       Codex adapters: agents, skills, config.toml
-integrations/mcp/       MCP configuration templates (governed, least privilege)
-plans/                  templates + drafts/active/completed/archived plan packages
-supabase/migrations/    official versioned database migration source for Supabase
-scripts/                discovery, adapter generation, and validators (stdlib Python)
-tests/                  factory tests + dry-run fixtures
-docs/                   how-to documentation
+Frontend:
+
+```bash
+cd frontend
+npm install
+npm run dev
 ```
 
-## Key properties
-- **Semantic adapters:** rules/agents/skills are translated into each runtime's
-  native mechanism, not copied. See `system-building-os/contracts/semantic-adapter.md`.
-- **Full autonomy for safe work; questions only for material product ambiguity.**
-- **Traceability:** every requirement → task → files, and requirement → acceptance → test → evidence.
-- **Completion is gated by evidence**, not by file existence.
-- **Secrets are never read, printed, or committed** — enforced by hooks + scanner.
-- **No external dependencies:** validators are pure stdlib Python 3.
-
-See [`docs/`](docs/) for the full documentation set.
-
-## Active Implementation Evidence
-
-This repository currently also contains the Codex implementation artifacts for active plan
-`pavageau-sistema-integrado-backend` version `2.5.1`. Evidence, run commands, deviations and the
-final implementation report are indexed in [`docs/evidence/README.md`](docs/evidence/README.md).
-
-## Local Docker Preview
-
-The Compose stack starts Postgres, the FastAPI backend, and a Vite viewer for the
-vendored frontend reference.
+Stack completa com Docker:
 
 ```bash
 docker compose up --build
 ```
 
-Open:
+URLs locais:
 
-- Frontend reference viewer: http://localhost:5173
-- Backend OpenAPI docs: http://localhost:8000/docs
-- Backend health check: http://localhost:8000/health
+- Frontend: `http://localhost:5173`
+- Backend health: `http://localhost:8000/health`
+- Backend docs: `http://localhost:8000/docs`
 
-The frontend viewer imports
-`plans/active/pavageau-sistema-integrado-backend/vendor/frontend/pavageau_v2.jsx`
-and uses its built-in example data. It is not a production frontend wired to the
-API; the implemented product scope for this plan is backend/API/database/radar.
+## Banco de Dados
 
-Stop the stack:
+A fonte oficial de migrations é:
 
-```bash
-docker compose down
+```text
+supabase/migrations/
 ```
 
-Reset the local Docker database:
+Aplicar migrations:
 
 ```bash
-docker compose down -v
+PYTHONPATH=backend MIGRATION_DATABASE_URL="$MIGRATION_DATABASE_URL" .venv/bin/python -m app.db.migrate
 ```
 
-## Database Migrations
+## Radar Processual
 
-The official database source is `supabase/migrations/`. Remote deployments use
-Supabase migration history, and the local Python runner reads the same directory.
-For Docker-only local Postgres, the runner creates a small Supabase compatibility
-bootstrap (`auth.jwt`, local roles, and schemas) before applying product
-migrations; it does not maintain a separate product schema.
+O backend hospedado na Oracle expõe os endpoints do Radar. O scraper TJSP pesado
+continua separado e transportável em `backend/radar_worker/`, para execução local
+ou futura migração para servidor apropriado.
+
+Execução local do worker:
+
+```bash
+PYTHONPATH=backend HEADLESS=false .venv/bin/python -m radar_worker --sem-email
+```
+
+## Testes
+
+Backend e banco:
+
+```bash
+PYTHONPATH=backend .venv/bin/ruff check backend/app backend/radar_worker tests
+PYTHONPATH=backend .venv/bin/mypy backend/app
+PYTHONPATH=backend DATABASE_URL="$DATABASE_URL" .venv/bin/pytest -q
+```
+
+Frontend:
+
+```bash
+cd frontend
+npm test -- --run
+npm run build
+```
+
+Scan de segredos:
+
+```bash
+python3 scripts/scan_secrets.py
+```
+
+## Netlify
+
+Configuração do frontend:
+
+- Base directory: `frontend`
+- Build command: `npm run build`
+- Publish directory: `frontend/dist`
+- Production branch: `main`
+
+Variáveis de produção:
+
+- `VITE_SUPABASE_URL`
+- `VITE_SUPABASE_ANON_KEY` ou `VITE_SUPABASE_PUBLISHABLE_KEY`
+- `VITE_API_URL=/api`
+
+O deploy automático deve ser conectado ao GitHub na branch `main`.

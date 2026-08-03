@@ -11,6 +11,7 @@ from __future__ import annotations
 import json
 import os
 import sys
+from typing import Any
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, os.path.join(ROOT, "scripts", "lib"))
@@ -354,7 +355,7 @@ def internal_crud() -> None:
         "## 8.19 Acceptance criteria\n"
         "See 26-acceptance-criteria.yaml (AC-001..AC-005).\n"
     )
-    tasks = [
+    tasks: list[dict[str, Any]] = [
         {"id": "TASK-001", "title": "Bootstrap project + toolchain", "objective":
          "Create the runnable skeleton and detect package/lint/test/build commands.",
          "requirements": ["FR-001"], "dependencies": [],
@@ -509,7 +510,7 @@ def ai_saas() -> None:
         "## 8.19 Acceptance criteria\n"
         "See 26-acceptance-criteria.yaml (AC-001..AC-004).\n"
     )
-    tasks = [
+    tasks: list[dict[str, Any]] = [
         {"id": "TASK-001", "title": "Bootstrap + multi-tenant scaffold", "objective":
          "Create the runnable skeleton with tenant context.",
          "requirements": ["FR-004"], "dependencies": [],

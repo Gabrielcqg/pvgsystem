@@ -1,0 +1,11 @@
+id: "IX-020"
+screen_id: "UI-016"
+user_action: "concluir tarefa"
+frontend_validation: "zod no frontend; tipos via OpenAPI"
+request_contract: "tipado via OpenAPI (openapi-typescript)"
+backend_handler: "PATCH /tarefas/{id}"
+success_response: "2xx; invalidacao das queries TanStack afetadas"
+error_responses: ["optimistic + rollback", "401 -> sessao expirada", "403 -> sem-acesso", "5xx/offline -> erro nao destrutivo"]
+business_rule: ["FR-062"]
+acceptance_criteria: ["Chama o endpoint/Auth real; sem botao morto; sem dado falso", "Erros mapeados pelo cliente central"]
+tests: ["TEST-FE-CLIENT"]

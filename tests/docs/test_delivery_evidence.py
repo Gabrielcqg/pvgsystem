@@ -39,6 +39,7 @@ def test_final_acceptance_judge_output_covers_requirements_and_criteria() -> Non
     acceptance = json.loads((EVIDENCE / "acceptance-evidence.json").read_text(encoding="utf-8"))
 
     assert judge["ok"] is True
-    assert judge["counts"]["requirements"] == 66
-    assert acceptance["acceptance_criteria_evaluated"] == 80
-    assert acceptance["requirements_with_evidence"] == 66
+    assert judge["counts"]["requirements"] == acceptance["requirements_total"]
+    assert judge["counts"]["acceptance_criteria"] == acceptance["acceptance_criteria_total"]
+    assert acceptance["acceptance_criteria_evaluated"] == acceptance["acceptance_criteria_total"]
+    assert acceptance["requirements_with_evidence"] == acceptance["requirements_total"]

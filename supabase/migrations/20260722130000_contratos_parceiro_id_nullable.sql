@@ -1,0 +1,11 @@
+-- Contracts may legitimately exist without a partner. The product model itself
+-- surfaces "contratos sem parceiro" as a warning (m.semParceiro), and the
+-- contract form offers an explicit "Sem parceiro" option. The original NOT NULL
+-- on contratos.parceiro_id therefore made every partnerless contract insert fail
+-- with a 422 ("null value in column parceiro_id violates not-null constraint"),
+-- which the optimistic UI reverted — the contract appeared, then vanished.
+--
+-- Relaxing the column to nullable aligns the schema with the domain and the UI.
+-- The FK stays ON DELETE RESTRICT (the UI only allows removing partners that have
+-- no contracts), so referential integrity is unchanged for non-null values.
+alter table public.contratos alter column parceiro_id drop not null;

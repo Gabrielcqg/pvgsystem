@@ -56,7 +56,7 @@ product decisions, which the doctrine forbids.
 | **DEC-27** | **Vault = Supabase Vault (`vault.secrets`) with the DB storing only `senha_ref`**, and the decryption key held **outside** the database in `SUPABASE_VAULT_KEY_ID`. Env vars: `VAULT_PROVIDER`, `SUPABASE_VAULT_KEY_ID`. `senha_ref` format: `vault:<uuid>`. | DEC-05 requires the vault be *separate from the app DB*. Strictly read, Supabase Vault lives in the same Postgres — but its encryption key is managed by Supabase KMS and is **not** in the database, so a dump of the app database yields ciphertext only, which is the actual property DEC-05 protects. The alternative (AWS Secrets Manager) adds a second cloud vendor, IAM, and network failure modes for **5 passwords**. `vault.py` is an interface with one implementation, so switching later is one class. |
 | **DEC-28** | **API stack = FastAPI; request handlers connect with the caller's JWT, never `service_role`.** | `service_role` bypasses RLS. Using it for request handling would silently void NFR-01 and threat control T3 — the `REVOKE` on `ind_*` would be revoked on a role nobody uses, so the plan would *look* protected and not be. Python also lets the API and the radar worker share one domain layer. |
 | **DEC-29** | **Migration order is radar-before-tasks**: `005_radar.sql`, `006_tarefas.sql`. | `tarefas` has FKs to `movimentacoes_novas` and `processos`. The original order made `005` reference tables created in `006` — the schema would fail on the first clean rebuild, i.e. `GATE-SCHEMA` fails immediately. |
-| **DEC-30** | **`000_bootstrap.sql` creates `pgcrypto`, and — on local Postgres only — a stub `auth` schema, an `auth.users` table and an `authenticated` role.** | `auth.users` and the `authenticated` role do not exist on stock Postgres, so migrations 005/006/009 could not run in the local-development path the handoff mandates while OPEN-01 is open. The stub is guarded by `IF NOT EXISTS` so it is inert on Supabase. |
+| **DEC-30** *(superseded by DEC-51: migrations now live in `supabase/migrations/`, already applied)* | **`000_bootstrap.sql` creates `pgcrypto`, and — on local Postgres only — a stub `auth` schema, an `auth.users` table and an `authenticated` role.** | `auth.users` and the `authenticated` role do not exist on stock Postgres, so migrations 005/006/009 could not run in the local-development path the handoff mandates while OPEN-01 is open. The stub is guarded by `IF NOT EXISTS` so it is inert on Supabase. |
 | **DEC-31** | **`tribunal` is an enum (`tribunal_sigla`), not free text; `processos.numero` carries a CNJ-format CHECK.** | Free text contradicts the plan's own vocabulary doctrine, and a typo would route to `pendente_implementacao` **forever, silently** — that status is by design not a failure, so nothing would ever surface it. The real run also produced one `numero_invalido`, which would otherwise consume a browser slot weekly, indefinitely. |
 | **DEC-32** | **All derived report formulas are evaluated *as of* a reference month, never against `current_date`.** | `inadimplencia`/`a_receber` were defined relative to "current month" but stored in `(ano,mes)` rows recalculated only on fact change. Every materialized row would silently go stale at each month boundary, and TEST-CALC-07 — the keystone invariant — would fail on the first of every month with no fact having changed. |
 | **DEC-33** | **Overdue receivables remain in `balanco.ativo`.** | Excluding them while counting *all* unpaid exits in `passivo` systematically understates equity for a firm carrying real inadimplência. `patrimonio_liquido` closes by construction either way, so TEST-CALC-04 would have passed while the balance sheet was wrong — the asymmetry is invisible to the test that ought to catch it. |
@@ -79,9 +79,42 @@ Every remaining deferral was resolved. Nothing is left for Codex to ask.
 
 ---
 
+
+## Part H — plan_audit at commit af9c5d3 (2026-07-21)
+
+| ID | Decision | Rationale |
+|---|---|---|
+| **DEC-53** | **JWKS/ES256 auth is IMPLEMENTED (DEC-44 satisfied); T-BE-2 is DONE.** Two hardening items remain on the `/me` slice: validate `aud`, and guarantee fail-closed config. | `app/db/session.py` at commit af9c5d3 validates ES256/RS256 via JWKS + HS256 compat. `runtime/61-audit-af9c5d3.md`. |
+| **DEC-54** | **Deploy non-negotiable: `SUPABASE_JWT_SECRET` must be set** so the verification block runs; otherwise auth fails open (FINDING-J1). | The verification is gated on that env var; unset = no signature check. |
+
+## Part G — plan_audit reconciliation (2026-07-21, commit 7be04107)
+
+| ID | Decision | Rationale |
+|---|---|---|
+| **DEC-50** | **Backend Phases 0-6 are IMPLEMENTED and applied; Codex preserves them (verify, not rebuild).** | The schema/RLS/domain/radar/loader/scraper are on disk and applied to Supabase. Re-planning them would risk regression — the brief forbids it. `runtime/60-repo-reconciliation.md` §1. |
+| **DEC-51** | **`supabase/migrations/` (timestamped) is the sole migration source; new DB work = new timestamped migration; never duplicate an applied one.** The legacy `migrations/000-011` dir is removed. | Matches the applied remote state; prevents duplicate-migration errors. |
+| **DEC-52** | **Env reality:** add `MIGRATION_DATABASE_URL`; `SUPABASE_ALLOWED_EMAILS` is an API-layer allowlist alongside `app_members` (RLS authoritative); frontend uses `VITE_SUPABASE_ANON_KEY`; `SUPABASE_JWT_JWKS_URL` not yet set (JWKS is remaining work). | Reconciled from `.env.example` names. |
+
+## Part F — Frontend phase (`/plan_frontend_max`, 2026-07-20)
+
+Verified against the live repo, not the brief (`runtime/50-frontend-preflight.md`).
+
+| ID | Decision | Rationale |
+|---|---|---|
+| **DEC-42** | **Authorization model is the live `public.app_members` + `current_user_is_app_member()`**, already applied in `supabase/migrations/20260720212612_*`. The frontend and any new backend build on it; the earlier `emails_autorizados`+trigger sketch is **superseded**. | It already exists and every RLS policy gates on it. Re-inventing it would conflict with the applied schema. |
+| **DEC-43** | **This plan carries a backend-completion track.** The delivered FastAPI exposes 20 routes; the frontend needs full CRUD for parceiros/contratos/lançamentos/custos-fixos/tarefas/processos plus radar-run endpoints and `GET /me`. These are specified here and built as vertical slices. | The brief (§2/§8) requires planning the missing backend contracts rather than faking data. A frontend against absent endpoints would be all dead buttons. |
+| **DEC-44** | **Auth validation reworked to JWKS, fail-closed.** Verify Supabase asymmetric tokens via the project JWKS (cached, rotated), validate `exp/nbf/iss/aud/sub` and `role=authenticated`, reject unexpected `alg`, 401≠403. HS256 (`SUPABASE_JWT_SECRET`) kept **only** as an explicit legacy fallback. The current fail-open default (no secret → accepts forged tokens) is removed. | The delivered `parse_jwt_claims` treats malformed tokens as authenticated when no secret is set — a critical hole. Modern Supabase signs asymmetrically. |
+| **DEC-45** | **Admin/user-management is out of v1 scope.** v1 = Login + Set-password + Reset + "authenticated-but-not-authorized" state. The allowlist is managed by the owner in Supabase (dashboard/SQL). No member-CRUD screen, no member endpoints. | User decision, 2026-07-20 — "por enquanto só o dono". |
+| **DEC-46** | **Provisioning = Supabase invite + password reset.** Public sign-up **disabled**; email invited via dashboard; user sets password via the invite link; "esqueci a senha" resets by email. | User decision. Keeps account creation controlled; `app_members` governs data access independently. |
+| **DEC-47** | **Roles are not differentiated in the v1 UI** — every authorized user sees everything. `papel` stays in the schema and policies stay role-ready for later segmentation. | User decision — single owner (admin) today. |
+| **DEC-48** | **Stack: React + TypeScript + Vite + TanStack Query + React Router + react-hook-form + zod + `@supabase/supabase-js` (Auth only) + a typed FastAPI client generated from OpenAPI.** Supabase client touches **only** Auth; all domain data flows through FastAPI. | Matches the reference (a dense React app), gives typed contracts from OpenAPI, and keeps the "domain through FastAPI, RLS via forwarded JWT" boundary. |
+| **DEC-49** | **`FRONTEND_REFERENCE_PAVAGEAU.md` (vendored) is the authoritative visual contract; `pavageau_v2.jsx` is secondary evidence.** Where a reference shows data/an action with no backend, the plan either specifies the backend contract or records the item as out of product — never a silent fake. | Brief §5. |
+
+---
+
 ## Open / blocking
 
-**None.** OPEN-01 and OPEN-02 are closed by DEC-35 and DEC-37.
+**None.** OPEN-01 and OPEN-02 are closed by DEC-35 and DEC-37. Frontend material questions closed by DEC-45/46/47.
 
 The single remaining dependency is external and operational, not a decision:
 

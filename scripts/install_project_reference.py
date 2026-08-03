@@ -49,7 +49,9 @@ def _iter_template_files():
 
 def install(target_root: str, force: bool = False, dry_run: bool = False) -> int:
     dest_base = os.path.join(target_root, "project-reference")
-    created, skipped, forced = [], [], []
+    created: list[tuple[str, str]] = []
+    skipped: list[tuple[str, str]] = []
+    forced: list[tuple[str, str]] = []
     for rel, src_path in sorted(_iter_template_files()):
         cls = CLASSIFICATION.get(rel, "project-owned")
         dest = os.path.join(dest_base, rel)

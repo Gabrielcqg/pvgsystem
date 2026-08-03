@@ -81,7 +81,7 @@ Credenciais administrativas como `SUPABASE_SERVICE_ROLE_KEY`,
 ## Migrations
 
 A fonte oficial de schema e policies e `supabase/migrations/`.
-O runner local `python -m app.db.migrate` tambem le essa pasta. Quando usado
+O runner local `PYTHONPATH=backend python -m app.db.migrate` tambem le essa pasta. Quando usado
 contra o Postgres Docker local, ele cria somente objetos de compatibilidade do
 ambiente Supabase (`auth.jwt`, roles locais e schemas auxiliares) antes de
 aplicar as migrations de produto.

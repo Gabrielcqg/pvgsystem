@@ -1,0 +1,49 @@
+source: references
+color:
+  navy: "#1E2A56"
+  navy_deep: "#151D3E"
+  navy_soft: "#2C3B6E"
+  navy_line: "#33417A"
+  gold_soft: "#E6D2A0"
+  gold_pale: "#FDF7E8"
+  gold_accent: "#C9A24D"
+  bg: "#F5F6FA"
+  surface: "#FFFFFF"
+  border: "#E3E6EE"
+  text: "#1E2A56"
+  text_muted: "#79829C"
+  positive: "#1F7A4D"
+  negative: "#B23A3A"
+  warning: "#B8912F"
+typography:
+  font_family: "system-ui, 'Segoe UI', Roboto, sans-serif; considerar um serif editorial para titulos"
+  page_title: "24px"
+  card_title: "16px"
+  body: "14px"
+  card_text: "13-17px"
+  aux: "9-11.5px"
+spacing:
+  card_padding: "13-17px"
+  table_row_height: "35-40px"
+  gap: "8-12px"
+radius:
+  default: "2px"
+  button: "2px"
+  input: "2px"
+  card: "0-2px"
+shadow:
+  cards: none
+  pulse_update: "temporary gold pulse only"
+motion:
+  default: minimal
+breakpoints:
+  sm: "640px"
+  md: "768px"
+  lg: "1024px"
+  xl: "1280px"
+z_index:
+  base: 0
+  dropdown: 100
+  drawer: 200
+  modal: 300
+  toast: 400

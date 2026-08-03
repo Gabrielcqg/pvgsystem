@@ -10,6 +10,7 @@ from app.radar.notificacao import avaliar_alertas, linhas_email_tecnico
 from app.radar.orchestrator import ProcessoMonitorado, executar
 from app.radar.scrapers.base import Movimentacao, ProcessoConsulta, ResultadoConsulta
 from app.radar.scrapers.registry import SCRAPERS, resolver
+import app.radar.scrapers.tjsp as tjsp_module
 from app.radar.scrapers.tjsp import TJSPScraper, diagnostico_permitido, submeter_senha
 from app.radar.seed import load_process_seed
 from tests.conftest import SCRAPER_FIXTURE_DIR
@@ -106,6 +107,85 @@ def test_tjsp_adapter_uses_golden_fixture_without_browser() -> None:
 
 
 @pytest.mark.radar
+def test_tjsp_adapter_reports_captcha_alert_as_captcha_timeout(monkeypatch) -> None:
+    class FakeVendor:
+        PORTAL_TJSP = object()
+
+        @staticmethod
+        def texto_limpo(value: str) -> str:
+            return value
+
+        @staticmethod
+        def formatar_cnj(value: str) -> str:
+            return value
+
+        @staticmethod
+        def somente_digitos(value: str) -> str:
+            return "".join(ch for ch in value if ch.isdigit())
+
+        @staticmethod
+        def chave_texto(value: str) -> str:
+            return value
+
+        @staticmethod
+        def consultar_processo(_page, _portal, _item):
+            return {
+                "status": "timeout",
+                "mensagem": "Aguarde a verificação do captcha.",
+                "movimentacoes": [],
+                "duracao_total_segundos": 10.5,
+            }
+
+    monkeypatch.setattr(tjsp_module, "_load_vendor", lambda: FakeVendor)
+
+    resultado = TJSPScraper(page=object()).consultar(ProcessoConsulta("1005628-88.2024.8.26.0073", "TJSP"))
+
+    assert resultado.status == "captcha_timeout"
+    assert resultado.tipo_erro == "captcha_required"
+    assert resultado.etapa == "aguardar_resultado"
+    assert "captcha" in (resultado.mensagem_erro or "").lower()
+
+
+@pytest.mark.radar
+def test_tjsp_adapter_reports_watchdog_without_navigation_as_captcha_timeout(monkeypatch) -> None:
+    class FakeVendor:
+        PORTAL_TJSP = object()
+
+        @staticmethod
+        def texto_limpo(value: str) -> str:
+            return value
+
+        @staticmethod
+        def formatar_cnj(value: str) -> str:
+            return value
+
+        @staticmethod
+        def somente_digitos(value: str) -> str:
+            return "".join(ch for ch in value if ch.isdigit())
+
+        @staticmethod
+        def chave_texto(value: str) -> str:
+            return value
+
+        @staticmethod
+        def consultar_processo(_page, _portal, _item):
+            return {
+                "status": "timeout",
+                "mensagem": "Nenhuma mudança útil ocorreu dentro do watchdog de 10s.",
+                "movimentacoes": [],
+                "duracao_total_segundos": 10.5,
+            }
+
+    monkeypatch.setattr(tjsp_module, "_load_vendor", lambda: FakeVendor)
+
+    resultado = TJSPScraper(page=object()).consultar(ProcessoConsulta("1005628-88.2024.8.26.0073", "TJSP"))
+
+    assert resultado.status == "captcha_timeout"
+    assert resultado.tipo_erro == "captcha_or_submit_blocked"
+    assert "ambiente automatizado" in (resultado.mensagem_erro or "").lower()
+
+
+@pytest.mark.radar
 def test_radar_32_seed_processes_reports_invalid_row() -> None:
     result = load_process_seed(Path("plans/active/pavageau-sistema-integrado-backend/vendor/seed/processos_seed.csv"))
     assert result.total == 118
@@ -116,7 +196,7 @@ def test_radar_32_seed_processes_reports_invalid_row() -> None:
 
 class FakeField:
     def __init__(self) -> None:
-        self.value = None
+        self.value: str | None = None
 
     def clear(self) -> None:
         self.value = ""

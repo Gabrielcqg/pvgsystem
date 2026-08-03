@@ -39,9 +39,7 @@ off it is a deliberate act requiring an explicit env override.
 | **Test / CI** | Ephemeral Postgres container | **None.** |
 | **Staging / Production** | Supabase project | `AWS_REGION` selects the project region |
 
-Migrations `000`–`010` run against local Postgres (`000_bootstrap.sql` supplies the `auth` stub and
-`authenticated` role, DEC-30). `011_watchdog.sql` is Supabase-only and is **skipped locally** by a
-guarded runner:
+The schema is already applied via `supabase/migrations/` (timestamped). Codex verifies it is present and never rebuilds it. New DB work = a new timestamped migration appended there.
 
 ```sql
 -- 011_watchdog.sql
@@ -59,7 +57,7 @@ END $$;
 ```
 
 **Codex implements every phase, end to end, with zero region input.** `GATE-SCHEMA` is proven twice:
-once on local Postgres (migrations `000`–`010`) and once on Supabase (`000`–`011`).
+by confirming the applied `supabase/migrations/` objects exist (no rebuild).
 
 ### 1.2 External deployment dependency (not a Codex question)
 
@@ -108,7 +106,10 @@ Full DDL in `09-auth-authorization-plan.md` §3.1 (`010_radar_role.sql`, T-019).
 | `AWS_REGION` | provisioning | default `sa-east-1`, validated |
 | `SUPABASE_URL`, `SUPABASE_ANON_KEY` | API | public-side |
 | `SUPABASE_SERVICE_ROLE_KEY` | migrations only | never in API/worker runtime |
+| `SUPABASE_JWT_SECRET` | API | **NON-NEGOTIABLE: must be set** so signature verification runs (fail-closed). ES256 tokens are then verified via JWKS using `SUPABASE_URL` (J1, `runtime/61`) |
 | `RADAR_DB_URL` | worker only | `radar_worker` credential |
+| `MIGRATION_DATABASE_URL` | migrations only | applies `supabase/migrations/`; falls back to `DATABASE_URL` |
+| `SUPABASE_ALLOWED_EMAILS` | API | API-layer allowlist alongside `app_members` (RLS is authoritative) |
 | `VAULT_PROVIDER`, `SUPABASE_VAULT_KEY_ID` | vault adapter | DEC-27 |
 | `SMTP_*` / `RESEND_API_KEY` | error report + watchdog | — |
 

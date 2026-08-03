@@ -1,0 +1,49 @@
+provenance: references
+visual_direction: >-
+  Sistema financeiro-juridico interno, sobrio, confiavel e editorial - nao um dashboard SaaS generico.
+  Alta densidade informacional bem organizada, contraste explicito entre dado digitado e dado calculado,
+  origem rastreavel de cada numero. Reproduzir com fidelidade alta a referencia vendorizada.
+brand_personality: escritorio de advocacia tradicional e sofisticado; sistema financeiro auditavel
+product_feeling: leitura rapida de numeros e pendencias; limpo, compacto, profissional
+target_polish: flagship
+color_preferences: paleta navy (--navy #1E2A56, --navy-deep #151D3E, --navy-soft #2C3B6E); dourado como acento, nunca fundo dominante
+typography_preferences: tipografia clara; titulos de pagina ~24px, titulos de card ~16px, texto de card 13-17px, auxiliares 9-11.5px
+spacing_density: alta densidade; padding de card 13-17px; linhas de tabela 35-40px; gaps 8-12px; sem espaco vazio sem proposito
+surface_and_border_preferences: raios discretos ~2px; separacao por cor/bordas finas/linhas, nao por sombras; sem box-shadow nos cards
+iconography: icones funcionais, nao decorativos coloridos
+card_behavior: cards com conteudo real, sem esticar so para preencher espaco
+navigation_style: shell com navegacao lateral/superior; seletor de periodo global persistente
+animation_style: minima; unico efeito com sombra e o pulso dourado da cadeia de atualizacao
+scroll_behavior: conteudo largo (tabelas densas) rola em container proprio, corpo nunca rola horizontalmente
+responsive_expectations: desktop-first; tabelas densas viram cards abaixo de md; acoes primarias sempre visiveis
+accessibility_expectations: labels, foco visivel, erros anunciados, contraste adequado, navegacao por teclado
+references:
+  - classification: MUST_FOLLOW
+    name: FRONTEND_REFERENCE_PAVAGEAU.md
+    location: plans/active/pavageau-sistema-integrado-backend/vendor/frontend/FRONTEND_REFERENCE_PAVAGEAU.md
+    notes: Especificacao visual e comportamental autoritativa (2080 linhas). Fonte principal da direcao visual.
+  - classification: MUST_FOLLOW
+    name: pavageau_v2.jsx
+    location: plans/active/pavageau-sistema-integrado-backend/vendor/frontend/pavageau_v2.jsx
+    notes: >-
+      AUTORIDADE ESTRUTURAL E VISUAL do app autenticado (runtime/63). Reproduzir fielmente: sidebar,
+      header, layout, tabelas, cards, modais, formularios, densidade, tipografia, tokens. Um componente
+      por view, espelhando a referencia. Trocar apenas a camada visual; preservar as integracoes reais
+      (lib/api.js, lib/supabase.js). Substitui o frontend/src atual (App.jsx gigante generico).
+avoid_patterns:
+  - gradientes chamativos e decorativos
+  - glassmorphism
+  - sombras grandes e difusas
+  - cards excessivamente arredondados (rounded-lg/xl)
+  - icones coloridos sem funcao
+  - roxo, ciano, neon, azul eletrico
+  - dashboard SaaS generico / template Tailwind/MUI/shadcn sem customizacao
+  - dados falsos ou botoes sem acao
+non_negotiable_visual_rules:
+  - paleta navy dominante com dourado apenas como acento
+  - densidade preservada (padding 13-17px, linhas 35-40px, raios ~2px)
+  - valor calculado nunca vira campo editavel
+  - nenhum botao sem contrato de interacao
+  - nenhum dado mockado no build de producao
+decisions_provenance:
+  authority: FRONTEND_REFERENCE_PAVAGEAU.md is authoritative; backend/business rules are the source of truth for data and actions (DEC-49)

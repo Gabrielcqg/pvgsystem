@@ -9,6 +9,7 @@ dependencies = [
   "httpx==0.28.1",
   "openpyxl==3.1.5",
   "psycopg[binary]==3.3.2",
+  "psycopg-pool==3.2.6",
   "pydantic==2.13.3",
   "PyJWT[crypto]==2.10.1",
   "pytest==9.0.2",
@@ -17,7 +18,7 @@ dependencies = [
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-pythonpath = ["."]
+pythonpath = ["backend", "."]
 addopts = "-ra"
 markers = [
   "scraper: canonical TJSP scraper characterization and adapter tests",
@@ -39,7 +40,7 @@ line-length = 160
 target-version = "py312"
 exclude = [
   "plans/active/pavageau-sistema-integrado-backend/vendor",
-  "radar/scrapers/vendor",
+  "backend/radar/scrapers/vendor",
 ]
 
 [tool.ruff.lint]

@@ -1,11 +1,11 @@
 {
-  "expected_hash": "sha256:9f9fe612f27977042e46edf34a7ce4daae5eb0f11b0f0aa501268f08514ba36c",
-  "metadata_hash": "sha256:9f9fe612f27977042e46edf34a7ce4daae5eb0f11b0f0aa501268f08514ba36c",
-  "lock_hash": "sha256:9f9fe612f27977042e46edf34a7ce4daae5eb0f11b0f0aa501268f08514ba36c",
+  "expected_hash": "sha256:9cbf92e19a171b9fb269429b9c43fc68ff7befe5f01e0c35db92802cfb6b76d3",
+  "metadata_hash": "sha256:9cbf92e19a171b9fb269429b9c43fc68ff7befe5f01e0c35db92802cfb6b76d3",
+  "lock_hash": "sha256:9cbf92e19a171b9fb269429b9c43fc68ff7befe5f01e0c35db92802cfb6b76d3",
   "canonical_algorithm_available": false,
   "canonical_recompute_match": null,
-  "attempted_manifest_digest": "sha256:bb0be3864b6404f64132fb8747eb7c99a99a81c0b3f9a29d2030bb8e579adc85",
-  "attempted_manifest_file_count": 44,
+  "attempted_manifest_digest": "sha256:9ac8d2f474376cd802ce8c6c879fa45bd19958ff67ab597b0a6d2f978937a61b",
+  "attempted_manifest_file_count": 102,
   "status": "metadata_lock_validated_canonical_byte_algorithm_missing",
-  "note": "The repository contains the plan-hash-validation skill but no canonical algorithm or stored manifest for reproducing the planning hash from package bytes. Metadata and EXECUTION.lock match the expected hash; package validation passed."
+  "note": "The repository contains the plan-hash-validation skill but no canonical algorithm or stored manifest for reproducing the planning hash from package bytes. Metadata and EXECUTION.lock match the active expected hash; package validation passed."
 }

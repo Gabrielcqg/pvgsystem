@@ -189,6 +189,7 @@ hand-computed expected values in `esperado.json`. The real workbooks change the 
 | `GATE-SCRAPER-FROZEN` | Vendored core's navigation/layout/extraction/recovery unchanged | PENDING |
 | `GATE-RADAR` | Full battery green | PENDING |
 | `GATE-SECRETS` | No secret in logs, responses, email, audit, or debug artifacts | PENDING |
+| `GATE-FE` | Frontend: telas, contratos, estados, sem dado falso, E2E, a11y | PENDING |
 | `GATE-DOCS` | README + run report + evidence index present | PENDING |
 | `GATE-LOAD` | Loader idempotent + auditable against synthetic fixtures (TEST-LOAD-01…07) | PENDING |
 | `GATE-PROD-RUN` | One real end-to-end run on the deployment host | PENDING |
@@ -198,3 +199,32 @@ All implementation gates are **PENDING** and stay so until Codex proves them.
 `GATE-PROD-RUN` is required because the 88.7% baseline was measured on the office Mac at 01:49.
 If deployment moves to a VPS (DEC-23), the datacenter IP is an unproven variable for captcha
 behavior — the gate is what would catch that before it becomes a silently broken weekly radar.
+
+## 7. Frontend & integration tests
+
+| ID | Case | Expected |
+|---|---|---|
+| TEST-FE-F01 | Login flow | login valido -> /me -> rota; senha incorreta -> erro de campo; 429 -> backoff |
+| TEST-FE-F02 | Definir/redefinir senha | token de convite valido define senha; expirado explica; reset neutro |
+| TEST-FE-F04 | Nao autorizado | autenticado fora de app_members -> /sem-acesso (403), nunca tabela em branco |
+| TEST-FE-F10 | Shell + periodo | periodo persiste entre telas; guarda de trabalho nao salvo |
+| TEST-FE-F16 | Contratos CRUD | lista/filtros/criar/editar/excluir contra API real; 409 cascade |
+| TEST-FE-F17 | Parcelas transacionais | confirmar cria lancamento; estornar desfaz; 409 em dupla |
+| TEST-FE-F19 | Lancamentos | CRUD + quitacao de parcela; 422 mapeado por campo |
+| TEST-FE-F20 | Custos fixos | CRUD + lancar; 409 ja lancado no mes |
+| TEST-FE-F21 | Tarefas | CRUD, concluir (optimistic+rollback), criar de movimentacao |
+| TEST-FE-F22 | Radar | executar (409 ja rodando), estados distintos, aguardando scraper neutro, CNJ 422 |
+| TEST-FE-F24 | Curadoria | fila de movimentacoes novas -> criar tarefa (409 idempotente) |
+| TEST-FE-F25 | Config | parametros e configuracoes salvos; derivados nao editaveis |
+| TEST-FE-F26 | Auditoria | read-only; sem editar/excluir |
+| TEST-FE-CALC | Valor calculado read-only | nenhum indicador vira campo editavel; freshness exibida; atualiza apos mutacao |
+| TEST-FE-CLIENT | Cliente API | 401->sessao, 403->sem-acesso, 404, 409, 422, 429 backoff, 5xx nao destrutivo |
+| TEST-FE-JWKS | Backend auth | token valido/expirado/adulterado/nao-membro; alg inesperado rejeitado; fail-closed sem config |
+| TEST-FE-BE | Backend-completion | todos os endpoints faltantes existem e respondem conforme contrato |
+| TEST-FE-NOMOCK | Sem dado falso | build de producao sem array estatico/login falso/token fixo/handler sem API/botao morto |
+| TEST-FE-A11Y | Acessibilidade+responsivo | labels/foco/teclado; tabelas densas viram cards < md; acoes primarias visiveis |
+| TEST-FE-E2E | E2E | fluxos principais ponta a ponta com Supabase Auth + FastAPI + banco reais; screenshots |
+
+Casos obrigatorios cobertos: login valido/senha incorreta/sessao expirada; membro presente/ausente em
+app_members; usuario removido na sessao; rota sem auth; sem permissao; banco/API indisponivel; 409; 422;
+tabela vazia; carregamento lento; atualizacao apos mutacao; persistencia apos reload.
