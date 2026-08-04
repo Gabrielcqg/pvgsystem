@@ -72,6 +72,18 @@ const compact = (v) => (Math.abs(v) >= 1000 ? `${(v / 1000).toFixed(1)}k` : `${M
 const mesDe = (s) => (s || "").slice(0, 7);
 const rotMes = (m) => (m ? `${MESES_N[+m.slice(5, 7) - 1]}/${m.slice(2, 4)}` : "—");
 const fmtData = (s) => (s ? `${s.slice(8, 10)}/${s.slice(5, 7)}` : "—");
+const numeroFantasma = (value) => {
+  if (value === "" || value == null) return "";
+  const n = Number(value);
+  return Number.isFinite(n) && n === 0 ? "" : value;
+};
+const numeroOuVazio = (value) => (value === "" ? "" : Number(value));
+const numeroOuZero = (value) => Number(value || 0);
+const percentualFantasma = (value) => {
+  const n = Math.round(numeroOuZero(value) * 100);
+  return n === 0 ? "" : n;
+};
+const percentualDoInput = (value) => (value === "" ? "" : Number(value) / 100);
 const diasDesde = (s) => {
   if (!s) return null;
   const dias = Math.floor((new Date(`${HOJE}T00:00:00`) - new Date(`${s}T00:00:00`)) / 86400000);
@@ -488,7 +500,11 @@ export default function App() {
           background-size: 260px 100%;
           animation: shimmerSkeleton 1.05s ease-in-out infinite;
         }
-        input:focus, select:focus { outline: 2px solid ${C.gold}; outline-offset: -1px; }
+        input[type="number"] { appearance: textfield; -moz-appearance: textfield; }
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+        input::placeholder, textarea::placeholder { color: #9AA3B6; opacity: .58; }
+        input:focus, select:focus, textarea:focus { outline: 2px solid ${C.gold}; outline-offset: -1px; }
         @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } .skel { background-image: none; } }
       `}</style>
 
@@ -906,7 +922,7 @@ function Parceiros({ db, m, mut, runAction }) {
         </tbody>
       </table>
       <div style={{ display: "flex", gap: 6, marginTop: 14, maxWidth: 380 }}>
-        <input value={novo} onChange={(e) => setNovo(e.target.value)} placeholder="Novo parceiro / origem" style={{ ...campo, flex: 1 }} />
+        <input aria-label="Novo parceiro / origem" value={novo} onChange={(e) => setNovo(e.target.value)} placeholder="Novo parceiro / origem" style={{ ...campo, flex: 1 }} />
         <button className="btn" style={btnSolid} disabled={!novo.trim()}
           onClick={adicionar}>Adicionar</button>
       </div>
@@ -1753,7 +1769,7 @@ function Ajustes({ db, setDb, mut, runAction }) {
                 <div style={{ fontSize: 12, fontWeight: 500 }}>{l}</div>
                 <div style={{ fontSize: 10.5, color: C.inkSoft }}>{h}</div>
               </div>
-              <input aria-label={l} type="number" value={db.params[k]} onChange={(e) => setP(k, e.target.value)}
+              <input aria-label={l} type="number" placeholder="0" value={numeroFantasma(db.params[k])} onChange={(e) => setP(k, e.target.value)}
                 style={{ ...campo, width: 130, fontFamily: S.mono, fontWeight: 600, textAlign: "right", background: C.goldPale, borderColor: C.gold }} />
             </div>
           ))}
@@ -2465,7 +2481,12 @@ function Radar({ db, mut, runAction, setModal, enviarParaTarefas, enviarTodas, a
 /* ══════════  MODAIS  ══════════ */
 function Shell({ titulo, eyebrow, onClose, children, onSave, ok, salvar = "Salvar" }) {
   const dialogRef = useRef(null);
+  const onCloseRef = useRef(onClose);
   const titleId = React.useId();
+
+  useEffect(() => {
+    onCloseRef.current = onClose;
+  }, [onClose]);
 
   useEffect(() => {
     if (typeof document === "undefined") return undefined;
@@ -2481,7 +2502,7 @@ function Shell({ titulo, eyebrow, onClose, children, onSave, ok, salvar = "Salva
     const handleKeyDown = (event) => {
       if (event.key === "Escape") {
         event.preventDefault();
-        onClose();
+        onCloseRef.current?.();
         return;
       }
       if (event.key !== "Tab" || !dialogRef.current) return;
@@ -2503,13 +2524,22 @@ function Shell({ titulo, eyebrow, onClose, children, onSave, ok, salvar = "Salva
       }
     };
     document.addEventListener("keydown", handleKeyDown);
-    const frame = window.requestAnimationFrame(() => dialogRef.current?.focus());
+    const frame = window.requestAnimationFrame(() => {
+      const dialog = dialogRef.current;
+      if (!dialog || dialog.contains(document.activeElement)) return;
+      const firstFocusable = dialog.querySelector(focusableSelector);
+      if (firstFocusable instanceof HTMLElement) {
+        firstFocusable.focus();
+        return;
+      }
+      dialog.focus();
+    });
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
       window.cancelAnimationFrame(frame);
       previousFocus?.focus?.();
     };
-  }, [onClose]);
+  }, []);
 
   return (
     <div onClick={onClose} style={{ position: "fixed", inset: 0, background: "rgba(21,29,62,.55)", zIndex: 50, display: "flex", alignItems: "center", justifyContent: "center", padding: 16 }}>
@@ -2603,7 +2633,7 @@ function MLancamento({ db, initial, onClose, onSave }) {
 
       <Grid>
         <F l="DATA"><input type="date" value={f.data} onChange={(e) => set("data", e.target.value)} style={campo} /></F>
-        <F l="VALOR (R$)"><input type="number" step="0.01" placeholder="0,00" value={f.valor} onChange={(e) => set("valor", e.target.value)} style={{ ...campo, fontFamily: S.mono, fontWeight: 600 }} /></F>
+        <F l="VALOR (R$)"><input type="number" step="0.01" placeholder="0,00" value={numeroFantasma(f.valor)} onChange={(e) => set("valor", e.target.value)} style={{ ...campo, fontFamily: S.mono, fontWeight: 600 }} /></F>
         <F l="DESCRIÇÃO / CLIENTE" full><input value={f.descricao} onChange={(e) => set("descricao", e.target.value)} placeholder="Ex.: Honorário inicial — Cliente X" style={campo} /></F>
         <F l="CATEGORIA" full>
           <select value={f.categoria} onChange={(e) => set("categoria", e.target.value)} style={campo}>
@@ -2634,12 +2664,20 @@ function MLancamento({ db, initial, onClose, onSave }) {
 }
 
 function MContrato({ db, initial, onClose, onSave }) {
-  const [f, setF] = useState(initial || { cliente: "", parceiroId: "", processo: "", tipoHonorario: "", pctExito: 0, pctSucumb: 0, pctQuota: 0, fixoTotal: 0, valorCausa: 0, status: "Proposta", splitNick: "", obs: "", dataProposta: HOJE, dataFechamento: "" });
+  const [f, setF] = useState(initial || { cliente: "", parceiroId: "", processo: "", tipoHonorario: "", pctExito: "", pctSucumb: "", pctQuota: "", fixoTotal: "", valorCausa: "", status: "Proposta", splitNick: "", obs: "", dataProposta: HOJE, dataFechamento: "" });
   const set = (k, v) => setF((p) => ({ ...p, [k]: v }));
   const ok = f.cliente && f.tipoHonorario;
-  const ex = (f.valorCausa || 0) * (f.pctExito || 0);
+  const contratoParaSalvar = () => ({
+    ...f,
+    pctExito: numeroOuZero(f.pctExito),
+    pctSucumb: numeroOuZero(f.pctSucumb),
+    pctQuota: numeroOuZero(f.pctQuota),
+    fixoTotal: numeroOuZero(f.fixoTotal),
+    valorCausa: numeroOuZero(f.valorCausa),
+  });
+  const ex = numeroOuZero(f.valorCausa) * numeroOuZero(f.pctExito);
   return (
-    <Shell eyebrow="CADASTRO" titulo={initial ? "Editar contrato" : "Novo contrato"} onClose={onClose} ok={ok} salvar={initial ? "Atualizar contrato" : "Salvar contrato"} onSave={() => { onSave(f); onClose(); }}>
+    <Shell eyebrow="CADASTRO" titulo={initial ? "Editar contrato" : "Novo contrato"} onClose={onClose} ok={ok} salvar={initial ? "Atualizar contrato" : "Salvar contrato"} onSave={() => { onSave(contratoParaSalvar()); onClose(); }}>
       <Grid>
         <F l="CLIENTE" full><input value={f.cliente} onChange={(e) => set("cliente", e.target.value)} style={campo} /></F>
         <F l="PARCEIRO / ORIGEM">
@@ -2654,11 +2692,11 @@ function MContrato({ db, initial, onClose, onSave }) {
             <option value="">Selecione</option>{TIPO_HONORARIO.map((t) => <option key={t}>{t}</option>)}
           </select>
         </F>
-        <F l="FIXO TOTAL (R$)"><input type="number" step="0.01" value={f.fixoTotal} onChange={(e) => set("fixoTotal", Number(e.target.value))} style={{ ...campo, fontFamily: S.mono }} /></F>
-        <F l="VALOR DA CAUSA (R$)"><input type="number" step="0.01" value={f.valorCausa} onChange={(e) => set("valorCausa", Number(e.target.value))} style={{ ...campo, fontFamily: S.mono, background: C.goldPale, borderColor: C.gold }} /></F>
-        <F l="% ÊXITO"><input type="number" value={Math.round(f.pctExito * 100)} onChange={(e) => set("pctExito", Number(e.target.value) / 100)} style={{ ...campo, fontFamily: S.mono }} /></F>
-        <F l="% SUCUMBÊNCIA"><input type="number" value={Math.round(f.pctSucumb * 100)} onChange={(e) => set("pctSucumb", Number(e.target.value) / 100)} style={{ ...campo, fontFamily: S.mono }} /></F>
-        <F l="% QUOTA — FATIA DO PARCEIRO" full><input type="number" value={Math.round(f.pctQuota * 100)} onChange={(e) => set("pctQuota", Number(e.target.value) / 100)} style={{ ...campo, fontFamily: S.mono }} /></F>
+        <F l="FIXO TOTAL (R$)"><input type="number" step="0.01" placeholder="0,00" value={numeroFantasma(f.fixoTotal)} onChange={(e) => set("fixoTotal", numeroOuVazio(e.target.value))} style={{ ...campo, fontFamily: S.mono }} /></F>
+        <F l="VALOR DA CAUSA (R$)"><input type="number" step="0.01" placeholder="0,00" value={numeroFantasma(f.valorCausa)} onChange={(e) => set("valorCausa", numeroOuVazio(e.target.value))} style={{ ...campo, fontFamily: S.mono, background: C.goldPale, borderColor: C.gold }} /></F>
+        <F l="% ÊXITO"><input type="number" placeholder="0" value={percentualFantasma(f.pctExito)} onChange={(e) => set("pctExito", percentualDoInput(e.target.value))} style={{ ...campo, fontFamily: S.mono }} /></F>
+        <F l="% SUCUMBÊNCIA"><input type="number" placeholder="0" value={percentualFantasma(f.pctSucumb)} onChange={(e) => set("pctSucumb", percentualDoInput(e.target.value))} style={{ ...campo, fontFamily: S.mono }} /></F>
+        <F l="% QUOTA — FATIA DO PARCEIRO" full><input type="number" placeholder="0" value={percentualFantasma(f.pctQuota)} onChange={(e) => set("pctQuota", percentualDoInput(e.target.value))} style={{ ...campo, fontFamily: S.mono }} /></F>
         <F l="SPLIT NICK"><input value={f.splitNick} onChange={(e) => set("splitNick", e.target.value)} style={campo} /></F>
         <F l="DATA DA PROPOSTA"><input type="date" value={f.dataProposta} onChange={(e) => set("dataProposta", e.target.value)} style={campo} /></F>
         <F l="OBSERVAÇÕES" full><input value={f.obs} onChange={(e) => set("obs", e.target.value)} style={campo} /></F>
@@ -2667,8 +2705,8 @@ function MContrato({ db, initial, onClose, onSave }) {
         <div style={{ background: C.paper, border: `1px solid ${C.line}`, padding: "9px 11px", marginTop: 12, fontSize: 12 }}>
           <div style={{ fontSize: 8.5, letterSpacing: ".12em", color: C.inkSoft, fontWeight: 600, marginBottom: 5 }}>🔒 PRÉVIA CALCULADA</div>
           <div style={{ display: "flex", justifyContent: "space-between" }}><span>Êxito total</span><b style={{ fontFamily: S.mono }}>{brl2(ex)}</b></div>
-          <div style={{ display: "flex", justifyContent: "space-between", color: C.inkSoft }}><span>Parceiro ({pct(f.pctQuota)})</span><span style={{ fontFamily: S.mono }}>{brl2(ex * f.pctQuota)}</span></div>
-          <div style={{ display: "flex", justifyContent: "space-between", color: C.navy, fontWeight: 600 }}><span>Escritório ({pct(1 - f.pctQuota)})</span><span style={{ fontFamily: S.mono }}>{brl2(ex * (1 - f.pctQuota))}</span></div>
+          <div style={{ display: "flex", justifyContent: "space-between", color: C.inkSoft }}><span>Parceiro ({pct(numeroOuZero(f.pctQuota))})</span><span style={{ fontFamily: S.mono }}>{brl2(ex * numeroOuZero(f.pctQuota))}</span></div>
+          <div style={{ display: "flex", justifyContent: "space-between", color: C.navy, fontWeight: 600 }}><span>Escritório ({pct(1 - numeroOuZero(f.pctQuota))})</span><span style={{ fontFamily: S.mono }}>{brl2(ex * (1 - numeroOuZero(f.pctQuota)))}</span></div>
         </div>
       )}
     </Shell>
@@ -2684,7 +2722,7 @@ function MParcela({ db, contratoId, onClose, onSave }) {
       salvar="Salvar parcela" onSave={() => { onSave({ ...f, valor: Number(f.valor) }); onClose(); }}>
       <Grid>
         <F l="TIPO"><select value={f.tipo} onChange={(e) => set("tipo", e.target.value)} style={campo}>{TIPO_PARCELA.map((t) => <option key={t}>{t}</option>)}</select></F>
-        <F l="VALOR (R$)"><input type="number" step="0.01" value={f.valor} onChange={(e) => set("valor", e.target.value)} style={{ ...campo, fontFamily: S.mono, fontWeight: 600 }} /></F>
+        <F l="VALOR (R$)"><input type="number" step="0.01" placeholder="0,00" value={numeroFantasma(f.valor)} onChange={(e) => set("valor", e.target.value)} style={{ ...campo, fontFamily: S.mono, fontWeight: 600 }} /></F>
         <F l="MÊS ESPERADO" full>
           <select value={f.mesEsperado} onChange={(e) => set("mesEsperado", e.target.value)} style={campo}>
             {MESES.map((m) => <option key={m} value={m}>{rotMes(m)}</option>)}
@@ -2698,15 +2736,15 @@ function MParcela({ db, contratoId, onClose, onSave }) {
 }
 
 function MFixo({ initial, onClose, onSave }) {
-  const [f, setF] = useState(initial || { descricao: "", valor: "", recorrente: true, diaVenc: 5, mesInicio: 1, mesFim: 12 });
+  const [f, setF] = useState(initial || { descricao: "", valor: "", recorrente: true, diaVenc: "", mesInicio: 1, mesFim: 12 });
   const set = (k, v) => setF((p) => ({ ...p, [k]: v }));
   return (
     <Shell eyebrow="CADASTRE UMA VEZ" titulo={initial ? "Editar custo fixo" : "Novo custo fixo"} onClose={onClose} ok={f.descricao && f.valor > 0} salvar={initial ? "Atualizar custo fixo" : "Salvar custo fixo"}
-      onSave={() => { onSave({ ...f, valor: Number(f.valor), diaVenc: Number(f.diaVenc), mesInicio: Number(f.mesInicio), mesFim: Number(f.mesFim) }); onClose(); }}>
+      onSave={() => { onSave({ ...f, valor: Number(f.valor), diaVenc: Number(f.diaVenc || 5), mesInicio: Number(f.mesInicio), mesFim: Number(f.mesFim) }); onClose(); }}>
       <Grid>
         <F l="DESCRIÇÃO" full><input value={f.descricao} onChange={(e) => set("descricao", e.target.value)} placeholder="Ex.: Contador" style={campo} /></F>
-        <F l="VALOR MENSAL (R$)"><input type="number" step="0.01" value={f.valor} onChange={(e) => set("valor", e.target.value)} style={{ ...campo, fontFamily: S.mono, fontWeight: 600 }} /></F>
-        <F l="DIA DO VENCIMENTO"><input type="number" min="1" max="28" value={f.diaVenc} onChange={(e) => set("diaVenc", e.target.value)} style={{ ...campo, fontFamily: S.mono }} /></F>
+        <F l="VALOR MENSAL (R$)"><input type="number" step="0.01" placeholder="0,00" value={numeroFantasma(f.valor)} onChange={(e) => set("valor", e.target.value)} style={{ ...campo, fontFamily: S.mono, fontWeight: 600 }} /></F>
+        <F l="DIA DO VENCIMENTO"><input type="number" min="1" max="28" placeholder="5" value={numeroFantasma(f.diaVenc)} onChange={(e) => set("diaVenc", e.target.value)} style={{ ...campo, fontFamily: S.mono }} /></F>
         <F l="RECORRENTE?">
           <select value={f.recorrente ? "1" : "0"} onChange={(e) => set("recorrente", e.target.value === "1")} style={campo}>
             <option value="1">Sim — todo mês da vigência</option><option value="0">Não</option>
@@ -2777,7 +2815,7 @@ function MTarefa({ db, mut, runAction, initial, onClose, onSave }) {
         <F l="DATA DE INÍCIO"><input type="date" value={f.dataInicio || ""} onChange={(e) => set("dataInicio", e.target.value)} style={campo} /></F>
         <F l="PRAZO"><input type="date" value={f.prazo || ""} onChange={(e) => set("prazo", e.target.value)} style={campo} /></F>
         <F l="Nº DO PROCESSO"><input value={f.processoNumero || ""} onChange={(e) => set("processoNumero", e.target.value)} style={{ ...campo, fontFamily: S.mono, fontSize: 12 }} /></F>
-        <F l="ESFORÇO (MIN)"><input type="number" min="0" value={f.estimativaMinutos ?? ""} onChange={(e) => set("estimativaMinutos", e.target.value)} style={campo} /></F>
+        <F l="ESFORÇO (MIN)"><input type="number" min="0" placeholder="0" value={numeroFantasma(f.estimativaMinutos)} onChange={(e) => set("estimativaMinutos", e.target.value)} style={campo} /></F>
         <F l="TAGS" full><input value={Array.isArray(f.tags) ? f.tags.join(", ") : (f.tags || "")} onChange={(e) => set("tags", e.target.value)} placeholder="prazo, cliente, petição" style={campo} /></F>
         <F l="OBSERVAÇÕES" full><textarea value={f.obs || ""} onChange={(e) => set("obs", e.target.value)} style={{ ...campo, minHeight: 64, resize: "vertical" }} /></F>
       </Grid>
@@ -2997,13 +3035,15 @@ function MSenhaProcesso({ processo, onClose, onSave }) {
 }
 
 function MFechar({ contrato, onClose, onSave }) {
-  const [n, setN] = useState(contrato?.tipoHonorario === "Fixo único" ? 1 : 4);
+  const parcelasPadrao = contrato?.tipoHonorario === "Fixo único" ? 1 : 4;
+  const [n, setN] = useState("");
   if (!contrato) return null;
+  const parcelas = Number(n || parcelasPadrao);
   return (
-    <Shell eyebrow="PROPOSTA → CONTRATO" titulo={`Fechar ${contrato.cliente}`} onClose={onClose} ok salvar="Registrar fechamento" onSave={() => onSave(Number(n))}>
+    <Shell eyebrow="PROPOSTA → CONTRATO" titulo={`Fechar ${contrato.cliente}`} onClose={onClose} ok salvar="Registrar fechamento" onSave={() => onSave(parcelas)}>
       {contrato.fixoTotal > 0 ? (<>
-        <Grid><F l="PARCELAS DO FIXO" full><input type="number" min="1" max="24" value={n} onChange={(e) => setN(e.target.value)} style={{ ...campo, fontFamily: S.mono, fontWeight: 600 }} /></F></Grid>
-        <Nota>{n} parcelas de <b>{brl2(contrato.fixoTotal / (n || 1))}</b>, a partir de {rotMes(MES_ATUAL)}. Entram no <b>a receber</b> na hora — e cada confirmação vira uma entrada.</Nota>
+        <Grid><F l="PARCELAS DO FIXO" full><input type="number" min="1" max="24" placeholder={String(parcelasPadrao)} value={n} onChange={(e) => setN(e.target.value)} style={{ ...campo, fontFamily: S.mono, fontWeight: 600 }} /></F></Grid>
+        <Nota>{parcelas} parcelas de <b>{brl2(contrato.fixoTotal / (parcelas || 1))}</b>, a partir de {rotMes(MES_ATUAL)}. Entram no <b>a receber</b> na hora — e cada confirmação vira uma entrada.</Nota>
       </>) : <Nota>Contrato sem honorário fixo. Nenhuma parcela será gerada — as de êxito você cadastra quando o valor se definir.</Nota>}
     </Shell>
   );
